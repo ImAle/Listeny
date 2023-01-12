@@ -57,11 +57,14 @@ public class Canciones implements Serializable {
     @ManyToMany(mappedBy = "albumCanciones")
     private List<Albumes> cancionAlbumes = new ArrayList<>();
 
-    public Canciones(){
+    @ManyToMany(mappedBy = "artistaCanciones")
+    private List<Artistas> cancionArtistas = new ArrayList<>();
+
+    public Canciones() {
 
     }
 
-    public Canciones(int id, int idPropietario, int idCategoria, String imagen, String titulo, int duracion, String descripcion, Date fechaIncorporacion, Boolean publica, String url) {
+    public Canciones(int id, int idPropietario, int idCategoria, String imagen, String titulo, int duracion, String descripcion, Date fechaIncorporacion, Boolean publica, String url, Usuarios usuarios, Categorias categorias, List<Albumes> cancionAlbumes, List<Artistas> cancionArtistas) {
         this.id = id;
         this.idPropietario = idPropietario;
         this.idCategoria = idCategoria;
@@ -72,6 +75,29 @@ public class Canciones implements Serializable {
         this.fechaIncorporacion = fechaIncorporacion;
         this.publica = publica;
         this.url = url;
+        this.usuarios = usuarios;
+        this.categorias = categorias;
+        this.cancionAlbumes = cancionAlbumes;
+        this.cancionArtistas = cancionArtistas;
     }
 
+    @Override
+    public String toString() {
+        return "Canciones{" +
+                "id=" + id +
+                ", idPropietario=" + idPropietario +
+                ", idCategoria=" + idCategoria +
+                ", imagen='" + imagen + '\'' +
+                ", titulo='" + titulo + '\'' +
+                ", duracion=" + duracion +
+                ", descripcion='" + descripcion + '\'' +
+                ", fechaIncorporacion=" + fechaIncorporacion +
+                ", publica=" + publica +
+                ", url='" + url + '\'' +
+                ", usuarios=" + usuarios +
+                ", categorias=" + categorias +
+                ", cancionAlbumes=" + cancionAlbumes +
+                ", cancionArtistas=" + cancionArtistas +
+                '}';
+    }
 }
