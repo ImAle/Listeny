@@ -13,10 +13,11 @@ import java.util.List;
 public class Categorias {
 
     @Id
+    @Column (name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int Id;
 
-    @Column(name = "categoria")
+    @Column(name = "categoria", length = 45)
     private String categoria;
 
     @Column(name = "idMadre")
