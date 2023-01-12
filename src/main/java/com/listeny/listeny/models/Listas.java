@@ -13,6 +13,7 @@ import java.io.Serializable;
 public class Listas implements Serializable {
 
     @Id
+    @Column (name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
@@ -22,16 +23,16 @@ public class Listas implements Serializable {
     @Column(name = "reproducciones")
     private int reproducciones;
 
-    @Column(name = "nombre")
+    @Column(name = "nombre", length = 45)
     private String nombre;
 
-    @Column(name = "imagen")
+    @Column(name = "imagen",length = 100)
     private String imagen;
 
-    @Column(name = "descripcion")
+    @Column(name = "descripcion",length = 100)
     private String descripcion;
 
-    @Column(name = "color")
+    @Column(name = "color", length = 15)
     private String color;
 
     @Column(name = "publica")
