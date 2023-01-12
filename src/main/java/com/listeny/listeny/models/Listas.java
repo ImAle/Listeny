@@ -17,6 +17,7 @@ public class Listas implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
+    @Id
     @Column(name = "id_propietario")
     private int idPropietario;
 

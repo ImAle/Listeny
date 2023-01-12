@@ -16,29 +16,24 @@ import java.util.List;
 public class Notificaciones implements Serializable {
 
     @Id
+    @Column (name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @Column(name = "descripcion")
+    @Column(name = "descripcion", length = 200)
     private String descripcion;
 
-    @Column(name="titulo")
+    @Column(name="titulo", length = 100)
     private String titulo;
-
-    @Column(name="envio")
-    private Date envio;
-
-
 
     public Notificaciones(){
 
     }
 
-    public Notificaciones(int id, String descripcion, String titulo, Date envio) {
+    public Notificaciones(int id, String descripcion, String titulo) {
         this.id = id;
         this.descripcion = descripcion;
         this.titulo = titulo;
-        this.envio = envio;
     }
 
     @Override
@@ -47,7 +42,6 @@ public class Notificaciones implements Serializable {
                 "id=" + id +
                 ", descripcion='" + descripcion + '\'' +
                 ", titulo='" + titulo + '\'' +
-                ", envio=" + envio +
                 '}';
     }
 }
