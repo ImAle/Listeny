@@ -10,46 +10,40 @@ import java.util.Date;
 @Getter
 @Setter
 @Entity
-@Table(name="usuarios")
+@Table(name="Usuarios")
 public class Usuarios implements Serializable {
 
     @Id
+    @Column (name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @Column(name="nombreUsuario")
+    @Column(name="nombreUsuario", length = 45)
     private String nombreUsuario;
 
-    @Column(name="email")
+    @Column(name="email", length = 60)
     private String email;
 
-    @Column(name="clave")
+    @Column(name="clave", length = 100)
     private String clave;
 
-    @Column(name="alias")
+    @Column(name="alias", length = 45)
     private String alias;
 
     @Column(name="fecha_nacimiento")
     private Date fechaNacimiento;
 
-    @Column(name="sexo")
+    @Column(name="sexo", length = 1)
     private char sexo;
 
-    @Column(name="imagen")
+    @Column(name="imagen", length = 100)
     private String imagen;
 
-    @Column(name="imagen_fondo")
+    @Column(name="imagen_fondo", length = 100)
     private String imagenFondo;
-
-    @Column(name="notificaciones_id")
-    private int notificacionesId;
 
     @Column(name="esArtista")
     private Boolean esArtista;
-
-    @ManyToOne
-    @JoinColumn(name = "notificaciones_id")
-    Notificaciones notificaciones;
 
     public Usuarios() {
 
@@ -75,7 +69,6 @@ public class Usuarios implements Serializable {
         this.sexo = sexo;
         this.imagen = imagen;
         this.imagenFondo = imagenFondo;
-        this.notificacionesId = notificacionesId;
         this.esArtista = esArtista;
     }
 
@@ -91,7 +84,6 @@ public class Usuarios implements Serializable {
                 ", sexo=" + sexo +
                 ", imagen='" + imagen + '\'' +
                 ", imagenFondo='" + imagenFondo + '\'' +
-                ", notificacionesId=" + notificacionesId +
                 ", esArtista=" + esArtista +
                 '}';
     }
