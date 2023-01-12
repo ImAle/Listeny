@@ -23,16 +23,16 @@ public class Canciones implements Serializable {
     @Column(name = "idCategoria")
     private int idCategoria;
 
-    @Column(name = "imagen")
+    @Column(name = "imagen", length = 100)
     private String imagen;
 
-    @Column(name = "titulo")
+    @Column(name = "titulo", length = 50)
     private String titulo;
 
     @Column(name = "duracion")
     private int duracion;
 
-    @Column(name = "descripcion")
+    @Column(name = "descripcion", length = 45)
     private String descripcion;
 
     @Column(name = "fecha_incorporacion")
@@ -41,7 +41,7 @@ public class Canciones implements Serializable {
     @Column(name = "publica")
     private Boolean publica;
 
-    @Column(name = "url")
+    @Column(name = "url", length = 200)
     private String url;
 
     @ManyToOne
