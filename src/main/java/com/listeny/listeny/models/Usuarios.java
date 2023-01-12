@@ -5,7 +5,9 @@ import lombok.Getter;
 import lombok.Setter;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 @Getter
 @Setter
@@ -44,6 +46,15 @@ public class Usuarios implements Serializable {
 
     @Column(name="esArtista")
     private Boolean esArtista;
+
+    @OneToMany (mappedBy = "albumesUsuario")
+    List<Albumes> usuarioAlbumes;
+
+    @ManyToMany
+    @JoinTable (name = "Favoritos_albumes",
+            joinColumns = @JoinColumn (name = "idUsuario"),
+            inverseJoinColumns = @JoinColumn (name = "idFavorito"))
+    private List<Albumes> usuarioAlbumesFavoritos = new ArrayList<>();
 
     public Usuarios() {
 

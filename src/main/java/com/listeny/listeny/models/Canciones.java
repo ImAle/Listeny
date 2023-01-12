@@ -5,7 +5,9 @@ import lombok.Getter;
 import lombok.Setter;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 @Getter
 @Setter
@@ -51,6 +53,9 @@ public class Canciones implements Serializable {
     @ManyToOne
     @JoinColumn(name = "idCategoria")
     Categorias categorias;
+
+    @ManyToMany(mappedBy = "albumCanciones")
+    private List<Albumes> cancionAlbumes = new ArrayList<>();
 
     public Canciones(){
 

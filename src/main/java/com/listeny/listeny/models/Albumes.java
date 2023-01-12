@@ -4,6 +4,9 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Entity
 @Getter
 @Setter
@@ -35,14 +38,23 @@ public class Albumes {
     private Boolean publico;
 
     @ManyToOne
-    @JoinColumn (name = "id_propietario")
-    Usuarios usuarios;
+    @JoinColumn (name = "idPropietario")
+    Usuarios albumesUsuario;
+
+    @ManyToMany(mappedBy = "usuarioAlbumesFavoritos")
+    private List<Usuarios> albumFavoritoUsuarios = new ArrayList<>();
+
+    @ManyToMany
+    @JoinTable (name = "albumes_has_canciones",
+            joinColumns = @JoinColumn (name = "albumes_id"),
+            inverseJoinColumns = @JoinColumn (name = "canciones_id"))
+    private List<Canciones> albumCanciones = new ArrayList<>();
 
     public Albumes() {
 
     }
 
-    public Albumes(int id, int idPropietario, int reproducciones, String titulo, String imagen, String descripcion, Boolean publico, Usuarios usuarios) {
+    public Albumes(int id, int idPropietario, int reproducciones, String titulo, String imagen, String descripcion, Boolean publico, Usuarios albumesUsuario, List<Usuarios> albumFavoritoUsuarios, List<Canciones> albumCanciones) {
         this.id = id;
         this.idPropietario = idPropietario;
         this.reproducciones = reproducciones;
@@ -50,7 +62,9 @@ public class Albumes {
         this.imagen = imagen;
         this.descripcion = descripcion;
         this.publico = publico;
-        this.usuarios = usuarios;
+        this.albumesUsuario = albumesUsuario;
+        this.albumFavoritoUsuarios = albumFavoritoUsuarios;
+        this.albumCanciones = albumCanciones;
     }
 
     @Override
@@ -63,7 +77,9 @@ public class Albumes {
                 ", imagen='" + imagen + '\'' +
                 ", descripcion='" + descripcion + '\'' +
                 ", publico=" + publico +
-                ", usuarios=" + usuarios +
+                ", albumesUsuario=" + albumesUsuario +
+                ", albumFavoritoUsuarios=" + albumFavoritoUsuarios +
+                ", albumCanciones=" + albumCanciones +
                 '}';
     }
 }
