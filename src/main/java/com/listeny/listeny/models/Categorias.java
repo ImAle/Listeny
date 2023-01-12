@@ -23,7 +23,37 @@ public class Categorias {
     @Column(name = "idMadre")
     private int idMadre;
 
+    @OneToMany(mappedBy = "cancionesCategoria")
+    List<Canciones> categoriaCanciones;
+
     @OneToMany(mappedBy = "categorias")
     List<Categorias> categorias;
 
+    @OneToMany(mappedBy = "listasCategoria")
+    List<Listas> categoriaListas;
+
+    public Categorias() {
+
+    }
+
+    public Categorias(int id, String categoria, int idMadre, List<Canciones> categoriaCanciones, List<Categorias> categorias, List<Listas> categoriaListas) {
+        Id = id;
+        this.categoria = categoria;
+        this.idMadre = idMadre;
+        this.categoriaCanciones = categoriaCanciones;
+        this.categorias = categorias;
+        this.categoriaListas = categoriaListas;
+    }
+
+    @Override
+    public String toString() {
+        return "Categorias{" +
+                "Id=" + Id +
+                ", categoria='" + categoria + '\'' +
+                ", idMadre=" + idMadre +
+                ", categoriaCanciones=" + categoriaCanciones +
+                ", categorias=" + categorias +
+                ", categoriaListas=" + categoriaListas +
+                '}';
+    }
 }

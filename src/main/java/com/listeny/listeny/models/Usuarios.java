@@ -56,21 +56,38 @@ public class Usuarios implements Serializable {
             inverseJoinColumns = @JoinColumn (name = "idFavorito"))
     private List<Albumes> usuarioAlbumesFavoritos = new ArrayList<>();
 
+    @OneToMany (mappedBy = "cancionesUsuario")
+    List<Canciones> usuarioCanciones;
+
+    @ManyToMany
+    @JoinTable (name = "Favoritos_canciones",
+            joinColumns = @JoinColumn (name = "idUsuario"),
+            inverseJoinColumns = @JoinColumn (name = "idFavorito"))
+    private List<Canciones> usuarioFavoritosCanciones = new ArrayList<>();
+
+    @OneToMany(mappedBy = "seguidor")
+    List<Seguidores> usuarioSeguidor;
+
+    @OneToMany(mappedBy = "seguido")
+    List<Seguidores> usuarioSeguido;
+
+    @ManyToMany
+    @JoinTable (name = "Favoritos_lista",
+            joinColumns = @JoinColumn (name = "idUsuario"),
+            inverseJoinColumns = @JoinColumn (name = "idLista"))
+    private List<Listas> usuarioFavoritosListas = new ArrayList<>();
+
+    @OneToMany(mappedBy = "listasUsuario")
+    List<Listas> usuarioListas;
+
+    @OneToMany(mappedBy = "reproduccionesUsuario")
+    List<Reproducciones> usuarioReproducciones;
+
     public Usuarios() {
 
     }
 
-    public Usuarios(int id, String nombreUsuario, String email, String clave, String alias, Date fechaNacimiento, char sexo) {
-        this.id = id;
-        this.nombreUsuario = nombreUsuario;
-        this.email = email;
-        this.clave = clave;
-        this.alias = alias;
-        this.fechaNacimiento = fechaNacimiento;
-        this.sexo = sexo;
-    }
-
-    public Usuarios(int id, String nombreUsuario, String email, String clave, String alias, Date fechaNacimiento, char sexo, String imagen, String imagenFondo, int notificacionesId, Boolean esArtista) {
+    public Usuarios(Integer id, String nombreUsuario, String email, String clave, String alias, Date fechaNacimiento, char sexo, String imagen, String imagenFondo, Boolean esArtista, List<Albumes> usuarioAlbumes, List<Albumes> usuarioAlbumesFavoritos, List<Canciones> usuarioCanciones, List<Canciones> usuarioFavoritosCanciones, List<Seguidores> usuarioSeguidor, List<Seguidores> usuarioSeguido, List<Listas> usuarioFavoritosListas, List<Listas> usuarioListas, List<Reproducciones> usuarioReproducciones) {
         this.id = id;
         this.nombreUsuario = nombreUsuario;
         this.email = email;
@@ -81,6 +98,15 @@ public class Usuarios implements Serializable {
         this.imagen = imagen;
         this.imagenFondo = imagenFondo;
         this.esArtista = esArtista;
+        this.usuarioAlbumes = usuarioAlbumes;
+        this.usuarioAlbumesFavoritos = usuarioAlbumesFavoritos;
+        this.usuarioCanciones = usuarioCanciones;
+        this.usuarioFavoritosCanciones = usuarioFavoritosCanciones;
+        this.usuarioSeguidor = usuarioSeguidor;
+        this.usuarioSeguido = usuarioSeguido;
+        this.usuarioFavoritosListas = usuarioFavoritosListas;
+        this.usuarioListas = usuarioListas;
+        this.usuarioReproducciones = usuarioReproducciones;
     }
 
     @Override
@@ -96,6 +122,15 @@ public class Usuarios implements Serializable {
                 ", imagen='" + imagen + '\'' +
                 ", imagenFondo='" + imagenFondo + '\'' +
                 ", esArtista=" + esArtista +
+                ", usuarioAlbumes=" + usuarioAlbumes +
+                ", usuarioAlbumesFavoritos=" + usuarioAlbumesFavoritos +
+                ", usuarioCanciones=" + usuarioCanciones +
+                ", usuarioFavoritosCanciones=" + usuarioFavoritosCanciones +
+                ", usuarioSeguidor=" + usuarioSeguidor +
+                ", usuarioSeguido=" + usuarioSeguido +
+                ", usuarioFavoritosListas=" + usuarioFavoritosListas +
+                ", usuarioListas=" + usuarioListas +
+                ", usuarioReproducciones=" + usuarioReproducciones +
                 '}';
     }
 }

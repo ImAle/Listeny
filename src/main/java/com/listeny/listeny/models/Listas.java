@@ -5,6 +5,8 @@ import lombok.Getter;
 import lombok.Setter;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 @Getter
 @Setter
@@ -44,18 +46,26 @@ public class Listas implements Serializable {
 
     @ManyToOne
     @JoinColumn(name = "id_propietario")
-    Usuarios usuarios;
+    Usuarios listasUsuario;
+
+    @ManyToMany(mappedBy = "usuarioFavoritosListas")
+    private List<Usuarios> listaFavoritosUsuarios = new ArrayList<>();
+
+    @ManyToMany
+    @JoinTable (name = "listas_has_canciones",
+            joinColumns = @JoinColumn (name = "listas_id"),
+            inverseJoinColumns = @JoinColumn (name = "canciones_id"))
+    private List<Canciones> listaCanciones = new ArrayList<>();
 
     @ManyToOne
     @JoinColumn(name = "idCategoria")
-    Categorias categorias;
+    Categorias listasCategoria;
 
-
-    public Listas(){
+    public Listas() {
 
     }
 
-    public Listas(int id, int idPropietario, int reproducciones, String nombre, String imagen, String descripcion, String color, Boolean publica, int idCategoria) {
+    public Listas(int id, int idPropietario, int reproducciones, String nombre, String imagen, String descripcion, String color, Boolean publica, int idCategoria, Usuarios listasUsuario, List<Usuarios> listaFavoritosUsuarios, List<Canciones> listaCanciones, Categorias listasCategoria) {
         this.id = id;
         this.idPropietario = idPropietario;
         this.reproducciones = reproducciones;
@@ -65,6 +75,10 @@ public class Listas implements Serializable {
         this.color = color;
         this.publica = publica;
         this.idCategoria = idCategoria;
+        this.listasUsuario = listasUsuario;
+        this.listaFavoritosUsuarios = listaFavoritosUsuarios;
+        this.listaCanciones = listaCanciones;
+        this.listasCategoria = listasCategoria;
     }
 
     @Override
@@ -79,6 +93,10 @@ public class Listas implements Serializable {
                 ", color='" + color + '\'' +
                 ", publica=" + publica +
                 ", idCategoria=" + idCategoria +
+                ", listasUsuario=" + listasUsuario +
+                ", listaFavoritosUsuarios=" + listaFavoritosUsuarios +
+                ", listaCanciones=" + listaCanciones +
+                ", listasCategoria=" + listasCategoria +
                 '}';
     }
 }

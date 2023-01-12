@@ -22,7 +22,6 @@ public class Seguidores implements Serializable {
     @JoinColumn(name = "idseguido")
     Usuarios seguido;
 
-
     public Seguidores() {
 
     }
@@ -39,5 +38,4 @@ public class Seguidores implements Serializable {
                 ", seguido=" + seguido +
                 '}';
     }
-
 }

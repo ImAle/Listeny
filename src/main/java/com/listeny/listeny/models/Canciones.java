@@ -13,7 +13,7 @@ import java.util.List;
 @Setter
 @Entity
 @Table(name = "canciones")
-public class Canciones implements Serializable {
+public class Canciones implements Serializable{
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -48,11 +48,11 @@ public class Canciones implements Serializable {
 
     @ManyToOne
     @JoinColumn(name = "idPropietario")
-    Usuarios usuarios;
+    Usuarios cancionesUsuario;
 
     @ManyToOne
     @JoinColumn(name = "idCategoria")
-    Categorias categorias;
+    Categorias cancionesCategoria;
 
     @ManyToMany(mappedBy = "albumCanciones")
     private List<Albumes> cancionAlbumes = new ArrayList<>();
@@ -60,11 +60,20 @@ public class Canciones implements Serializable {
     @ManyToMany(mappedBy = "artistaCanciones")
     private List<Artistas> cancionArtistas = new ArrayList<>();
 
+    @ManyToMany(mappedBy = "usuarioFavoritosCanciones")
+    private List<Usuarios> cancionFavoritoUsuarios = new ArrayList<>();
+
+    @ManyToMany(mappedBy = "listaCanciones")
+    private List<Listas> cancionListas = new ArrayList<>();
+
+    @OneToMany(mappedBy = "reproduccionesCancion")
+    List<Reproducciones> cancionReproducciones;
+
     public Canciones() {
 
     }
 
-    public Canciones(int id, int idPropietario, int idCategoria, String imagen, String titulo, int duracion, String descripcion, Date fechaIncorporacion, Boolean publica, String url, Usuarios usuarios, Categorias categorias, List<Albumes> cancionAlbumes, List<Artistas> cancionArtistas) {
+    public Canciones(int id, int idPropietario, int idCategoria, String imagen, String titulo, int duracion, String descripcion, Date fechaIncorporacion, Boolean publica, String url, Usuarios cancionesUsuario, Categorias cancionesCategoria, List<Albumes> cancionAlbumes, List<Artistas> cancionArtistas, List<Usuarios> cancionFavoritoUsuarios, List<Listas> cancionListas, List<Reproducciones> cancionReproducciones) {
         this.id = id;
         this.idPropietario = idPropietario;
         this.idCategoria = idCategoria;
@@ -75,10 +84,13 @@ public class Canciones implements Serializable {
         this.fechaIncorporacion = fechaIncorporacion;
         this.publica = publica;
         this.url = url;
-        this.usuarios = usuarios;
-        this.categorias = categorias;
+        this.cancionesUsuario = cancionesUsuario;
+        this.cancionesCategoria = cancionesCategoria;
         this.cancionAlbumes = cancionAlbumes;
         this.cancionArtistas = cancionArtistas;
+        this.cancionFavoritoUsuarios = cancionFavoritoUsuarios;
+        this.cancionListas = cancionListas;
+        this.cancionReproducciones = cancionReproducciones;
     }
 
     @Override
@@ -94,10 +106,13 @@ public class Canciones implements Serializable {
                 ", fechaIncorporacion=" + fechaIncorporacion +
                 ", publica=" + publica +
                 ", url='" + url + '\'' +
-                ", usuarios=" + usuarios +
-                ", categorias=" + categorias +
+                ", cancionesUsuario=" + cancionesUsuario +
+                ", cancionesCategoria=" + cancionesCategoria +
                 ", cancionAlbumes=" + cancionAlbumes +
                 ", cancionArtistas=" + cancionArtistas +
+                ", cancionFavoritoUsuarios=" + cancionFavoritoUsuarios +
+                ", cancionListas=" + cancionListas +
+                ", cancionReproducciones=" + cancionReproducciones +
                 '}';
     }
 }

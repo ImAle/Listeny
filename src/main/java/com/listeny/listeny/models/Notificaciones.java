@@ -26,11 +26,11 @@ public class Notificaciones implements Serializable {
     @Column(name="titulo", length = 100)
     private String titulo;
 
-    public Notificaciones(){
+    public Notificaciones() {
 
     }
 
-    public Notificaciones(int id, String descripcion, String titulo) {
+    public Notificaciones(Integer id, String descripcion, String titulo) {
         this.id = id;
         this.descripcion = descripcion;
         this.titulo = titulo;
