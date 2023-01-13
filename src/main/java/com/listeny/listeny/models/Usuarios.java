@@ -47,41 +47,49 @@ public class Usuarios implements Serializable {
     @Column(name="esArtista")
     private Boolean esArtista;
 
-    @OneToMany (mappedBy = "albumesUsuario")
-    List<Albumes> usuarioAlbumes;
+    @OneToMany (mappedBy = "idPropietario")
+    List<Albumes> propietarioAlbumes;
 
     @ManyToMany
     @JoinTable (name = "Favoritos_albumes",
             joinColumns = @JoinColumn (name = "idUsuario"),
             inverseJoinColumns = @JoinColumn (name = "idFavorito"))
-    private List<Albumes> usuarioAlbumesFavoritos = new ArrayList<>();
+    private List<Albumes> AlbumesFavoritos = new ArrayList<>();
 
-    @OneToMany (mappedBy = "cancionesUsuario")
-    List<Canciones> usuarioCanciones;
+    @OneToMany (mappedBy = "idPropietario")
+    List<Canciones> propietarioCanciones;
 
     @ManyToMany
     @JoinTable (name = "Favoritos_canciones",
             joinColumns = @JoinColumn (name = "idUsuario"),
             inverseJoinColumns = @JoinColumn (name = "idFavorito"))
-    private List<Canciones> usuarioFavoritosCanciones = new ArrayList<>();
+    private List<Canciones> FavoritosCanciones = new ArrayList<>();
 
     @OneToMany(mappedBy = "seguidor")
-    List<Seguidores> usuarioSeguidor;
+    List<Seguidores> Seguidor;
 
     @OneToMany(mappedBy = "seguido")
-    List<Seguidores> usuarioSeguido;
+    List<Seguidores> Seguido;
 
     @ManyToMany
     @JoinTable (name = "Favoritos_lista",
             joinColumns = @JoinColumn (name = "idUsuario"),
             inverseJoinColumns = @JoinColumn (name = "idLista"))
-    private List<Listas> usuarioFavoritosListas = new ArrayList<>();
+    private List<Listas> FavoritosListas = new ArrayList<>();
 
     @OneToMany(mappedBy = "listasUsuario")
-    List<Listas> usuarioListas;
+    List<Listas> propietarioListas;
 
-    @OneToMany(mappedBy = "reproduccionesUsuario")
+    @OneToMany(mappedBy = "idUsuario")
     List<Reproducciones> usuarioReproducciones;
+
+    /*
+    *  @JoinTable(name = "reproducciones",
+        joinColumns = @JoinColumn(name = "id_usuario"),
+        inverseJoinColumns = @JoinColumn(name = "id_cancion"))
+        private List<Canciones> cancionesReproducidas;
+    *
+    * */
 
     public Usuarios() {
 

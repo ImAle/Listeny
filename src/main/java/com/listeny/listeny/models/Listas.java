@@ -48,8 +48,8 @@ public class Listas implements Serializable {
     @JoinColumn(name = "id_propietario")
     Usuarios listasUsuario;
 
-    @ManyToMany(mappedBy = "usuarioFavoritosListas")
-    private List<Usuarios> listaFavoritosUsuarios = new ArrayList<>();
+    @ManyToMany(mappedBy = "FavoritosListas")
+    private List<Usuarios> favoritosListas = new ArrayList<>();
 
     @ManyToMany
     @JoinTable (name = "listas_has_canciones",

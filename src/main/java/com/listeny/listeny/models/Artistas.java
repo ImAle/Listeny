@@ -23,7 +23,7 @@ public class Artistas {
 
     @ManyToMany
     @JoinTable (name = "Artistas_canciones",
-            joinColumns = @JoinColumn (name = "nombreArtista"),
+            joinColumns = @JoinColumn (name = "artistas_nombre"),
             inverseJoinColumns = @JoinColumn (name = "idCancion"))
     private List<Canciones> artistaCanciones = new ArrayList<>();
 

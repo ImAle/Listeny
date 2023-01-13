@@ -16,12 +16,12 @@ public class Reproducciones implements Serializable {
     @Id
     @ManyToOne
     @JoinColumn(referencedColumnName = "idUsuario")
-    Usuarios reproduccionesUsuario;
+    Usuarios idUsuario;
 
     @Id
     @ManyToOne
     @JoinColumn(referencedColumnName = "idCancion")
-    Canciones reproduccionesCancion;
+    Canciones idCancion;
 
     @Column(name = "reproducciones")
     private int reproducciones;
@@ -33,9 +33,9 @@ public class Reproducciones implements Serializable {
 
     }
 
-    public Reproducciones(Usuarios reproduccionesUsuario, Canciones reproduccionesCancion, int reproducciones, Date fechaLastReproducciones) {
-        this.reproduccionesUsuario = reproduccionesUsuario;
-        this.reproduccionesCancion = reproduccionesCancion;
+    public Reproducciones(Usuarios idUsuario, Canciones idCancion, int reproducciones, Date fechaLastReproducciones) {
+        this.idUsuario = idUsuario;
+        this.idCancion = idCancion;
         this.reproducciones = reproducciones;
         this.fechaLastReproducciones = fechaLastReproducciones;
     }
@@ -43,8 +43,8 @@ public class Reproducciones implements Serializable {
     @Override
     public String toString() {
         return "Reproducciones{" +
-                "reproduccionesUsuario=" + reproduccionesUsuario +
-                ", reproduccionesCancion=" + reproduccionesCancion +
+                "reproduccionesUsuario=" + idUsuario +
+                ", reproduccionesCancion=" + idCancion +
                 ", reproducciones=" + reproducciones +
                 ", fechaLastReproducciones=" + fechaLastReproducciones +
                 '}';

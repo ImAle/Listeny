@@ -48,7 +48,7 @@ public class Canciones implements Serializable{
 
     @ManyToOne
     @JoinColumn(name = "idPropietario")
-    Usuarios cancionesUsuario;
+    Usuarios propietarioCancion;
 
     @ManyToOne
     @JoinColumn(name = "idCategoria")
@@ -60,13 +60,13 @@ public class Canciones implements Serializable{
     @ManyToMany(mappedBy = "artistaCanciones")
     private List<Artistas> cancionArtistas = new ArrayList<>();
 
-    @ManyToMany(mappedBy = "usuarioFavoritosCanciones")
-    private List<Usuarios> cancionFavoritoUsuarios = new ArrayList<>();
+    @ManyToMany(mappedBy = "FavoritosCanciones")
+    private List<Usuarios> cancionesFavorito = new ArrayList<>();
 
     @ManyToMany(mappedBy = "listaCanciones")
     private List<Listas> cancionListas = new ArrayList<>();
 
-    @OneToMany(mappedBy = "reproduccionesCancion")
+    @OneToMany(mappedBy = "idCancion")
     List<Reproducciones> cancionReproducciones;
 
     public Canciones() {

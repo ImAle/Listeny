@@ -39,10 +39,10 @@ public class Albumes {
 
     @ManyToOne
     @JoinColumn (name = "idPropietario")
-    Usuarios albumesUsuario;
+    Usuarios PropietarioAlbumes;
 
-    @ManyToMany(mappedBy = "usuarioAlbumesFavoritos")
-    private List<Usuarios> albumFavoritoUsuarios = new ArrayList<>();
+    @ManyToMany(mappedBy = "AlbumesFavoritos")
+    private List<Usuarios> albumFavorito = new ArrayList<>();
 
     @ManyToMany
     @JoinTable (name = "albumes_has_canciones",
