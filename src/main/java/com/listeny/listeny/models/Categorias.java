@@ -13,16 +13,42 @@ import java.util.List;
 public class Categorias {
 
     @Id
+    @Column (name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int Id;
+    private Long id;
 
-    @Column(name = "categoria")
+    @Column(name = "categoria", length = 45)
     private String categoria;
 
     @Column(name = "idMadre")
-    private int idMadre;
+    private Long idMadre;
 
-    @OneToMany(mappedBy = "categorias")
-    List<Categorias> categorias;
+    @OneToMany(mappedBy = "cancionesCategoria")
+    List<Canciones> categoriaCanciones;
 
+    @ManyToOne
+    @JoinColumn(name = "idMadre", referencedColumnName = "id")
+    private Categorias idMadreCategoria;
+
+    @OneToMany(mappedBy = "listasCategoria")
+    List<Listas> categoriaListas;
+
+    public Categorias() {
+
+    }
+
+    public Categorias(Long id, String categoria, Long idMadre) {
+        this.id = id;
+        this.categoria = categoria;
+        this.idMadre = idMadre;
+    }
+
+    @Override
+    public String toString() {
+        return "Categorias{" +
+                "Id=" + id +
+                ", categoria='" + categoria + '\'' +
+                ", idMadre=" + idMadre +
+                '}';
+    }
 }
