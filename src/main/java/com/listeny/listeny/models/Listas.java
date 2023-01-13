@@ -5,6 +5,8 @@ import lombok.Getter;
 import lombok.Setter;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 @Getter
 @Setter
@@ -13,25 +15,27 @@ import java.io.Serializable;
 public class Listas implements Serializable {
 
     @Id
+    @Column (name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private Long id;
 
+    @Id
     @Column(name = "id_propietario")
-    private int idPropietario;
+    private Long idPropietario;
 
     @Column(name = "reproducciones")
     private int reproducciones;
 
-    @Column(name = "nombre")
+    @Column(name = "nombre", length = 45)
     private String nombre;
 
-    @Column(name = "imagen")
+    @Column(name = "imagen",length = 100)
     private String imagen;
 
-    @Column(name = "descripcion")
+    @Column(name = "descripcion",length = 100)
     private String descripcion;
 
-    @Column(name = "color")
+    @Column(name = "color", length = 15)
     private String color;
 
     @Column(name = "publica")
@@ -42,18 +46,26 @@ public class Listas implements Serializable {
 
     @ManyToOne
     @JoinColumn(name = "id_propietario")
-    Usuarios usuarios;
+    Usuarios listasUsuario;
+
+    @ManyToMany(mappedBy = "FavoritosListas")
+    private List<Usuarios> favoritosListas = new ArrayList<>();
+
+    @ManyToMany
+    @JoinTable (name = "listas_has_canciones",
+            joinColumns = @JoinColumn (name = "listas_id"),
+            inverseJoinColumns = @JoinColumn (name = "canciones_id"))
+    private List<Canciones> listaCanciones = new ArrayList<>();
 
     @ManyToOne
     @JoinColumn(name = "idCategoria")
-    Categorias categorias;
+    Categorias listasCategoria;
 
-
-    public Listas(){
+    public Listas() {
 
     }
 
-    public Listas(int id, int idPropietario, int reproducciones, String nombre, String imagen, String descripcion, String color, Boolean publica, int idCategoria) {
+    public Listas(Long id, Long idPropietario, int reproducciones, String nombre, String imagen, String descripcion, String color, Boolean publica, int idCategoria) {
         this.id = id;
         this.idPropietario = idPropietario;
         this.reproducciones = reproducciones;

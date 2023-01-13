@@ -19,9 +19,8 @@ public class Seguidores implements Serializable {
 
     @Id
     @ManyToOne
-    @JoinColumn(name = "idseguido")
+    @JoinColumn(name = "idSeguido")
     Usuarios seguido;
-
 
     public Seguidores() {
 
@@ -39,5 +38,4 @@ public class Seguidores implements Serializable {
                 ", seguido=" + seguido +
                 '}';
     }
-
 }
