@@ -17,11 +17,11 @@ public class Listas implements Serializable {
     @Id
     @Column (name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private Long id;
 
     @Id
     @Column(name = "id_propietario")
-    private int idPropietario;
+    private Long idPropietario;
 
     @Column(name = "reproducciones")
     private int reproducciones;
@@ -65,7 +65,7 @@ public class Listas implements Serializable {
 
     }
 
-    public Listas(int id, int idPropietario, int reproducciones, String nombre, String imagen, String descripcion, String color, Boolean publica, int idCategoria, Usuarios listasUsuario, List<Usuarios> listaFavoritosUsuarios, List<Canciones> listaCanciones, Categorias listasCategoria) {
+    public Listas(Long id, Long idPropietario, int reproducciones, String nombre, String imagen, String descripcion, String color, Boolean publica, int idCategoria) {
         this.id = id;
         this.idPropietario = idPropietario;
         this.reproducciones = reproducciones;
@@ -75,10 +75,6 @@ public class Listas implements Serializable {
         this.color = color;
         this.publica = publica;
         this.idCategoria = idCategoria;
-        this.listasUsuario = listasUsuario;
-        this.listaFavoritosUsuarios = listaFavoritosUsuarios;
-        this.listaCanciones = listaCanciones;
-        this.listasCategoria = listasCategoria;
     }
 
     @Override
@@ -93,10 +89,6 @@ public class Listas implements Serializable {
                 ", color='" + color + '\'' +
                 ", publica=" + publica +
                 ", idCategoria=" + idCategoria +
-                ", listasUsuario=" + listasUsuario +
-                ", listaFavoritosUsuarios=" + listaFavoritosUsuarios +
-                ", listaCanciones=" + listaCanciones +
-                ", listasCategoria=" + listasCategoria +
                 '}';
     }
 }

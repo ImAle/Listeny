@@ -16,7 +16,7 @@ public class Albumes {
     @Id
     @Column (name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private Long id;
 
     @Id
     @Column (name = "idPropietario")
@@ -54,7 +54,7 @@ public class Albumes {
 
     }
 
-    public Albumes(int id, int idPropietario, int reproducciones, String titulo, String imagen, String descripcion, Boolean publico, Usuarios albumesUsuario, List<Usuarios> albumFavoritoUsuarios, List<Canciones> albumCanciones) {
+    public Albumes(Long id, int idPropietario, int reproducciones, String titulo, String imagen, String descripcion, Boolean publico) {
         this.id = id;
         this.idPropietario = idPropietario;
         this.reproducciones = reproducciones;
@@ -62,9 +62,6 @@ public class Albumes {
         this.imagen = imagen;
         this.descripcion = descripcion;
         this.publico = publico;
-        this.albumesUsuario = albumesUsuario;
-        this.albumFavoritoUsuarios = albumFavoritoUsuarios;
-        this.albumCanciones = albumCanciones;
     }
 
     @Override
@@ -77,9 +74,6 @@ public class Albumes {
                 ", imagen='" + imagen + '\'' +
                 ", descripcion='" + descripcion + '\'' +
                 ", publico=" + publico +
-                ", albumesUsuario=" + albumesUsuario +
-                ", albumFavoritoUsuarios=" + albumFavoritoUsuarios +
-                ", albumCanciones=" + albumCanciones +
                 '}';
     }
 }

@@ -18,7 +18,7 @@ public class Usuarios implements Serializable {
     @Id
     @Column (name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    private Long id;
 
     @Column(name="nombreUsuario", length = 45)
     private String nombreUsuario;
@@ -87,7 +87,7 @@ public class Usuarios implements Serializable {
 
     }
 
-    public Usuarios(Integer id, String nombreUsuario, String email, String clave, String alias, Date fechaNacimiento, char sexo, String imagen, String imagenFondo, Boolean esArtista, List<Albumes> usuarioAlbumes, List<Albumes> usuarioAlbumesFavoritos, List<Canciones> usuarioCanciones, List<Canciones> usuarioFavoritosCanciones, List<Seguidores> usuarioSeguidor, List<Seguidores> usuarioSeguido, List<Listas> usuarioFavoritosListas, List<Listas> usuarioListas, List<Reproducciones> usuarioReproducciones) {
+    public Usuarios(Long id, String nombreUsuario, String email, String clave, String alias, Date fechaNacimiento, char sexo, String imagen, String imagenFondo, Boolean esArtista) {
         this.id = id;
         this.nombreUsuario = nombreUsuario;
         this.email = email;
@@ -98,15 +98,6 @@ public class Usuarios implements Serializable {
         this.imagen = imagen;
         this.imagenFondo = imagenFondo;
         this.esArtista = esArtista;
-        this.usuarioAlbumes = usuarioAlbumes;
-        this.usuarioAlbumesFavoritos = usuarioAlbumesFavoritos;
-        this.usuarioCanciones = usuarioCanciones;
-        this.usuarioFavoritosCanciones = usuarioFavoritosCanciones;
-        this.usuarioSeguidor = usuarioSeguidor;
-        this.usuarioSeguido = usuarioSeguido;
-        this.usuarioFavoritosListas = usuarioFavoritosListas;
-        this.usuarioListas = usuarioListas;
-        this.usuarioReproducciones = usuarioReproducciones;
     }
 
     @Override
@@ -122,15 +113,6 @@ public class Usuarios implements Serializable {
                 ", imagen='" + imagen + '\'' +
                 ", imagenFondo='" + imagenFondo + '\'' +
                 ", esArtista=" + esArtista +
-                ", usuarioAlbumes=" + usuarioAlbumes +
-                ", usuarioAlbumesFavoritos=" + usuarioAlbumesFavoritos +
-                ", usuarioCanciones=" + usuarioCanciones +
-                ", usuarioFavoritosCanciones=" + usuarioFavoritosCanciones +
-                ", usuarioSeguidor=" + usuarioSeguidor +
-                ", usuarioSeguido=" + usuarioSeguido +
-                ", usuarioFavoritosListas=" + usuarioFavoritosListas +
-                ", usuarioListas=" + usuarioListas +
-                ", usuarioReproducciones=" + usuarioReproducciones +
                 '}';
     }
 }

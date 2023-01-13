@@ -5,6 +5,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface ReproduccionesRepository extends JpaRepository<Reproducciones, Integer> {
+public interface ReproduccionesRepository extends JpaRepository<Reproducciones, Long> {
 
 }

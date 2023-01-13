@@ -15,19 +15,20 @@ public class Categorias {
     @Id
     @Column (name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int Id;
+    private Long id;
 
     @Column(name = "categoria", length = 45)
     private String categoria;
 
     @Column(name = "idMadre")
-    private int idMadre;
+    private Long idMadre;
 
     @OneToMany(mappedBy = "cancionesCategoria")
     List<Canciones> categoriaCanciones;
 
-    @OneToMany(mappedBy = "categorias")
-    List<Categorias> categorias;
+    @ManyToOne
+    @JoinColumn(name = "idMadre", referencedColumnName = "id")
+    private Categorias idMadreCategoria;
 
     @OneToMany(mappedBy = "listasCategoria")
     List<Listas> categoriaListas;
@@ -36,24 +37,18 @@ public class Categorias {
 
     }
 
-    public Categorias(int id, String categoria, int idMadre, List<Canciones> categoriaCanciones, List<Categorias> categorias, List<Listas> categoriaListas) {
-        Id = id;
+    public Categorias(Long id, String categoria, Long idMadre) {
+        this.id = id;
         this.categoria = categoria;
         this.idMadre = idMadre;
-        this.categoriaCanciones = categoriaCanciones;
-        this.categorias = categorias;
-        this.categoriaListas = categoriaListas;
     }
 
     @Override
     public String toString() {
         return "Categorias{" +
-                "Id=" + Id +
+                "Id=" + id +
                 ", categoria='" + categoria + '\'' +
                 ", idMadre=" + idMadre +
-                ", categoriaCanciones=" + categoriaCanciones +
-                ", categorias=" + categorias +
-                ", categoriaListas=" + categoriaListas +
                 '}';
     }
 }

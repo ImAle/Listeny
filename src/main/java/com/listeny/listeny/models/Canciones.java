@@ -17,10 +17,10 @@ public class Canciones implements Serializable{
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private Long id;
 
     @Column(name = "idPropietario")
-    private int idPropietario;
+    private Long idPropietario;
 
     @Column(name = "idCategoria")
     private int idCategoria;
@@ -73,7 +73,7 @@ public class Canciones implements Serializable{
 
     }
 
-    public Canciones(int id, int idPropietario, int idCategoria, String imagen, String titulo, int duracion, String descripcion, Date fechaIncorporacion, Boolean publica, String url, Usuarios cancionesUsuario, Categorias cancionesCategoria, List<Albumes> cancionAlbumes, List<Artistas> cancionArtistas, List<Usuarios> cancionFavoritoUsuarios, List<Listas> cancionListas, List<Reproducciones> cancionReproducciones) {
+    public Canciones(Long id, Long idPropietario, int idCategoria, String imagen, String titulo, int duracion, String descripcion, Date fechaIncorporacion, Boolean publica, String url) {
         this.id = id;
         this.idPropietario = idPropietario;
         this.idCategoria = idCategoria;
@@ -84,13 +84,6 @@ public class Canciones implements Serializable{
         this.fechaIncorporacion = fechaIncorporacion;
         this.publica = publica;
         this.url = url;
-        this.cancionesUsuario = cancionesUsuario;
-        this.cancionesCategoria = cancionesCategoria;
-        this.cancionAlbumes = cancionAlbumes;
-        this.cancionArtistas = cancionArtistas;
-        this.cancionFavoritoUsuarios = cancionFavoritoUsuarios;
-        this.cancionListas = cancionListas;
-        this.cancionReproducciones = cancionReproducciones;
     }
 
     @Override
@@ -106,13 +99,6 @@ public class Canciones implements Serializable{
                 ", fechaIncorporacion=" + fechaIncorporacion +
                 ", publica=" + publica +
                 ", url='" + url + '\'' +
-                ", cancionesUsuario=" + cancionesUsuario +
-                ", cancionesCategoria=" + cancionesCategoria +
-                ", cancionAlbumes=" + cancionAlbumes +
-                ", cancionArtistas=" + cancionArtistas +
-                ", cancionFavoritoUsuarios=" + cancionFavoritoUsuarios +
-                ", cancionListas=" + cancionListas +
-                ", cancionReproducciones=" + cancionReproducciones +
                 '}';
     }
 }

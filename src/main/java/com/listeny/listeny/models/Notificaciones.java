@@ -18,7 +18,7 @@ public class Notificaciones implements Serializable {
     @Id
     @Column (name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    private Long id;
 
     @Column(name = "descripcion", length = 200)
     private String descripcion;
@@ -30,7 +30,7 @@ public class Notificaciones implements Serializable {
 
     }
 
-    public Notificaciones(Integer id, String descripcion, String titulo) {
+    public Notificaciones(Long id, String descripcion, String titulo) {
         this.id = id;
         this.descripcion = descripcion;
         this.titulo = titulo;

@@ -15,10 +15,6 @@ import java.util.List;
 public class Artistas {
 
     @Id
-    @Column(name = "id")
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
-
     @Column (name = "nombre", length = 45)
     private String nombre;
 
@@ -27,7 +23,7 @@ public class Artistas {
 
     @ManyToMany
     @JoinTable (name = "Artistas_canciones",
-            joinColumns = @JoinColumn (name = "idArtista"),
+            joinColumns = @JoinColumn (name = "nombreArtista"),
             inverseJoinColumns = @JoinColumn (name = "idCancion"))
     private List<Canciones> artistaCanciones = new ArrayList<>();
 
@@ -35,20 +31,16 @@ public class Artistas {
 
     }
 
-    public Artistas(int id, String nombre, int idUsuario, List<Canciones> artistaCanciones) {
-        this.id = id;
+    public Artistas(String nombre, int idUsuario) {
         this.nombre = nombre;
         this.idUsuario = idUsuario;
-        this.artistaCanciones = artistaCanciones;
     }
 
     @Override
     public String toString() {
         return "Artistas{" +
-                "id=" + id +
-                ", nombre='" + nombre + '\'' +
+                "nombre='" + nombre + '\'' +
                 ", idUsuario=" + idUsuario +
-                ", artistaCanciones=" + artistaCanciones +
                 '}';
     }
 }
