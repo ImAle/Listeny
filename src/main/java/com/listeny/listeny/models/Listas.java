@@ -55,7 +55,7 @@ public class Listas implements Serializable {
     @JoinTable (name = "listas_has_canciones",
             joinColumns = @JoinColumn (name = "listas_id"),
             inverseJoinColumns = @JoinColumn (name = "canciones_id"))
-    private List<Canciones> listaCanciones = new ArrayList<>();
+    private List<Cancion> listaCanciones = new ArrayList<>();
 
     @ManyToOne
     @JoinColumn(name = "idCategoria")

@@ -21,7 +21,7 @@ public class Reproducciones implements Serializable {
     @Id
     @ManyToOne
     @JoinColumn(referencedColumnName = "idCancion")
-    Canciones idCancion;
+    Cancion idCancion;
 
     @Column(name = "reproducciones")
     private int reproducciones;
@@ -33,7 +33,7 @@ public class Reproducciones implements Serializable {
 
     }
 
-    public Reproducciones(Usuario idUsuario, Canciones idCancion, int reproducciones, Date fechaLastReproducciones) {
+    public Reproducciones(Usuario idUsuario, Cancion idCancion, int reproducciones, Date fechaLastReproducciones) {
         this.idUsuario = idUsuario;
         this.idCancion = idCancion;
         this.reproducciones = reproducciones;

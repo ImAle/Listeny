@@ -49,7 +49,7 @@ public class Album {
     @JoinTable (name = "albumes_has_canciones",
             joinColumns = @JoinColumn (name = "albumes_id"),
             inverseJoinColumns = @JoinColumn (name = "canciones_id"))
-    private List<Canciones> albumCanciones = new ArrayList<>();
+    private List<Cancion> albumCanciones = new ArrayList<>();
     */
     public Album() {
 

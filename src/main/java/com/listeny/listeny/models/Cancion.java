@@ -5,26 +5,24 @@ import lombok.Getter;
 import lombok.Setter;
 
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
-/*
+
 @Getter
 @Setter
 @Entity
 @Table(name = "canciones")
-public class Canciones implements Serializable{
+public class Cancion implements Serializable{
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "idPropietario")
-    private Long idPropietario;
-
+    @ManyToOne
+    private Usuario propietario;
+    /*
     @Column(name = "idCategoria")
     private int idCategoria;
-
+    */
     @Column(name = "imagen", length = 100)
     private String imagen;
 
@@ -46,10 +44,7 @@ public class Canciones implements Serializable{
     @Column(name = "url", length = 200)
     private String url;
 
-    @ManyToOne
-    @JoinColumn(name = "idPropietario")
-    Usuario propietarioCancion;
-
+/*
     @ManyToOne
     @JoinColumn(name = "idCategoria")
     Categorias cancionesCategoria;
@@ -68,15 +63,15 @@ public class Canciones implements Serializable{
 
     @OneToMany(mappedBy = "idCancion")
     List<Reproducciones> cancionReproducciones;
-
-    public Canciones() {
+*/
+    public Cancion() {
 
     }
 
-    public Canciones(Long id, Long idPropietario, int idCategoria, String imagen, String titulo, int duracion, String descripcion, Date fechaIncorporacion, Boolean publica, String url) {
+    public Cancion(Long id, Long idPropietario, String imagen, String titulo, int duracion, String descripcion, Date fechaIncorporacion, Boolean publica, String url) {
         this.id = id;
-        this.idPropietario = idPropietario;
-        this.idCategoria = idCategoria;
+        //this.idPropietario = idPropietario;
+        //this.idCategoria = idCategoria;
         this.imagen = imagen;
         this.titulo = titulo;
         this.duracion = duracion;
@@ -88,10 +83,10 @@ public class Canciones implements Serializable{
 
     @Override
     public String toString() {
-        return "Canciones{" +
+        return "Cancion{" +
                 "id=" + id +
-                ", idPropietario=" + idPropietario +
-                ", idCategoria=" + idCategoria +
+                ", idPropietario=" + propietario.getId() +
+                //", idCategoria=" + idCategoria +
                 ", imagen='" + imagen + '\'' +
                 ", titulo='" + titulo + '\'' +
                 ", duracion=" + duracion +
@@ -102,4 +97,3 @@ public class Canciones implements Serializable{
                 '}';
     }
 }
-*/

@@ -24,7 +24,7 @@ public class Categorias {
     private Long idMadre;
 
     @OneToMany(mappedBy = "cancionesCategoria")
-    List<Canciones> categoriaCanciones;
+    List<Cancion> categoriaCanciones;
 
     @ManyToOne
     @JoinColumn(name = "idMadre", referencedColumnName = "id")

@@ -7,6 +7,7 @@ import lombok.Setter;
 import java.io.Serializable;
 import java.util.Collection;
 import java.util.Date;
+import java.util.List;
 
 @Getter
 @Setter
@@ -46,6 +47,12 @@ public class Usuario implements Serializable {
     @Column(name="esArtista")
     private Boolean esArtista;
 
+    @OneToMany(mappedBy = "propietario")
+    private Collection<Album> albumes;
+
+    @OneToMany (mappedBy = "propietario")
+    List<Cancion> canciones;
+
     /*
     @ManyToOne
     List<Albumes> misAlbumes;
@@ -57,14 +64,13 @@ public class Usuario implements Serializable {
             inverseJoinColumns = @JoinColumn (name = "id"))
     private List<Albumes> AlbumesFavoritos = new ArrayList<>();
 
-    @OneToMany (mappedBy = "idPropietario")
-    List<Canciones> propietarioCanciones;
+
 
     @ManyToMany
     @JoinTable (name = "Favoritos_canciones",
             joinColumns = @JoinColumn (name = "idUsuario"),
             inverseJoinColumns = @JoinColumn (name = "idFavorito"))
-    private List<Canciones> FavoritosCanciones = new ArrayList<>();
+    private List<Cancion> FavoritosCanciones = new ArrayList<>();
 
     @OneToMany(mappedBy = "seguidor")
     List<Seguidores> Seguidor;
@@ -88,7 +94,7 @@ public class Usuario implements Serializable {
     *  @JoinTable(name = "reproducciones",
         joinColumns = @JoinColumn(name = "id_usuario"),
         inverseJoinColumns = @JoinColumn(name = "id_cancion"))
-        private List<Canciones> cancionesReproducidas;
+        private List<Cancion> cancionesReproducidas;
     *
     * */
 
@@ -125,8 +131,7 @@ public class Usuario implements Serializable {
                 '}';
     }
 
-    @OneToMany(mappedBy = "propietario")
-    private Collection<Album> albumes;
+
 
     public Collection<Album> getAlbumes() {
         return albumes;

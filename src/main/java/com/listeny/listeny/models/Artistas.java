@@ -25,7 +25,7 @@ public class Artistas {
     @JoinTable (name = "Artistas_canciones",
             joinColumns = @JoinColumn (name = "artistas_nombre"),
             inverseJoinColumns = @JoinColumn (name = "idCancion"))
-    private List<Canciones> artistaCanciones = new ArrayList<>();
+    private List<Cancion> artistaCanciones = new ArrayList<>();
 
     public Artistas() {
 
