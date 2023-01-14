@@ -59,7 +59,7 @@ public class Listas implements Serializable {
 
     @ManyToOne
     @JoinColumn(name = "idCategoria")
-    Categorias listasCategoria;
+    Categoria listasCategoria;
 
     public Listas() {
 

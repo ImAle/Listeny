@@ -19,10 +19,7 @@ public class Cancion implements Serializable{
 
     @ManyToOne
     private Usuario propietario;
-    /*
-    @Column(name = "idCategoria")
-    private int idCategoria;
-    */
+
     @Column(name = "imagen", length = 100)
     private String imagen;
 
@@ -44,11 +41,9 @@ public class Cancion implements Serializable{
     @Column(name = "url", length = 200)
     private String url;
 
-/*
     @ManyToOne
-    @JoinColumn(name = "idCategoria")
-    Categorias cancionesCategoria;
-
+    private Categoria categoria;
+/*
     @ManyToMany(mappedBy = "albumCanciones")
     private List<Album> cancionAlbumes = new ArrayList<>();
 
