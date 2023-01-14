@@ -6,7 +6,7 @@ import lombok.Setter;
 
 import java.io.Serializable;
 import java.util.Date;
-
+/*
 @Getter
 @Setter
 @Entity
@@ -16,7 +16,7 @@ public class Reproducciones implements Serializable {
     @Id
     @ManyToOne
     @JoinColumn(referencedColumnName = "idUsuario")
-    Usuarios idUsuario;
+    Usuario idUsuario;
 
     @Id
     @ManyToOne
@@ -33,7 +33,7 @@ public class Reproducciones implements Serializable {
 
     }
 
-    public Reproducciones(Usuarios idUsuario, Canciones idCancion, int reproducciones, Date fechaLastReproducciones) {
+    public Reproducciones(Usuario idUsuario, Canciones idCancion, int reproducciones, Date fechaLastReproducciones) {
         this.idUsuario = idUsuario;
         this.idCancion = idCancion;
         this.reproducciones = reproducciones;
@@ -50,3 +50,4 @@ public class Reproducciones implements Serializable {
                 '}';
     }
 }
+*/

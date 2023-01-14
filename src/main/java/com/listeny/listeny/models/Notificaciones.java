@@ -8,7 +8,7 @@ import lombok.Setter;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
-
+/*
 @Getter
 @Setter
 @Entity
@@ -45,3 +45,4 @@ public class Notificaciones implements Serializable {
                 '}';
     }
 }
+*/

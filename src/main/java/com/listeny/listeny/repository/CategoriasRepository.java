@@ -1,5 +1,5 @@
 package com.listeny.listeny.repository;
-
+/*
 import com.listeny.listeny.models.Categorias;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
@@ -8,3 +8,4 @@ import org.springframework.stereotype.Repository;
 public interface CategoriasRepository extends JpaRepository<Categorias, Long> {
 
 }
+*/

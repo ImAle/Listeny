@@ -8,7 +8,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-
+/*
 @Getter
 @Setter
 @Entity
@@ -48,20 +48,20 @@ public class Canciones implements Serializable{
 
     @ManyToOne
     @JoinColumn(name = "idPropietario")
-    Usuarios propietarioCancion;
+    Usuario propietarioCancion;
 
     @ManyToOne
     @JoinColumn(name = "idCategoria")
     Categorias cancionesCategoria;
 
     @ManyToMany(mappedBy = "albumCanciones")
-    private List<Albumes> cancionAlbumes = new ArrayList<>();
+    private List<Album> cancionAlbumes = new ArrayList<>();
 
     @ManyToMany(mappedBy = "artistaCanciones")
     private List<Artistas> cancionArtistas = new ArrayList<>();
 
     @ManyToMany(mappedBy = "FavoritosCanciones")
-    private List<Usuarios> cancionesFavorito = new ArrayList<>();
+    private List<Usuario> cancionesFavorito = new ArrayList<>();
 
     @ManyToMany(mappedBy = "listaCanciones")
     private List<Listas> cancionListas = new ArrayList<>();
@@ -102,3 +102,4 @@ public class Canciones implements Serializable{
                 '}';
     }
 }
+*/

@@ -5,20 +5,19 @@ import lombok.Getter;
 import lombok.Setter;
 
 import java.io.Serializable;
-import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Date;
-import java.util.List;
 
 @Getter
 @Setter
 @Entity
 @Table(name="Usuarios")
-public class Usuarios implements Serializable {
+public class Usuario implements Serializable {
 
     @Id
     @Column (name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private int id;
 
     @Column(name="nombreUsuario", length = 45)
     private String nombreUsuario;
@@ -47,13 +46,15 @@ public class Usuarios implements Serializable {
     @Column(name="esArtista")
     private Boolean esArtista;
 
-    @OneToMany (mappedBy = "idPropietario")
-    List<Albumes> propietarioAlbumes;
+    /*
+    @ManyToOne
+    List<Albumes> misAlbumes;
+
 
     @ManyToMany
-    @JoinTable (name = "Favoritos_albumes",
-            joinColumns = @JoinColumn (name = "idUsuario"),
-            inverseJoinColumns = @JoinColumn (name = "idFavorito"))
+    @JoinTable (name = "albumes",
+            joinColumns = @JoinColumn (name = "idPropietario"),
+            inverseJoinColumns = @JoinColumn (name = "id"))
     private List<Albumes> AlbumesFavoritos = new ArrayList<>();
 
     @OneToMany (mappedBy = "idPropietario")
@@ -91,11 +92,11 @@ public class Usuarios implements Serializable {
     *
     * */
 
-    public Usuarios() {
+    public Usuario() {
 
     }
 
-    public Usuarios(Long id, String nombreUsuario, String email, String clave, String alias, Date fechaNacimiento, char sexo, String imagen, String imagenFondo, Boolean esArtista) {
+    public Usuario(int id, String nombreUsuario, String email, String clave, String alias, Date fechaNacimiento, char sexo, String imagen, String imagenFondo, Boolean esArtista) {
         this.id = id;
         this.nombreUsuario = nombreUsuario;
         this.email = email;
@@ -122,5 +123,16 @@ public class Usuarios implements Serializable {
                 ", imagenFondo='" + imagenFondo + '\'' +
                 ", esArtista=" + esArtista +
                 '}';
+    }
+
+    @OneToMany(mappedBy = "propietario")
+    private Collection<Album> albumes;
+
+    public Collection<Album> getAlbumes() {
+        return albumes;
+    }
+
+    public void setAlbumes(Collection<Album> albumes) {
+        this.albumes = albumes;
     }
 }

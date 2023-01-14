@@ -5,7 +5,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import java.io.Serializable;
-
+/*
 @Getter
 @Setter
 @Entity
@@ -15,18 +15,18 @@ public class Seguidores implements Serializable {
     @Id
     @ManyToOne
     @JoinColumn(name = "idSeguidor")
-    Usuarios seguidor;
+    Usuario seguidor;
 
     @Id
     @ManyToOne
     @JoinColumn(name = "idSeguido")
-    Usuarios seguido;
+    Usuario seguido;
 
     public Seguidores() {
 
     }
 
-    public Seguidores(Usuarios seguidor, Usuarios seguido) {
+    public Seguidores(Usuario seguidor, Usuario seguido) {
         this.seguidor = seguidor;
         this.seguido = seguido;
     }
@@ -39,3 +39,4 @@ public class Seguidores implements Serializable {
                 '}';
     }
 }
+*/

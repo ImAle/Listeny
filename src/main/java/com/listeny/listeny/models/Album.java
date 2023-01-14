@@ -4,26 +4,24 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
-import java.util.ArrayList;
-import java.util.List;
-
 @Entity
 @Getter
 @Setter
 @Table(name = "albumes")
-public class Albumes {
+public class Album {
 
     @Id
     @Column (name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private int id;
 
-    @Id
+    // @Id      // Al ser la columna "id" autoincremental, nos aseguramos que su valor ES ÚNICO, nunca se repite. Por tanto sirve como única PK
+    /*
     @Column (name = "idPropietario")
     private int idPropietario;
-
+    */
     @Column (name = "reproducciones")
-    private int reproducciones;
+    private int reproducciones; // Si la propiedad se llama igual que el campo, NO HACE FALTA la anotación @Column.
 
     @Column (name = "titulo", length = 45)
     private String titulo;
@@ -38,25 +36,28 @@ public class Albumes {
     private Boolean publico;
 
     @ManyToOne
-    @JoinColumn (name = "idPropietario")
-    Usuarios PropietarioAlbumes;
+    private Usuario propietario;    // esta propiedad contiene el enlace al objeto Usuario que es el propietario del album
+    /*  Ahora, JPA sabe que hay una relación 1:n entre las entidades Usuario y Album. Cuando recupere los datos de
+        un album, también recupera el objeto propietario con toda su información
+     */
 
+    /*
     @ManyToMany(mappedBy = "AlbumesFavoritos")
-    private List<Usuarios> albumFavorito = new ArrayList<>();
+    private List<Usuario> albumFavorito = new ArrayList<>();
 
     @ManyToMany
     @JoinTable (name = "albumes_has_canciones",
             joinColumns = @JoinColumn (name = "albumes_id"),
             inverseJoinColumns = @JoinColumn (name = "canciones_id"))
     private List<Canciones> albumCanciones = new ArrayList<>();
-
-    public Albumes() {
+    */
+    public Album() {
 
     }
 
-    public Albumes(Long id, int idPropietario, int reproducciones, String titulo, String imagen, String descripcion, Boolean publico) {
+    public Album(int id, int reproducciones, String titulo, String imagen, String descripcion, Boolean publico) {
         this.id = id;
-        this.idPropietario = idPropietario;
+        //this.idPropietario = idPropietario;
         this.reproducciones = reproducciones;
         this.titulo = titulo;
         this.imagen = imagen;
@@ -68,7 +69,7 @@ public class Albumes {
     public String toString() {
         return "Albumes{" +
                 "id=" + id +
-                ", idPropietario=" + idPropietario +
+                //", idPropietario=" + idPropietario +
                 ", reproducciones=" + reproducciones +
                 ", titulo='" + titulo + '\'' +
                 ", imagen='" + imagen + '\'' +

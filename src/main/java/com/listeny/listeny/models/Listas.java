@@ -7,7 +7,7 @@ import lombok.Setter;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
-
+/*
 @Getter
 @Setter
 @Entity
@@ -46,10 +46,10 @@ public class Listas implements Serializable {
 
     @ManyToOne
     @JoinColumn(name = "id_propietario")
-    Usuarios listasUsuario;
+    Usuario listasUsuario;
 
     @ManyToMany(mappedBy = "FavoritosListas")
-    private List<Usuarios> favoritosListas = new ArrayList<>();
+    private List<Usuario> favoritosListas = new ArrayList<>();
 
     @ManyToMany
     @JoinTable (name = "listas_has_canciones",
@@ -92,3 +92,4 @@ public class Listas implements Serializable {
                 '}';
     }
 }
+*/
