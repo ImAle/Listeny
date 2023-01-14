@@ -41,8 +41,8 @@ public class Listas implements Serializable {
     @Column(name = "publica")
     private Boolean publica;
 
-    @Column(name = "idCategoria")
-    private int idCategoria;
+//    @Column(name = "idCategoria")
+//    private int idCategoria;
 
     @ManyToOne
     @JoinColumn(name = "id_propietario")
@@ -53,8 +53,8 @@ public class Listas implements Serializable {
 
     @ManyToMany
     @JoinTable (name = "listas_has_canciones",
-            joinColumns = @JoinColumn (name = "listas_id"),
-            inverseJoinColumns = @JoinColumn (name = "canciones_id"))
+            joinColumns = @JoinColumn (name = "listas_id", referencedColumnName = "id"),
+            inverseJoinColumns = @JoinColumn (name = "canciones_id", referencedColumnName = "id"))
     private List<Canciones> listaCanciones = new ArrayList<>();
 
     @ManyToOne
@@ -65,7 +65,7 @@ public class Listas implements Serializable {
 
     }
 
-    public Listas(Long id, Long idPropietario, int reproducciones, String nombre, String imagen, String descripcion, String color, Boolean publica, int idCategoria) {
+    public Listas(Long id, Long idPropietario, int reproducciones, String nombre, String imagen, String descripcion, String color, Boolean publica, Categorias idCategoria) {
         this.id = id;
         this.idPropietario = idPropietario;
         this.reproducciones = reproducciones;
@@ -74,7 +74,7 @@ public class Listas implements Serializable {
         this.descripcion = descripcion;
         this.color = color;
         this.publica = publica;
-        this.idCategoria = idCategoria;
+        this.listasCategoria = idCategoria;
     }
 
     @Override
@@ -88,7 +88,7 @@ public class Listas implements Serializable {
                 ", descripcion='" + descripcion + '\'' +
                 ", color='" + color + '\'' +
                 ", publica=" + publica +
-                ", idCategoria=" + idCategoria +
+                ", idCategoria=" + listasCategoria +
                 '}';
     }
 }

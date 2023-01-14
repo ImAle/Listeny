@@ -19,11 +19,11 @@ public class Canciones implements Serializable{
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "idPropietario")
-    private Long idPropietario;
+//    @Column(name = "idPropietario")
+//    private Long idPropietario;
 
-    @Column(name = "idCategoria")
-    private int idCategoria;
+//    @Column(name = "idCategoria")
+//    private int idCategoria;
 
     @Column(name = "imagen", length = 100)
     private String imagen;
@@ -47,7 +47,7 @@ public class Canciones implements Serializable{
     private String url;
 
     @ManyToOne
-    @JoinColumn(name = "idPropietario")
+    @JoinColumn(name = "idPropietario", referencedColumnName = "id")
     Usuarios propietarioCancion;
 
     @ManyToOne
@@ -73,10 +73,10 @@ public class Canciones implements Serializable{
 
     }
 
-    public Canciones(Long id, Long idPropietario, int idCategoria, String imagen, String titulo, int duracion, String descripcion, Date fechaIncorporacion, Boolean publica, String url) {
+    public Canciones(Long id, Usuarios idPropietario, Categorias idCategoria, String imagen, String titulo, int duracion, String descripcion, Date fechaIncorporacion, Boolean publica, String url) {
         this.id = id;
-        this.idPropietario = idPropietario;
-        this.idCategoria = idCategoria;
+        this.propietarioCancion = idPropietario;
+        this.cancionesCategoria = idCategoria;
         this.imagen = imagen;
         this.titulo = titulo;
         this.duracion = duracion;
@@ -90,8 +90,8 @@ public class Canciones implements Serializable{
     public String toString() {
         return "Canciones{" +
                 "id=" + id +
-                ", idPropietario=" + idPropietario +
-                ", idCategoria=" + idCategoria +
+                ", idPropietario=" + propietarioCancion +
+                ", idCategoria=" + cancionesCategoria +
                 ", imagen='" + imagen + '\'' +
                 ", titulo='" + titulo + '\'' +
                 ", duracion=" + duracion +

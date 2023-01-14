@@ -46,8 +46,8 @@ public class Albumes {
 
     @ManyToMany
     @JoinTable (name = "albumes_has_canciones",
-            joinColumns = @JoinColumn (name = "albumes_id"),
-            inverseJoinColumns = @JoinColumn (name = "canciones_id"))
+            joinColumns = @JoinColumn (name = "albumes_id", referencedColumnName = "id"),
+            inverseJoinColumns = @JoinColumn (name = "canciones_id", referencedColumnName = "id"))
     private List<Canciones> albumCanciones = new ArrayList<>();
 
     public Albumes() {
@@ -76,4 +76,6 @@ public class Albumes {
                 ", publico=" + publico +
                 '}';
     }
+
+
 }

@@ -29,9 +29,6 @@ public class Usuarios implements Serializable {
     @Column(name="clave", length = 100)
     private String clave;
 
-    @Column(name="alias", length = 45)
-    private String alias;
-
     @Column(name="fecha_nacimiento")
     private Date fechaNacimiento;
 
@@ -52,11 +49,11 @@ public class Usuarios implements Serializable {
 
     @ManyToMany
     @JoinTable (name = "Favoritos_albumes",
-            joinColumns = @JoinColumn (name = "idUsuario"),
-            inverseJoinColumns = @JoinColumn (name = "idFavorito"))
+            joinColumns = @JoinColumn (name = "idUsuario", referencedColumnName = "id"),
+            inverseJoinColumns = @JoinColumn (name = "idFavorito", referencedColumnName = "id"))
     private List<Albumes> AlbumesFavoritos = new ArrayList<>();
 
-    @OneToMany (mappedBy = "idPropietario")
+    @OneToMany (mappedBy = "propietarioCancion")
     List<Canciones> propietarioCanciones;
 
     @ManyToMany
@@ -73,8 +70,8 @@ public class Usuarios implements Serializable {
 
     @ManyToMany
     @JoinTable (name = "Favoritos_lista",
-            joinColumns = @JoinColumn (name = "idUsuario"),
-            inverseJoinColumns = @JoinColumn (name = "idLista"))
+            joinColumns = @JoinColumn (name = "idUsuario", referencedColumnName = "id"),
+            inverseJoinColumns = @JoinColumn (name = "idLista", referencedColumnName = "id"))
     private List<Listas> FavoritosListas = new ArrayList<>();
 
     @OneToMany(mappedBy = "listasUsuario")
@@ -95,12 +92,11 @@ public class Usuarios implements Serializable {
 
     }
 
-    public Usuarios(Long id, String nombreUsuario, String email, String clave, String alias, Date fechaNacimiento, char sexo, String imagen, String imagenFondo, Boolean esArtista) {
+    public Usuarios(Long id, String nombreUsuario, String email, String clave, Date fechaNacimiento, char sexo, String imagen, String imagenFondo, Boolean esArtista) {
         this.id = id;
         this.nombreUsuario = nombreUsuario;
         this.email = email;
         this.clave = clave;
-        this.alias = alias;
         this.fechaNacimiento = fechaNacimiento;
         this.sexo = sexo;
         this.imagen = imagen;
@@ -115,7 +111,6 @@ public class Usuarios implements Serializable {
                 ", nombreUsuario='" + nombreUsuario + '\'' +
                 ", email='" + email + '\'' +
                 ", clave='" + clave + '\'' +
-                ", alias='" + alias + '\'' +
                 ", fechaNacimiento=" + fechaNacimiento +
                 ", sexo=" + sexo +
                 ", imagen='" + imagen + '\'' +

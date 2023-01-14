@@ -15,12 +15,11 @@ public class Reproducciones implements Serializable {
 
     @Id
     @ManyToOne
-    @JoinColumn(referencedColumnName = "idUsuario")
+    @JoinColumn(name = "idUsuario" ,referencedColumnName = "id")
     Usuarios idUsuario;
-
     @Id
     @ManyToOne
-    @JoinColumn(referencedColumnName = "idCancion")
+    @JoinColumn(name = "idCancion" ,referencedColumnName = "id")
     Canciones idCancion;
 
     @Column(name = "reproducciones")

@@ -20,8 +20,8 @@ public class Categorias {
     @Column(name = "categoria", length = 45)
     private String categoria;
 
-    @Column(name = "idMadre")
-    private Long idMadre;
+//    @Column(name = "idMadre")
+//    private Long idMadre;
 
     @OneToMany(mappedBy = "cancionesCategoria")
     List<Canciones> categoriaCanciones;
@@ -37,10 +37,10 @@ public class Categorias {
 
     }
 
-    public Categorias(Long id, String categoria, Long idMadre) {
+    public Categorias(Long id, String categoria, Categorias idMadre) {
         this.id = id;
         this.categoria = categoria;
-        this.idMadre = idMadre;
+        this.idMadreCategoria = idMadre;
     }
 
     @Override
@@ -48,7 +48,7 @@ public class Categorias {
         return "Categorias{" +
                 "Id=" + id +
                 ", categoria='" + categoria + '\'' +
-                ", idMadre=" + idMadre +
+                ", idMadre=" + idMadreCategoria +
                 '}';
     }
 }
