@@ -16,6 +16,7 @@
     transform: translateX(-50%);
     width: 300px;
     height: 300px;
+    cursor: pointer;
 }
 
  .main-content {
@@ -43,8 +44,4 @@
  .center-btn {
      display: block;
      margin: 0 auto;
- }
-
- .logo {
-     cursor: pointer;
  }
