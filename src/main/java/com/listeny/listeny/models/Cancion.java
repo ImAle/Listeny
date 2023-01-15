@@ -5,15 +5,13 @@ import lombok.Getter;
 import lombok.Setter;
 
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
 
 @Getter
 @Setter
 @Entity
 @Table(name = "canciones")
-public class Canciones implements Serializable{
+public class Cancion implements Serializable{
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -21,7 +19,7 @@ public class Canciones implements Serializable{
 
     @ManyToOne
     @JoinColumn(name = "idPropietario", nullable = false)
-    private Usuarios propietarioCancion;
+    private Usuario propietarioCancion;
 
     @Column(name = "imagen", length = 100)
     private String imagen;
@@ -46,13 +44,13 @@ public class Canciones implements Serializable{
 
     @ManyToOne
     @JoinColumn(name = "idCategoria", nullable = false)
-    private Categorias categoriaCancion;
+    private Categoria categoriaCancion;
 
-    public Canciones() {
+    public Cancion() {
 
     }
 
-    public Canciones(Long id, Usuarios propietarioCancion, String imagen, String titulo, int duracion, String descripcion, Date fechaIncorporacion, Boolean publica, String url) {
+    public Cancion(Long id, Usuario propietarioCancion, String imagen, String titulo, int duracion, String descripcion, Date fechaIncorporacion, Boolean publica, String url) {
         this.id = id;
         this.propietarioCancion = propietarioCancion;
         this.imagen = imagen;
@@ -66,7 +64,7 @@ public class Canciones implements Serializable{
 
     @Override
     public String toString() {
-        return "Canciones{" +
+        return "Cancion{" +
                 "id=" + id +
                 ", propietarioCancion=" + propietarioCancion +
                 ", imagen='" + imagen + '\'' +

@@ -1,26 +1,26 @@
 package com.listeny.listeny.service;
 
-import com.listeny.listeny.models.Usuarios;
-import com.listeny.listeny.repository.UsuariosRepository;
+import com.listeny.listeny.models.Usuario;
+import com.listeny.listeny.repository.UsuarioRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
 
 @Service
 public class UsuariosService {
-    private final UsuariosRepository usuariosRepository;
+    private final UsuarioRepository usuarioRepository;
 
-    public UsuariosService(UsuariosRepository usuariosRepository) {
-        this.usuariosRepository = usuariosRepository;
+    public UsuariosService(UsuarioRepository usuarioRepository) {
+        this.usuarioRepository = usuarioRepository;
     }
 
-    public Optional<Usuarios> findById(Long id){
+    public Optional<Usuario> findById(Long id){
 
-        return this.usuariosRepository.findById(id);
+        return this.usuarioRepository.findById(id);
     }
 
 
-//    public Long getFollowers(Usuarios usuario){
+//    public Long getFollowers(Usuario usuario){
 //
 //        Optional id = findById(usuario.getId());
 //        if (id.isPresent()){

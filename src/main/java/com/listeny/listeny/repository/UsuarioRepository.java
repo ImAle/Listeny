@@ -1,10 +1,10 @@
 package com.listeny.listeny.repository;
 
-import com.listeny.listeny.models.Notificaciones;
+import com.listeny.listeny.models.Usuario;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface NotificacionesRepository extends JpaRepository<Notificaciones, Long> {
+public interface UsuarioRepository extends JpaRepository<Usuario, Long> {
 
 }

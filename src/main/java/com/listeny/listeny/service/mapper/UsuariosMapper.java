@@ -1,12 +1,12 @@
 package com.listeny.listeny.service.mapper;
 
 import com.listeny.listeny.Dto.UsuariosDto;
-import com.listeny.listeny.models.Usuarios;
+import com.listeny.listeny.models.Usuario;
 
 public class UsuariosMapper {
 
     // Convertir identidad a DTO
-    public UsuariosDto toDto(Usuarios usuario){
+    public UsuariosDto toDto(Usuario usuario){
         final UsuariosDto dto = new UsuariosDto();
         dto.setId(usuario.getId());
         dto.setNombreUsuario(usuario.getNombreUsuario());
@@ -22,7 +22,7 @@ public class UsuariosMapper {
     }
 
     // Convertir DTO a identidad
-//    public Usuarios toIdentity(UsuariosDto usuariosDto){
+//    public Usuario toIdentity(UsuariosDto usuariosDto){
 //
 //    }
 }

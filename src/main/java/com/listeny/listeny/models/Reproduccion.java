@@ -11,17 +11,17 @@ import java.util.Date;
 @Setter
 @Entity
 @Embeddable
-@IdClass(Reproducciones.class)
-public class Reproducciones implements Serializable {
+@IdClass(Reproduccion.class)
+public class Reproduccion implements Serializable {
 
     @Id
     @ManyToOne
     @JoinColumn(name = "idUsuario")
-    Usuarios idUsuario;
+    Usuario idUsuario;
     @Id
     @ManyToOne
     @JoinColumn(name = "idCancion")
-    Canciones idCancion;
+    Cancion idCancion;
 
     @Column(name = "reproducciones")
     private Long reproducciones;
@@ -29,11 +29,11 @@ public class Reproducciones implements Serializable {
     @Column(name = "fecha_lastReproduccion")
     private Date fechaLastReproducciones;
 
-    public Reproducciones() {
+    public Reproduccion() {
 
     }
 
-    public Reproducciones(Usuarios idUsuario, Canciones idCancion, Long reproducciones, Date fechaLastReproducciones) {
+    public Reproduccion(Usuario idUsuario, Cancion idCancion, Long reproducciones, Date fechaLastReproducciones) {
         this.idUsuario = idUsuario;
         this.idCancion = idCancion;
         this.reproducciones = reproducciones;
@@ -42,7 +42,7 @@ public class Reproducciones implements Serializable {
 
     @Override
     public String toString() {
-        return "Reproducciones{" +
+        return "Reproduccion{" +
                 "reproduccionesUsuario=" + idUsuario +
                 ", reproduccionesCancion=" + idCancion +
                 ", reproducciones=" + reproducciones +

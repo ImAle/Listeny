@@ -12,7 +12,7 @@ import java.util.List;
 @Setter
 @Entity
 @Table(name = "listas")
-public class Listas implements Serializable {
+public class Lista implements Serializable {
 
     @Id
     @Column(name = "id")
@@ -21,7 +21,7 @@ public class Listas implements Serializable {
 
     @ManyToOne
     @JoinColumn(name = "idPropietario", nullable = false)
-    private Usuarios propietarioLista;
+    private Usuario propietarioLista;
 
     @Column(name = "reproducciones")
     private int reproducciones;
@@ -43,21 +43,21 @@ public class Listas implements Serializable {
 
     @ManyToOne
     @JoinColumn(name = "idCategoria", nullable = false)
-    private Categorias listasCategoria;
+    private Categoria listasCategoria;
 
 
     @ManyToMany
     @JoinTable (name = "Listas_has_canciones",
             joinColumns = @JoinColumn (name="listas_id"),
             inverseJoinColumns = @JoinColumn(name = "canciones_id"))
-    private List<Canciones> cancionesLista = new ArrayList<>();
+    private List<Cancion> cancionesLista = new ArrayList<>();
 
 
-    public Listas() {
+    public Lista() {
 
     }
 
-    public Listas(Long id, Usuarios propietarioLista, int reproducciones, String nombre, String imagen, String descripcion, String color, Boolean publica) {
+    public Lista(Long id, Usuario propietarioLista, int reproducciones, String nombre, String imagen, String descripcion, String color, Boolean publica) {
         this.id = id;
         this.propietarioLista = propietarioLista;
         this.reproducciones = reproducciones;

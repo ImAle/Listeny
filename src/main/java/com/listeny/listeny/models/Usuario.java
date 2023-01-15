@@ -6,15 +6,14 @@ import lombok.Setter;
 
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 
 @Getter
 @Setter
 @Entity
-@Table(name="Usuarios")
-public class Usuarios implements Serializable {
+@Table(name="Usuario")
+public class Usuario implements Serializable {
 
     @Id
     @Column (name = "id")
@@ -50,43 +49,43 @@ public class Usuarios implements Serializable {
     @JoinTable (name = "Favoritos_canciones",
     joinColumns = @JoinColumn (name="idUsuario"),
     inverseJoinColumns = @JoinColumn(name = "idFavorito"))
-    private List<Canciones> cancionesFavoritas = new ArrayList<>();
+    private List<Cancion> cancionesFavoritas = new ArrayList<>();
 
     @ManyToMany
     @JoinTable (name="Favoritos_listas",
     joinColumns = @JoinColumn (name="idUsuario"),
     inverseJoinColumns = @JoinColumn(name="idLista"))
-    private List<Listas> listasFavoritos = new ArrayList<>();
+    private List<Lista> listasFavoritos = new ArrayList<>();
 
     @ManyToMany
     @JoinTable (name="Favoritos_albumes",
             joinColumns = @JoinColumn (name="idUsuario"),
             inverseJoinColumns = @JoinColumn(name="idAlbum"))
-    private List<Albumes> albumesFavoritos = new ArrayList<>();
+    private List<Album> albumesFavoritos = new ArrayList<>();
 
     @ManyToMany
     @JoinTable(name = "seguidores",
             joinColumns = @JoinColumn(name = "idSeguidor", referencedColumnName = "id"),
             inverseJoinColumns = @JoinColumn(name = "idSeguido", referencedColumnName = "id"))
-    private List<Usuarios> seguidores = new ArrayList<>();
+    private List<Usuario> seguidores = new ArrayList<>();
 
     @ManyToMany(mappedBy = "seguidores")
-    private List<Usuarios> seguidos = new ArrayList<>();
+    private List<Usuario> seguidos = new ArrayList<>();
 
     @OneToMany(mappedBy = "propietarioLista")
-    private List<Listas> propietarioListas = new ArrayList<>();
+    private List<Lista> propietarioListas = new ArrayList<>();
 
     @OneToMany(mappedBy = "propietarioCancion")
-    private List<Canciones> propietarioCanciones = new ArrayList<>();
+    private List<Cancion> propietarioCanciones = new ArrayList<>();
 
     @OneToMany(mappedBy = "propietarioAlbum")
-    private List<Albumes> propietarioAlbumes = new ArrayList<>();
+    private List<Album> propietarioAlbumes = new ArrayList<>();
 
-    public Usuarios() {
+    public Usuario() {
 
     }
 
-    public Usuarios(Long id, String nombreUsuario, String email, String clave, Date fechaNacimiento, char sexo, String imagen, String imagenFondo, Boolean esArtista) {
+    public Usuario(Long id, String nombreUsuario, String email, String clave, Date fechaNacimiento, char sexo, String imagen, String imagenFondo, Boolean esArtista) {
         this.id = id;
         this.nombreUsuario = nombreUsuario;
         this.email = email;
@@ -100,7 +99,7 @@ public class Usuarios implements Serializable {
 
     @Override
     public String toString() {
-        return "Usuarios{" +
+        return "Usuario{" +
                 "id=" + id +
                 ", nombreUsuario='" + nombreUsuario + '\'' +
                 ", email='" + email + '\'' +

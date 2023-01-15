@@ -10,7 +10,7 @@ import java.util.List;
 @Setter
 @Entity
 @Table(name = "categorias")
-public class Categorias {
+public class Categoria {
 
     @Id
     @Column (name = "id")
@@ -21,21 +21,21 @@ public class Categorias {
     private String categoria;
 
     @OneToMany(mappedBy = "listasCategoria")
-    private List<Listas> categoriaListas;
+    private List<Lista> categoriaListas;
 
     @ManyToOne
     @JoinColumn(name = "id_madre")
-    private Categorias idMadre;
+    private Categoria idMadre;
 
     @OneToMany(mappedBy = "idMadre")
-    private List<Categorias> subcategorias;
+    private List<Categoria> subcategorias;
 
 
-    public Categorias() {
+    public Categoria() {
 
     }
 
-    public Categorias(Long id, String categoria) {
+    public Categoria(Long id, String categoria) {
         this.id = id;
         this.categoria = categoria;
     }

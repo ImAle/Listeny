@@ -1,10 +1,10 @@
 package com.listeny.listeny.repository;
 
-import com.listeny.listeny.models.Canciones;
+import com.listeny.listeny.models.Categoria;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface CancionesRepository extends JpaRepository<Canciones, Long> {
+public interface CategoriaRepository extends JpaRepository<Categoria, Long> {
 
 }

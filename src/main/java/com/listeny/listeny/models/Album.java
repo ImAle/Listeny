@@ -11,7 +11,7 @@ import java.util.List;
 @Getter
 @Setter
 @Table(name = "albumes")
-public class Albumes {
+public class Album {
 
     @Id
     @Column (name = "id")
@@ -20,7 +20,7 @@ public class Albumes {
 
     @ManyToOne
     @JoinColumn(name = "idPropietario", nullable = false)
-    private Usuarios propietarioAlbum;
+    private Usuario propietarioAlbum;
 
     @Column (name = "reproducciones")
     private int reproducciones;
@@ -41,13 +41,13 @@ public class Albumes {
     @JoinTable (name = "albumes_has_canciones",
             joinColumns = @JoinColumn (name="albumes_id"),
             inverseJoinColumns = @JoinColumn(name = "canciones_id"))
-    private List<Canciones> cancionesAlbum = new ArrayList<>();
+    private List<Cancion> cancionesAlbum = new ArrayList<>();
 
-    public Albumes() {
+    public Album() {
 
     }
 
-    public Albumes(Long id, Usuarios PropietarioAlbum, int reproducciones, String titulo, String imagen, String descripcion, Boolean publico) {
+    public Album(Long id, Usuario PropietarioAlbum, int reproducciones, String titulo, String imagen, String descripcion, Boolean publico) {
         this.id = id;
         this.propietarioAlbum = PropietarioAlbum;
         this.reproducciones = reproducciones;
@@ -59,7 +59,7 @@ public class Albumes {
 
     @Override
     public String toString() {
-        return "Albumes{" +
+        return "Album{" +
                 "id=" + id +
                 ", idPropietario=" + propietarioAlbum +
                 ", reproducciones=" + reproducciones +
