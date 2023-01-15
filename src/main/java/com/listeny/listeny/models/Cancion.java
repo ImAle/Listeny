@@ -6,6 +6,7 @@ import lombok.Setter;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 
 @Getter
 @Setter
@@ -43,7 +44,11 @@ public class Cancion implements Serializable{
 
     @ManyToOne
     private Categoria categoria;
-/*
+
+    @OneToMany(mappedBy = "cancion")
+    private List<Reproducciones> reproducciones;
+    /*
+
     @ManyToMany(mappedBy = "albumCanciones")
     private List<Album> cancionAlbumes = new ArrayList<>();
 

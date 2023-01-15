@@ -56,12 +56,15 @@ public class Usuario implements Serializable {
     @ManyToMany
     @JoinTable(
             name="seguidores",
-            joinColumns = @JoinColumn(name="idSeguidor"),inverseJoinColumns = @JoinColumn(name="idSeguido")
+            joinColumns = @JoinColumn(name="id_seguidor"),inverseJoinColumns = @JoinColumn(name="id_seguido")
     )
     private List<Usuario> seguidos;
 
     @ManyToMany(mappedBy = "seguidos")
     private List<Usuario> seguidores;
+
+    @OneToMany(mappedBy = "usuario")
+    private List<Reproducciones> reproducciones;
 
     /*
     @ManyToMany

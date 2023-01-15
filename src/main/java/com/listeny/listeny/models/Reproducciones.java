@@ -6,48 +6,60 @@ import lombok.Setter;
 
 import java.io.Serializable;
 import java.util.Date;
-/*
+
+@Embeddable
+class ReproduccionesPK implements Serializable {
+
+    @Column(name="idUsuario")
+    private Integer idUsuario;
+
+    @Column(name="idCancion")
+    private Integer idCancion;
+}
+
 @Getter
 @Setter
 @Entity
 @Table(name = "reproducciones")
 public class Reproducciones implements Serializable {
 
-    @Id
-    @ManyToOne
-    @JoinColumn(referencedColumnName = "idUsuario")
-    Usuario idUsuario;
+    @EmbeddedId
+    ReproduccionesPK id;
 
-    @Id
     @ManyToOne
-    @JoinColumn(referencedColumnName = "idCancion")
-    Cancion idCancion;
+    @MapsId("idUsuario")
+    @JoinColumn(name = "idUsuario")
+    private Usuario usuario;
+
+    @ManyToOne
+    @MapsId("idCancion")
+    @JoinColumn(name = "idCancion")
+    private Cancion cancion;
 
     @Column(name = "reproducciones")
-    private int reproducciones;
+    private int nroReprod;
 
     @Column(name = "fecha_lastReproduccion")
-    private Date fechaLastReproducciones;
+    private Date ultReprod;
 
     public Reproducciones() {
 
     }
 
-    public Reproducciones(Usuario idUsuario, Cancion idCancion, int reproducciones, Date fechaLastReproducciones) {
-        this.idUsuario = idUsuario;
-        this.idCancion = idCancion;
-        this.reproducciones = reproducciones;
-        this.fechaLastReproducciones = fechaLastReproducciones;
+    public Reproducciones(Usuario usu, Cancion can, int nroReprod, Date ultRepro) {
+        this.usuario = usu;
+        this.cancion = can;
+        this.nroReprod = nroReprod;
+        this.ultReprod = ultRepro;
     }
 
     @Override
     public String toString() {
         return "Reproducciones{" +
-                "reproduccionesUsuario=" + idUsuario +
-                ", reproduccionesCancion=" + idCancion +
-                ", reproducciones=" + reproducciones +
-                ", fechaLastReproducciones=" + fechaLastReproducciones +
+                "reproduccionesUsuario=" + usuario +
+                ", reproduccionesCancion=" + cancion +
+                ", reproducciones=" + nroReprod +
+                ", fechaLastReproducciones=" + ultReprod +
                 '}';
     }
 }
-*/
