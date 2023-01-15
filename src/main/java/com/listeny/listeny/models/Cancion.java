@@ -5,30 +5,26 @@ import lombok.Getter;
 import lombok.Setter;
 
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
 
 @Getter
 @Setter
 @Entity
 @Table(name = "canciones")
-public class Canciones implements Serializable{
+public class Cancion implements Serializable{
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "idPropietario")
-    private Long idPropietario;
-
-    @Column(name = "idCategoria")
-    private int idCategoria;
+    @ManyToOne
+    @JoinColumn(name = "idPropietario", nullable = false)
+    private Usuario propietarioCancion;
 
     @Column(name = "imagen", length = 100)
     private String imagen;
 
-    @Column(name = "titulo", length = 50)
+    @Column(name = "titulo", length = 50, nullable = false)
     private String titulo;
 
     @Column(name = "duracion")
@@ -47,36 +43,16 @@ public class Canciones implements Serializable{
     private String url;
 
     @ManyToOne
-    @JoinColumn(name = "idPropietario")
-    Usuarios propietarioCancion;
+    @JoinColumn(name = "idCategoria", nullable = false)
+    private Categoria categoriaCancion;
 
-    @ManyToOne
-    @JoinColumn(name = "idCategoria")
-    Categorias cancionesCategoria;
-
-    @ManyToMany(mappedBy = "albumCanciones")
-    private List<Albumes> cancionAlbumes = new ArrayList<>();
-
-    @ManyToMany(mappedBy = "artistaCanciones")
-    private List<Artistas> cancionArtistas = new ArrayList<>();
-
-    @ManyToMany(mappedBy = "FavoritosCanciones")
-    private List<Usuarios> cancionesFavorito = new ArrayList<>();
-
-    @ManyToMany(mappedBy = "listaCanciones")
-    private List<Listas> cancionListas = new ArrayList<>();
-
-    @OneToMany(mappedBy = "idCancion")
-    List<Reproducciones> cancionReproducciones;
-
-    public Canciones() {
+    public Cancion() {
 
     }
 
-    public Canciones(Long id, Long idPropietario, int idCategoria, String imagen, String titulo, int duracion, String descripcion, Date fechaIncorporacion, Boolean publica, String url) {
+    public Cancion(Long id, Usuario propietarioCancion, String imagen, String titulo, int duracion, String descripcion, Date fechaIncorporacion, Boolean publica, String url) {
         this.id = id;
-        this.idPropietario = idPropietario;
-        this.idCategoria = idCategoria;
+        this.propietarioCancion = propietarioCancion;
         this.imagen = imagen;
         this.titulo = titulo;
         this.duracion = duracion;
@@ -88,10 +64,9 @@ public class Canciones implements Serializable{
 
     @Override
     public String toString() {
-        return "Canciones{" +
+        return "Cancion{" +
                 "id=" + id +
-                ", idPropietario=" + idPropietario +
-                ", idCategoria=" + idCategoria +
+                ", propietarioCancion=" + propietarioCancion +
                 ", imagen='" + imagen + '\'' +
                 ", titulo='" + titulo + '\'' +
                 ", duracion=" + duracion +

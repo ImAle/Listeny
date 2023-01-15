@@ -8,32 +8,32 @@ import java.io.Serializable;
 
 @Getter
 @Setter
+@Embeddable
 @Entity
-@Table(name="seguidores")
-public class Seguidores implements Serializable {
+@IdClass(Seguidor.class)
+public class Seguidor implements Serializable {
 
     @Id
     @ManyToOne
     @JoinColumn(name = "idSeguidor")
-    Usuarios seguidor;
+    private Usuario seguidor;
 
     @Id
     @ManyToOne
     @JoinColumn(name = "idSeguido")
-    Usuarios seguido;
+    private Usuario seguido;
 
-    public Seguidores() {
+    public Seguidor(){
 
     }
-
-    public Seguidores(Usuarios seguidor, Usuarios seguido) {
+    public Seguidor(Usuario seguidor, Usuario seguido) {
         this.seguidor = seguidor;
         this.seguido = seguido;
     }
 
     @Override
     public String toString() {
-        return "Seguidores{" +
+        return "Seguidor{" +
                 "seguidor=" + seguidor +
                 ", seguido=" + seguido +
                 '}';
