@@ -18,14 +18,14 @@ public class Albumes {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Id
-    @Column (name = "idPropietario")
-    private int idPropietario;
+    @ManyToOne
+    @JoinColumn(name = "idPropietario", nullable = false)
+    private Usuarios propietarioAlbum;
 
     @Column (name = "reproducciones")
     private int reproducciones;
 
-    @Column (name = "titulo", length = 45)
+    @Column (name = "titulo", length = 45, nullable = false)
     private String titulo;
 
     @Column (name = "imagen", length = 100)
@@ -37,26 +37,19 @@ public class Albumes {
     @Column (name = "publico")
     private Boolean publico;
 
-    @ManyToOne
-    @JoinColumn (name = "idPropietario")
-    Usuarios PropietarioAlbumes;
-
-    @ManyToMany(mappedBy = "AlbumesFavoritos")
-    private List<Usuarios> albumFavorito = new ArrayList<>();
-
     @ManyToMany
     @JoinTable (name = "albumes_has_canciones",
-            joinColumns = @JoinColumn (name = "albumes_id", referencedColumnName = "id"),
-            inverseJoinColumns = @JoinColumn (name = "canciones_id", referencedColumnName = "id"))
-    private List<Canciones> albumCanciones = new ArrayList<>();
+            joinColumns = @JoinColumn (name="albumes_id"),
+            inverseJoinColumns = @JoinColumn(name = "canciones_id"))
+    private List<Canciones> cancionesAlbum = new ArrayList<>();
 
     public Albumes() {
 
     }
 
-    public Albumes(Long id, int idPropietario, int reproducciones, String titulo, String imagen, String descripcion, Boolean publico) {
+    public Albumes(Long id, Usuarios PropietarioAlbum, int reproducciones, String titulo, String imagen, String descripcion, Boolean publico) {
         this.id = id;
-        this.idPropietario = idPropietario;
+        this.propietarioAlbum = PropietarioAlbum;
         this.reproducciones = reproducciones;
         this.titulo = titulo;
         this.imagen = imagen;
@@ -68,7 +61,7 @@ public class Albumes {
     public String toString() {
         return "Albumes{" +
                 "id=" + id +
-                ", idPropietario=" + idPropietario +
+                ", idPropietario=" + propietarioAlbum +
                 ", reproducciones=" + reproducciones +
                 ", titulo='" + titulo + '\'' +
                 ", imagen='" + imagen + '\'' +

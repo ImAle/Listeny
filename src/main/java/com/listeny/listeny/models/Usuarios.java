@@ -6,6 +6,7 @@ import lombok.Setter;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 
@@ -20,19 +21,19 @@ public class Usuarios implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name="nombreUsuario", length = 45)
+    @Column(name="nombreUsuario", length = 45, nullable = false)
     private String nombreUsuario;
 
-    @Column(name="email", length = 60)
+    @Column(name="email", length = 60, nullable = false)
     private String email;
 
-    @Column(name="clave", length = 100)
+    @Column(name="clave", length = 100, nullable = false)
     private String clave;
 
-    @Column(name="fecha_nacimiento")
+    @Column(name="fecha_nacimiento", nullable = false)
     private Date fechaNacimiento;
 
-    @Column(name="sexo", length = 1)
+    @Column(name="sexo", length = 1, nullable = false)
     private char sexo;
 
     @Column(name="imagen", length = 100)
@@ -44,49 +45,42 @@ public class Usuarios implements Serializable {
     @Column(name="esArtista")
     private Boolean esArtista;
 
-    @OneToMany (mappedBy = "idPropietario")
-    List<Albumes> propietarioAlbumes;
-
-    @ManyToMany
-    @JoinTable (name = "Favoritos_albumes",
-            joinColumns = @JoinColumn (name = "idUsuario", referencedColumnName = "id"),
-            inverseJoinColumns = @JoinColumn (name = "idFavorito", referencedColumnName = "id"))
-    private List<Albumes> AlbumesFavoritos = new ArrayList<>();
-
-    @OneToMany (mappedBy = "propietarioCancion")
-    List<Canciones> propietarioCanciones;
 
     @ManyToMany
     @JoinTable (name = "Favoritos_canciones",
-            joinColumns = @JoinColumn (name = "idUsuario"),
-            inverseJoinColumns = @JoinColumn (name = "idFavorito"))
-    private List<Canciones> FavoritosCanciones = new ArrayList<>();
-
-    @OneToMany(mappedBy = "seguidor")
-    List<Seguidores> Seguidor;
-
-    @OneToMany(mappedBy = "seguido")
-    List<Seguidores> Seguido;
+    joinColumns = @JoinColumn (name="idUsuario"),
+    inverseJoinColumns = @JoinColumn(name = "idFavorito"))
+    private List<Canciones> cancionesFavoritas = new ArrayList<>();
 
     @ManyToMany
-    @JoinTable (name = "Favoritos_lista",
-            joinColumns = @JoinColumn (name = "idUsuario", referencedColumnName = "id"),
-            inverseJoinColumns = @JoinColumn (name = "idLista", referencedColumnName = "id"))
-    private List<Listas> FavoritosListas = new ArrayList<>();
+    @JoinTable (name="Favoritos_listas",
+    joinColumns = @JoinColumn (name="idUsuario"),
+    inverseJoinColumns = @JoinColumn(name="idLista"))
+    private List<Listas> listasFavoritos = new ArrayList<>();
 
-    @OneToMany(mappedBy = "listasUsuario")
-    List<Listas> propietarioListas;
+    @ManyToMany
+    @JoinTable (name="Favoritos_albumes",
+            joinColumns = @JoinColumn (name="idUsuario"),
+            inverseJoinColumns = @JoinColumn(name="idAlbum"))
+    private List<Albumes> albumesFavoritos = new ArrayList<>();
 
-    @OneToMany(mappedBy = "idUsuario")
-    List<Reproducciones> usuarioReproducciones;
+    @ManyToMany
+    @JoinTable(name = "seguidores",
+            joinColumns = @JoinColumn(name = "idSeguidor", referencedColumnName = "id"),
+            inverseJoinColumns = @JoinColumn(name = "idSeguido", referencedColumnName = "id"))
+    private List<Usuarios> seguidores = new ArrayList<>();
 
-    /*
-    *  @JoinTable(name = "reproducciones",
-        joinColumns = @JoinColumn(name = "id_usuario"),
-        inverseJoinColumns = @JoinColumn(name = "id_cancion"))
-        private List<Canciones> cancionesReproducidas;
-    *
-    * */
+    @ManyToMany(mappedBy = "seguidores")
+    private List<Usuarios> seguidos = new ArrayList<>();
+
+    @OneToMany(mappedBy = "propietarioLista")
+    private List<Listas> propietarioListas = new ArrayList<>();
+
+    @OneToMany(mappedBy = "propietarioCancion")
+    private List<Canciones> propietarioCanciones = new ArrayList<>();
+
+    @OneToMany(mappedBy = "propietarioAlbum")
+    private List<Albumes> propietarioAlbumes = new ArrayList<>();
 
     public Usuarios() {
 

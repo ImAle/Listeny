@@ -20,35 +20,23 @@ public class Categorias {
     @Column(name = "categoria", length = 45)
     private String categoria;
 
-//    @Column(name = "idMadre")
-//    private Long idMadre;
-
-    @OneToMany(mappedBy = "cancionesCategoria")
-    List<Canciones> categoriaCanciones;
+    @OneToMany(mappedBy = "listasCategoria")
+    private List<Listas> categoriaListas;
 
     @ManyToOne
-    @JoinColumn(name = "idMadre", referencedColumnName = "id")
-    private Categorias idMadreCategoria;
+    @JoinColumn(name = "id_madre")
+    private Categorias idMadre;
 
-    @OneToMany(mappedBy = "listasCategoria")
-    List<Listas> categoriaListas;
+    @OneToMany(mappedBy = "idMadre")
+    private List<Categorias> subcategorias;
+
 
     public Categorias() {
 
     }
 
-    public Categorias(Long id, String categoria, Categorias idMadre) {
+    public Categorias(Long id, String categoria) {
         this.id = id;
         this.categoria = categoria;
-        this.idMadreCategoria = idMadre;
-    }
-
-    @Override
-    public String toString() {
-        return "Categorias{" +
-                "Id=" + id +
-                ", categoria='" + categoria + '\'' +
-                ", idMadre=" + idMadreCategoria +
-                '}';
     }
 }

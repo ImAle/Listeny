@@ -10,20 +10,21 @@ import java.util.Date;
 @Getter
 @Setter
 @Entity
-@Table(name = "reproducciones")
+@Embeddable
+@IdClass(Reproducciones.class)
 public class Reproducciones implements Serializable {
 
     @Id
     @ManyToOne
-    @JoinColumn(name = "idUsuario" ,referencedColumnName = "id")
+    @JoinColumn(name = "idUsuario")
     Usuarios idUsuario;
     @Id
     @ManyToOne
-    @JoinColumn(name = "idCancion" ,referencedColumnName = "id")
+    @JoinColumn(name = "idCancion")
     Canciones idCancion;
 
     @Column(name = "reproducciones")
-    private int reproducciones;
+    private Long reproducciones;
 
     @Column(name = "fecha_lastReproduccion")
     private Date fechaLastReproducciones;
@@ -32,7 +33,7 @@ public class Reproducciones implements Serializable {
 
     }
 
-    public Reproducciones(Usuarios idUsuario, Canciones idCancion, int reproducciones, Date fechaLastReproducciones) {
+    public Reproducciones(Usuarios idUsuario, Canciones idCancion, Long reproducciones, Date fechaLastReproducciones) {
         this.idUsuario = idUsuario;
         this.idCancion = idCancion;
         this.reproducciones = reproducciones;

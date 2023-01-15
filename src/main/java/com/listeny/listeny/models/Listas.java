@@ -15,24 +15,24 @@ import java.util.List;
 public class Listas implements Serializable {
 
     @Id
-    @Column (name = "id")
+    @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Id
-    @Column(name = "id_propietario")
-    private Long idPropietario;
+    @ManyToOne
+    @JoinColumn(name = "idPropietario", nullable = false)
+    private Usuarios propietarioLista;
 
     @Column(name = "reproducciones")
     private int reproducciones;
 
-    @Column(name = "nombre", length = 45)
+    @Column(name = "nombre", length = 45, nullable = false)
     private String nombre;
 
-    @Column(name = "imagen",length = 100)
+    @Column(name = "imagen", length = 100)
     private String imagen;
 
-    @Column(name = "descripcion",length = 100)
+    @Column(name = "descripcion", length = 100)
     private String descripcion;
 
     @Column(name = "color", length = 15)
@@ -41,54 +41,30 @@ public class Listas implements Serializable {
     @Column(name = "publica")
     private Boolean publica;
 
-//    @Column(name = "idCategoria")
-//    private int idCategoria;
-
     @ManyToOne
-    @JoinColumn(name = "id_propietario")
-    Usuarios listasUsuario;
+    @JoinColumn(name = "idCategoria", nullable = false)
+    private Categorias listasCategoria;
 
-    @ManyToMany(mappedBy = "FavoritosListas")
-    private List<Usuarios> favoritosListas = new ArrayList<>();
 
     @ManyToMany
-    @JoinTable (name = "listas_has_canciones",
-            joinColumns = @JoinColumn (name = "listas_id", referencedColumnName = "id"),
-            inverseJoinColumns = @JoinColumn (name = "canciones_id", referencedColumnName = "id"))
-    private List<Canciones> listaCanciones = new ArrayList<>();
+    @JoinTable (name = "Listas_has_canciones",
+            joinColumns = @JoinColumn (name="listas_id"),
+            inverseJoinColumns = @JoinColumn(name = "canciones_id"))
+    private List<Canciones> cancionesLista = new ArrayList<>();
 
-    @ManyToOne
-    @JoinColumn(name = "idCategoria")
-    Categorias listasCategoria;
 
     public Listas() {
 
     }
 
-    public Listas(Long id, Long idPropietario, int reproducciones, String nombre, String imagen, String descripcion, String color, Boolean publica, Categorias idCategoria) {
+    public Listas(Long id, Usuarios propietarioLista, int reproducciones, String nombre, String imagen, String descripcion, String color, Boolean publica) {
         this.id = id;
-        this.idPropietario = idPropietario;
+        this.propietarioLista = propietarioLista;
         this.reproducciones = reproducciones;
         this.nombre = nombre;
         this.imagen = imagen;
         this.descripcion = descripcion;
         this.color = color;
         this.publica = publica;
-        this.listasCategoria = idCategoria;
-    }
-
-    @Override
-    public String toString() {
-        return "Listas{" +
-                "id=" + id +
-                ", idPropietario=" + idPropietario +
-                ", reproducciones=" + reproducciones +
-                ", nombre='" + nombre + '\'' +
-                ", imagen='" + imagen + '\'' +
-                ", descripcion='" + descripcion + '\'' +
-                ", color='" + color + '\'' +
-                ", publica=" + publica +
-                ", idCategoria=" + listasCategoria +
-                '}';
     }
 }

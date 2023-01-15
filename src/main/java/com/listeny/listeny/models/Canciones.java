@@ -19,16 +19,14 @@ public class Canciones implements Serializable{
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-//    @Column(name = "idPropietario")
-//    private Long idPropietario;
-
-//    @Column(name = "idCategoria")
-//    private int idCategoria;
+    @ManyToOne
+    @JoinColumn(name = "idPropietario", nullable = false)
+    private Usuarios propietarioCancion;
 
     @Column(name = "imagen", length = 100)
     private String imagen;
 
-    @Column(name = "titulo", length = 50)
+    @Column(name = "titulo", length = 50, nullable = false)
     private String titulo;
 
     @Column(name = "duracion")
@@ -47,36 +45,16 @@ public class Canciones implements Serializable{
     private String url;
 
     @ManyToOne
-    @JoinColumn(name = "idPropietario", referencedColumnName = "id")
-    Usuarios propietarioCancion;
-
-    @ManyToOne
-    @JoinColumn(name = "idCategoria")
-    Categorias cancionesCategoria;
-
-    @ManyToMany(mappedBy = "albumCanciones")
-    private List<Albumes> cancionAlbumes = new ArrayList<>();
-
-    @ManyToMany(mappedBy = "artistaCanciones")
-    private List<Artistas> cancionArtistas = new ArrayList<>();
-
-    @ManyToMany(mappedBy = "FavoritosCanciones")
-    private List<Usuarios> cancionesFavorito = new ArrayList<>();
-
-    @ManyToMany(mappedBy = "listaCanciones")
-    private List<Listas> cancionListas = new ArrayList<>();
-
-    @OneToMany(mappedBy = "idCancion")
-    List<Reproducciones> cancionReproducciones;
+    @JoinColumn(name = "idCategoria", nullable = false)
+    private Categorias categoriaCancion;
 
     public Canciones() {
 
     }
 
-    public Canciones(Long id, Usuarios idPropietario, Categorias idCategoria, String imagen, String titulo, int duracion, String descripcion, Date fechaIncorporacion, Boolean publica, String url) {
+    public Canciones(Long id, Usuarios propietarioCancion, String imagen, String titulo, int duracion, String descripcion, Date fechaIncorporacion, Boolean publica, String url) {
         this.id = id;
-        this.propietarioCancion = idPropietario;
-        this.cancionesCategoria = idCategoria;
+        this.propietarioCancion = propietarioCancion;
         this.imagen = imagen;
         this.titulo = titulo;
         this.duracion = duracion;
@@ -90,8 +68,7 @@ public class Canciones implements Serializable{
     public String toString() {
         return "Canciones{" +
                 "id=" + id +
-                ", idPropietario=" + propietarioCancion +
-                ", idCategoria=" + cancionesCategoria +
+                ", propietarioCancion=" + propietarioCancion +
                 ", imagen='" + imagen + '\'' +
                 ", titulo='" + titulo + '\'' +
                 ", duracion=" + duracion +

@@ -20,10 +20,10 @@ public class Notificaciones implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "descripcion", length = 200)
+    @Column(name = "descripcion", length = 200, nullable = false)
     private String descripcion;
 
-    @Column(name="titulo", length = 100)
+    @Column(name="titulo", length = 100, nullable = false)
     private String titulo;
 
     public Notificaciones() {
