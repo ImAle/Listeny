@@ -29,7 +29,7 @@
     <form class="form-center">
         <div class="form-group">
             <label for="username">Nombre de usuario</label>
-            <input type="text" class="form-control" id="username" placeholder="Introduce tu nombre de usuario">
+            <input type="text" class="form-control" id="username" placeholder="Introduce tu nombre de usuario" required>
         </div>
 
         <br/>
@@ -38,7 +38,7 @@
 
         <div class="form-group">
             <label for="email">Correo electrónico</label>
-            <input type="email" class="form-control" id="email" placeholder="Introduce tu correo electrónico">
+            <input type="email" class="form-control" id="email" placeholder="Introduce tu correo electrónico" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" required>
         </div>
 
         <br/>
@@ -47,7 +47,7 @@
 
         <div class="form-group">
             <label for="password">Contraseña</label>
-            <input type="password" class="form-control" id="password" placeholder="Introduce tu contraseña">
+            <input type="password" class="form-control" id="password" placeholder="Introduce tu contraseña" required>
         </div>
 
         <br/>
@@ -56,7 +56,7 @@
 
         <div class="form-group">
             <label for="birthdate">Fecha de nacimiento</label>
-            <input type="date" class="form-control" id="birthdate">
+            <input type="date" class="form-control" id="birthdate" required>
         </div>
 
         <br/>
