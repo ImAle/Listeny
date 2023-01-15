@@ -18,7 +18,7 @@ public class Usuario implements Serializable {
     @Id
     @Column (name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private Integer id;
 
     @Column(name="nombreUsuario", length = 45)
     private String nombreUsuario;
@@ -51,32 +51,25 @@ public class Usuario implements Serializable {
     private Collection<Album> albumes;
 
     @OneToMany (mappedBy = "propietario")
-    List<Cancion> canciones;
-
-    /*
-    @ManyToOne
-    List<Albumes> misAlbumes;
-
+    private List<Cancion> canciones;
 
     @ManyToMany
-    @JoinTable (name = "albumes",
-            joinColumns = @JoinColumn (name = "idPropietario"),
-            inverseJoinColumns = @JoinColumn (name = "id"))
-    private List<Albumes> AlbumesFavoritos = new ArrayList<>();
+    @JoinTable(
+            name="seguidores",
+            joinColumns = @JoinColumn(name="idSeguidor"),inverseJoinColumns = @JoinColumn(name="idSeguido")
+    )
+    private List<Usuario> seguidos;
 
+    @ManyToMany(mappedBy = "seguidos")
+    private List<Usuario> seguidores;
 
-
+    /*
     @ManyToMany
     @JoinTable (name = "Favoritos_canciones",
             joinColumns = @JoinColumn (name = "idUsuario"),
             inverseJoinColumns = @JoinColumn (name = "idFavorito"))
     private List<Cancion> FavoritosCanciones = new ArrayList<>();
 
-    @OneToMany(mappedBy = "seguidor")
-    List<Seguidores> Seguidor;
-
-    @OneToMany(mappedBy = "seguido")
-    List<Seguidores> Seguido;
 
     @ManyToMany
     @JoinTable (name = "Favoritos_lista",
