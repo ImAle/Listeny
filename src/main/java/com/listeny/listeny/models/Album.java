@@ -10,7 +10,7 @@ import java.util.List;
 @Entity
 @Getter
 @Setter
-@Table(name = "albumes")
+@Table(name = "album")
 public class Album {
 
     @Id

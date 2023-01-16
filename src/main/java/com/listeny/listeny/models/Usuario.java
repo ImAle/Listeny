@@ -64,7 +64,7 @@ public class Usuario implements Serializable {
     private List<Album> albumesFavoritos = new ArrayList<>();
 
     @ManyToMany
-    @JoinTable(name = "seguidores",
+    @JoinTable(name = "seguidor",
             joinColumns = @JoinColumn(name = "idSeguidor", referencedColumnName = "id"),
             inverseJoinColumns = @JoinColumn(name = "idSeguido", referencedColumnName = "id"))
     private List<Usuario> seguidores = new ArrayList<>();

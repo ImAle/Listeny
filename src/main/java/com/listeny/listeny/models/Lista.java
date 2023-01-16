@@ -11,7 +11,7 @@ import java.util.List;
 @Getter
 @Setter
 @Entity
-@Table(name = "listas")
+@Table(name = "lista")
 public class Lista implements Serializable {
 
     @Id

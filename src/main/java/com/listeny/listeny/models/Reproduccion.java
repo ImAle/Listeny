@@ -26,7 +26,7 @@ public class Reproduccion implements Serializable {
     @Column(name = "reproducciones")
     private Long reproducciones;
 
-    @Column(name = "fecha_lastReproduccion")
+    @Column(name = "fecha_lastReproduccion", columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
     private Date fechaLastReproducciones;
 
     public Reproduccion() {

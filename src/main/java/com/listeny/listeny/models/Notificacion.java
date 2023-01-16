@@ -10,7 +10,7 @@ import java.io.Serializable;
 @Getter
 @Setter
 @Entity
-@Table(name = "notificaciones")
+@Table(name = "notificacion")
 public class Notificacion implements Serializable {
 
     @Id
