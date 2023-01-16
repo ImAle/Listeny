@@ -30,7 +30,7 @@ public class Cancion implements Serializable{
     @Column(name = "duracion")
     private int duracion;
 
-    @Column(name = "descripcion", length = 45)
+    @Column(name = "descripcion", length = 200)
     private String descripcion;
 
     @Column(name = "fecha_incorporacion")

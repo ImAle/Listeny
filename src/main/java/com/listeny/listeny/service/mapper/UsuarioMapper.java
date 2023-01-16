@@ -3,7 +3,7 @@ package com.listeny.listeny.service.mapper;
 import com.listeny.listeny.Dto.UsuariosDto;
 import com.listeny.listeny.models.Usuario;
 
-public class UsuariosMapper {
+public class UsuarioMapper {
 
     // Convertir identidad a DTO
     public UsuariosDto toDto(Usuario usuario){
@@ -36,6 +36,11 @@ public class UsuariosMapper {
         usuario.setImagen(usuario.getImagen());
         usuario.setImagen(usuariosDto.getImagen());
         usuario.setImagenFondo(usuariosDto.getImagenFondo());
+//        usuario.setListasFavoritos(usuariosDto.getListasFavoritos());
+//        usuario.setAlbumesFavoritos(usuariosDto.getAlbumesFavoritos());
+//        usuario.setCancionesFavoritas(usuariosDto.getCancionesFavoritas());
+//        usuario.setSeguidor(usuariosDto.getSeguidos());
+//        usuario.setSeguido(usuariosDto.getSeguidores().size());
         return usuario;
-    }
+    } // ¿Añadir campos no propios de la tabla como CancionesFavoritas?
 }

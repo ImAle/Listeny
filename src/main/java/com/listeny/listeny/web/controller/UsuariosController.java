@@ -1,33 +1,30 @@
 package com.listeny.listeny.web.controller;
 
 import com.listeny.listeny.Dto.UsuariosDto;
-import com.listeny.listeny.models.Usuario;
-import com.listeny.listeny.service.UsuariosService;
-import com.listeny.listeny.service.mapper.UsuariosMapper;
+import com.listeny.listeny.service.UsuarioService;
+import com.listeny.listeny.service.mapper.UsuarioMapper;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
-import java.util.Optional;
-
 @Controller
 public class UsuariosController {
 
-    private UsuariosService service;
-    private UsuariosMapper mapper;
+    private UsuarioService service;
+    private UsuarioMapper mapper;
 
-    public UsuariosController(UsuariosService service) {
+    public UsuariosController(UsuarioService service) {
         this.service = service;
     }
 
-    @GetMapping("/usuarios/{id}")
-    public UsuariosDto userById (@PathVariable("id") Long idUser, ModelMap interfaz){
-        // Pasamos usuario a dto
-        UsuariosDto usuariosDto = this.mapper.toDto(this.service.findById(idUser));
-        // Lo metemos a una sesión
-        interfaz.addAttribute("userById", usuariosDto);
-        return usuariosDto;
-    }
+//    @GetMapping("/usuarios/{id}")
+//    public UsuariosDto userById (@PathVariable("id") Long idUser, ModelMap interfaz){
+//        // Pasamos usuario a dto
+//        UsuariosDto usuariosDto = this.mapper.toDto(this.service.findById(idUser));
+//        // Lo metemos a una sesión
+//        interfaz.addAttribute("userById", usuariosDto);
+//        return usuariosDto;
+//    }
 
 }
