@@ -3,11 +3,11 @@ package com.listeny.listeny.models;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
+import lombok.ToString;
 
 import java.util.List;
 
-@Getter
-@Setter
+@Getter @Setter
 @Entity
 @Table(name = "categorias")
 public class Categoria {
@@ -35,8 +35,18 @@ public class Categoria {
 
     }
 
-    public Categoria(Long id, String categoria) {
+    public Categoria(Long id, String categoria, Categoria idMadre) {
         this.id = id;
         this.categoria = categoria;
+        this.idMadre = idMadre;
+    }
+
+    @Override
+    public String toString() {
+        return "Categoria{" +
+                "id=" + id +
+                ", categoria='" + categoria + '\'' +
+                ", idMadre=" + idMadre +
+                '}';
     }
 }

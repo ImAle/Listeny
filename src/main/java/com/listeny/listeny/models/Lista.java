@@ -67,4 +67,18 @@ public class Lista implements Serializable {
         this.color = color;
         this.publica = publica;
     }
+
+    @Override
+    public String toString() {
+        return "Lista{" +
+                "id=" + id +
+                ", propietarioLista=" + propietarioLista +
+                ", reproducciones=" + reproducciones +
+                ", nombre='" + nombre + '\'' +
+                ", imagen='" + imagen + '\'' +
+                ", descripcion='" + descripcion + '\'' +
+                ", color='" + color + '\'' +
+                ", publica=" + publica +
+                '}';
+    }
 }

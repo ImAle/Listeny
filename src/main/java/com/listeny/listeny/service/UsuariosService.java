@@ -1,5 +1,6 @@
 package com.listeny.listeny.service;
 
+import com.listeny.listeny.Dto.UsuariosDto;
 import com.listeny.listeny.models.Usuario;
 import com.listeny.listeny.repository.UsuarioRepository;
 import org.springframework.stereotype.Service;
@@ -14,17 +15,16 @@ public class UsuariosService {
         this.usuarioRepository = usuarioRepository;
     }
 
-    public Optional<Usuario> findById(Long id){
-
-        return this.usuarioRepository.findById(id);
+    public Usuario findById(Long id){
+        Optional<Usuario> usuario = this.usuarioRepository.findById(id);
+        if (usuario.isPresent()){
+            return usuario.get();
+        }
+        return ;
     }
 
 
-//    public Long getFollowers(Usuario usuario){
-//
-//        Optional id = findById(usuario.getId());
-//        if (id.isPresent()){
-//
-//        }
-//    }
+    public int getFollowers(Usuario usuario){
+        return usuario.getSeguidores().size();
+    }
 }

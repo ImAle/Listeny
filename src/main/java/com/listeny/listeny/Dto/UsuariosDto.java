@@ -1,6 +1,7 @@
 package com.listeny.listeny.Dto;
 
 import com.listeny.listeny.models.Album;
+import com.listeny.listeny.models.Cancion;
 import com.listeny.listeny.models.Lista;
 import com.listeny.listeny.models.Usuario;
 import lombok.Getter;
@@ -15,7 +16,7 @@ public class UsuariosDto {
 
     private Long id;
     private String nombreUsuario;
-    private Long soySeguido;
+    private Integer soySeguido;
     private String imagen;
     private String imagenFondo;
     private String email;
@@ -25,6 +26,7 @@ public class UsuariosDto {
     private Boolean esArtista;
     private List<Lista> listasFavoritos;
     private List<Album> albumesFavoritos;
+    private List<Cancion> cancionesFavoritas;
     private List<Usuario> soySeguidor;
 
 
@@ -32,7 +34,7 @@ public class UsuariosDto {
 
     }
 
-    public UsuariosDto(Long id, String nombreUsuario, Long soySeguido, String imagen, String imagenFondo, String email, String clave, Date fechaNacimiento, char sexo, Boolean esArtista, List<Lista> listasFavoritos, List<Album> albumesFavoritos, List<Usuario> soySeguidor) {
+    public UsuariosDto(Long id, String nombreUsuario, Integer soySeguido, String imagen, String imagenFondo, String email, String clave, Date fechaNacimiento, char sexo, Boolean esArtista, List<Lista> listasFavoritos, List<Album> albumesFavoritos, List<Cancion> cancionesFavoritas, List<Usuario> soySeguidor) {
         this.id = id;
         this.nombreUsuario = nombreUsuario;
         this.soySeguido = soySeguido;
@@ -45,8 +47,7 @@ public class UsuariosDto {
         this.esArtista = esArtista;
         this.listasFavoritos = listasFavoritos;
         this.albumesFavoritos = albumesFavoritos;
+        this.cancionesFavoritas = cancionesFavoritas;
         this.soySeguidor = soySeguidor;
     }
-
-
 }
