@@ -69,9 +69,6 @@ public class Usuario implements Serializable {
             inverseJoinColumns = @JoinColumn(name = "idSeguido", referencedColumnName = "id"))
     private List<Usuario> seguidores = new ArrayList<>();
 
-    @ManyToMany(mappedBy = "seguidores")
-    private List<Usuario> seguidos = new ArrayList<>();
-
     @OneToMany(mappedBy = "propietarioLista")
     private List<Lista> propietarioListas = new ArrayList<>();
 

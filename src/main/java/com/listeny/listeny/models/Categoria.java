@@ -5,12 +5,13 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 
+import java.io.Serializable;
 import java.util.List;
 
 @Getter @Setter
 @Entity
 @Table(name = "categoria")
-public class Categoria {
+public class Categoria implements Serializable {
 
     @Id
     @Column (name = "id")

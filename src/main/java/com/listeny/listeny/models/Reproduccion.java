@@ -10,18 +10,21 @@ import java.util.Date;
 @Getter
 @Setter
 @Entity
-@Embeddable
 @IdClass(Reproduccion.class)
 public class Reproduccion implements Serializable {
 
-    @Id
+    @EmbeddedId
+    ReproduccionPK id;
+
     @ManyToOne
+    @MapsId("idUsuario")
     @JoinColumn(name = "idUsuario")
-    Usuario idUsuario;
-    @Id
+    private Usuario usuario;
+
     @ManyToOne
+    @MapsId("idCancion")
     @JoinColumn(name = "idCancion")
-    Cancion idCancion;
+    private Cancion cancion;
 
     @Column(name = "reproducciones")
     private Long reproducciones;
@@ -33,9 +36,9 @@ public class Reproduccion implements Serializable {
 
     }
 
-    public Reproduccion(Usuario idUsuario, Cancion idCancion, Long reproducciones, Date fechaLastReproducciones) {
-        this.idUsuario = idUsuario;
-        this.idCancion = idCancion;
+    public Reproduccion(Usuario usuario, Cancion cancion, Long reproducciones, Date fechaLastReproducciones) {
+        this.usuario = usuario;
+        this.cancion = cancion;
         this.reproducciones = reproducciones;
         this.fechaLastReproducciones = fechaLastReproducciones;
     }
@@ -43,10 +46,24 @@ public class Reproduccion implements Serializable {
     @Override
     public String toString() {
         return "Reproduccion{" +
-                "reproduccionesUsuario=" + idUsuario +
-                ", reproduccionesCancion=" + idCancion +
+                "reproduccionesUsuario=" + usuario +
+                ", reproduccionesCancion=" + cancion +
                 ", reproducciones=" + reproducciones +
                 ", fechaLastReproducciones=" + fechaLastReproducciones +
                 '}';
     }
+
 }
+
+
+@Embeddable
+class ReproduccionPK implements Serializable {
+
+    @Column(name="idUsuario")
+    private Long idUsuario;
+
+    @Column(name="idCancion")
+    private Long idCancion;
+
+}
+

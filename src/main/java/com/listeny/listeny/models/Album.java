@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -11,7 +12,7 @@ import java.util.List;
 @Getter
 @Setter
 @Table(name = "album")
-public class Album {
+public class Album implements Serializable {
 
     @Id
     @Column (name = "id")
@@ -42,6 +43,10 @@ public class Album {
             joinColumns = @JoinColumn (name="albumes_id"),
             inverseJoinColumns = @JoinColumn(name = "canciones_id"))
     private List<Cancion> cancionesAlbum = new ArrayList<>();
+
+    @ManyToMany(mappedBy = "albumesFavoritos")
+    private List<Usuario> favoritoAlbumUsuario = new ArrayList<>();
+
 
     public Album() {
 

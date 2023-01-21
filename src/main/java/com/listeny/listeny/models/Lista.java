@@ -52,6 +52,10 @@ public class Lista implements Serializable {
             inverseJoinColumns = @JoinColumn(name = "canciones_id"))
     private List<Cancion> cancionesLista = new ArrayList<>();
 
+    @ManyToMany(mappedBy = "listasFavoritos")
+    private List<Usuario> favoritaListaUsuario = new ArrayList<>();
+
+
 
     public Lista() {
 
