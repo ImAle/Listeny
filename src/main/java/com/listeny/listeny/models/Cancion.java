@@ -55,7 +55,7 @@ public class Cancion implements Serializable{
     private List<Lista> cancionEnLista = new ArrayList<>();
 
     @ManyToMany(mappedBy = "cancionesAlbum")
-    private List<Album> albumEnLista = new ArrayList<>();
+    private List<Album> cancionEnAlbum = new ArrayList<>();
 
     @ManyToMany(mappedBy = "artistaCanciones")
     private List<Artista> artistaDeCancion = new ArrayList<>();

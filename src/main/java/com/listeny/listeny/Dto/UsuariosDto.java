@@ -7,7 +7,6 @@ import com.listeny.listeny.models.Usuario;
 import lombok.Getter;
 import lombok.Setter;
 
-import java.util.Date;
 import java.util.List;
 
 @Getter
@@ -20,9 +19,6 @@ public class UsuariosDto {
     private String imagen;
     private String imagenFondo;
     private String email;
-    private String clave;
-    private Date fechaNacimiento;
-    private char sexo;
     private Boolean esArtista;
     private List<Lista> listasFavoritos;
     private List<Album> albumesFavoritos;
@@ -34,20 +30,34 @@ public class UsuariosDto {
 
     }
 
-    public UsuariosDto(Long id, String nombreUsuario, Integer soySeguido, String imagen, String imagenFondo, String email, String clave, Date fechaNacimiento, char sexo, Boolean esArtista, List<Lista> listasFavoritos, List<Album> albumesFavoritos, List<Cancion> cancionesFavoritas, List<Usuario> soySeguidor) {
+    public UsuariosDto(Long id, String nombreUsuario, Integer soySeguido, String imagen, String imagenFondo, String email, Boolean esArtista, List<Lista> listasFavoritos, List<Album> albumesFavoritos, List<Cancion> cancionesFavoritas, List<Usuario> soySeguidor) {
         this.id = id;
         this.nombreUsuario = nombreUsuario;
         this.soySeguido = soySeguido;
         this.imagen = imagen;
         this.imagenFondo = imagenFondo;
         this.email = email;
-        this.clave = clave;
-        this.fechaNacimiento = fechaNacimiento;
-        this.sexo = sexo;
         this.esArtista = esArtista;
         this.listasFavoritos = listasFavoritos;
         this.albumesFavoritos = albumesFavoritos;
         this.cancionesFavoritas = cancionesFavoritas;
         this.soySeguidor = soySeguidor;
+    }
+
+    @Override
+    public String toString() {
+        return "UsuariosDto{" +
+                "id=" + id +
+                ", nombreUsuario='" + nombreUsuario + '\'' +
+                ", soySeguido=" + soySeguido +
+                ", imagen='" + imagen + '\'' +
+                ", imagenFondo='" + imagenFondo + '\'' +
+                ", email='" + email + '\'' +
+                ", esArtista=" + esArtista +
+                ", listasFavoritos=" + listasFavoritos +
+                ", albumesFavoritos=" + albumesFavoritos +
+                ", cancionesFavoritas=" + cancionesFavoritas +
+                ", soySeguidor=" + soySeguidor +
+                '}';
     }
 }
