@@ -5,14 +5,13 @@ import lombok.Getter;
 import lombok.Setter;
 
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
 @Getter
 @Setter
 @Entity
-@Table(name = "cancion")
+@Table(name = "canciones")
 public class Cancion implements Serializable{
 
     @Id
@@ -20,19 +19,18 @@ public class Cancion implements Serializable{
     private Long id;
 
     @ManyToOne
-    @JoinColumn(name = "idPropietario", nullable = false)
-    private Usuario propietarioCancion;
+    private Usuario propietario;
 
     @Column(name = "imagen", length = 100)
     private String imagen;
 
-    @Column(name = "titulo", length = 50, nullable = false)
+    @Column(name = "titulo", length = 50)
     private String titulo;
 
     @Column(name = "duracion")
     private int duracion;
 
-    @Column(name = "descripcion", length = 200)
+    @Column(name = "descripcion", length = 45)
     private String descripcion;
 
     @Column(name = "fecha_incorporacion")
@@ -45,28 +43,35 @@ public class Cancion implements Serializable{
     private String url;
 
     @ManyToOne
-    @JoinColumn(name = "idCategoria", nullable = false)
-    private Categoria categoriaCancion;
+    private Categoria categoria;
 
-    @ManyToMany(mappedBy = "cancionesFavoritas")
-    private List<Usuario> favoritaCancionUsuario = new ArrayList<>();
+    @OneToMany(mappedBy = "cancion")
+    private List<Reproducciones> reproducciones;
+    /*
 
-    @ManyToMany(mappedBy = "cancionesLista")
-    private List<Lista> cancionEnLista = new ArrayList<>();
-
-    @ManyToMany(mappedBy = "cancionesAlbum")
-    private List<Album> albumEnLista = new ArrayList<>();
+    @ManyToMany(mappedBy = "albumCanciones")
+    private List<Album> cancionAlbumes = new ArrayList<>();
 
     @ManyToMany(mappedBy = "artistaCanciones")
-    private List<Artista> artistaDeCancion = new ArrayList<>();
+    private List<Artistas> cancionArtistas = new ArrayList<>();
 
+    @ManyToMany(mappedBy = "FavoritosCanciones")
+    private List<Usuario> cancionesFavorito = new ArrayList<>();
+
+    @ManyToMany(mappedBy = "listaCanciones")
+    private List<Listas> cancionListas = new ArrayList<>();
+
+    @OneToMany(mappedBy = "idCancion")
+    List<Reproducciones> cancionReproducciones;
+*/
     public Cancion() {
 
     }
 
-    public Cancion(Long id, Usuario propietarioCancion, String imagen, String titulo, int duracion, String descripcion, Date fechaIncorporacion, Boolean publica, String url) {
+    public Cancion(Long id, Long idPropietario, String imagen, String titulo, int duracion, String descripcion, Date fechaIncorporacion, Boolean publica, String url) {
         this.id = id;
-        this.propietarioCancion = propietarioCancion;
+        //this.idPropietario = idPropietario;
+        //this.idCategoria = idCategoria;
         this.imagen = imagen;
         this.titulo = titulo;
         this.duracion = duracion;
@@ -80,7 +85,8 @@ public class Cancion implements Serializable{
     public String toString() {
         return "Cancion{" +
                 "id=" + id +
-                ", propietarioCancion=" + propietarioCancion +
+                ", idPropietario=" + propietario.getId() +
+                //", idCategoria=" + idCategoria +
                 ", imagen='" + imagen + '\'' +
                 ", titulo='" + titulo + '\'' +
                 ", duracion=" + duracion +

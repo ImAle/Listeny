@@ -4,29 +4,26 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
-import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.List;
-
 @Entity
 @Getter
 @Setter
-@Table(name = "album")
-public class Album implements Serializable {
+@Table(name = "albumes")
+public class Album {
 
     @Id
     @Column (name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private int id;
 
-    @ManyToOne
-    @JoinColumn(name = "idPropietario", nullable = false)
-    private Usuario propietarioAlbum;
-
+    // @Id      // Al ser la columna "id" autoincremental, nos aseguramos que su valor ES ÚNICO, nunca se repite. Por tanto sirve como única PK
+    /*
+    @Column (name = "idPropietario")
+    private int idPropietario;
+    */
     @Column (name = "reproducciones")
-    private int reproducciones;
+    private int reproducciones; // Si la propiedad se llama igual que el campo, NO HACE FALTA la anotación @Column.
 
-    @Column (name = "titulo", length = 45, nullable = false)
+    @Column (name = "titulo", length = 45)
     private String titulo;
 
     @Column (name = "imagen", length = 100)
@@ -38,23 +35,29 @@ public class Album implements Serializable {
     @Column (name = "publico")
     private Boolean publico;
 
+    @ManyToOne
+    private Usuario propietario;    // esta propiedad contiene el enlace al objeto Usuario que es el propietario del album
+    /*  Ahora, JPA sabe que hay una relación 1:n entre las entidades Usuario y Album. Cuando recupere los datos de
+        un album, también recupera el objeto propietario con toda su información
+     */
+
+    /*
+    @ManyToMany(mappedBy = "AlbumesFavoritos")
+    private List<Usuario> albumFavorito = new ArrayList<>();
+
     @ManyToMany
     @JoinTable (name = "albumes_has_canciones",
-            joinColumns = @JoinColumn (name="albumes_id"),
-            inverseJoinColumns = @JoinColumn(name = "canciones_id"))
-    private List<Cancion> cancionesAlbum = new ArrayList<>();
-
-    @ManyToMany(mappedBy = "albumesFavoritos")
-    private List<Usuario> favoritoAlbumUsuario = new ArrayList<>();
-
-
+            joinColumns = @JoinColumn (name = "albumes_id"),
+            inverseJoinColumns = @JoinColumn (name = "canciones_id"))
+    private List<Cancion> albumCanciones = new ArrayList<>();
+    */
     public Album() {
 
     }
 
-    public Album(Long id, Usuario PropietarioAlbum, int reproducciones, String titulo, String imagen, String descripcion, Boolean publico) {
+    public Album(int id, int reproducciones, String titulo, String imagen, String descripcion, Boolean publico) {
         this.id = id;
-        this.propietarioAlbum = PropietarioAlbum;
+        //this.idPropietario = idPropietario;
         this.reproducciones = reproducciones;
         this.titulo = titulo;
         this.imagen = imagen;
@@ -64,9 +67,9 @@ public class Album implements Serializable {
 
     @Override
     public String toString() {
-        return "Album{" +
+        return "Albumes{" +
                 "id=" + id +
-                ", idPropietario=" + propietarioAlbum +
+                //", idPropietario=" + idPropietario +
                 ", reproducciones=" + reproducciones +
                 ", titulo='" + titulo + '\'' +
                 ", imagen='" + imagen + '\'' +
@@ -74,6 +77,4 @@ public class Album implements Serializable {
                 ", publico=" + publico +
                 '}';
     }
-
-
 }

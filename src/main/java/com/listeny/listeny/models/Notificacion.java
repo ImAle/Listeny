@@ -6,29 +6,31 @@ import lombok.Getter;
 import lombok.Setter;
 
 import java.io.Serializable;
-
+import java.util.Date;
+import java.util.List;
+/*
 @Getter
 @Setter
 @Entity
-@Table(name = "notificacion")
-public class Notificacion implements Serializable {
+@Table(name = "notificaciones")
+public class Notificaciones implements Serializable {
 
     @Id
     @Column (name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "descripcion", length = 200, nullable = false)
+    @Column(name = "descripcion", length = 200)
     private String descripcion;
 
-    @Column(name="titulo", length = 100, nullable = false)
+    @Column(name="titulo", length = 100)
     private String titulo;
 
-    public Notificacion() {
+    public Notificaciones() {
 
     }
 
-    public Notificacion(Long id, String descripcion, String titulo) {
+    public Notificaciones(Long id, String descripcion, String titulo) {
         this.id = id;
         this.descripcion = descripcion;
         this.titulo = titulo;
@@ -36,10 +38,11 @@ public class Notificacion implements Serializable {
 
     @Override
     public String toString() {
-        return "Notificacion{" +
+        return "Notificaciones{" +
                 "id=" + id +
                 ", descripcion='" + descripcion + '\'' +
                 ", titulo='" + titulo + '\'' +
                 '}';
     }
 }
+*/
