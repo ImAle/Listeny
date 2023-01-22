@@ -1,80 +1,51 @@
 package com.listeny.listeny.models;
 
 import jakarta.persistence.*;
+import lombok.Getter;
+import lombok.Setter;
+import lombok.ToString;
 
+import java.io.Serializable;
 import java.util.List;
 
+@Getter @Setter
 @Entity
-@Table(name = "categorias")
-public class Categoria {
+@Table(name = "categoria")
+public class Categoria implements Serializable {
 
     @Id
     @Column (name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    private Long id;
 
     @Column(name = "categoria", length = 45)
     private String categoria;
 
-    @Column(name = "idMadre")
-    private Integer idMadre;
+    @OneToMany(mappedBy = "listasCategoria")
+    private List<Lista> categoriaListas;
 
-    @OneToMany(mappedBy = "categoria")
-    List<Cancion> canciones;
-
-/*
     @ManyToOne
-    @JoinColumn(name = "idMadre", referencedColumnName = "id")
-    private Categoria idMadreCategoria;
-*/
+    @JoinColumn(name = "id_madre")
+    private Categoria idMadre;
+
+    @OneToMany(mappedBy = "idMadre")
+    private List<Categoria> subcategorias;
 
 
     public Categoria() {
 
     }
 
-    public Categoria(Integer id, String categoria, Integer idMadre) {
+    public Categoria(Long id, String categoria, Categoria idMadre) {
         this.id = id;
         this.categoria = categoria;
         this.idMadre = idMadre;
-    }
-
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    public String getCategoria() {
-        return categoria;
-    }
-
-    public void setCategoria(String categoria) {
-        this.categoria = categoria;
-    }
-
-    public Integer getIdMadre() {
-        return idMadre;
-    }
-
-    public void setIdMadre(Integer idMadre) {
-        this.idMadre = idMadre;
-    }
-
-    public List<Cancion> getCanciones() {
-        return canciones;
-    }
-
-    public void setCanciones(List<Cancion> canciones) {
-        this.canciones = canciones;
     }
 
     @Override
     public String toString() {
         return "Categoria{" +
-                "Id=" + id +
+                "id=" + id +
                 ", categoria='" + categoria + '\'' +
                 ", idMadre=" + idMadre +
                 '}';
