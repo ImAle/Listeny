@@ -40,4 +40,5 @@ public abstract class AbstractServiceMapper<E,DTO> {
     public Set<DTO>  toDto(Set<E> e){
         return e.stream().map(this::toDto).collect(Collectors.toSet());
     }
+
 }

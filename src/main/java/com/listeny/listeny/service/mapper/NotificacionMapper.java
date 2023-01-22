@@ -1,15 +1,15 @@
 package com.listeny.listeny.service.mapper;
 
-import com.listeny.listeny.Dto.AlbumDto;
-import com.listeny.listeny.models.Album;
+import com.listeny.listeny.Dto.NotificacionDto;
+import com.listeny.listeny.models.Notificacion;
 import org.modelmapper.ModelMapper;
 
-public class AlbumMapper extends AbstractServiceMapper<Album, AlbumDto> {
+public class NotificacionMapper extends AbstractServiceMapper<Notificacion, NotificacionDto> {
 
     // Convertir identidad a DTO
     @Override
-    public AlbumDto toDto(Album entidad){
-        final AlbumDto dto = new AlbumDto();
+    public NotificacionDto toDto(Notificacion entidad){
+        final NotificacionDto dto = new NotificacionDto();
         ModelMapper modelMapper = new ModelMapper();
         modelMapper.map(entidad, dto);
         return dto;
@@ -17,8 +17,8 @@ public class AlbumMapper extends AbstractServiceMapper<Album, AlbumDto> {
 
     // Convertir DTO a identidad
     @Override
-    public Album toEntity(AlbumDto dto){
-        final Album entidad = new Album();
+    public Notificacion toEntity(NotificacionDto dto){
+        final Notificacion entidad = new Notificacion();
         ModelMapper modelMapper = new ModelMapper();
         modelMapper.map(dto, entidad);
         return entidad;
