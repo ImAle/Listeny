@@ -11,6 +11,5 @@ import java.util.List;
 @Repository
 public interface UsuarioRepository extends JpaRepository<Usuario, Long> {
 
-    @Query("SELECT u FROM Usuario u")
-    public List<Usuario> listAll();
+
 }
