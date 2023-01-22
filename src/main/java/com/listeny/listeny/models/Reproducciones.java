@@ -6,15 +6,28 @@ import lombok.Setter;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.Objects;
 
 @Embeddable
 class ReproduccionesPK implements Serializable {
 
-    @Column(name="idUsuario")
+    @Column(name = "idUsuario")
     private Integer idUsuario;
 
-    @Column(name="idCancion")
+    @Column(name = "idCancion")
     private Integer idCancion;
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof ReproduccionesPK that)) return false;
+        return idUsuario.equals(that.idUsuario) && idCancion.equals(that.idCancion);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(idUsuario, idCancion);
+    }
 }
 
 @Getter
