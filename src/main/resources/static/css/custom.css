@@ -2,27 +2,6 @@
  --bs-gutter-x: 3rem
 }
 
-/* Para que la imagen del banner se ajuste al contenedor - Pantalla 6 */
-#banner-img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
-/* Sirve para posicionar el botón de "Seleccionar archivo" del banner, dentro de la imagen - Pantalla 6 */
-#banner-file {
-  position: absolute;
-  bottom: 10px;
-  right: 10px;
-}
-
-/* Posicionamiento del h5 del banner - Pantalla 6 */
-.h5-banner{
-position: absolute; /* esto posiciona el elemento en relación a su contenedor padre */
-top: 230px; /* esto establece la distancia desde la parte superior del contenedor */
-left: 1420px; /* esto establece la distancia desde la parte izquierda del contenedor */
-}
-
 /* Para posicionar el engranaje dentro de la imagen del banner - Pantalla 6 */
 .gear-icon {
   position: absolute;
