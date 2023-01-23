@@ -31,7 +31,7 @@
             <i class="fas fa-bars"></i>
         </button>
         <aside id="sidebar" class="col-3 d-md-block d-none">
-            <div class="card my-3" style="height:1400px">
+            <div class="card my-3" style="height:1650px">
                 <img src="../static/imagenes/logo.png" class="card-img-top mx-auto my-3 w-50" alt="...">
 
                 <div class="list-group list-group-flush">
@@ -101,19 +101,241 @@
         </aside>
 
 
-        <div class="col-9 my-3">
-            <div class="card banner" style="height:270px">
-                <img id="banner-img" class="card-img-top" src="">
-                <div class="card-body my-3">
-                    <h5 class="h5-banner">Editar banner</h5>
-                    <input type="file" class="form-control-file" id="banner-file" accept="image/*">
-                    <i class="fas fa-cog fa-2x gear-icon"></i>
+        <!-- Zona derecha de la pantalla  -->
+        <div class="col-9 my-5">
+            <div class="container">
+                <!-- Banner twitter  -->
+                <div class="row text-center" style="min-height: 100px;">
+                    <i class="fas fa-cog fa-3x gear-icon my-3"></i>
+                    <div class="col">Banner Estilo twitter</div>
+                </div>
+                <!-- zona bajo banner  -->
+                <div class="row" >
+                    <!-- línea separadora -->
+                    <!-- el z-index oculta la línea bajo la foto -->
+                    <hr class="text-bg-success" style="min-height: 8px; z-index: -1;">
+                    <!--  foto usuario -->
+                    <!-- el margin-top negativo mueve la foto hacia arriba, sobre el <hr> -->
+                    <div class="col-2" >
+                        <img src="../static/imagenes/profile.jpg" class="rounded-circle" width="150" style="margin-top: -5.5rem; ">
+                    </div>
+                    <!--  Nombre de usuario y seguidores  -->
+                    <div class="col my-3 mb-3" style="margin-left: -3rem;">
+                        <p>Nombre Usuario</p>
+                        <p> Nro. seguidores</p>
+                    </div>
+                </div>
+                <!-- zona solapas  -->
+                <div class="row">
+                    <div class="col">
+                        <!-- Se usa el comportamiento de Bootstrap según su JS
+                             (ver https://getbootstrap.com/docs/5.2/components/navs-tabs/#javascript-behavior)  -->
+                        <ul class="nav nav-tabs" id="solapas-perfil-usuario" role="tablist">
+                            <li class="nav-item" role="presentation">
+                                <button class="nav-link active" id="playlist-tab" data-bs-toggle="tab" data-bs-target="#playlist-tab-pane" type="button" role="tab" aria-controls="playlist-tab-pane" aria-selected="true">Playlists</button>
+                            </li>
+                            <li class="nav-item" role="presentation">
+                                <button class="nav-link" id="seguidos-tab" data-bs-toggle="tab" data-bs-target="#seguidos-tab-pane" type="button" role="tab" aria-controls="seguidos-tab-pane" aria-selected="false">Seguidos</button>
+                            </li>
+                            <li class="nav-item" role="presentation">
+                                <button class="nav-link" id="albumes-tab" data-bs-toggle="tab" data-bs-target="#albumes-tab-pane" type="button" role="tab" aria-controls="albumes-tab-pane" aria-selected="false">Álbumes</button>
+                            </li>
+                        </ul>
+
+                        <div class="tab-content" id="solapas-perfil-usuario-contenido">
+                            <div class="tab-pane fade show active" id="playlist-tab-pane" role="tabpanel" aria-labelledby="playlist-tab" tabindex="0">
+                                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Deserunt, ex quia! Consequatur nihil nostrum obcaecati quas repellendus vero! Autem facere nam obcaecati officia omnis quaerat, quibusdam quisquam repellendus sunt. Excepturi.
+
+                                <p><span class="d-inline-block my-5">X</span> Seguidas <span class="d-inline-block">X</span> Creadas</p>
+
+
+                                <ul class="lista list-unstyled my-5">
+                                    <li class="elementolista my-5"><a href="" class="d-flex"><img
+                                            src="../static/imagenes/lista1.jpg" alt="" class="rounded-circle mx-3"
+                                            style="width: 4rem; height: 4rem;">
+                                        <p class="my-auto mx-3">"nombre de la lista"</p>
+                                        <p class="my-auto mx-3">"nro. de canciones"</p>
+                                    </a></li>
+                                    <li class="elementolista my-5"><a href="" class="d-flex"><img
+                                            src="../static/imagenes/lista1.jpg" alt="" class="rounded-circle mx-3"
+                                            style="width: 4rem; height: 4rem;">
+                                        <p class="my-auto mx-3">"nombre de la lista"</p>
+                                        <p class="my-auto mx-3">"nro. de canciones"</p>
+                                    </a></li>
+                                    <li class="elementolista my-5"><a href="" class="d-flex"><img
+                                            src="../static/imagenes/lista1.jpg" alt="" class="rounded-circle mx-3"
+                                            style="width: 4rem; height: 4rem;">
+                                        <p class="my-auto mx-3">"nombre de la lista"</p>
+                                        <p class="my-auto mx-3">"nro. de canciones"</p>
+                                    </a></li>
+                                    <li class="elementolista my-5"><a href="" class="d-flex"><img
+                                            src="../static/imagenes/lista1.jpg" alt="" class="rounded-circle mx-3"
+                                            style="width: 4rem; height: 4rem;">
+                                        <p class="my-auto mx-3">"nombre de la lista"</p>
+                                        <p class="my-auto mx-3">"nro. de canciones"</p>
+                                    </a></li>
+                                    <li class="elementolista my-5"><a href="" class="d-flex"><img
+                                            src="../static/imagenes/lista1.jpg" alt="" class="rounded-circle mx-3"
+                                            style="width: 4rem; height: 4rem;">
+                                        <p class="my-auto mx-3">"nombre de la lista"</p>
+                                        <p class="my-auto mx-3">"nro. de canciones"</p>
+                                    </a></li>
+                                    <li class="elementolista my-5"><a href="" class="d-flex"><img
+                                            src="../static/imagenes/lista1.jpg" alt="" class="rounded-circle mx-3"
+                                            style="width: 4rem; height: 4rem;">
+                                        <p class="my-auto mx-3">"nombre de la lista"</p>
+                                        <p class="my-auto mx-3">"nro. de canciones"</p>
+                                    </a></li>
+                                    <li class="elementolista my-5"><a href="" class="d-flex"><img
+                                            src="../static/imagenes/lista1.jpg" alt="" class="rounded-circle mx-3"
+                                            style="width: 4rem; height: 4rem;">
+                                        <p class="my-auto mx-3">"nombre de la lista"</p>
+                                        <p class="my-auto mx-3">"nro. de canciones"</p>
+                                    </a></li>
+                                    <li class="elementolista my-5"><a href="" class="d-flex"><img
+                                            src="../static/imagenes/lista1.jpg" alt="" class="rounded-circle mx-3"
+                                            style="width: 4rem; height: 4rem;">
+                                        <p class="my-auto mx-3">"nombre de la lista"</p>
+                                        <p class="my-auto mx-3">"nro. de canciones"</p>
+                                    </a></li>
+                                    <li class="elementolista my-5"><a href="" class="d-flex"><img
+                                            src="../static/imagenes/lista1.jpg" alt="" class="rounded-circle mx-3"
+                                            style="width: 4rem; height: 4rem;">
+                                        <p class="my-auto mx-3">"nombre de la lista"</p>
+                                        <p class="my-auto mx-3">"nro. de canciones"</p>
+                                    </a></li>
+                                    <li class="elementolista my-5"><a href="" class="d-flex"><img
+                                            src="../static/imagenes/lista1.jpg" alt="" class="rounded-circle mx-3"
+                                            style="width: 4rem; height: 4rem;">
+                                        <p class="my-auto mx-3">"nombre de la lista"</p>
+                                        <p class="my-auto mx-3">"nro. de canciones"</p>
+                                    </a></li>
+                                </ul>
+                            </div>
+
+                            <div class="tab-pane fade" id="seguidos-tab-pane" role="tabpanel" aria-labelledby="seguidos-tab" tabindex="0">
+                                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Deserunt, ex quia! Consequatur nihil nostrum obcaecati quas repellendus vero! Autem facere nam obcaecati officia omnis quaerat, quibusdam quisquam repellendus sunt. Excepturi.
+
+                                <p><span class="d-inline-block my-5">X</span> Seguidos</p>
+
+                                <ul class="lista list-unstyled my-5">
+                                    <li class="elementolista my-5"><a href="" class="d-flex"><img
+                                            src="../static/imagenes/usuario1.jpg" alt="" class="rounded-circle mx-3"
+                                            style="width: 4rem; height: 4rem;">
+                                        <p class="my-auto mx-3">"nombre del usuario"</p>
+                                    </a></li>
+                                    <li class="elementolista my-5"><a href="" class="d-flex"><img
+                                            src="../static/imagenes/usuario1.jpg" alt="" class="rounded-circle mx-3"
+                                            style="width: 4rem; height: 4rem;">
+                                        <p class="my-auto mx-3">"nombre del usuario"</p>
+                                    </a></li>
+                                    <li class="elementolista my-5"><a href="" class="d-flex"><img
+                                            src="../static/imagenes/usuario1.jpg" alt="" class="rounded-circle mx-3"
+                                            style="width: 4rem; height: 4rem;">
+                                        <p class="my-auto mx-3">"nombre del usuario"</p>
+                                    </a></li>
+                                    <li class="elementolista my-5"><a href="" class="d-flex"><img
+                                            src="../static/imagenes/usuario1.jpg" alt="" class="rounded-circle mx-3"
+                                            style="width: 4rem; height: 4rem;">
+                                        <p class="my-auto mx-3">"nombre del usuario"</p>
+                                    </a></li>
+                                    <li class="elementolista my-5"><a href="" class="d-flex"><img
+                                            src="../static/imagenes/usuario1.jpg" alt="" class="rounded-circle mx-3"
+                                            style="width: 4rem; height: 4rem;">
+                                        <p class="my-auto mx-3">"nombre del usuario"</p>
+                                    </a></li>
+                                    <li class="elementolista my-5"><a href="" class="d-flex"><img
+                                            src="../static/imagenes/usuario1.jpg" alt="" class="rounded-circle mx-3"
+                                            style="width: 4rem; height: 4rem;">
+                                        <p class="my-auto mx-3">"nombre del usuario"</p>
+                                    </a></li>
+                                    <li class="elementolista my-5"><a href="" class="d-flex"><img
+                                            src="../static/imagenes/usuario1.jpg" alt="" class="rounded-circle mx-3"
+                                            style="width: 4rem; height: 4rem;">
+                                        <p class="my-auto mx-3">"nombre del usuario"</p>
+                                    </a></li>
+                                    <li class="elementolista my-5"><a href="" class="d-flex"><img
+                                            src="../static/imagenes/usuario1.jpg" alt="" class="rounded-circle mx-3"
+                                            style="width: 4rem; height: 4rem;">
+                                        <p class="my-auto mx-3">"nombre del usuario"</p>
+                                    </a></li>
+                                    <li class="elementolista my-5"><a href="" class="d-flex"><img
+                                            src="../static/imagenes/usuario1.jpg" alt="" class="rounded-circle mx-3"
+                                            style="width: 4rem; height: 4rem;">
+                                        <p class="my-auto mx-3">"nombre del usuario"</p>
+                                    </a></li>
+                                    <li class="elementolista my-5"><a href="" class="d-flex"><img
+                                            src="../static/imagenes/usuario1.jpg" alt="" class="rounded-circle mx-3"
+                                            style="width: 4rem; height: 4rem;">
+                                        <p class="my-auto mx-3">"nombre del usuario"</p>
+                                    </a></li>
+                                </ul>
+                            </div>
+
+                            <div class="tab-pane fade" id="albumes-tab-pane" role="tabpanel" aria-labelledby="albumes-tab" tabindex="0">
+                                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Deserunt, ex quia! Consequatur nihil nostrum obcaecati quas repellendus vero! Autem facere nam obcaecati officia omnis quaerat, quibusdam quisquam repellendus sunt. Excepturi.
+
+                                <p><span class="d-inline-block my-5">X</span> Seguidos</p>
+
+                                <ul class="lista list-unstyled my-5">
+                                    <li class="elementolista my-5"><a href="" class="d-flex"><img
+                                            src="../static/imagenes/album1.jpg" alt="" class="rounded-circle mx-3"
+                                            style="width: 4rem; height: 4rem;">
+                                        <p class="my-auto mx-3">"nombre del álbum"</p>
+                                    </a></li>
+                                    <li class="elementolista my-5"><a href="" class="d-flex"><img
+                                            src="../static/imagenes/album1.jpg" alt="" class="rounded-circle mx-3"
+                                            style="width: 4rem; height: 4rem;">
+                                        <p class="my-auto mx-3">"nombre del álbum"</p>
+                                    </a></li>
+                                    <li class="elementolista my-5"><a href="" class="d-flex"><img
+                                            src="../static/imagenes/album1.jpg" alt="" class="rounded-circle mx-3"
+                                            style="width: 4rem; height: 4rem;">
+                                        <p class="my-auto mx-3">"nombre del álbum"</p>
+                                    </a></li>
+                                    <li class="elementolista my-5"><a href="" class="d-flex"><img
+                                            src="../static/imagenes/album1.jpg" alt="" class="rounded-circle mx-3"
+                                            style="width: 4rem; height: 4rem;">
+                                        <p class="my-auto mx-3">"nombre del álbum"</p>
+                                    </a></li>
+                                    <li class="elementolista my-5"><a href="" class="d-flex"><img
+                                            src="../static/imagenes/album1.jpg" alt="" class="rounded-circle mx-3"
+                                            style="width: 4rem; height: 4rem;">
+                                        <p class="my-auto mx-3">"nombre del álbum"</p>
+                                    </a></li>
+                                    <li class="elementolista my-5"><a href="" class="d-flex"><img
+                                            src="../static/imagenes/album1.jpg" alt="" class="rounded-circle mx-3"
+                                            style="width: 4rem; height: 4rem;">
+                                        <p class="my-auto mx-3">"nombre del álbum"</p>
+                                    </a></li>
+                                    <li class="elementolista my-5"><a href="" class="d-flex"><img
+                                            src="../static/imagenes/album1.jpg" alt="" class="rounded-circle mx-3"
+                                            style="width: 4rem; height: 4rem;">
+                                        <p class="my-auto mx-3">"nombre del álbum"</p>
+                                    </a></li>
+                                    <li class="elementolista my-5"><a href="" class="d-flex"><img
+                                            src="../static/imagenes/album1.jpg" alt="" class="rounded-circle mx-3"
+                                            style="width: 4rem; height: 4rem;">
+                                        <p class="my-auto mx-3">"nombre del álbum"</p>
+                                    </a></li>
+                                    <li class="elementolista my-5"><a href="" class="d-flex"><img
+                                            src="../static/imagenes/album1.jpg" alt="" class="rounded-circle mx-3"
+                                            style="width: 4rem; height: 4rem;">
+                                        <p class="my-auto mx-3">"nombre del álbum"</p>
+                                    </a></li>
+                                    <li class="elementolista my-5"><a href="" class="d-flex"><img
+                                            src="../static/imagenes/album1.jpg" alt="" class="rounded-circle mx-3"
+                                            style="width: 4rem; height: 4rem;">
+                                        <p class="my-auto mx-3">"nombre del álbum"</p>
+                                    </a></li>
+                                </ul>
+
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
-
-
-
     </div>
 </div>
 
