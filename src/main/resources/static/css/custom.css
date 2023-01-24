@@ -8,3 +8,27 @@
   top: 10px;
   right: 10px;
 }
+
+/* Esto es para que al posicionarte sobre la tabla de las playlists se ponga en color verde el elemento seleccionado y la letra en blanco - Pantalla 5 */
+td:hover {
+  /* Estilo al hacer hover sobre el td */
+  background-color: green; /* Cambia el color de fondo a verde */
+  color: white; /* Cambia el color del texto a blanco */
+  cursor: pointer; /* Muestra el cursor como una mano */
+}
+
+/* Sirve para esconder el índice de cada canción al posicionarte sobre él - Pantalla 5 */
+.hidden {
+  display: none;
+}
+
+/* Para poner borde a la imagen de la playlist - pantalla 5 */
+.rounded-img {
+    border: solid 2px #ccc;
+}
+
+/* Para que la imagen de la canción se ajuste a la tabla y no sea demasiado grande - Pantalla 5 */
+.custom-img {
+    max-width: 100px;
+    max-height: 150px;
+}
