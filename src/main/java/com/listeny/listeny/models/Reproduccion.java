@@ -1,16 +1,21 @@
 package com.listeny.listeny.models;
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.Objects;
 
 @Getter
 @Setter
+@AllArgsConstructor
+@NoArgsConstructor
 @Entity
-@IdClass(Reproduccion.class)
+@Table(name= "reproduccion")
 public class Reproduccion implements Serializable {
 
     @EmbeddedId
@@ -32,16 +37,6 @@ public class Reproduccion implements Serializable {
     @Column(name = "fecha_lastReproduccion", columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
     private Date fechaLastReproducciones;
 
-    public Reproduccion() {
-
-    }
-
-    public Reproduccion(Usuario usuario, Cancion cancion, Long reproducciones, Date fechaLastReproducciones) {
-        this.usuario = usuario;
-        this.cancion = cancion;
-        this.reproducciones = reproducciones;
-        this.fechaLastReproducciones = fechaLastReproducciones;
-    }
 
     @Override
     public String toString() {
@@ -64,6 +59,19 @@ class ReproduccionPK implements Serializable {
 
     @Column(name="idCancion")
     private Long idCancion;
+
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof ReproduccionPK that)) return false;
+        return idUsuario.equals(that.idUsuario) && idCancion.equals(that.idCancion);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(idUsuario, idCancion);
+    }
 
 }
 

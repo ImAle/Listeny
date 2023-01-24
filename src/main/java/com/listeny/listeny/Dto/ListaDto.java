@@ -3,15 +3,17 @@ package com.listeny.listeny.Dto;
 import com.listeny.listeny.models.Cancion;
 import com.listeny.listeny.models.Categoria;
 import com.listeny.listeny.models.Usuario;
-import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Getter
 @Setter
+@AllArgsConstructor
+@NoArgsConstructor
 public class ListaDto {
 
     private Long id;
@@ -24,5 +26,20 @@ public class ListaDto {
     private Boolean publica;
     private Categoria listasCategoria;
     private List<Cancion> cancionesLista;
-    // Conseguir favoritosLista de usuarios aquí
+
+    @Override
+    public String toString() {
+        return "ListaDto{" +
+                "id=" + id +
+                ", propietarioLista=" + propietarioLista +
+                ", reproducciones=" + reproducciones +
+                ", nombre='" + nombre + '\'' +
+                ", imagen='" + imagen + '\'' +
+                ", descripcion='" + descripcion + '\'' +
+                ", color='" + color + '\'' +
+                ", publica=" + publica +
+                ", listasCategoria=" + listasCategoria +
+                ", cancionesLista=" + cancionesLista +
+                '}';
+    }
 }
