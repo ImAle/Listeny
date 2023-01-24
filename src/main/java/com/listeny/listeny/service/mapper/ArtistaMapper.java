@@ -6,7 +6,7 @@ import org.modelmapper.ModelMapper;
 
 public class ArtistaMapper extends AbstractServiceMapper<Artista,ArtistaDto> {
 
-    // Convertir identidad a DTO
+    // Convertir entidad a DTO
     @Override
     public ArtistaDto toDto(Artista entidad){
         final ArtistaDto dto = new ArtistaDto();
@@ -15,7 +15,7 @@ public class ArtistaMapper extends AbstractServiceMapper<Artista,ArtistaDto> {
         return dto;
     }
 
-    // Convertir DTO a identidad
+    // Convertir DTO a entidad
     @Override
     public Artista toEntity(ArtistaDto dto){
         final Artista entidad = new Artista();

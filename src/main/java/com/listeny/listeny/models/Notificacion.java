@@ -2,13 +2,17 @@ package com.listeny.listeny.models;
 
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.io.Serializable;
 
 @Getter
 @Setter
+@AllArgsConstructor
+@NoArgsConstructor
 @Entity
 @Table(name = "notificacion")
 public class Notificacion implements Serializable {
@@ -24,15 +28,6 @@ public class Notificacion implements Serializable {
     @Column(name="titulo", length = 100, nullable = false)
     private String titulo;
 
-    public Notificacion() {
-
-    }
-
-    public Notificacion(Long id, String descripcion, String titulo) {
-        this.id = id;
-        this.descripcion = descripcion;
-        this.titulo = titulo;
-    }
 
     @Override
     public String toString() {

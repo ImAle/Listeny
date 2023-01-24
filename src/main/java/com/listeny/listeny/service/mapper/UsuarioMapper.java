@@ -6,7 +6,7 @@ import org.modelmapper.ModelMapper;
 
 public class UsuarioMapper extends AbstractServiceMapper<Usuario, UsuariosDto>{
 
-    // Convertir identidad a DTO
+    // Convertir entidad a DTO
     @Override
     public UsuariosDto toDto(Usuario usuario){
         final UsuariosDto dto = new UsuariosDto();
@@ -15,12 +15,13 @@ public class UsuarioMapper extends AbstractServiceMapper<Usuario, UsuariosDto>{
         return dto;
     }
 
-    // Convertir DTO a identidad
+    // Convertir DTO a entidad
     @Override
     public Usuario toEntity(UsuariosDto usuariosDto){
         final Usuario usuario = new Usuario();
         ModelMapper modelMapper = new ModelMapper();
         modelMapper.map(usuariosDto, usuario);
+        usuario.setClave(usuariosDto.getPassword());
         return usuario;
     }
 }

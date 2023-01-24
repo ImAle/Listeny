@@ -9,6 +9,10 @@ public abstract class AbstractServiceMapper<E,DTO> {
     //Convertir de dto a entidad
     public abstract E toEntity(DTO dto) throws Exception;
 
+
+
+
+
     //Conversion de listas de dtos a entidades
     public List<E>  toEntity(List<DTO> dtos) throws Exception {
         ListIterator<DTO> it = dtos.listIterator();
@@ -25,6 +29,10 @@ public abstract class AbstractServiceMapper<E,DTO> {
     public List<DTO>  toDto(List<E> e){
         return e.stream().map(this::toDto).collect(Collectors.toList());
     }
+
+
+
+
 
     //Gestionamos set de datos
     public Set<E> toEntity(Set<DTO> dtos) throws Exception {

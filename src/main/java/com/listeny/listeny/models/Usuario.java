@@ -1,7 +1,9 @@
 package com.listeny.listeny.models;
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.io.Serializable;
@@ -11,6 +13,8 @@ import java.util.List;
 
 @Getter
 @Setter
+@AllArgsConstructor
+@NoArgsConstructor
 @Entity
 @Table(name="Usuario")
 public class Usuario implements Serializable {
@@ -78,21 +82,6 @@ public class Usuario implements Serializable {
     @OneToMany(mappedBy = "propietarioAlbum")
     private List<Album> propietarioAlbumes = new ArrayList<>();
 
-    public Usuario() {
-
-    }
-
-    public Usuario(Long id, String nombreUsuario, String email, String clave, Date fechaNacimiento, char sexo, String imagen, String imagenFondo, Boolean esArtista) {
-        this.id = id;
-        this.nombreUsuario = nombreUsuario;
-        this.email = email;
-        this.clave = clave;
-        this.fechaNacimiento = fechaNacimiento;
-        this.sexo = sexo;
-        this.imagen = imagen;
-        this.imagenFondo = imagenFondo;
-        this.esArtista = esArtista;
-    }
 
     @Override
     public String toString() {

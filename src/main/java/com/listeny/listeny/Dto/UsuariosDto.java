@@ -4,17 +4,25 @@ import com.listeny.listeny.models.Album;
 import com.listeny.listeny.models.Cancion;
 import com.listeny.listeny.models.Lista;
 import com.listeny.listeny.models.Usuario;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.Date;
 import java.util.List;
 
 @Getter
 @Setter
+@AllArgsConstructor
+@NoArgsConstructor
 public class UsuariosDto {
 
     private Long id;
     private String nombreUsuario;
+    private String password;
+    private Date fechaNacimiento;
+    private char sexo;
     private Integer soySeguido;
     private String imagen;
     private String imagenFondo;
@@ -26,29 +34,14 @@ public class UsuariosDto {
     private List<Usuario> soySeguidor;
 
 
-    public UsuariosDto(){
-
-    }
-
-    public UsuariosDto(Long id, String nombreUsuario, Integer soySeguido, String imagen, String imagenFondo, String email, Boolean esArtista, List<Lista> listasFavoritos, List<Album> albumesFavoritos, List<Cancion> cancionesFavoritas, List<Usuario> soySeguidor) {
-        this.id = id;
-        this.nombreUsuario = nombreUsuario;
-        this.soySeguido = soySeguido;
-        this.imagen = imagen;
-        this.imagenFondo = imagenFondo;
-        this.email = email;
-        this.esArtista = esArtista;
-        this.listasFavoritos = listasFavoritos;
-        this.albumesFavoritos = albumesFavoritos;
-        this.cancionesFavoritas = cancionesFavoritas;
-        this.soySeguidor = soySeguidor;
-    }
-
     @Override
     public String toString() {
         return "UsuariosDto{" +
                 "id=" + id +
                 ", nombreUsuario='" + nombreUsuario + '\'' +
+                ", password='" + password + '\'' +
+                ", fechaNacimiento='" + fechaNacimiento + '\'' +
+                ", sexo=" + sexo +
                 ", soySeguido=" + soySeguido +
                 ", imagen='" + imagen + '\'' +
                 ", imagenFondo='" + imagenFondo + '\'' +

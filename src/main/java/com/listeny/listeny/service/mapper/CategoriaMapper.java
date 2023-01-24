@@ -6,7 +6,7 @@ import org.modelmapper.ModelMapper;
 
 public class CategoriaMapper extends AbstractServiceMapper<Categoria, CategoriaDto> {
 
-    // Convertir identidad a DTO
+    // Convertir entidad a DTO
     @Override
     public CategoriaDto toDto(Categoria entidad){
         final CategoriaDto dto = new CategoriaDto();
@@ -15,7 +15,7 @@ public class CategoriaMapper extends AbstractServiceMapper<Categoria, CategoriaD
         return dto;
     }
 
-    // Convertir DTO a identidad
+    // Convertir DTO a entidad
     @Override
     public Categoria toEntity(CategoriaDto dto){
         final Categoria entidad = new Categoria();

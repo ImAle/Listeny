@@ -6,7 +6,7 @@ import org.modelmapper.ModelMapper;
 
 public class AlbumMapper extends AbstractServiceMapper<Album, AlbumDto> {
 
-    // Convertir identidad a DTO
+    // Convertir entidad a DTO
     @Override
     public AlbumDto toDto(Album entidad){
         final AlbumDto dto = new AlbumDto();
@@ -15,7 +15,7 @@ public class AlbumMapper extends AbstractServiceMapper<Album, AlbumDto> {
         return dto;
     }
 
-    // Convertir DTO a identidad
+    // Convertir DTO a entidad
     @Override
     public Album toEntity(AlbumDto dto){
         final Album entidad = new Album();

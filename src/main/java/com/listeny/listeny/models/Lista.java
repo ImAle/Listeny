@@ -1,7 +1,9 @@
 package com.listeny.listeny.models;
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.io.Serializable;
@@ -10,6 +12,8 @@ import java.util.List;
 
 @Getter
 @Setter
+@AllArgsConstructor
+@NoArgsConstructor
 @Entity
 @Table(name = "lista")
 public class Lista implements Serializable {
@@ -54,23 +58,6 @@ public class Lista implements Serializable {
 
     @ManyToMany(mappedBy = "listasFavoritos")
     private List<Usuario> favoritaListaUsuario = new ArrayList<>();
-
-
-
-    public Lista() {
-
-    }
-
-    public Lista(Long id, Usuario propietarioLista, int reproducciones, String nombre, String imagen, String descripcion, String color, Boolean publica) {
-        this.id = id;
-        this.propietarioLista = propietarioLista;
-        this.reproducciones = reproducciones;
-        this.nombre = nombre;
-        this.imagen = imagen;
-        this.descripcion = descripcion;
-        this.color = color;
-        this.publica = publica;
-    }
 
     @Override
     public String toString() {

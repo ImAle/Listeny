@@ -1,14 +1,15 @@
 package com.listeny.listeny.models;
 
 import jakarta.persistence.*;
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.*;
 
 import java.io.Serializable;
 import java.util.List;
 
-@Getter @Setter
+@Getter
+@Setter
+@AllArgsConstructor
+@NoArgsConstructor
 @Entity
 @Table(name = "categoria")
 public class Categoria implements Serializable {
@@ -31,16 +32,6 @@ public class Categoria implements Serializable {
     @OneToMany(mappedBy = "idMadre")
     private List<Categoria> subcategorias;
 
-
-    public Categoria() {
-
-    }
-
-    public Categoria(Long id, String categoria, Categoria idMadre) {
-        this.id = id;
-        this.categoria = categoria;
-        this.idMadre = idMadre;
-    }
 
     @Override
     public String toString() {

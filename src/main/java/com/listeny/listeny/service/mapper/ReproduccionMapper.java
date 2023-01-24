@@ -6,7 +6,7 @@ import org.modelmapper.ModelMapper;
 
 public class ReproduccionMapper extends AbstractServiceMapper<Reproduccion,ReproduccionDto> {
 
-    // Convertir identidad a DTO
+    // Convertir entidad a DTO
     @Override
     public ReproduccionDto toDto(Reproduccion entidad){
         final ReproduccionDto dto = new ReproduccionDto();
@@ -15,7 +15,7 @@ public class ReproduccionMapper extends AbstractServiceMapper<Reproduccion,Repro
         return dto;
     }
 
-    // Convertir DTO a identidad
+    // Convertir DTO a entidad
     @Override
     public Reproduccion toEntity(ReproduccionDto dto){
         final Reproduccion entidad = new Reproduccion();

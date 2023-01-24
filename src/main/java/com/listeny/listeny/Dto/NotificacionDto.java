@@ -1,26 +1,20 @@
 package com.listeny.listeny.Dto;
 
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Getter
 @Setter
+@AllArgsConstructor
+@NoArgsConstructor
 public class NotificacionDto {
 
     private Long id;
     private String descripcion;
     private String titulo;
 
-
-    public NotificacionDto(){
-
-    }
-
-    public NotificacionDto(Long id, String descripcion, String titulo) {
-        this.id = id;
-        this.descripcion = descripcion;
-        this.titulo = titulo;
-    }
 
     @Override
     public String toString() {

@@ -6,7 +6,7 @@ import org.modelmapper.ModelMapper;
 
 public class CancionMapper extends AbstractServiceMapper<Cancion, CancionDto>{
 
-    // Convertir identidad a DTO
+    // Convertir entidad a DTO
     @Override
     public CancionDto toDto(Cancion entidad){
         final CancionDto dto = new CancionDto();
@@ -15,7 +15,7 @@ public class CancionMapper extends AbstractServiceMapper<Cancion, CancionDto>{
         return dto;
     }
 
-    // Convertir DTO a identidad
+    // Convertir DTO a entidad
     @Override
     public Cancion toEntity(CancionDto dto){
         final Cancion entidad = new Cancion();

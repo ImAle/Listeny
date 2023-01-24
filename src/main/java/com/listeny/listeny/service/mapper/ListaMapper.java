@@ -6,7 +6,7 @@ import org.modelmapper.ModelMapper;
 
 public class ListaMapper extends AbstractServiceMapper<Lista, ListaDto>{
 
-    // Convertir identidad a DTO
+    // Convertir entidad a DTO
     @Override
     public ListaDto toDto(Lista entidad){
         final ListaDto dto = new ListaDto();
@@ -15,7 +15,7 @@ public class ListaMapper extends AbstractServiceMapper<Lista, ListaDto>{
         return dto;
     }
 
-    // Convertir DTO a identidad
+    // Convertir DTO a entidad
     @Override
     public Lista toEntity(ListaDto dto){
         final Lista entidad = new Lista();

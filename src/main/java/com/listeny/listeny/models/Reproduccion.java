@@ -1,7 +1,9 @@
 package com.listeny.listeny.models;
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.io.Serializable;
@@ -10,6 +12,8 @@ import java.util.Objects;
 
 @Getter
 @Setter
+@AllArgsConstructor
+@NoArgsConstructor
 @Entity
 @Table(name= "reproduccion")
 public class Reproduccion implements Serializable {
@@ -33,16 +37,6 @@ public class Reproduccion implements Serializable {
     @Column(name = "fecha_lastReproduccion", columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
     private Date fechaLastReproducciones;
 
-    public Reproduccion() {
-
-    }
-
-    public Reproduccion(Usuario usuario, Cancion cancion, Long reproducciones, Date fechaLastReproducciones) {
-        this.usuario = usuario;
-        this.cancion = cancion;
-        this.reproducciones = reproducciones;
-        this.fechaLastReproducciones = fechaLastReproducciones;
-    }
 
     @Override
     public String toString() {

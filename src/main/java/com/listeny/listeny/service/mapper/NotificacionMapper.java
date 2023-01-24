@@ -6,7 +6,7 @@ import org.modelmapper.ModelMapper;
 
 public class NotificacionMapper extends AbstractServiceMapper<Notificacion, NotificacionDto> {
 
-    // Convertir identidad a DTO
+    // Convertir entidad a DTO
     @Override
     public NotificacionDto toDto(Notificacion entidad){
         final NotificacionDto dto = new NotificacionDto();
@@ -15,7 +15,7 @@ public class NotificacionMapper extends AbstractServiceMapper<Notificacion, Noti
         return dto;
     }
 
-    // Convertir DTO a identidad
+    // Convertir DTO a entidad
     @Override
     public Notificacion toEntity(NotificacionDto dto){
         final Notificacion entidad = new Notificacion();

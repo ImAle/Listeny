@@ -3,7 +3,9 @@ package com.listeny.listeny.Dto;
 import com.listeny.listeny.models.Album;
 import com.listeny.listeny.models.Artista;
 import com.listeny.listeny.models.Categoria;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.util.Date;
@@ -11,6 +13,8 @@ import java.util.List;
 
 @Getter
 @Setter
+@AllArgsConstructor
+@NoArgsConstructor
 public class CancionDto {
 
     private Long id;
@@ -24,24 +28,6 @@ public class CancionDto {
     private Categoria categoriaCancion;
     private List<Artista> artistaDeCancion;
     private List<Album> cancionEnAlbum;
-
-    public CancionDto(){
-
-    }
-
-    public CancionDto(Long id, String imagen, String titulo, int duracion, String descripcion, Date fechaIncorporacion, Boolean publica, String url, Categoria categoriaCancion, List<Artista> artistaDeCancion, List<Album> cancionEnAlbum) {
-        this.id = id;
-        this.imagen = imagen;
-        this.titulo = titulo;
-        this.duracion = duracion;
-        this.descripcion = descripcion;
-        this.fechaIncorporacion = fechaIncorporacion;
-        this.publica = publica;
-        this.url = url;
-        this.categoriaCancion = categoriaCancion;
-        this.artistaDeCancion = artistaDeCancion;
-        this.cancionEnAlbum = cancionEnAlbum;
-    }
 
     @Override
     public String toString() {
