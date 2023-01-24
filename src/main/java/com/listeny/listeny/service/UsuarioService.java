@@ -13,14 +13,12 @@ import java.util.Optional;
 public class UsuarioService extends AbstractBusinessService<Usuario, Long, UsuariosDto, UsuarioRepository, UsuarioMapper>{
 
 
-    private final UsuarioRepository usuarioRepository;
-
-    protected UsuarioService(UsuarioRepository usuarioRepository, UsuarioMapper mapper) {
+     protected UsuarioService(UsuarioRepository usuarioRepository, UsuarioMapper mapper) {
         super(usuarioRepository, mapper);
     }
 
     public Boolean inicioSesion(UsuariosDto dto){
-        Usuario usuario = usuarioRepository.findByUsername(dto.getNombreUsuario());
+        Usuario usuario = getRepo().findByUsername(dto.getNombreUsuario());
         if (Objects.equals(usuario.getClave(), dto.getPassword())){
             return true;
         }
@@ -29,7 +27,7 @@ public class UsuarioService extends AbstractBusinessService<Usuario, Long, Usuar
 
     public void registro(UsuariosDto dto){
         // Comprobar si el nombre de usuario existe, si la contraseña es válida, si el email ya está usado
-        Usuario usuario = usuarioRepository.findByUsername(dto.getNombreUsuario());
+        Usuario usuario = getRepo().findByUsername(dto.getNombreUsuario());
         comprobarPassword(dto.getPassword());
 
     }
