@@ -106,16 +106,22 @@
 
     <div class="col">
       <div class="row my-3">
-        <div class="col-12 d-flex align-items-center">
-          <div class="">
-          <img src="/static/imagenes/lista1.jpg" class="img-fluid rounded-img" style="max-width:70%; max-height:70%;">
+        <div class="col-12 d-flex ">
+          <div class="position-relative">
+          <img src="/static/imagenes/lista1.jpg" class="img-fluid rounded-img" style="max-width:95%; max-height:95%;">
           </div>
-          <div class="ml-auto">
-            <h2 class="mb-3">Nombre de la playlist</h2>
-            <p class="mb-3">Descripción para la playlist</p>
-            <small class="mb-3">X Número de canciones</small>
-            <h4 class="mb-3 my-3">Creador de la playlist</h4>
-            <strong class="mb-3">Seguidores de la playlist</strong>
+          <div class="col">
+            <div class="row">
+              <div class="col-8 position-relative">
+                <h2 class="mb-3">Nombre de la playlist</h2>
+                <p class="mb-3">Descripción para la playlist</p>
+                <small class="mb-3 d-none d-sm-block" style="position: absolute; bottom: -354px;">X Número de canciones</small>
+              </div>
+              <div class="col-4 position-relative">
+                <h4 class="mb-3 my-3 d-none d-sm-block" style="position: absolute; bottom: -310px;">Creador de la playlist</h4>
+                <strong class="mb-3 d-none d-sm-block" style="position: absolute; bottom: -354px;">Seguidores de la playlist</strong>
+              </div>
+            </div>
           </div>
         </div>
       </div>
