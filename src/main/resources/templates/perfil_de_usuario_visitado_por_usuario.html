@@ -208,8 +208,23 @@
   <script>
     $("#megusta").click(function(){
       var elem= document.getElementById("megusta");
-      elem.classList.toggle("bi-heart")
-      elem.classList.toggle("bi-heart-fill")
+      var seguido= 'id del usuario con megusta';
+      var seguidor= 'id del usuario activo';
+      elem.classList.toggle("bi-heart");
+      elem.classList.toggle("bi-heart-fill");
+      if (elem.classList.contains('bi-heart')) {
+        url = '/nomegusta'
+      } else {
+        url = "megusta"
+      }
+      $.ajax({
+        url: url,
+        data: {
+          seguido: seguido,
+          seguidor:seguidor
+        },
+        dataType: 'json'
+      })
     })
   </script>
 
