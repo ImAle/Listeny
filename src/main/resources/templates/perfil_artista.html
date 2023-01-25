@@ -108,9 +108,58 @@
     <!-- Zona derecha de la pantalla  -->
     <div class="col-9 my-5">
       <div class="container">
+        <!-- modal del perfil  -->
+        <div class="modal fade" id="modalperfil" tabindex="-1" aria-labelledby="modalperfilLabel" style="display: none;" aria-hidden="true">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="modalperfilLabel">Configuración de usuario</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div class="modal-body">
+
+                <form>
+                  <div class="form-group my-3">
+                    <label for="email">Cambiar correo electrónico</label>
+                    <input type="email" class="form-control" id="email" placeholder="Ingresa tu nuevo correo electrónico">
+                  </div>
+                  <div class="form-group my-3">
+                    <label for="profile-image">Cambiar imagen de perfil</label>
+                    <input type="file" class="form-control-file" id="profile-image">
+                  </div>
+                  <div class="form-group my-3">
+                    <label for="banner-image">Cambiar imagen del banner</label>
+                    <input type="file" class="form-control-file" id="banner-image">
+                  </div>
+                  <div class="form-group my-3">
+                    <label for="alias">Cambiar alias</label>
+                    <input type="text" class="form-control" id="alias" placeholder="Ingresa tu nuevo alias">
+                  </div>
+                  <div class="form-group my-3">
+                    <label for="dark-mode-switch">Modo oscuro</label>
+                    <label class="switch">
+                      <input type="checkbox" id="dark-mode-switch">
+                      <span class="slider round"></span>
+                    </label>
+                  </div>
+                  <div class="form-group my-3">
+                    <label for="artist-profile-switch">Perfil de artista</label>
+                    <label class="switch">
+                      <input type="checkbox" id="artist-profile-switch" checked>
+                      <span class="slider round"></span>
+                    </label>
+                  </div>
+                  <button type="button" class="btn btn-secondary my-3" data-bs-dismiss="modal">Descartar cambios</button>
+                  <button type="submit" class="btn btn-primary my-3">Guardar cambios</button>
+                </form>
+
+              </div>
+            </div>
+          </div>
+        </div>
         <!-- Banner twitter  -->
         <div class="row text-center" style="min-height: 100px;">
-          <i class="fas fa-cog fa-3x gear-icon my-3"></i>
+          <i class="fas fa-cog fa-3x gear-icon my-3" data-bs-toggle="modal" data-bs-target="#modalperfil" style="cursor:pointer;"></i>
           <div class="col">Banner Estilo twitter</div>
         </div>
         <!-- zona bajo banner  -->
