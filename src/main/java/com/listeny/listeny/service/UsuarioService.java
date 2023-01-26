@@ -1,12 +1,15 @@
 package com.listeny.listeny.service;
 
 import com.listeny.listeny.Dto.UsuariosDto;
+import com.listeny.listeny.models.Categoria;
 import com.listeny.listeny.models.Lista;
+import com.listeny.listeny.models.Reproduccion;
 import com.listeny.listeny.models.Usuario;
 import com.listeny.listeny.repository.UsuarioRepository;
 import com.listeny.listeny.service.mapper.UsuarioMapper;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 
@@ -14,8 +17,8 @@ import java.util.Optional;
 public class UsuarioService extends AbstractBusinessService<Usuario, Long, UsuariosDto, UsuarioRepository, UsuarioMapper>{
 
 
-     protected UsuarioService(UsuarioRepository usuarioRepository, UsuarioMapper mapper) {
-        super(usuarioRepository, mapper);
+     protected UsuarioService(UsuarioRepository repo, UsuarioMapper mapper) {
+        super(repo, mapper);
     }
 
 //    public Boolean inicioSesion(UsuariosDto dto){
@@ -70,6 +73,14 @@ public class UsuarioService extends AbstractBusinessService<Usuario, Long, Usuar
          throw new Exception("El usuario " + idUsuario + " no ha sido encontrado");
     }
 
+    public Usuario findUsuarioById(Long id) throws Exception {
+        Optional<Usuario> entidad = this.getRepo().findById(id);
+        if(entidad.isPresent()) {
+            return entidad.get();
+        }
+        throw new Exception("El usuario de id " + id + " no ha sido encontrado");
+    }
+
     public void seguirLista(Lista Lista, UsuariosDto usuario){
         usuario.getListasFavoritos().add(Lista);
         getRepo().save(getMapper().toEntity(usuario));
@@ -79,13 +90,15 @@ public class UsuarioService extends AbstractBusinessService<Usuario, Long, Usuar
         getRepo().save(getMapper().toEntity(usuario));
     }
 
-    public Usuario findUsuarioById(Long id) throws Exception {
-        Optional<Usuario> entidad = this.getRepo().findById(id);
-        if(entidad.isPresent()) {
-            return entidad.get();
-        }
+    public List<Lista> getListasFavoritas (Long id) throws Exception {
+         Optional<Usuario> usuario = getRepo().findById(id);
+         if (usuario.isPresent()){
+             return usuario.get().getListasFavoritos();
+         }
         throw new Exception("El usuario de id " + id + " no ha sido encontrado");
     }
+
+
 
 
 }

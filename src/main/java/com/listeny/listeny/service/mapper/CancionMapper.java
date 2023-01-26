@@ -3,7 +3,9 @@ package com.listeny.listeny.service.mapper;
 import com.listeny.listeny.Dto.CancionDto;
 import com.listeny.listeny.models.Cancion;
 import org.modelmapper.ModelMapper;
+import org.springframework.stereotype.Service;
 
+@Service
 public class CancionMapper extends AbstractServiceMapper<Cancion, CancionDto>{
 
     // Convertir entidad a DTO

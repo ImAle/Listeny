@@ -3,7 +3,9 @@ package com.listeny.listeny.service.mapper;
 import com.listeny.listeny.Dto.CategoriaDto;
 import com.listeny.listeny.models.Categoria;
 import org.modelmapper.ModelMapper;
+import org.springframework.stereotype.Service;
 
+@Service
 public class CategoriaMapper extends AbstractServiceMapper<Categoria, CategoriaDto> {
 
     // Convertir entidad a DTO

@@ -3,7 +3,9 @@ package com.listeny.listeny.service.mapper;
 import com.listeny.listeny.Dto.NotificacionDto;
 import com.listeny.listeny.models.Notificacion;
 import org.modelmapper.ModelMapper;
+import org.springframework.stereotype.Service;
 
+@Service
 public class NotificacionMapper extends AbstractServiceMapper<Notificacion, NotificacionDto> {
 
     // Convertir entidad a DTO

@@ -13,8 +13,8 @@ import java.util.Optional;
 @Service
 public class ListaService extends AbstractBusinessService<Lista, Long, ListaDto, ListaRepository, ListaMapper>{
 
-    public ListaService(ListaRepository listaRepository, ListaMapper mapper) {
-        super(listaRepository, mapper);
+    public ListaService(ListaRepository repo, ListaMapper mapper) {
+        super(repo, mapper);
     }
 
     public ListaDto getLista(Long idLista) throws Exception {
