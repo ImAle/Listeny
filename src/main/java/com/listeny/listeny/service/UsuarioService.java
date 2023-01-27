@@ -1,10 +1,7 @@
 package com.listeny.listeny.service;
 
 import com.listeny.listeny.Dto.UsuariosDto;
-import com.listeny.listeny.models.Categoria;
-import com.listeny.listeny.models.Lista;
-import com.listeny.listeny.models.Reproduccion;
-import com.listeny.listeny.models.Usuario;
+import com.listeny.listeny.models.*;
 import com.listeny.listeny.repository.UsuarioRepository;
 import com.listeny.listeny.service.mapper.UsuarioMapper;
 import org.springframework.stereotype.Service;
@@ -90,6 +87,26 @@ public class UsuarioService extends AbstractBusinessService<Usuario, Long, Usuar
         getRepo().save(getMapper().toEntity(usuario));
     }
 
+    public void seguirCancion(Cancion cancion, UsuariosDto usuario){
+         usuario.getCancionesFavoritas().add(cancion);
+         getRepo().save(getMapper().toEntity(usuario));
+    }
+
+    public void dejarSeguirCancion(Cancion cancion, UsuariosDto usuario){
+        usuario.getCancionesFavoritas().remove(cancion);
+        getRepo().save(getMapper().toEntity(usuario));
+    }
+
+    public void seguirAlbum(Album album, UsuariosDto usuario){
+        usuario.getAlbumesFavoritos().add(album);
+        getRepo().save(getMapper().toEntity(usuario));
+    }
+
+    public void dejarSeguirAlbum(Album album, UsuariosDto usuario){
+        usuario.getAlbumesFavoritos().remove(album);
+        getRepo().save(getMapper().toEntity(usuario));
+    }
+
     public List<Lista> getListasFavoritas (Long id) throws Exception {
          Optional<Usuario> usuario = getRepo().findById(id);
          if (usuario.isPresent()){
@@ -98,7 +115,21 @@ public class UsuarioService extends AbstractBusinessService<Usuario, Long, Usuar
         throw new Exception("El usuario de id " + id + " no ha sido encontrado");
     }
 
+    public List<Cancion> getCancionesFavoritas (Long id) throws Exception {
+        Optional<Usuario> usuario = getRepo().findById(id);
+        if (usuario.isPresent()){
+            return usuario.get().getCancionesFavoritas();
+        }
+        throw new Exception("El usuario de id " + id + " no ha sido encontrado");
+    }
 
+    public List<Album> getAlbumesFavoritos (Long id) throws Exception {
+        Optional<Usuario> usuario = getRepo().findById(id);
+        if (usuario.isPresent()){
+            return usuario.get().getAlbumesFavoritos();
+        }
+        throw new Exception("El usuario de id " + id + " no ha sido encontrado");
+    }
 
 
 }

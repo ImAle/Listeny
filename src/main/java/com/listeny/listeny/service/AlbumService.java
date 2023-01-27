@@ -1,7 +1,9 @@
 package com.listeny.listeny.service;
 
 import com.listeny.listeny.Dto.AlbumDto;
+import com.listeny.listeny.Dto.ListaDto;
 import com.listeny.listeny.models.Album;
+import com.listeny.listeny.models.Cancion;
 import com.listeny.listeny.repository.AlbumRepository;
 import com.listeny.listeny.service.mapper.AlbumMapper;
 import org.springframework.stereotype.Service;
@@ -26,4 +28,11 @@ public class AlbumService extends AbstractBusinessService<Album, Long, AlbumDto,
         throw new Exception("El álbum " + id + " no se ha encontrado");
     }
 
+    public List<Cancion> getCancionesDelAlbum(Long id) throws Exception {
+        Optional<AlbumDto> album = getRepo().findById(id).map(getMapper()::toDto);
+        if(album.isPresent()) {
+            return album.get().getCancionesAlbum();
+        }
+        throw new Exception("El album " + id + " no ha sido encontrada.");
+    }
 }
