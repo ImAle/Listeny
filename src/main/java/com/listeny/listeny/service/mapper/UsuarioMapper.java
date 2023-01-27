@@ -1,5 +1,6 @@
 package com.listeny.listeny.service.mapper;
 
+import com.listeny.listeny.Dto.UsuarioConPassDto;
 import com.listeny.listeny.Dto.UsuariosDto;
 import com.listeny.listeny.models.Usuario;
 import org.modelmapper.ModelMapper;
@@ -16,13 +17,10 @@ public class UsuarioMapper extends AbstractServiceMapper<Usuario, UsuariosDto>{
         modelMapper.map(entidad, dto);
         return dto;
     }
-    public UsuariosDto toDtoPerfil(Usuario entidad){
-        final UsuariosDto dto = new UsuariosDto();
-        dto.setNombreUsuario(entidad.getNombreUsuario());
-        dto.setImagen(entidad.getImagen());
-        dto.setImagenFondo(entidad.getImagenFondo());
-        dto.setSoySeguido(entidad.getSeguidores().size());
-
+    public UsuarioConPassDto toDtoRegistro(UsuarioConPassDto entidad){
+        final UsuarioConPassDto dto = new UsuarioConPassDto();
+        ModelMapper modelMapper = new ModelMapper();
+        modelMapper.map(entidad, dto);
         return dto;
     }
 
@@ -32,7 +30,6 @@ public class UsuarioMapper extends AbstractServiceMapper<Usuario, UsuariosDto>{
         final Usuario entidad = new Usuario();
         ModelMapper modelMapper = new ModelMapper();
         modelMapper.map(usuariosDto, entidad);
-        entidad.setClave(usuariosDto.getPassword());
         return entidad;
     }
 }
