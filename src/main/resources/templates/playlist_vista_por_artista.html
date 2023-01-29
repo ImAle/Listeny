@@ -107,6 +107,41 @@
             </div>
         </aside>
 
+        <div class="modal fade" id="modalcopiarlistaartista" tabindex="-1" aria-labelledby="modalcopiarlistaartistaLabel" style="display: none;" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="modalcopiarlistaartistaLabel">Copiar lista</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+
+                        <form>
+                            <div class="form-group my-3">
+                                <div class="form-group my-3">
+                                    <label for="copiarlistaartista-name">Indique el título</label>
+                                    <input type="text" class="form-control" id="copiarlistaartista-name" placeholder="Indique el título de la lista copiada">
+                                </div>
+                                <strong>Seleccione lo que quiere crear en función de la copia:</strong>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="tipo" id="playlist" value="playlist" checked>
+                                    <label class="form-check-label" for="playlist">Playlist</label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="tipo" id="album" value="album">
+                                    <label class="form-check-label" for="album">Álbum</label>
+                                </div>
+                                <button type="button" class="btn btn-secondary my-3" data-bs-dismiss="modal">Descartar cambios</button>
+                                <button type="submit" class="btn btn-primary my-3">Crear</button>
+                            </div>
+
+                        </form>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
         <div class="col-9">
             <div class="row my-3">
                 <div class="col-12 d-flex ">
@@ -136,7 +171,7 @@
                     <button class="btn-outline-secondary" type="button" style="float: left; margin-right: 10px; background-color: transparent; border:none;">
                         <i id="megusta" class="bi bi-heart float-end fs-2" style="color: red; cursor:pointer;"></i>
                     </button>
-                    <button class="fs-3" type="button" style="float: left; background-color: black; color: white; border-color: gray; border-width: 1px;">Copiar lista</button>
+                    <button class="fs-3" type="button" style="float: left; background-color: black; color: white; border-color: gray; border-width: 1px;" data-bs-toggle="modal" data-bs-target="#modalcopiarlistaartista">Copiar lista</button>
                 </div>
             </div>
 
