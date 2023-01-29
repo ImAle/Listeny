@@ -24,7 +24,7 @@
     <!-- Para que el botón despliegue la barra lateral cuando la pantalla sea pequeña -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
-    <title>Subir canciones (artista)</title>
+    <title>Playlist de canciones favoritas (artista)</title>
 </head>
 <body>
 
@@ -111,8 +111,8 @@
             <div class="row my-3">
                 <div class="col-12 d-flex ">
                     <div class="position-relative">
-                        <h1 class="text-align: center;">LISTA DE CANCIONES SUBIDAS</h1>
-                        <p>En esta lista se encuentran todas las canciones subidas por el artista.</p>
+                        <h1 class="text-align: center;">LISTA DE CANCIONES FAVORITAS</h1>
+                        <p>En esta lita se encuentran las canciones que añades como favoritas.</p>
                     </div>
                 </div>
             </div>
@@ -120,10 +120,6 @@
                 <div class="col">
                     <button class="btn-outline-secondary" type="button" style="float: left; margin-right: 10px; background-color: transparent; border:none;">
                         <i class="bi bi-play-fill fs-1"></i>
-                    </button>
-                    <button class="btn-outline-secondary" type="button" style="float: left; margin-right: 10px; background-color: transparent; border:none;" onclick="document.getElementById('fileInput').click()">
-                        <i class="fas fa-upload fs-1"></i>
-                        <input type="file" id="fileInput" style="display: none;">
                     </button>
                 </div>
             </div>
@@ -135,6 +131,7 @@
                     <th></th>
                     <th>Título</th>
                     <th>Artista</th>
+                    <th>Álbum</th>
                     <th>Duración</th>
                     <th></th>
                 </tr>
@@ -148,6 +145,7 @@
                     <td><img src="/static/imagenes/song1-image.jpg" class="img-fluid custom-img rounded-img"></td>
                     <td>Canción 1</td>
                     <td>Artista 1</td>
+                    <td>Álbum 1</td>
                     <td>3:45</td>
                     <td><i class="fas fa-times fa-2x"></i></td>
                 </tr>
@@ -159,6 +157,7 @@
                     <td><img src="/static/imagenes/song1-image.jpg" class="img-fluid custom-img rounded-img"></td>
                     <td>Canción 2</td>
                     <td>Artista 2</td>
+                    <td>Álbum 2</td>
                     <td>4:20</td>
                     <td><i class="fas fa-times fa-2x"></i></td>
                 </tr>
@@ -170,6 +169,7 @@
                     <td><img src="/static/imagenes/song1-image.jpg" class="img-fluid custom-img rounded-img"></td>
                     <td>Canción 3</td>
                     <td>Artista 3</td>
+                    <td>Álbum 3</td>
                     <td>5:10</td>
                     <td><i class="fas fa-times fa-2x"></i></td>
                 </tr>
