@@ -24,7 +24,7 @@
   <!-- Para que el botón despliegue la barra lateral cuando la pantalla sea pequeña -->
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
-  <title>Plantilla barra lateral usuario</title>
+  <title>Subir canciones (usuario)</title>
 </head>
 <body>
 
@@ -104,15 +104,104 @@
     </aside>
 
 
+    <div class="col-9">
+      <div class="row my-3">
+        <div class="col-12 d-flex ">
+          <div class="position-relative">
+            <h1 class="text-align: center;">LISTA DE CANCIONES SUBIDAS</h1>
+            <p>En esta lista se encuentran todas las canciones subidas por el usuario.</p>
+          </div>
+        </div>
+      </div>
+      <div class="row my-3">
+        <div class="col">
+          <button class="btn-outline-secondary" type="button" style="float: left; margin-right: 10px; background-color: transparent; border:none;">
+            <i class="bi bi-play-fill fs-1"></i>
+          </button>
+          <button class="btn-outline-secondary" type="button" style="float: left; margin-right: 10px; background-color: transparent; border:none;" onclick="document.getElementById('fileInput').click()">
+            <i class="fas fa-upload fs-1"></i>
+            <input type="file" id="fileInput" style="display: none;">
+          </button>
+        </div>
+      </div>
 
+      <table class="table" style="border-top: 4px solid gray;">
+        <thead>
+        <tr>
+          <th></th>
+          <th></th>
+          <th>Título</th>
+          <th>Artista</th>
+          <th>Duración</th>
+          <th></th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+          <td class="index" data-index="1">
+            <span class="index-number">1</span>
+            <i class="fa fa-play hidden"></i>
+          </td>
+          <td><img src="/static/imagenes/song1-image.jpg" class="img-fluid custom-img rounded-img"></td>
+          <td>Canción 1</td>
+          <td>Artista 1</td>
+          <td>3:45</td>
+          <td><i class="fas fa-times fa-2x"></i></td>
+        </tr>
+        <tr>
+          <td class="index" data-index="1">
+            <span class="index-number">2</span>
+            <i class="fa fa-play hidden"></i>
+          </td>
+          <td><img src="/static/imagenes/song1-image.jpg" class="img-fluid custom-img rounded-img"></td>
+          <td>Canción 2</td>
+          <td>Artista 2</td>
+          <td>4:20</td>
+          <td><i class="fas fa-times fa-2x"></i></td>
+        </tr>
+        <tr>
+          <td class="index" data-index="1">
+            <span class="index-number">3</span>
+            <i class="fa fa-play hidden"></i>
+          </td>
+          <td><img src="/static/imagenes/song1-image.jpg" class="img-fluid custom-img rounded-img"></td>
+          <td>Canción 3</td>
+          <td>Artista 3</td>
+          <td>5:10</td>
+          <td><i class="fas fa-times fa-2x"></i></td>
+        </tr>
+        </tbody>
+      </table>
 
-
-
+    </div>
   </div>
 </div>
 
 
 
+<!-- Para cambiar el icono al hacer click -->
+<script>
+    $("#megusta").click(function(){
+      var elem= document.getElementById("megusta");
+      var seguido= 'id del usuario con megusta';
+      var seguidor= 'id del usuario activo';
+      elem.classList.toggle("bi-heart");
+      elem.classList.toggle("bi-heart-fill");
+      if (elem.classList.contains('bi-heart')) {
+        url = '/nomegusta'
+      } else {
+        url = "megusta"
+      }
+      $.ajax({
+        url: url,
+        data: {
+          seguido: seguido,
+          seguidor:seguidor
+        },
+        dataType: 'json'
+      })
+    })
+  </script>
 
 <!-- Optional JavaScript -->
 
@@ -140,6 +229,24 @@
     });
   });
 </script>
+
+
+<!-- Sirve para que cuando te posiciones encima del índice de cada canción de la playlist, este desaparezca y aparece el botón de play -->
+<script>
+  $('.index').hover(function() {
+    $(this).find('.index-number').hide();
+    $(this).find('.fa-play').show();
+  }, function() {
+    $(this).find('.index-number').show();
+    $(this).find('.fa-play').hide();
+  });
+</script>
+
+
+
+
+
+
 
 
 </body>
