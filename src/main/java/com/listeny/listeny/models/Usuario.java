@@ -71,7 +71,10 @@ public class Usuario implements Serializable {
     @JoinTable(name = "seguidor",
             joinColumns = @JoinColumn(name = "idSeguidor", referencedColumnName = "id"),
             inverseJoinColumns = @JoinColumn(name = "idSeguido", referencedColumnName = "id"))
-    private List<Usuario> seguidores = new ArrayList<>();
+    private List<Usuario> sigueA = new ArrayList<>();
+
+    @ManyToMany (mappedBy = "sigueA")
+    private List<Usuario> seguidoPor;
 
     @OneToMany(mappedBy = "propietarioLista")
     private List<Lista> propietarioListas = new ArrayList<>();
@@ -95,6 +98,14 @@ public class Usuario implements Serializable {
                 ", imagen='" + imagen + '\'' +
                 ", imagenFondo='" + imagenFondo + '\'' +
                 ", esArtista=" + esArtista +
+                ", cancionesFavoritas=" + cancionesFavoritas +
+                ", listasFavoritos=" + listasFavoritos +
+                ", albumesFavoritos=" + albumesFavoritos +
+                ", sigueA=" + sigueA +
+                ", seguidoPor=" + seguidoPor +
+                ", propietarioListas=" + propietarioListas +
+                ", propietarioCanciones=" + propietarioCanciones +
+                ", propietarioAlbumes=" + propietarioAlbumes +
                 '}';
     }
 }

@@ -21,7 +21,7 @@ public class ListaController extends AbstractController<ListaDto> {
 
     @GetMapping("/lista/{id}")
     public List<Cancion> vistaListaPorId(@PathVariable("id") Long id, Model model) throws Exception {
-        List<Cancion> canciones = this.service.getCancionesDeLista(id);
+        List<Cancion> canciones = service.getCancionesDeLista(id);
         return canciones;
     }
 }

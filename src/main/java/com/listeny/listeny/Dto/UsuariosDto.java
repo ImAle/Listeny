@@ -22,7 +22,7 @@ public class UsuariosDto {
     private String nombreUsuario;
     private Date fechaNacimiento;
     private char sexo;
-    private Integer soySeguido;
+    private Integer seguidoPor;
     private String imagen;
     private String imagenFondo;
     private String email;
@@ -30,7 +30,7 @@ public class UsuariosDto {
     private List<Lista> listasFavoritos;
     private List<Album> albumesFavoritos;
     private List<Cancion> cancionesFavoritas;
-    private List<Usuario> soySeguidor;
+    private List<Usuario> sigueA;
 
 
     @Override
@@ -40,7 +40,7 @@ public class UsuariosDto {
                 ", nombreUsuario='" + nombreUsuario + '\'' +
                 ", fechaNacimiento='" + fechaNacimiento + '\'' +
                 ", sexo=" + sexo +
-                ", soySeguido=" + soySeguido +
+                ", seguidoPor=" + seguidoPor +
                 ", imagen='" + imagen + '\'' +
                 ", imagenFondo='" + imagenFondo + '\'' +
                 ", email='" + email + '\'' +
@@ -48,7 +48,7 @@ public class UsuariosDto {
                 ", listasFavoritos=" + listasFavoritos +
                 ", albumesFavoritos=" + albumesFavoritos +
                 ", cancionesFavoritas=" + cancionesFavoritas +
-                ", soySeguidor=" + soySeguidor +
+                ", sigueA=" + sigueA +
                 '}';
     }
 }

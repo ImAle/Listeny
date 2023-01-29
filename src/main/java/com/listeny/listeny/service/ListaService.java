@@ -6,16 +6,17 @@ import com.listeny.listeny.models.Cancion;
 import com.listeny.listeny.models.Lista;
 import com.listeny.listeny.repository.ListaRepository;
 import com.listeny.listeny.service.mapper.ListaMapper;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
-import java.util.Random;
 
 @Service
 public class ListaService extends AbstractBusinessService<Lista, Long, ListaDto, ListaRepository, ListaMapper>{
 
+    @Autowired
     public ListaService(ListaRepository repo, ListaMapper mapper) {
         super(repo, mapper);
     }
@@ -25,7 +26,7 @@ public class ListaService extends AbstractBusinessService<Lista, Long, ListaDto,
         if(listaDto.isPresent()){
             return listaDto.get();
         }
-        throw new Exception("La lista " + idLista + " no ha sido encontrada.");
+        throw new Exception("La lista no existe");
     }
 
     public List<ListaDeListaDto> getListaDeLista (List<Long> id){
@@ -64,7 +65,7 @@ public class ListaService extends AbstractBusinessService<Lista, Long, ListaDto,
         if(listaDto.isPresent()){
             return listaDto.get().getCancionesLista();
         } // Probablemente tenga que cambiarlo para que recoja la categoría de la lista
-        throw new Exception("La lista " + idLista + " no ha sido encontrada.");
+        throw new Exception("La lista no existe");
     }
 
 }

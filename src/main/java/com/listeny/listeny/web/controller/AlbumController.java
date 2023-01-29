@@ -13,9 +13,13 @@ public class AlbumController extends AbstractController<AlbumDto> {
 
     private AlbumService service;
 
+    public AlbumController(AlbumService service){
+        this.service = service;
+    }
+
     @GetMapping("/album/{id}")
     public Album vistaAlbum (@PathVariable("id") Long id, Model model) throws Exception {
-        Album album = this.service.getAlbumPorId(id);
+        Album album = service.getAlbumById(id);
         return album;
     }
 }

@@ -24,7 +24,7 @@ public class CancionService extends AbstractBusinessService<Cancion, Long, Canci
         if (cancion.isPresent()){
             return cancion.get();
         }
-        throw new Exception("La canción de id '" + id + " 'no ha sido encontrada");
+        throw new Exception("Esta canción no existe");
     }
 
     public void sacarCancionDeLista(Long id, Lista lista) throws Exception {

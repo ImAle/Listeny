@@ -20,12 +20,12 @@ public class AlbumService extends AbstractBusinessService<Album, Long, AlbumDto,
     }
 
 
-    public Album getAlbumPorId(@PathVariable("id") Long id) throws Exception {
+    public Album getAlbumById(@PathVariable("id") Long id) throws Exception {
         Optional<Album> album = getRepo().findById(id);
         if (album.isPresent()){
             return album.get();
         }
-        throw new Exception("El álbum " + id + " no se ha encontrado");
+        throw new Exception("El álbum no existe");
     }
 
     public List<Cancion> getCancionesDelAlbum(Long id) throws Exception {
@@ -33,6 +33,10 @@ public class AlbumService extends AbstractBusinessService<Album, Long, AlbumDto,
         if(album.isPresent()) {
             return album.get().getCancionesAlbum();
         }
-        throw new Exception("El album " + id + " no ha sido encontrada.");
+        throw new Exception("El álbum no existe");
     }
+
+//    public List<Album> getAlbumesRecomendados(){
+//
+//    }
 }

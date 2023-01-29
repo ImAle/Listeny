@@ -4,6 +4,7 @@ import com.listeny.listeny.Dto.UsuariosDto;
 import com.listeny.listeny.models.*;
 import com.listeny.listeny.repository.UsuarioRepository;
 import com.listeny.listeny.service.mapper.UsuarioMapper;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -13,8 +14,7 @@ import java.util.Optional;
 @Service
 public class UsuarioService extends AbstractBusinessService<Usuario, Long, UsuariosDto, UsuarioRepository, UsuarioMapper>{
 
-
-     protected UsuarioService(UsuarioRepository repo, UsuarioMapper mapper) {
+     public UsuarioService(UsuarioRepository repo, UsuarioMapper mapper) {
         super(repo, mapper);
     }
 
@@ -67,7 +67,7 @@ public class UsuarioService extends AbstractBusinessService<Usuario, Long, Usuar
          if (usuariosDto.isPresent()){
          return usuariosDto.get();
          }
-         throw new Exception("El usuario " + idUsuario + " no ha sido encontrado");
+        throw new Exception("Este usuario no existe");
     }
 
     public Usuario findUsuarioById(Long id) throws Exception {
@@ -75,7 +75,7 @@ public class UsuarioService extends AbstractBusinessService<Usuario, Long, Usuar
         if(entidad.isPresent()) {
             return entidad.get();
         }
-        throw new Exception("El usuario de id " + id + " no ha sido encontrado");
+        throw new Exception("Este usuario no existe");
     }
 
     public void seguirLista(Lista Lista, UsuariosDto usuario){
@@ -112,7 +112,7 @@ public class UsuarioService extends AbstractBusinessService<Usuario, Long, Usuar
          if (usuario.isPresent()){
              return usuario.get().getListasFavoritos();
          }
-        throw new Exception("El usuario de id " + id + " no ha sido encontrado");
+        throw new Exception("Este usuario no existe");
     }
 
     public List<Cancion> getCancionesFavoritas (Long id) throws Exception {
@@ -120,7 +120,7 @@ public class UsuarioService extends AbstractBusinessService<Usuario, Long, Usuar
         if (usuario.isPresent()){
             return usuario.get().getCancionesFavoritas();
         }
-        throw new Exception("El usuario de id " + id + " no ha sido encontrado");
+        throw new Exception("Este usuario no existe");
     }
 
     public List<Album> getAlbumesFavoritos (Long id) throws Exception {
@@ -128,8 +128,16 @@ public class UsuarioService extends AbstractBusinessService<Usuario, Long, Usuar
         if (usuario.isPresent()){
             return usuario.get().getAlbumesFavoritos();
         }
-        throw new Exception("El usuario de id " + id + " no ha sido encontrado");
+        throw new Exception("Este usuario no existe");
     }
 
+    public void seguirA(Usuario usuario, Usuario esteUsuario){
+         usuario.getSeguidoPor().add(esteUsuario);
+         getRepo().save(usuario);
+    }
+    public void dejarDeSeguirA(Usuario usuario, Usuario esteUsuario){
+        usuario.getSeguidoPor().remove(esteUsuario);
+        getRepo().save(usuario);
+    }
 
 }
