@@ -9,6 +9,7 @@ import com.listeny.listeny.service.mapper.ListaMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -66,6 +67,15 @@ public class ListaService extends AbstractBusinessService<Lista, Long, ListaDto,
             return listaDto.get().getCancionesLista();
         } // Probablemente tenga que cambiarlo para que recoja la categoría de la lista
         throw new Exception("La lista no existe");
+    }
+
+    // Usar el método getCancionesDeLista(Long idLista) para obtener las canciones de la lista y encasquetarselo a cancionesToArchivos
+    public List<File> cancionesToArchivos(List<Cancion> canciones) {
+        List<File> archivos = new ArrayList<>();
+        for (Cancion cancion : canciones) {
+            archivos.add(new File(cancion.getUrl()));
+        }
+        return archivos;
     }
 
 }

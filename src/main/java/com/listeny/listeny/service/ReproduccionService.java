@@ -4,6 +4,7 @@ import com.listeny.listeny.Dto.ReproduccionDto;
 import com.listeny.listeny.models.Cancion;
 import com.listeny.listeny.models.Categoria;
 import com.listeny.listeny.models.Reproduccion;
+import com.listeny.listeny.models.Usuario;
 import com.listeny.listeny.repository.ReproduccionRepository;
 import com.listeny.listeny.service.mapper.ReproduccionMapper;
 import org.springframework.stereotype.Service;
@@ -25,4 +26,8 @@ public class ReproduccionService extends AbstractBusinessService<Reproduccion, L
 //            List<Cancion> CancionesEscuchadas = reproduccion.get().getCancion();
 //        }
 //    }
+    public void getUltimasCanciones (Long id){
+        Reproduccion reproduccion = new Reproduccion();
+
+    }
 }
