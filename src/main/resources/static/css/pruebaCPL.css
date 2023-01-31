@@ -1,0 +1,59 @@
+/* desde los estilos del CV  */
+#sideBar .navbar-nav .nav-item .nav-link {
+    font-weight: 600;
+    letter-spacing: 0.1rem;
+    text-transform: uppercase;
+    color: black;
+}
+    #sideBar .navbar-brand {
+        color: black;
+    }
+
+#listas {
+    display: none;
+}
+
+@media (min-width: 992px) {
+    body {
+        padding-left: 17rem;
+        padding-top: 0;
+    }
+    #sideBar {
+        /*width: 17rem;*/
+        height: 100vh;
+        top: 0;
+        left: 0;
+        position: fixed;
+        text-align: center;
+    }
+    #sideBar nav {
+        display: flex;
+        flex-direction: column;
+    }
+    #sideBar .navbar-brand {
+        display: flex;
+        margin: auto auto 0;
+        padding: 0rem;
+
+    }
+    #sideBar .img-profile {
+        max-width: 10rem ;
+        max-height: 10rem;
+        border: .5rem solid rgba(255,255,255,.2);
+    }
+    #sideBar .navbar-collapse {
+        display: flex;
+        flex-grow: 0;
+        align-items: flex-start;
+        width: 100%;
+        margin-bottom: auto;
+    }
+    #sideBar .navbar-collapse .navbar-nav {
+        flex-direction: column;
+        width: 100%;
+    }
+    #listas {
+        display: block;
+    }
+}
+/* fin estilos desde CV */
