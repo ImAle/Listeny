@@ -85,6 +85,8 @@ public class Usuario implements Serializable {
     @OneToMany(mappedBy = "propietarioAlbum")
     private List<Album> propietarioAlbumes = new ArrayList<>();
 
+    @OneToMany(mappedBy = "usuario")
+    private List<Reproduccion> usuarioReporduccion;
 
     @Override
     public String toString() {

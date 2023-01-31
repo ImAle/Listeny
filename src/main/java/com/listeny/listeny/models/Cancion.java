@@ -52,6 +52,10 @@ public class Cancion implements Serializable{
     @JoinColumn(name = "idCategoria", nullable = false)
     private Categoria categoriaCancion;
 
+    @OneToMany(mappedBy = "cancion")
+    private List<Reproduccion> cancionReporduccion;
+
+
     @ManyToMany(mappedBy = "cancionesFavoritas")
     private List<Usuario> favoritaCancionUsuario = new ArrayList<>();
 
