@@ -66,11 +66,11 @@ public abstract class AbstractBusinessService<E, ID, DTO,  REPO extends JpaRepos
     }
 
     //Obtener una lista de objetos seleccionados al azar
-    public List<Long> getElementoAzarId (){
+    public List<Long> getElementoAzarId (int cantidad){
         Long todas = repo.count();
         List<Long> elementosAPantalla = new ArrayList<>();
         Random rnd = new Random();
-        while (elementosAPantalla.size() < 5){
+        while (elementosAPantalla.size() < cantidad){
             Long num = rnd.nextLong(todas);
             if(!elementosAPantalla.contains(num)){
                 elementosAPantalla.add(num);

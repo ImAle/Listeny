@@ -25,7 +25,7 @@ public class CategoriaService extends AbstractBusinessService<Categoria, Long, C
         throw new Exception("Esta categoria no existe");
     }
 
-    public List<Cancion> getListaPorCategoria(Long id) throws Exception {
+    public List<Cancion> getCancionesPorCategoria(Long id) throws Exception {
         Optional<Categoria> categoria = this.getRepo().findById(id);
         if (categoria.isPresent()){
             return categoria.get().getCategoriaDeLaCancion();
@@ -33,11 +33,4 @@ public class CategoriaService extends AbstractBusinessService<Categoria, Long, C
         throw new Exception("Esta categoria no existe");
     }
 
-//    public Long getIdPorNombre(String nombre){
-//        Optional<Categoria> categoria = this.getRepo().;
-//        if (categoria.isPresent()){
-//            return categoria.get().getCategoria();
-//        }
-//        throw new Exception("La categoria de nombre " + nombre + " no ha sido encontrada");
-//    }
 }

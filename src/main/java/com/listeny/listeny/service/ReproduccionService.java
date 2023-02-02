@@ -16,8 +16,8 @@ public class ReproduccionService extends AbstractBusinessService<Reproduccion, L
         super(reproduccionRepository, mapper);
     }
 
-    // Historial de las últimas 5 canciones escuchadas por usuario X
-    public List<Cancion> getUltimasCanciones (Long idUsuario){
+    // Historial de las últimas 5 canciones escuchadas por usuario
+    public List<Cancion> getHistorialUltimasCancionesReproducidas (Long idUsuario){
         List<Cancion> ultimasReproducidas = Lists.newArrayList(getRepo().getUltimasCanciones(idUsuario));
         List<List<Cancion>> particionEnCinco = Lists.partition(ultimasReproducidas, 5);
 
@@ -25,7 +25,7 @@ public class ReproduccionService extends AbstractBusinessService<Reproduccion, L
     }
 
 
-    // Categoría más escuchada por usuario X
+    // Categoría más escuchada por usuario
     public Long getCategoriaMasEscuchada(Long idUsuario){
         List<Cancion> ultimasReproducidas = Lists.newArrayList(getRepo().getUltimasCanciones(idUsuario));
         List<Long> numeros = new ArrayList<>();
@@ -52,7 +52,5 @@ public class ReproduccionService extends AbstractBusinessService<Reproduccion, L
         }
         return elMasFrecuente;
     }
-
-
 
 }

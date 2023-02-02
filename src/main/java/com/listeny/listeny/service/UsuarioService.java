@@ -4,11 +4,9 @@ import com.listeny.listeny.Dto.UsuariosDto;
 import com.listeny.listeny.models.*;
 import com.listeny.listeny.repository.UsuarioRepository;
 import com.listeny.listeny.service.mapper.UsuarioMapper;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Objects;
 import java.util.Optional;
 
 @Service
@@ -18,49 +16,6 @@ public class UsuarioService extends AbstractBusinessService<Usuario, Long, Usuar
         super(repo, mapper);
     }
 
-//    public Boolean inicioSesion(UsuariosDto dto){
-//        Usuario usuario = getRepo().findByUsername(dto.getNombreUsuario());
-//        if (Objects.equals(usuario.getClave(), dto.getPassword())){
-//            return true;
-//        }
-//        return false;
-//    }
-//
-//    public void registro(UsuariosDto dto){
-//        // Comprobar si el nombre de usuario existe, si la contraseña es válida, si el email ya está usado
-//        Usuario usuario = getRepo().findByUsername(dto.getNombreUsuario());
-//        comprobarPassword(dto.getPassword());
-//
-//    }
-//
-//    public Boolean comprobarPassword(String password){
-//        int upperCase = 0;
-//        int lowerCase = 0;
-//        int digits = 0;
-//        int special = 0;
-//
-//        if (password.length() < 8) {
-//            return false;
-//        }
-//
-//        for (int i = 0; i < password.length(); i++) {
-//            char ch = password.charAt(i);
-//            if (Character.isUpperCase(ch)) {
-//                upperCase++;
-//            } else if (Character.isLowerCase(ch)) {
-//                lowerCase++;
-//            } else if (Character.isDigit(ch)) {
-//                digits++;
-//            } else if (!Character.isLetterOrDigit(ch)) {
-//                special++;
-//            }
-//        }
-//
-//        if(upperCase > 0 && lowerCase > 0 && digits > 0 && special > 0) {
-//            return true;
-//        }
-//        return false;
-//    }
 
     public UsuariosDto getUsuarioDto (Long idUsuario) throws Exception {
          Optional<UsuariosDto> usuariosDto = getRepo().findById(idUsuario).map(getMapper()::toDto);
@@ -70,7 +25,7 @@ public class UsuarioService extends AbstractBusinessService<Usuario, Long, Usuar
         throw new Exception("Este usuario no existe");
     }
 
-    public Usuario findUsuarioById(Long id) throws Exception {
+    public Usuario getUsuario(Long id) throws Exception {
         Optional<Usuario> entidad = this.getRepo().findById(id);
         if(entidad.isPresent()) {
             return entidad.get();
@@ -78,33 +33,33 @@ public class UsuarioService extends AbstractBusinessService<Usuario, Long, Usuar
         throw new Exception("Este usuario no existe");
     }
 
-    public void seguirLista(Lista Lista, UsuariosDto usuario){
+    public void seguirLista(Lista Lista, Usuario usuario){
         usuario.getListasFavoritos().add(Lista);
-        getRepo().save(getMapper().toEntity(usuario));
+        getRepo().save(usuario);
     }
-    public void dejarSeguirLista(Lista Lista, UsuariosDto usuario){
+    public void dejarSeguirLista(Lista Lista, Usuario usuario){
         usuario.getListasFavoritos().remove(Lista);
-        getRepo().save(getMapper().toEntity(usuario));
+        getRepo().save(usuario);
     }
 
-    public void seguirCancion(Cancion cancion, UsuariosDto usuario){
+    public void seguirCancion(Cancion cancion, Usuario usuario){
          usuario.getCancionesFavoritas().add(cancion);
-         getRepo().save(getMapper().toEntity(usuario));
+         getRepo().save(usuario);
     }
 
-    public void dejarSeguirCancion(Cancion cancion, UsuariosDto usuario){
+    public void dejarSeguirCancion(Cancion cancion, Usuario usuario){
         usuario.getCancionesFavoritas().remove(cancion);
-        getRepo().save(getMapper().toEntity(usuario));
+        getRepo().save(usuario);
     }
 
-    public void seguirAlbum(Album album, UsuariosDto usuario){
+    public void seguirAlbum(Album album, Usuario usuario){
         usuario.getAlbumesFavoritos().add(album);
-        getRepo().save(getMapper().toEntity(usuario));
+        getRepo().save(usuario);
     }
 
-    public void dejarSeguirAlbum(Album album, UsuariosDto usuario){
+    public void dejarSeguirAlbum(Album album, Usuario usuario){
         usuario.getAlbumesFavoritos().remove(album);
-        getRepo().save(getMapper().toEntity(usuario));
+        getRepo().save(usuario);
     }
 
     public List<Lista> getListasFavoritas (Long id) throws Exception {

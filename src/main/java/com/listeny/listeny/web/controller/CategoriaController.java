@@ -20,9 +20,10 @@ public class CategoriaController extends AbstractController<CategoriaDto> {
         this.service = service;
     }
 
-    @GetMapping("/categoria/{id}")
-    public List<Cancion> getCancionDeCategoria(@PathVariable("id") Long id, Model model) throws Exception {
-        List<Cancion> listaPorCategoria = service.getListaPorCategoria(id);
-        return listaPorCategoria;
-    }
+//    @GetMapping("/categoria/{id}/canciones")
+//    public String getCancionDeCategoria(@PathVariable("id") Long id, Model model) throws Exception {
+//        List<Cancion> cancionesPorCategoria = service.getCancionesPorCategoria(id);
+//        model.addAttribute("cancionesPorCategoria", cancionesPorCategoria);
+//        return "";
+//    }
 }

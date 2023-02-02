@@ -11,6 +11,13 @@ import java.util.List;
 @Repository
 public interface ListaRepository extends JpaRepository<Lista, Long> {
 
+    @Query("SELECT l FROM Lista l ORDER BY l.reproducciones DESC")
+    public List<Lista> listasMasReproducidas();
+
+    @Query("SELECT l FROM Lista l WHERE l.listasCategoria.id = :idCategoria")
+    public List<Lista> listasPorCategoria(Long idCategoria);
     @Query("SELECT l FROM Lista l WHERE l.nombre LIKE :nombre")
     public List<Lista> findByNombreContaining(@Param("nombre") String nombre);
+
+
 }

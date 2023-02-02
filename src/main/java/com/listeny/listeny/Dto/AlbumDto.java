@@ -27,12 +27,6 @@ public class AlbumDto {
     private List<Cancion> cancionesAlbum;
     private List<Usuario> favoritoAlbumUsuario = new ArrayList<>();
 
-    public AlbumDto(Long id, String titulo, String imagen) {
-        this.id = id;
-        this.titulo = titulo;
-        this.imagen = imagen;
-    }
-
     @Override
     public String toString() {
         return "AlbumDto{" +

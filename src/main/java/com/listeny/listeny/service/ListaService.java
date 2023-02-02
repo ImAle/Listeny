@@ -1,8 +1,10 @@
 package com.listeny.listeny.service;
 
+import com.google.common.collect.Lists;
 import com.listeny.listeny.Dto.ListaDeListaDto;
 import com.listeny.listeny.Dto.ListaDto;
 import com.listeny.listeny.models.*;
+import com.listeny.listeny.repository.AlbumRepository;
 import com.listeny.listeny.repository.ListaRepository;
 import com.listeny.listeny.service.mapper.ListaMapper;
 import javazoom.jl.decoder.JavaLayerException;
@@ -20,62 +22,69 @@ import java.util.Optional;
 @Service
 public class ListaService extends AbstractBusinessService<Lista, Long, ListaDto, ListaRepository, ListaMapper>{
 
+    private final AlbumRepository albumRepository;
+
     @Autowired
-    public ListaService(ListaRepository repo, ListaMapper mapper) {
+    public ListaService(ListaRepository repo, ListaMapper mapper,
+                        AlbumRepository albumRepository) {
         super(repo, mapper);
+        this.albumRepository = albumRepository;
     }
 
-    public ListaDto getLista(Long idLista) throws Exception {
-        Optional<ListaDto> listaDto = getRepo().findById(idLista).map(getMapper()::toDto);
-        if(listaDto.isPresent()){
-            return listaDto.get();
+    public Lista getLista(Long idLista) throws Exception {
+        Optional<Lista> lista = getRepo().findById(idLista);
+        if(lista.isPresent()){
+            return lista.get();
         }
         throw new Exception("La lista no existe");
     }
 
-    public List<ListaDeListaDto> getListaDeLista (List<Long> id){
-        List<ListaDeListaDto> listasPreparadas = new ArrayList<>();
-        for (Long lista: id) {
-            Optional<ListaDeListaDto> listaDto = getRepo().findById(lista).map(getMapper()::toDtoListaDeLista);
-            listaDto.ifPresent(listasPreparadas::add);
-        }
-        return listasPreparadas;
-    }
+//    public List<ListaDeListaDto> getListaDeLista (List<Long> id){
+//        List<ListaDeListaDto> listasPreparadas = new ArrayList<>();
+//        for (Long lista: id) {
+//            Optional<ListaDeListaDto> listaDto = getRepo().findById(lista).map(getMapper()::toDtoListaDeLista);
+//            listaDto.ifPresent(listasPreparadas::add);
+//        }
+//        return listasPreparadas;
+//    }
 
-    //5 playlists aleatoria según tus gustos
-    public void getListasByCategoria(Long categoriaId){
-        
+    //Playlists por categoría
+    public List<Lista> getListasByCategoria(Long categoriaId){
+        return getRepo().listasPorCategoria(categoriaId);
     }
 
     // Obtener cinco listas al azar
-    public List<Lista> getListasAlAzar(){
+    public List<Lista> getListasRecomendadas(){
         List<Lista> listasAPantalla = new ArrayList<>();
-        for (Long id: getElementoAzarId()) {
+        for (Long id: getElementoAzarId(5)) {
             Optional<Lista> lista = getRepo().findById(id);
             lista.ifPresent(listasAPantalla::add);
         }
         return listasAPantalla;
     }
 
-    // Creación de una nueva lista con los valores no null
-    public Long copyListaToNewLista(Categoria categoria, Long idListaACopiar, String nombre, Usuario esteUsuario) throws Exception {
-        ListaDto listaDto = new ListaDto();
-        listaDto.setNombre(nombre);
-        listaDto.setPropietarioLista(esteUsuario);
-        listaDto.setListasCategoria(categoria);
-        listaDto.setCancionesLista(getCancionesDeLista(idListaACopiar));
-        return listaDto.getId();
+
+
+    // Copiar lista a lista
+    public Long copyListaALista(Long idListaACopiar, String nombre, Usuario esteUsuario) throws Exception {
+        Lista listaACopiar = getLista(idListaACopiar);
+        Lista lista = new Lista();
+        lista.setNombre(nombre);
+        lista.setPropietarioLista(esteUsuario);
+        lista.setListasCategoria(listaACopiar.getListasCategoria());
+        lista.setCancionesLista(listaACopiar.getCancionesLista());
+        getRepo().save(lista);
+        return lista.getId();
     }
 
-
-    // Obtener las canciones de una lista, para enviarlos a reproducir o para copiarlos en una nueva lista/álbum
-    // Usar el método getCancionesDeLista(Long idLista) para obtener las canciones de la lista y encasquetarselo a cancionesToArchivos
-    public List<Cancion> getCancionesDeLista(Long idLista) throws Exception {
-        Optional<ListaDto> listaDto = getRepo().findById(idLista).map(getMapper()::toDto);
-        if(listaDto.isPresent()){
-            return listaDto.get().getCancionesLista();
-        }
-        throw new Exception("La lista no existe");
+    public Long copyListaAAlbum(Long idListaACopiar, String nombre, Usuario esteUsuario) throws Exception {
+        Lista listaACopiar = getLista(idListaACopiar);
+        Album album = new Album();
+        album.setTitulo(nombre);
+        album.setPropietarioAlbum(esteUsuario);
+        album.setCancionesAlbum(listaACopiar.getCancionesLista());
+        albumRepository.save(album);
+        return album.getId();
     }
 
 //    public List<File> cancionesToArchivos(List<Cancion> canciones) {
@@ -86,19 +95,18 @@ public class ListaService extends AbstractBusinessService<Lista, Long, ListaDto,
 //        return archivos;
 //    }
 
-    // Ejecutar un Stream de una canción
-    public void play(String song) {
-        //String song = "http://www.ntonyx.com/mp3files/Morning_Flower.mp3";
-        Player mp3player = null;
-        BufferedInputStream in = null;
-        try {
-            in = new BufferedInputStream(new URL(song).openStream());
-            mp3player = new Player(in);
-            mp3player.play();
-        } catch (NullPointerException | JavaLayerException | IOException ex) {
-            System.out.println("Error al reproducir la canción");
-        }
+    public List<Lista> getListasPorGustos(Long idCategoria){
+        List<Lista> listasPorGusto = getListasByCategoria(idCategoria);
+        List<List<Lista>> particionEnCinco = Lists.partition(listasPorGusto, 5);
 
+        return particionEnCinco.get(1);
+    }
+
+    public List<Lista> getListasMasReproducidas(){
+        List<Lista> masReproducidas = Lists.newArrayList(getRepo().listasMasReproducidas());
+        List<List<Lista>> particionEnCinco = Lists.partition(masReproducidas, 5);
+
+        return particionEnCinco.get(1);
     }
 
 }

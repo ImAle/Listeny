@@ -1,12 +1,10 @@
 package com.listeny.listeny.service;
 
+import com.google.common.collect.Lists;
 import com.listeny.listeny.Dto.AlbumDto;
-import com.listeny.listeny.Dto.ListaDto;
-import com.listeny.listeny.models.Album;
-import com.listeny.listeny.models.Cancion;
-import com.listeny.listeny.models.Lista;
-import com.listeny.listeny.models.Usuario;
+import com.listeny.listeny.models.*;
 import com.listeny.listeny.repository.AlbumRepository;
+import com.listeny.listeny.repository.ListaRepository;
 import com.listeny.listeny.service.mapper.AlbumMapper;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -18,8 +16,11 @@ import java.util.Optional;
 @Service
 public class AlbumService extends AbstractBusinessService<Album, Long, AlbumDto, AlbumRepository, AlbumMapper>{
 
-    public AlbumService(AlbumRepository repo, AlbumMapper mapper) {
+    private final ListaRepository listaRepository;
+
+    public AlbumService(AlbumRepository repo, AlbumMapper mapper, ListaRepository listaRepository) {
         super(repo, mapper);
+        this.listaRepository = listaRepository;
     }
 
 
@@ -31,32 +32,41 @@ public class AlbumService extends AbstractBusinessService<Album, Long, AlbumDto,
         throw new Exception("El álbum no existe");
     }
 
-    public List<Album> getListasAlAzar(){
+    public List<Album> getAlbumesRecomendados(){
         List<Album> albumesAPantalla = new ArrayList<>();
-        for (Long id: getElementoAzarId()) {
+        for (Long id: getElementoAzarId(5)) {
             Optional<Album> album = getRepo().findById(id);
             album.ifPresent(albumesAPantalla::add);
         }
         return albumesAPantalla;
     }
 
-    public Long copyAlbumToNewAlbum(Long idAlbumACopiar, String nombre, Usuario esteUsuario) throws Exception {
-        AlbumDto albumDto = new AlbumDto();
-        albumDto.setTitulo(nombre);
-        albumDto.setPropietarioAlbum(esteUsuario);
-        albumDto.setCancionesAlbum(getCancionesDelAlbum(idAlbumACopiar));
-        return albumDto.getId();
+    public Long copyAlbumALista(Long idListaACopiar, String nombre, Usuario esteUsuario, Categoria categoria) throws Exception {
+        Album albumACopiar = getAlbumById(idListaACopiar);
+        Lista lista = new Lista();
+        lista.setNombre(nombre);
+        lista.setPropietarioLista(esteUsuario);
+        lista.setListasCategoria(categoria);
+        lista.setCancionesLista(albumACopiar.getCancionesAlbum());
+        listaRepository.save(lista);
+        return lista.getId();
     }
 
-    public List<Cancion> getCancionesDelAlbum(Long id) throws Exception {
-        Optional<AlbumDto> album = getRepo().findById(id).map(getMapper()::toDto);
-        if(album.isPresent()) {
-            return album.get().getCancionesAlbum();
-        }
-        throw new Exception("El álbum no existe");
+    public Long copyAlbumAAlbum(Long idAlbumACopiar, String nombre, Usuario esteUsuario) throws Exception {
+        Album albumACopiar = getAlbumById(idAlbumACopiar);
+        Album album = new Album();
+        album.setTitulo(nombre);
+        album.setPropietarioAlbum(esteUsuario);
+        album.setCancionesAlbum(albumACopiar.getCancionesAlbum());
+        getRepo().save(album);
+        return album.getId();
     }
 
-//    public List<Album> getAlbumesRecomendados(){
-//
-//    }
+    public List<Album> getAlbumesMasReproducidos (){
+        List<Album> masReproducidas = Lists.newArrayList(getRepo().albumesMasReproducidos());
+        List<List<Album>> particionEnCinco = Lists.partition(masReproducidas, 5);
+
+        return particionEnCinco.get(1);
+    }
+
 }

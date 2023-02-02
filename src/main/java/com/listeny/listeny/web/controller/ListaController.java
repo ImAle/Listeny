@@ -1,7 +1,7 @@
 package com.listeny.listeny.web.controller;
 
 import com.listeny.listeny.Dto.ListaDto;
-import com.listeny.listeny.models.Cancion;
+import com.listeny.listeny.models.Lista;
 import com.listeny.listeny.service.ListaService;
 import com.listeny.listeny.service.ReproduccionService;
 import org.springframework.ui.Model;
@@ -14,8 +14,7 @@ import java.util.List;
 @RestController
 public class ListaController extends AbstractController<ListaDto> {
 
-    private ListaService service;
-    private ReproduccionService reproService;
+    private final ListaService service;
 
     public ListaController(ListaService service) {
         this.service = service;
@@ -23,15 +22,16 @@ public class ListaController extends AbstractController<ListaDto> {
 
     @GetMapping("/lista/{id}")
     public String vistaListaPorId(@PathVariable("id") Long id, Model model) throws Exception {
-        ListaDto lista = service.getLista(id);
+        Lista lista = service.getLista(id);
         model.addAttribute("lista", lista);
         return "lista";
     }
 
-    @GetMapping("/buscador")
-    public void gustosYCategorias(Long idUsuario, Model model){
-        service.getListasByCategoria(reproService.getCategoriaMasEscuchada(idUsuario));
+    @GetMapping("/categoria/{id}/listas")
+    public String getListasPorCategoria(@PathVariable("id") Long idCategoria, Model model){
 
+        model.addAttribute("listasDeLaCategoria",service.getListasByCategoria(idCategoria));
+        return "playlists_por_categoria";
     }
 
 }

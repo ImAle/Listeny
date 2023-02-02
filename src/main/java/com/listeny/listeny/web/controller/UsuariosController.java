@@ -16,13 +16,19 @@ public class UsuariosController extends AbstractController<UsuariosDto> {
         this.service = service;
     }
 
+    @GetMapping("/")
+    public String iniciarSesion(){
+
+        return "a";
+    }
+
     @GetMapping("/usuarios/{id}")
-    public String userById (@PathVariable("id") Long idUser, Model interfaz) throws Exception {
+    public String userById (@PathVariable("id") Long idUser, Model model) throws Exception {
         // Pasamos usuario a dto
-        UsuariosDto usuariosDto = service.getMapper().toDto(service.findUsuarioById(idUser));
+        UsuariosDto usuariosDto = service.getMapper().toDto(service.getUsuario(idUser));
         // Lo metemos a una sesión
-        interfaz.addAttribute("userById", usuariosDto);
-        return "/usuarios/detalles";
+        model.addAttribute("usuario", usuariosDto);
+        return "/perfil_usuario";
     }
 
 }
