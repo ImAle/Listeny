@@ -1,0 +1,232 @@
+.bd-gutter {
+ --bs-gutter-x: 3rem
+}
+
+/* Para posicionar el engranaje dentro de la imagen del banner - Pantalla 6 */
+.gear-icon {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+}
+
+/* Esto es para que al posicionarte sobre la tabla de las playlists se ponga en el color que quieras, el elemento seleccionado y la letra - Pantalla 5 */
+td:hover {
+  /* Estilo al hacer hover sobre el td */
+  background-color: SteelBlue; /* Cambia el color de fondo al que quieras */
+  color: white; /* Cambia el color del texto al que quieras */
+  cursor: pointer; /* Muestra el cursor como una mano */
+}
+
+/* Sirve para esconder el índice de cada canción al posicionarte sobre él - Pantalla 5 */
+.hidden {
+  display: none;
+}
+
+/* Para poner borde a la imagen de la playlist - pantalla 5 */
+.rounded-img {
+    border: solid 2px #ccc;
+}
+
+/* Para que la imagen de la canción se ajuste a la tabla y no sea demasiado grande - Pantalla 5 */
+.custom-img {
+    max-width: 100px;
+    max-height: 150px;
+}
+
+
+/* Botón Switch - Pantalla 7 */
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 60px;
+  height: 34px;
+}
+
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 26px;
+  width: 26px;
+  left: 4px;
+  bottom: 4px;
+  background-color: white;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+input:checked + .slider {
+  background-color: #2196F3;
+}
+
+input:focus + .slider {
+  box-shadow: 0 0 1px #2196F3;
+}
+
+input:checked + .slider:before {
+  -webkit-transform: translateX(26px);
+  -ms-transform: translateX(26px);
+  transform: translateX(26px);
+}
+
+/* Rounded sliders */
+.slider.round {
+  border-radius: 34px;
+}
+
+.slider.round:before {
+  border-radius: 50%;
+}
+/* Hasta aquí botón Switch - Pantalla 7 */
+
+/* Tarjetas del index */
+h5.card-title {
+  font-size: 1em;
+  font-weight: bold;
+  line-height: 1.2em;
+  color:black;
+}
+p.card-text {
+  font-size: .7em;
+  font-weight: bold;
+  line-height: 1em;
+  color: black;
+}
+p.card-inf {
+  margin-top: 8px;
+  font-size: 1.3em;
+  font-weight: bold;
+  line-height: 1.5em;
+  color: black;
+}
+.song-card:hover {
+  box-shadow: 0 6px 20px rgba(0,0,0,0.35);
+}
+.song-card:hover .song-card_info {
+  transform: translateX(100%);
+  opacity: 0;
+}
+.song-card_info {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 3;
+  padding: 10px;
+  text-align: center;
+  transform: translateX(0);
+  opacity: 1;
+  transition: opacity .2s, transform .2s;
+  transition-timing-function: ease-in;
+}
+
+.song-card_play:before {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  display: block;
+  width: 0;
+  height: 0;
+  margin: auto;
+  border-style: solid;
+  border-width: 7px 0 7px 10px;
+  border-color: transparent transparent transparent white;
+}
+.song-card_play {
+  position: absolute;
+  left: 10px;
+  bottom: 10px;
+  z-index: 3;
+  width: 50px;
+  height: 50px;
+  background-color: #27ae60;
+  border-radius: 50%;
+  cursor: pointer;
+  transform: translateX(-60px);
+  transition: opacity .2s, transform .2s;
+  transition-timing-function: ease-in;
+}
+.song-card {
+  position: relative;
+  /*width: 300px;
+  height: 350px;*/
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 1px 5px rgba(0,0,0,0.25);
+  transition: box-shadow .2s;
+  color: white;
+  user-select: none;
+}
+
+.song-card:before {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-image: linear-gradient(0deg, black 0%, transparent 40%);
+  z-index: 2;
+}
+
+.song-card:hover {
+  box-shadow: 0 6px 20px rgba(0,0,0,0.35);
+}
+/* New Content */
+.song-card:hover .song-card_play {
+  transform: translateX(0);
+  opacity: 1;
+}
+.song-card:hover .song-card_info {
+  transform: translateX(100%);
+  opacity: 0;
+}
+
+.card-img-overlay {
+  margin-top: 60%; /* o cualquier valor que desees */
+}
+/* Hasta aquí las tarjetas del index */
+
+
+/* Reproductor */
+.player-container {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  top: 0;
+  z-index: 999;
+  pointer-events: none;
+}
+/* Hasta aquí el reproductor */
+
+
+/* Color para el body y la barra lateral */
+body{
+    background-color: white;
+}
+
+.color-barra-lateral {
+  background-color: white;
+}
+/* Hasta aquí color para el body y barra lateral */
