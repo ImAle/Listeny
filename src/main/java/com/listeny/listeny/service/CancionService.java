@@ -12,6 +12,7 @@ import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
 import java.io.File;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.Random;
@@ -30,6 +31,15 @@ public class CancionService extends AbstractBusinessService<Cancion, Long, Canci
             return cancion.get();
         }
         throw new Exception("Esta canción no existe");
+    }
+
+    public List<Cancion> getCancionesAlAzar(){
+        List<Cancion> cancionesAPantalla = new ArrayList<>();
+        for (Long id: getElementoAzarId()) {
+            Optional<Cancion> cancion = getRepo().findById(id);
+            cancion.ifPresent(cancionesAPantalla::add);
+        }
+        return cancionesAPantalla;
     }
 
     public void sacarCancionDeLista(Long id, Lista lista) throws Exception {

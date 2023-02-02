@@ -29,6 +29,12 @@ public class CancionDto {
     private List<Artista> artistaDeCancion;
     private List<Album> cancionEnAlbum;
 
+    public CancionDto(Long id, String imagen, String titulo) {
+        this.id = id;
+        this.imagen = imagen;
+        this.titulo = titulo;
+    }
+
     @Override
     public String toString() {
         return "CancionDto{" +

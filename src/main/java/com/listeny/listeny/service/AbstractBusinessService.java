@@ -64,8 +64,25 @@ public abstract class AbstractBusinessService<E, ID, DTO,  REPO extends JpaRepos
     public void eliminarPorId(ID id){
         this.repo.deleteById(id);
     }
+
+    //Obtener una lista de objetos seleccionados al azar
+    public List<Long> getElementoAzarId (){
+        Long todas = repo.count();
+        List<Long> elementosAPantalla = new ArrayList<>();
+        Random rnd = new Random();
+        while (elementosAPantalla.size() < 5){
+            Long num = rnd.nextLong(todas);
+            if(!elementosAPantalla.contains(num)){
+                elementosAPantalla.add(num);
+            }
+        }
+        return elementosAPantalla;
+    }
+
+
     //Obtener el mapper
     public MAPPER getMapper(){return  mapper;}
     //Obtener el repo
     public REPO getRepo(){return  repo;}
+
 }

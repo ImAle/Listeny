@@ -133,11 +133,15 @@ public class UsuarioService extends AbstractBusinessService<Usuario, Long, Usuar
 
     public void seguirA(Usuario usuario, Usuario esteUsuario){
          usuario.getSeguidoPor().add(esteUsuario);
+         esteUsuario.getSigueA().add(usuario);
          getRepo().save(usuario);
+         getRepo().save(esteUsuario);
     }
     public void dejarDeSeguirA(Usuario usuario, Usuario esteUsuario){
         usuario.getSeguidoPor().remove(esteUsuario);
+        esteUsuario.getSigueA().remove(usuario);
         getRepo().save(usuario);
+        getRepo().save(esteUsuario);
     }
 
 }

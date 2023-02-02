@@ -27,6 +27,12 @@ public class ListaDto {
     private Categoria listasCategoria;
     private List<Cancion> cancionesLista;
 
+    public ListaDto(Long id, String nombre, String imagen) {
+        this.id = id;
+        this.nombre = nombre;
+        this.imagen = imagen;
+    }
+
     @Override
     public String toString() {
         return "ListaDto{" +
