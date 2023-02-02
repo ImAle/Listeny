@@ -67,7 +67,7 @@
                 <div class="col">
 
                     <div class="card song-card text-bg-dark" data-bs-toggle="collapse" data-bs-target="#collapseExample"
-                         role="button" aria-expanded="false" aria-controls="collapseExample" data-song-src="/static/canciones/song1.mp3">
+                         role="button" aria-expanded="false" aria-controls="collapseExample" data-song-src="/static/canciones/song1.mp3" data-song-id="song1">
                         <img class="song-card_image"
                              src="https://ia803103.us.archive.org/28/items/cd_aladdin-sane_david-bowie_1/cd_aladdin-sane_david-bowie_1_itemimage.png"
                              alt="David Bowie - Aladdin Sane">
@@ -420,9 +420,11 @@
 <script>
   document.querySelectorAll('.song-card').forEach(card => {
     card.addEventListener('click', function () {
+      const id = this.getAttribute('data-song-id');
       const src = this.getAttribute('data-song-src');
       const audio = document.querySelector('audio');
       audio.setAttribute('src', src);
+      audio.setAttribute('data-song-id', id);
       audio.play();
     });
   });
