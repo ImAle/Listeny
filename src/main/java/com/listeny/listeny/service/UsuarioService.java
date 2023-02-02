@@ -4,15 +4,23 @@ import com.listeny.listeny.Dto.UsuariosDto;
 import com.listeny.listeny.models.*;
 import com.listeny.listeny.repository.UsuarioRepository;
 import com.listeny.listeny.service.mapper.UsuarioMapper;
+import jakarta.servlet.ServletContext;
+import jakarta.servlet.http.HttpSession;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.util.Enumeration;
 import java.util.List;
 import java.util.Optional;
 
 @Service
 public class UsuarioService extends AbstractBusinessService<Usuario, Long, UsuariosDto, UsuarioRepository, UsuarioMapper>{
 
-     public UsuarioService(UsuarioRepository repo, UsuarioMapper mapper) {
+    @Autowired
+    private BCryptPasswordEncoder passwordEncoder;
+
+    public UsuarioService(UsuarioRepository repo, UsuarioMapper mapper) {
         super(repo, mapper);
     }
 
@@ -97,6 +105,14 @@ public class UsuarioService extends AbstractBusinessService<Usuario, Long, Usuar
         esteUsuario.getSigueA().remove(usuario);
         getRepo().save(usuario);
         getRepo().save(esteUsuario);
+    }
+
+    public Usuario encriptarClaveYGuardar(Usuario nuevoUsuario, Usuario usuarioIntroducido) {
+        String passwd= usuarioIntroducido.getClave();
+        String encodedPassword = passwordEncoder.encode(passwd);
+        nuevoUsuario.setClave(encodedPassword);
+        getRepo().save(nuevoUsuario);
+        return nuevoUsuario;
     }
 
 }

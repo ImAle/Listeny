@@ -32,6 +32,16 @@ public class AlbumService extends AbstractBusinessService<Album, Long, AlbumDto,
         throw new Exception("El álbum no existe");
     }
 
+    public void cambiarEstadoPublico (Long idAlbum) throws Exception {
+        Album album = getAlbumById(idAlbum);
+        if(album.getPublico()){
+            album.setPublico(false);
+        }else{
+            album.setPublico(true);
+        }
+        getRepo().save(album);
+    }
+
     public List<Album> getAlbumesRecomendados(){
         List<Album> albumesAPantalla = new ArrayList<>();
         for (Long id: getElementoAzarId(5)) {

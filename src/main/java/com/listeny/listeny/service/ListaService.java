@@ -39,6 +39,16 @@ public class ListaService extends AbstractBusinessService<Lista, Long, ListaDto,
         throw new Exception("La lista no existe");
     }
 
+    public void cambiarEstadoPublico (Long idLista) throws Exception {
+        Lista lista = getLista(idLista);
+        if(lista.getPublica()){
+            lista.setPublica(false);
+        }else{
+            lista.setPublica(true);
+        }
+        getRepo().save(lista);
+    }
+
 //    public List<ListaDeListaDto> getListaDeLista (List<Long> id){
 //        List<ListaDeListaDto> listasPreparadas = new ArrayList<>();
 //        for (Long lista: id) {

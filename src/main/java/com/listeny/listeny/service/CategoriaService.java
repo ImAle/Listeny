@@ -17,6 +17,14 @@ public class CategoriaService extends AbstractBusinessService<Categoria, Long, C
         super(categoriaRepository, mapper);
     }
 
+    public Categoria getCategoria(Long id) throws Exception {
+        Optional<Categoria> categoria = this.getRepo().findById(id);
+        if (categoria.isPresent()){
+            return categoria.get();
+        }
+        throw new Exception("Esta categoria no existe");
+    }
+
     public String getNombrePorId(Long id) throws Exception {
         Optional<Categoria> categoria = this.getRepo().findById(id);
         if (categoria.isPresent()){

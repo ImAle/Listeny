@@ -39,6 +39,16 @@ public class CancionService extends AbstractBusinessService<Cancion, Long, Canci
         throw new Exception("Esta canción no existe");
     }
 
+    public void cambiarEstadoPublico (Long idCancion) throws Exception {
+        Cancion cancion = getCancionById(idCancion);
+        if(cancion.getPublica()){
+            cancion.setPublica(false);
+        }else{
+            cancion.setPublica(true);
+        }
+        getRepo().save(cancion);
+    }
+
     public List<Cancion> getCancionesRecomendadas() {
         List<Cancion> cancionesAPantalla = new ArrayList<>();
         for (Long id : getElementoAzarId(5)) {
