@@ -1,5 +1,6 @@
 package com.listeny.listeny.Dto;
 
+import com.listeny.listeny.models.Rol;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -21,7 +22,7 @@ public class UsuarioConPassDto {
     private String imagen;
     private String imagenFondo;
     private String email;
-    private Boolean esArtista;
+    private Rol rolDelUsuario;
 
     @Override
     public String toString() {
@@ -34,7 +35,7 @@ public class UsuarioConPassDto {
                 ", imagen='" + imagen + '\'' +
                 ", imagenFondo='" + imagenFondo + '\'' +
                 ", email='" + email + '\'' +
-                ", esArtista=" + esArtista +
+                ", rolDelUsuario=" + rolDelUsuario +
                 '}';
     }
 }

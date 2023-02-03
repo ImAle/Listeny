@@ -26,15 +26,20 @@ public class SecurityConfig {
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
 
         http.authorizeHttpRequests()
-                .requestMatchers("/index").permitAll()
+                .requestMatchers("/index", "/registro").permitAll()
                 .anyRequest().authenticated()
 
                 .and()
                 .formLogin()
-                .defaultSuccessUrl("/inicio_logueado",true)
+                .loginPage("/login")
+                .defaultSuccessUrl("/inicio_logueado_usuario",true)
+                .permitAll()
+
+
                 // Revisar como funciona el logout
                 .and()
                 .logout()
+                .logoutSuccessUrl("/")
                 .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
                 // Revisar utilidad de esto
                 .and()

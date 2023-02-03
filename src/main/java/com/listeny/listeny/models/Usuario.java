@@ -45,8 +45,8 @@ public class Usuario implements Serializable {
     @Column(name="imagen_fondo", length = 100)
     private String imagenFondo;
 
-    @Column(name="esArtista")
-    private Boolean esArtista;
+//    @Column(name="esArtista")
+//    private Boolean esArtista;
 
 
     @ManyToMany
@@ -88,6 +88,10 @@ public class Usuario implements Serializable {
     @OneToMany(mappedBy = "usuario")
     private List<Reproduccion> usuarioReporduccion;
 
+    @ManyToOne
+    @JoinColumn(name = "rol", nullable = false)
+    private Rol rolDelUsuario;
+
     @Override
     public String toString() {
         return "Usuario{" +
@@ -99,15 +103,7 @@ public class Usuario implements Serializable {
                 ", sexo=" + sexo +
                 ", imagen='" + imagen + '\'' +
                 ", imagenFondo='" + imagenFondo + '\'' +
-                ", esArtista=" + esArtista +
-                ", cancionesFavoritas=" + cancionesFavoritas +
-                ", listasFavoritos=" + listasFavoritos +
-                ", albumesFavoritos=" + albumesFavoritos +
-                ", sigueA=" + sigueA +
-                ", seguidoPor=" + seguidoPor +
-                ", propietarioListas=" + propietarioListas +
-                ", propietarioCanciones=" + propietarioCanciones +
-                ", propietarioAlbumes=" + propietarioAlbumes +
+                ", rolDelUsuario=" + rolDelUsuario +
                 '}';
     }
 }

@@ -1,5 +1,7 @@
 <!doctype html>
-<html lang="es_ES" xmlns:th="http://www.w3.org/1999/xhtml">
+<html lang="es_ES"
+      xmlns:th="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
 <head>
     <!-- Required meta tags -->
     <meta charset="utf-8">
@@ -34,14 +36,14 @@
             <div class="color-barra-lateral card my-3" style="height:1575px">
                 <img src="../static/imagenes/logo.png" class="card-img-top mx-auto my-3 w-50" alt="...">
                 <div class="card-body">
-                    <form class="text-center">
+                    <form class="text-center" action="/login" th:object="${usuario}" method="get">
                         <h5 class="fw-normal mb-5 pb-1" style="letter-spacing: 1px;">Acceda a su cuenta</h5>
                         <div class="form-outline mb-4">
                             <input type="email" id="form2Example17" class="form-control form-control-lg"/>
                             <label class="form-label" for="form2Example17">Correo electrónico</label>
                         </div>
                         <div class="form-outline mb-4">
-                            <input type="password" id="form2Example27" class="form-control form-control-lg"/>
+                            <input type="password" th:field="" id="form2Example27" class="form-control form-control-lg"/>
                             <label class="form-label" for="form2Example27">Contraseña</label>
                         </div>
 

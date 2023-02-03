@@ -12,7 +12,7 @@ import java.util.*;
 @Service
 public class ReproduccionService extends AbstractBusinessService<Reproduccion, Long, ReproduccionDto, ReproduccionRepository, ReproduccionMapper>{
 
-    protected ReproduccionService(ReproduccionRepository reproduccionRepository, ReproduccionMapper mapper) {
+    public ReproduccionService(ReproduccionRepository reproduccionRepository, ReproduccionMapper mapper) {
         super(reproduccionRepository, mapper);
     }
 

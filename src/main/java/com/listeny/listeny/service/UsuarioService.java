@@ -1,5 +1,6 @@
 package com.listeny.listeny.service;
 
+import com.listeny.listeny.Dto.UsuarioConPassDto;
 import com.listeny.listeny.Dto.UsuariosDto;
 import com.listeny.listeny.models.*;
 import com.listeny.listeny.repository.UsuarioRepository;
@@ -9,6 +10,7 @@ import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.ui.Model;
 
 import java.util.Enumeration;
 import java.util.List;

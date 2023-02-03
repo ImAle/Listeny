@@ -6,6 +6,7 @@ import com.listeny.listeny.models.*;
 import com.listeny.listeny.repository.AlbumRepository;
 import com.listeny.listeny.repository.ListaRepository;
 import com.listeny.listeny.service.mapper.AlbumMapper;
+import javafx.stage.Stage;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.PathVariable;
 
@@ -16,6 +17,7 @@ import java.util.Optional;
 @Service
 public class AlbumService extends AbstractBusinessService<Album, Long, AlbumDto, AlbumRepository, AlbumMapper>{
 
+    StreamingService streamingService;
     private final ListaRepository listaRepository;
 
     public AlbumService(AlbumRepository repo, AlbumMapper mapper, ListaRepository listaRepository) {
@@ -77,6 +79,11 @@ public class AlbumService extends AbstractBusinessService<Album, Long, AlbumDto,
         List<List<Album>> particionEnCinco = Lists.partition(masReproducidas, 5);
 
         return particionEnCinco.get(1);
+    }
+
+    public void reproducirAlbum (Album album){
+        streamingService.setCanciones(album.getCancionesAlbum());
+        streamingService.start(new Stage());
     }
 
 }

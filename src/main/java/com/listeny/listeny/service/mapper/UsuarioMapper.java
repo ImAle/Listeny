@@ -1,5 +1,6 @@
 package com.listeny.listeny.service.mapper;
 
+import com.listeny.listeny.Dto.LoginDto;
 import com.listeny.listeny.Dto.UsuarioConPassDto;
 import com.listeny.listeny.Dto.UsuariosDto;
 import com.listeny.listeny.models.Usuario;
@@ -17,12 +18,6 @@ public class UsuarioMapper extends AbstractServiceMapper<Usuario, UsuariosDto>{
         modelMapper.map(entidad, dto);
         return dto;
     }
-    public UsuarioConPassDto toDtoRegistro(UsuarioConPassDto entidad){
-        final UsuarioConPassDto dto = new UsuarioConPassDto();
-        ModelMapper modelMapper = new ModelMapper();
-        modelMapper.map(entidad, dto);
-        return dto;
-    }
 
     // Convertir DTO a entidad
     @Override
@@ -32,4 +27,19 @@ public class UsuarioMapper extends AbstractServiceMapper<Usuario, UsuariosDto>{
         modelMapper.map(usuariosDto, entidad);
         return entidad;
     }
+
+    public Usuario toEntity(UsuarioConPassDto dto){
+        final Usuario entidad = new Usuario();
+        ModelMapper modelMapper = new ModelMapper();
+        modelMapper.map(dto, entidad);
+        return entidad;
+    }
+
+    public Usuario toEntity(LoginDto login){
+        final Usuario entidad = new Usuario();
+        ModelMapper modelMapper = new ModelMapper();
+        modelMapper.map(login, entidad);
+        return entidad;
+    }
+
 }

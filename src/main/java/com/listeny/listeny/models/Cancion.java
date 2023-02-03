@@ -53,7 +53,7 @@ public class Cancion implements Serializable{
     private Categoria categoriaCancion;
 
     @OneToMany(mappedBy = "cancion")
-    private List<Reproduccion> cancionReporduccion;
+    private List<Reproduccion> cancionReproduccion;
 
 
     @ManyToMany(mappedBy = "cancionesFavoritas")

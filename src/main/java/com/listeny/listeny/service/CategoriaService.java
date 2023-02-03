@@ -13,7 +13,7 @@ import java.util.Optional;
 @Service
 public class CategoriaService extends AbstractBusinessService<Categoria, Long, CategoriaDto, CategoriaRepository, CategoriaMapper>{
 
-    protected CategoriaService(CategoriaRepository categoriaRepository, CategoriaMapper mapper) {
+    public CategoriaService(CategoriaRepository categoriaRepository, CategoriaMapper mapper) {
         super(categoriaRepository, mapper);
     }
 

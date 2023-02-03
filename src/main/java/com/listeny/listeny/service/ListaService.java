@@ -7,8 +7,7 @@ import com.listeny.listeny.models.*;
 import com.listeny.listeny.repository.AlbumRepository;
 import com.listeny.listeny.repository.ListaRepository;
 import com.listeny.listeny.service.mapper.ListaMapper;
-import javazoom.jl.decoder.JavaLayerException;
-import javazoom.jl.player.Player;
+import javafx.stage.Stage;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -22,6 +21,7 @@ import java.util.Optional;
 @Service
 public class ListaService extends AbstractBusinessService<Lista, Long, ListaDto, ListaRepository, ListaMapper>{
 
+    StreamingService streamingService;
     private final AlbumRepository albumRepository;
 
     @Autowired
@@ -117,6 +117,11 @@ public class ListaService extends AbstractBusinessService<Lista, Long, ListaDto,
         List<List<Lista>> particionEnCinco = Lists.partition(masReproducidas, 5);
 
         return particionEnCinco.get(1);
+    }
+
+    public void reproducirLista(Lista lista){
+        streamingService.setCanciones(lista.getCancionesLista());
+        streamingService.start(new Stage());
     }
 
 }
