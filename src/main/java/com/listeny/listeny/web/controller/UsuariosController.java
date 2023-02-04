@@ -5,7 +5,6 @@ import com.listeny.listeny.Dto.UsuarioConPassDto;
 import com.listeny.listeny.Dto.UsuariosDto;
 import com.listeny.listeny.models.Usuario;
 import com.listeny.listeny.service.UsuarioService;
-import com.listeny.listeny.util.ValidarFormatoPassword;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -15,8 +14,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import javax.validation.Valid;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.Optional;
 
 import static com.listeny.listeny.util.ValidarFormatoPassword.ValidarFormato;

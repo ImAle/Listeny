@@ -9,7 +9,9 @@ import com.listeny.listeny.service.mapper.AlbumMapper;
 import javafx.stage.Stage;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -93,6 +95,18 @@ public class AlbumService extends AbstractBusinessService<Album, Long, AlbumDto,
     public void reproducirAlbum (Album album){
         streamingService.setCanciones(album.getCancionesAlbum());
         streamingService.start(new Stage());
+    }
+
+    public void subirUnaImagen(MultipartFile file) throws IOException {
+        subirImagen(file);
+    };
+
+    public void eliminarUnaImagen(String imagen){
+        borrarImagen(imagen);
+    }
+
+    public void cambiarUnaImagen (MultipartFile file, String imagen) throws IOException {
+        cambiarImagen(file, imagen);
     }
 
 }

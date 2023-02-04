@@ -5,7 +5,10 @@ import com.listeny.listeny.service.mapper.AbstractServiceMapper;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.*;
 
 public abstract class AbstractBusinessService<E, ID, DTO,  REPO extends JpaRepository<E,ID> ,
@@ -79,6 +82,35 @@ public abstract class AbstractBusinessService<E, ID, DTO,  REPO extends JpaRepos
             }
         }
         return setId;
+    }
+
+    public void subirImagen(MultipartFile file) throws IOException {
+        String fileName = file.getOriginalFilename();
+        String contentType = file.getContentType();
+        String URL = "/static/imagenes/";
+
+        assert contentType != null;
+        if (!contentType.equals("image/jpeg") && !contentType.equals("image/png")) {
+            throw new IllegalArgumentException("El tipo de archivo no es permitido. Solo se permiten imágenes en formato JPEG o PNG.");
+        }
+
+        String filePath = URL + fileName;
+        File destinationFile = new File(filePath);
+        file.transferTo(destinationFile);
+    }
+
+    public void borrarImagen(String nombreImagen) {
+        String URL = "/static/imagenes/";
+        String filePath = URL + nombreImagen;
+        File archivoImagen = new File(filePath);
+        if (archivoImagen.exists()) {
+            archivoImagen.delete();
+        }
+    }
+
+    public void cambiarImagen(MultipartFile file, String nombreImagenAnterior) throws IOException {
+        borrarImagen(nombreImagenAnterior);
+        subirImagen(file);
     }
 
 

@@ -10,8 +10,10 @@ import com.listeny.listeny.service.mapper.ListaMapper;
 import javafx.stage.Stage;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -127,6 +129,18 @@ public class ListaService extends AbstractBusinessService<Lista, Long, ListaDto,
     public void reproducirLista(Lista lista){
         streamingService.setCanciones(lista.getCancionesLista());
         streamingService.start(new Stage());
+    }
+
+    public void subirUnaImagen(MultipartFile file) throws IOException {
+        subirImagen(file);
+    };
+
+    public void eliminarUnaImagen(String imagen){
+        borrarImagen(imagen);
+    }
+
+    public void cambiarUnaImagen (MultipartFile file, String imagen) throws IOException {
+        cambiarImagen(file, imagen);
     }
 
 }
