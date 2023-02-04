@@ -44,12 +44,21 @@ public class AlbumService extends AbstractBusinessService<Album, Long, AlbumDto,
         getRepo().save(album);
     }
 
-    public List<Album> getAlbumesRecomendados(){
-        List<Album> albumesAPantalla = new ArrayList<>();
-        for (Long id: getElementoAzarId(5)) {
-            Optional<Album> album = getRepo().findById(id);
-            album.ifPresent(albumesAPantalla::add);
+    public Album existeYPublica (Optional<Album> album){
+        if(album.isEmpty() || !album.get().getPublico()){
+            existeYPublica(getRepo().findById(generadorId(1).iterator().next()));
         }
+        return album.get();
+    }
+
+    public List<Album> getAlbumesRecomendados() {
+        List<Album> albumesAPantalla = new ArrayList<>();
+
+        for (Long id : generadorId(5)) {
+            Optional<Album> album = getRepo().findById(id);
+            albumesAPantalla.add(existeYPublica(album));
+        }
+
         return albumesAPantalla;
     }
 

@@ -11,9 +11,7 @@ import javafx.stage.Stage;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.io.BufferedInputStream;
-import java.io.IOException;
-import java.net.URL;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -66,11 +64,18 @@ public class ListaService extends AbstractBusinessService<Lista, Long, ListaDto,
     // Obtener cinco listas al azar
     public List<Lista> getListasRecomendadas(){
         List<Lista> listasAPantalla = new ArrayList<>();
-        for (Long id: getElementoAzarId(5)) {
+        for (Long id : generadorId(5)) {
             Optional<Lista> lista = getRepo().findById(id);
-            lista.ifPresent(listasAPantalla::add);
+            listasAPantalla.add(existeYPublica(lista));
         }
         return listasAPantalla;
+    }
+
+    public Lista existeYPublica (Optional<Lista> lista){
+        if(lista.isEmpty() || !lista.get().getPublica()){
+            existeYPublica(getRepo().findById(generadorId(1).iterator().next()));
+        }
+        return lista.get();
     }
 
 

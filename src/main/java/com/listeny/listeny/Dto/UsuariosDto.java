@@ -9,7 +9,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import java.util.Date;
+import java.time.LocalDate;
 import java.util.List;
 
 @Getter
@@ -20,7 +20,7 @@ public class UsuariosDto {
 
     private Long id;
     private String nombreUsuario;
-    private Date fechaNacimiento;
+    private LocalDate fechaNacimiento;
     private char sexo;
     private Integer seguidoPor;
     private String imagen;

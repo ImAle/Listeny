@@ -1,6 +1,5 @@
 <!doctype html>
 <html lang="es_ES"
-      xmlns:th="http://www.w3.org/1999/xhtml"
       xmlns:th="http://www.thymeleaf.org">
 <head>
     <!-- Required meta tags -->
@@ -14,7 +13,7 @@
     <!-- Estilos personalizados -->
     <link href="../static/css/custom.css" type="text/css" rel="stylesheet">
 
-    <!-- Bootstarp icons -->
+    <!-- Bootstrap icons -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
 
     <!-- Font Awesome JS -->
@@ -39,11 +38,11 @@
                     <form class="text-center" action="/login" th:object="${usuario}" method="get">
                         <h5 class="fw-normal mb-5 pb-1" style="letter-spacing: 1px;">Acceda a su cuenta</h5>
                         <div class="form-outline mb-4">
-                            <input type="email" id="form2Example17" class="form-control form-control-lg"/>
+                            <input type="email" th:field="*{email}" id="form2Example17" class="form-control form-control-lg"/>
                             <label class="form-label" for="form2Example17">Correo electrónico</label>
                         </div>
                         <div class="form-outline mb-4">
-                            <input type="password" th:field="" id="form2Example27" class="form-control form-control-lg"/>
+                            <input type="password" th:field="*{clave}" id="form2Example27" class="form-control form-control-lg"/>
                             <label class="form-label" for="form2Example27">Contraseña</label>
                         </div>
 
@@ -66,15 +65,15 @@
         <main class="col-9 my-3">
 
             <div class="row row-cols-1 row-cols-md-5 g-4">
-                <div class="col">
+                <div class="col" th:each="cancion : ${canciones}">
 
-                    <div class="card song-card text-bg-dark" data-bs-toggle="collapse" data-bs-target="#collapseExample"
+                    <div class="card song-card text-bg-dark"  data-bs-toggle="collapse" data-bs-target="#collapseExample"
                          role="button" aria-expanded="false" aria-controls="collapseExample" data-song-src="/static/canciones/song1.mp3">
                         <img class="song-card_image"
                              src="https://ia803103.us.archive.org/28/items/cd_aladdin-sane_david-bowie_1/cd_aladdin-sane_david-bowie_1_itemimage.png"
                              alt="David Bowie - Aladdin Sane">
                         <div class="card-img-overlay song-card-info">
-                            <h5 class="card-title text-center">Título de la canción</h5>
+                            <h5 class="card-title text-center" th:text="${cancion.titulo}"></h5>
                             <p class="card-text text-center"></p>
                             <p class="card-inf text-center"></p>
                             <div class="song-card_play"></div>
@@ -82,316 +81,6 @@
                     </div>
 
                 </div>
-                <div class="col">
-
-                    <div class="card song-card text-bg-dark" data-bs-toggle="collapse" data-bs-target="#collapseExample"
-                         role="button" aria-expanded="false" aria-controls="collapseExample">
-                        <img class="song-card_image"
-                             src="https://ia803103.us.archive.org/28/items/cd_aladdin-sane_david-bowie_1/cd_aladdin-sane_david-bowie_1_itemimage.png"
-                             alt="David Bowie - Aladdin Sane">
-                        <div class="card-img-overlay song-card-info">
-                            <h5 class="card-title text-center">Título de la canción</h5>
-                            <p class="card-text text-center"></p>
-                            <p class="card-inf text-center"></p>
-                            <div class="song-card_play"></div>
-                        </div>
-                    </div>
-
-                </div>
-                <div class="col">
-
-                    <div class="card song-card text-bg-dark" data-bs-toggle="collapse" data-bs-target="#collapseExample"
-                         role="button" aria-expanded="false" aria-controls="collapseExample">
-                        <img class="song-card_image"
-                             src="https://ia803103.us.archive.org/28/items/cd_aladdin-sane_david-bowie_1/cd_aladdin-sane_david-bowie_1_itemimage.png"
-                             alt="David Bowie - Aladdin Sane">
-                        <div class="card-img-overlay song-card-info">
-                            <h5 class="card-title text-center">Título de la canción</h5>
-                            <p class="card-text text-center"></p>
-                            <p class="card-inf text-center"></p>
-                            <div class="song-card_play"></div>
-                        </div>
-                    </div>
-
-                </div>
-                <div class="col">
-
-                    <div class="card song-card text-bg-dark" data-bs-toggle="collapse" data-bs-target="#collapseExample"
-                         role="button" aria-expanded="false" aria-controls="collapseExample">
-                        <img class="song-card_image"
-                             src="https://ia803103.us.archive.org/28/items/cd_aladdin-sane_david-bowie_1/cd_aladdin-sane_david-bowie_1_itemimage.png"
-                             alt="David Bowie - Aladdin Sane">
-                        <div class="card-img-overlay song-card-info">
-                            <h5 class="card-title text-center">Título de la canción</h5>
-                            <p class="card-text text-center"></p>
-                            <p class="card-inf text-center"></p>
-                            <div class="song-card_play"></div>
-                        </div>
-                    </div>
-
-                </div>
-                <div class="col">
-
-                    <div class="card song-card text-bg-dark" data-bs-toggle="collapse" data-bs-target="#collapseExample"
-                         role="button" aria-expanded="false" aria-controls="collapseExample">
-                        <img class="song-card_image"
-                             src="https://ia803103.us.archive.org/28/items/cd_aladdin-sane_david-bowie_1/cd_aladdin-sane_david-bowie_1_itemimage.png"
-                             alt="David Bowie - Aladdin Sane">
-                        <div class="card-img-overlay song-card-info">
-                            <h5 class="card-title text-center">Título de la canción</h5>
-                            <p class="card-text text-center"></p>
-                            <p class="card-inf text-center"></p>
-                            <div class="song-card_play"></div>
-                        </div>
-                    </div>
-
-                </div>
-                <div class="col">
-
-                    <div class="card song-card text-bg-dark" data-bs-toggle="collapse" data-bs-target="#collapseExample"
-                         role="button" aria-expanded="false" aria-controls="collapseExample">
-                        <img class="song-card_image"
-                             src="https://ia803103.us.archive.org/28/items/cd_aladdin-sane_david-bowie_1/cd_aladdin-sane_david-bowie_1_itemimage.png"
-                             alt="David Bowie - Aladdin Sane">
-                        <div class="card-img-overlay song-card-info">
-                            <h5 class="card-title text-center">Título de la canción</h5>
-                            <p class="card-text text-center"></p>
-                            <p class="card-inf text-center"></p>
-                            <div class="song-card_play"></div>
-                        </div>
-                    </div>
-
-                </div>
-                <div class="col">
-
-                    <div class="card song-card text-bg-dark" data-bs-toggle="collapse" data-bs-target="#collapseExample"
-                         role="button" aria-expanded="false" aria-controls="collapseExample">
-                        <img class="song-card_image"
-                             src="https://ia803103.us.archive.org/28/items/cd_aladdin-sane_david-bowie_1/cd_aladdin-sane_david-bowie_1_itemimage.png"
-                             alt="David Bowie - Aladdin Sane">
-                        <div class="card-img-overlay song-card-info">
-                            <h5 class="card-title text-center">Título de la canción</h5>
-                            <p class="card-text text-center"></p>
-                            <p class="card-inf text-center"></p>
-                            <div class="song-card_play"></div>
-                        </div>
-                    </div>
-
-                </div>
-                <div class="col">
-
-                    <div class="card song-card text-bg-dark" data-bs-toggle="collapse" data-bs-target="#collapseExample"
-                         role="button" aria-expanded="false" aria-controls="collapseExample">
-                        <img class="song-card_image"
-                             src="https://ia803103.us.archive.org/28/items/cd_aladdin-sane_david-bowie_1/cd_aladdin-sane_david-bowie_1_itemimage.png"
-                             alt="David Bowie - Aladdin Sane">
-                        <div class="card-img-overlay song-card-info">
-                            <h5 class="card-title text-center">Título de la canción</h5>
-                            <p class="card-text text-center"></p>
-                            <p class="card-inf text-center"></p>
-                            <div class="song-card_play"></div>
-                        </div>
-                    </div>
-
-                </div>
-                <div class="col">
-
-                    <div class="card song-card text-bg-dark" data-bs-toggle="collapse" data-bs-target="#collapseExample"
-                         role="button" aria-expanded="false" aria-controls="collapseExample">
-                        <img class="song-card_image"
-                             src="https://ia803103.us.archive.org/28/items/cd_aladdin-sane_david-bowie_1/cd_aladdin-sane_david-bowie_1_itemimage.png"
-                             alt="David Bowie - Aladdin Sane">
-                        <div class="card-img-overlay song-card-info">
-                            <h5 class="card-title text-center">Título de la canción</h5>
-                            <p class="card-text text-center"></p>
-                            <p class="card-inf text-center"></p>
-                            <div class="song-card_play"></div>
-                        </div>
-                    </div>
-
-                </div>
-                <div class="col">
-
-                    <div class="card song-card text-bg-dark" data-bs-toggle="collapse" data-bs-target="#collapseExample"
-                         role="button" aria-expanded="false" aria-controls="collapseExample">
-                        <img class="song-card_image"
-                             src="https://ia803103.us.archive.org/28/items/cd_aladdin-sane_david-bowie_1/cd_aladdin-sane_david-bowie_1_itemimage.png"
-                             alt="David Bowie - Aladdin Sane">
-                        <div class="card-img-overlay song-card-info">
-                            <h5 class="card-title text-center">Título de la canción</h5>
-                            <p class="card-text text-center"></p>
-                            <p class="card-inf text-center"></p>
-                            <div class="song-card_play"></div>
-                        </div>
-                    </div>
-
-                </div>
-                <div class="col">
-
-                    <div class="card song-card text-bg-dark" data-bs-toggle="collapse" data-bs-target="#collapseExample"
-                         role="button" aria-expanded="false" aria-controls="collapseExample">
-                        <img class="song-card_image"
-                             src="https://ia803103.us.archive.org/28/items/cd_aladdin-sane_david-bowie_1/cd_aladdin-sane_david-bowie_1_itemimage.png"
-                             alt="David Bowie - Aladdin Sane">
-                        <div class="card-img-overlay song-card-info">
-                            <h5 class="card-title text-center">Título de la canción</h5>
-                            <p class="card-text text-center"></p>
-                            <p class="card-inf text-center"></p>
-                            <div class="song-card_play"></div>
-                        </div>
-                    </div>
-
-                </div>
-                <div class="col">
-
-                    <div class="card song-card text-bg-dark" data-bs-toggle="collapse" data-bs-target="#collapseExample"
-                         role="button" aria-expanded="false" aria-controls="collapseExample">
-                        <img class="song-card_image"
-                             src="https://ia803103.us.archive.org/28/items/cd_aladdin-sane_david-bowie_1/cd_aladdin-sane_david-bowie_1_itemimage.png"
-                             alt="David Bowie - Aladdin Sane">
-                        <div class="card-img-overlay song-card-info">
-                            <h5 class="card-title text-center">Título de la canción</h5>
-                            <p class="card-text text-center"></p>
-                            <p class="card-inf text-center"></p>
-                            <div class="song-card_play"></div>
-                        </div>
-                    </div>
-
-                </div>
-
-                <div class="col">
-
-                    <div class="card song-card text-bg-dark" data-bs-toggle="collapse" data-bs-target="#collapseExample"
-                         role="button" aria-expanded="false" aria-controls="collapseExample">
-                        <img class="song-card_image"
-                             src="https://ia803103.us.archive.org/28/items/cd_aladdin-sane_david-bowie_1/cd_aladdin-sane_david-bowie_1_itemimage.png"
-                             alt="David Bowie - Aladdin Sane">
-                        <div class="card-img-overlay song-card-info">
-                            <h5 class="card-title text-center">Título de la canción</h5>
-                            <p class="card-text text-center"></p>
-                            <p class="card-inf text-center"></p>
-                            <div class="song-card_play"></div>
-                        </div>
-                    </div>
-
-                </div>
-
-                <div class="col">
-
-                    <div class="card song-card text-bg-dark" data-bs-toggle="collapse" data-bs-target="#collapseExample"
-                         role="button" aria-expanded="false" aria-controls="collapseExample">
-                        <img class="song-card_image"
-                             src="https://ia803103.us.archive.org/28/items/cd_aladdin-sane_david-bowie_1/cd_aladdin-sane_david-bowie_1_itemimage.png"
-                             alt="David Bowie - Aladdin Sane">
-                        <div class="card-img-overlay song-card-info">
-                            <h5 class="card-title text-center">Título de la canción</h5>
-                            <p class="card-text text-center"></p>
-                            <p class="card-inf text-center"></p>
-                            <div class="song-card_play"></div>
-                        </div>
-                    </div>
-
-                </div>
-
-                <div class="col">
-
-                    <div class="card song-card text-bg-dark" data-bs-toggle="collapse" data-bs-target="#collapseExample"
-                         role="button" aria-expanded="false" aria-controls="collapseExample">
-                        <img class="song-card_image"
-                             src="https://ia803103.us.archive.org/28/items/cd_aladdin-sane_david-bowie_1/cd_aladdin-sane_david-bowie_1_itemimage.png"
-                             alt="David Bowie - Aladdin Sane">
-                        <div class="card-img-overlay song-card-info">
-                            <h5 class="card-title text-center">Título de la canción</h5>
-                            <p class="card-text text-center"></p>
-                            <p class="card-inf text-center"></p>
-                            <div class="song-card_play"></div>
-                        </div>
-                    </div>
-
-                </div>
-
-                <div class="col">
-
-                    <div class="card song-card text-bg-dark" data-bs-toggle="collapse" data-bs-target="#collapseExample"
-                         role="button" aria-expanded="false" aria-controls="collapseExample">
-                        <img class="song-card_image"
-                             src="https://ia803103.us.archive.org/28/items/cd_aladdin-sane_david-bowie_1/cd_aladdin-sane_david-bowie_1_itemimage.png"
-                             alt="David Bowie - Aladdin Sane">
-                        <div class="card-img-overlay song-card-info">
-                            <h5 class="card-title text-center">Título de la canción</h5>
-                            <p class="card-text text-center"></p>
-                            <p class="card-inf text-center"></p>
-                            <div class="song-card_play"></div>
-                        </div>
-                    </div>
-
-                </div>
-
-                <div class="col">
-
-                    <div class="card song-card text-bg-dark" data-bs-toggle="collapse" data-bs-target="#collapseExample"
-                         role="button" aria-expanded="false" aria-controls="collapseExample">
-                        <img class="song-card_image"
-                             src="https://ia803103.us.archive.org/28/items/cd_aladdin-sane_david-bowie_1/cd_aladdin-sane_david-bowie_1_itemimage.png"
-                             alt="David Bowie - Aladdin Sane">
-                        <div class="card-img-overlay song-card-info">
-                            <h5 class="card-title text-center">Título de la canción</h5>
-                            <p class="card-text text-center"></p>
-                            <p class="card-inf text-center"></p>
-                            <div class="song-card_play"></div>
-                        </div>
-                    </div>
-
-                </div>
-
-                <div class="col">
-
-                    <div class="card song-card text-bg-dark" data-bs-toggle="collapse" data-bs-target="#collapseExample"
-                         role="button" aria-expanded="false" aria-controls="collapseExample">
-                        <img class="song-card_image"
-                             src="https://ia803103.us.archive.org/28/items/cd_aladdin-sane_david-bowie_1/cd_aladdin-sane_david-bowie_1_itemimage.png"
-                             alt="David Bowie - Aladdin Sane">
-                        <div class="card-img-overlay song-card-info">
-                            <h5 class="card-title text-center">Título de la canción</h5>
-                            <p class="card-text text-center"></p>
-                            <p class="card-inf text-center"></p>
-                            <div class="song-card_play"></div>
-                        </div>
-                    </div>
-
-                </div>
-
-                <div class="col">
-
-                    <div class="card song-card text-bg-dark" data-bs-toggle="collapse" data-bs-target="#collapseExample"
-                         role="button" aria-expanded="false" aria-controls="collapseExample">
-                        <img class="song-card_image"
-                             src="https://ia803103.us.archive.org/28/items/cd_aladdin-sane_david-bowie_1/cd_aladdin-sane_david-bowie_1_itemimage.png"
-                             alt="David Bowie - Aladdin Sane">
-                        <div class="card-img-overlay song-card-info">
-                            <h5 class="card-title text-center">Título de la canción</h5>
-                            <p class="card-text text-center"></p>
-                            <p class="card-inf text-center"></p>
-                            <div class="song-card_play"></div>
-                        </div>
-                    </div>
-
-                </div>
-
-                <div class="col">
-
-                    <div class="card song-card text-bg-dark" data-bs-toggle="collapse" data-bs-target="#collapseExample"
-                         role="button" aria-expanded="false" aria-controls="collapseExample">
-                        <img class="song-card_image"
-                             src="https://ia803103.us.archive.org/28/items/cd_aladdin-sane_david-bowie_1/cd_aladdin-sane_david-bowie_1_itemimage.png"
-                             alt="David Bowie - Aladdin Sane">
-                        <div class="card-img-overlay song-card-info">
-                            <h5 class="card-title text-center">Título de la canción</h5>
-                            <p class="card-text text-center"></p>
-                            <p class="card-inf text-center"></p>
-                            <div class="song-card_play"></div>
-                        </div>
-                    </div>
 
                 </div>
 
@@ -402,9 +91,9 @@
                         </audio>
                     </div>
                 </div>
+            </main>
+    </div>
 
-            </div>
-        </main>
     </div>
 </div>
 

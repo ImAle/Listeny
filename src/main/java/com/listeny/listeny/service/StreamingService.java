@@ -76,6 +76,10 @@ public class StreamingService extends Application {
         playCurrentSong(currentSongIndex);
     }
 
+    public void stop() {
+        mediaPlayer.stop();
+    }
+
     public static void main(String[] args) {
 
         List<Cancion> canciones = new ArrayList<>();

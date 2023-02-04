@@ -1,5 +1,6 @@
 package com.listeny.listeny.service;
 
+import com.listeny.listeny.models.Cancion;
 import com.listeny.listeny.service.mapper.AbstractServiceMapper;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -65,18 +66,19 @@ public abstract class AbstractBusinessService<E, ID, DTO,  REPO extends JpaRepos
         this.repo.deleteById(id);
     }
 
-    //Obtener una lista de objetos seleccionados al azar
-    public List<Long> getElementoAzarId (int cantidad){
-        Long todas = repo.count();
-        List<Long> elementosAPantalla = new ArrayList<>();
+    //Obtener un set de objetos seleccionados al azar
+
+    public Set<Long> generadorId (int cantidad){
+        Long rango = repo.count();
+        Set<Long> setId = new HashSet<>();
         Random rnd = new Random();
-        while (elementosAPantalla.size() < cantidad){
-            Long num = rnd.nextLong(todas);
-            if(!elementosAPantalla.contains(num)){
-                elementosAPantalla.add(num);
+        while (setId.size() < cantidad){
+            Long num = (long)rnd.nextInt(rango.intValue());
+            if (num != 0 || !setId.contains(num)){
+                setId.add(num);
             }
         }
-        return elementosAPantalla;
+        return setId;
     }
 
 

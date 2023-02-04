@@ -44,19 +44,30 @@ public class CancionService extends AbstractBusinessService<Cancion, Long, Canci
 
     public List<Cancion> getCancionesRecomendadas() {
         List<Cancion> cancionesAPantalla = new ArrayList<>();
-        for (Long id : getElementoAzarId(5)) {
+        for (Long id : generadorId(5)) {
             Optional<Cancion> cancion = getRepo().findById(id);
-            cancion.ifPresent(cancionesAPantalla::add);
+            cancionesAPantalla.add(existeYPublica(cancion));
         }
         return cancionesAPantalla;
     }
 
+
+
+    public Cancion existeYPublica (Optional<Cancion> cancion){
+        if(cancion.isEmpty() || !cancion.get().getPublica()){
+            existeYPublica(getRepo().findById(generadorId(1).iterator().next()));
+        }
+        return cancion.get();
+    }
+
     public List<Cancion> getCancionesParaInicio() {
         List<Cancion> cancionesAPantalla = new ArrayList<>();
-        for (Long id : getElementoAzarId(20)) {
+
+        for (Long id : generadorId(20)) {
             Optional<Cancion> cancion = getRepo().findById(id);
-            cancion.ifPresent(cancionesAPantalla::add);
+            cancionesAPantalla.add(existeYPublica(cancion));
         }
+
         return cancionesAPantalla;
     }
 

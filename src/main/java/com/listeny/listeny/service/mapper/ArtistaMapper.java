@@ -8,11 +8,12 @@ import org.springframework.stereotype.Service;
 @Service
 public class ArtistaMapper extends AbstractServiceMapper<Artista,ArtistaDto> {
 
+    ModelMapper modelMapper = new ModelMapper();
+
     // Convertir entidad a DTO
     @Override
     public ArtistaDto toDto(Artista entidad){
         final ArtistaDto dto = new ArtistaDto();
-        ModelMapper modelMapper = new ModelMapper();
         modelMapper.map(entidad, dto);
         return dto;
     }
@@ -21,7 +22,6 @@ public class ArtistaMapper extends AbstractServiceMapper<Artista,ArtistaDto> {
     @Override
     public Artista toEntity(ArtistaDto dto){
         final Artista entidad = new Artista();
-        ModelMapper modelMapper = new ModelMapper();
         modelMapper.map(dto, entidad);
         return entidad;
     }

@@ -8,11 +8,12 @@ import org.springframework.stereotype.Service;
 @Service
 public class NotificacionMapper extends AbstractServiceMapper<Notificacion, NotificacionDto> {
 
+    ModelMapper modelMapper = new ModelMapper();
+
     // Convertir entidad a DTO
     @Override
     public NotificacionDto toDto(Notificacion entidad){
         final NotificacionDto dto = new NotificacionDto();
-        ModelMapper modelMapper = new ModelMapper();
         modelMapper.map(entidad, dto);
         return dto;
     }
@@ -21,7 +22,6 @@ public class NotificacionMapper extends AbstractServiceMapper<Notificacion, Noti
     @Override
     public Notificacion toEntity(NotificacionDto dto){
         final Notificacion entidad = new Notificacion();
-        ModelMapper modelMapper = new ModelMapper();
         modelMapper.map(dto, entidad);
         return entidad;
     }

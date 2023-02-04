@@ -8,11 +8,12 @@ import org.springframework.stereotype.Service;
 @Service
 public class ReproduccionMapper extends AbstractServiceMapper<Reproduccion,ReproduccionDto> {
 
+    ModelMapper modelMapper = new ModelMapper();
+
     // Convertir entidad a DTO
     @Override
     public ReproduccionDto toDto(Reproduccion entidad){
         final ReproduccionDto dto = new ReproduccionDto();
-        ModelMapper modelMapper = new ModelMapper();
         modelMapper.map(entidad, dto);
         return dto;
     }
@@ -21,7 +22,6 @@ public class ReproduccionMapper extends AbstractServiceMapper<Reproduccion,Repro
     @Override
     public Reproduccion toEntity(ReproduccionDto dto){
         final Reproduccion entidad = new Reproduccion();
-        ModelMapper modelMapper = new ModelMapper();
         modelMapper.map(dto, entidad);
         return entidad;
     }
