@@ -28,6 +28,74 @@
 </head>
 <body>
 
+<!-- modal para subir canción  -->
+<div class="modal fade" id="modalsubircancion" tabindex="-1" aria-labelledby="modalsubircancionLabel" style="display: none;" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="modalsubircancionLabel">Subir canción</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+
+        <form>
+          <div class="form-group">
+            <label for="song_title">Título de la canción:</label>
+            <input type="text" id="song_title" name="song_title">
+          </div>
+          <div class="form-group my-3">
+            <label for="song_image">Imagen para la canción:</label>
+            <input type="file" id="song_image" name="song_image" accept="image/*">
+          </div>
+          <div class="form-group my-3">
+            <label for="song_description">Descripción de la canción:</label>
+            <textarea id="song_description" name="song_description"></textarea>
+          </div>
+          <div class="form-group my-3">
+            <label for="song_category">Categoría de la canción:</label>
+            <select id="song_category" name="song_category">
+              <option value="">Selecciona una categoría</option>
+              <option value="pop">Pop</option>
+              <option value="rock">Rock</option>
+              <option value="flamenco">Flamenco</option>
+              <option value="blues">Blues</option>
+              <option value="jazz">Jazz</option>
+              <option value="rap">Rap</option>
+              <option value="metal">Metal</option>
+              <option value="hard metal">Hard Metal</option>
+              <option value="musica clasica">Música Clásica</option>
+              <option value="soul">Soul</option>
+              <option value="country">Country</option>
+              <option value="electronica">Electrónica</option>
+              <option value="hiphop">Hip-Hop</option>
+              <option value="reggaeton">Reggaeton</option>
+              <option value="punk">Punk</option>
+              <option value="disco">Disco</option>
+              <option value="hard rock">Hard-Rock</option>
+              <option value="pop latino">Pop Latino</option>
+              <option value="gospel">Gospel</option>
+              <option value="heavy metal">Heavy Metal</option>
+              <option value="salsa">Salsa</option>
+              <option value="cumbia">Cumbia</option>
+              <option value="trap">Trap</option>
+              <option value="musica folclorica">Música Folclórica</option>
+              <option value="tango">Tango</option>
+              <option value="samba">Samba</option>
+            </select>
+          </div>
+          <div class="form-group my-3">
+            <label for="song_file">Subir canción:</label>
+            <input type="file" id="song_file" name="song_file" accept="audio/*">
+          </div>
+          <button type="button" class="btn btn-secondary my-3" data-bs-dismiss="modal">Descartar cambios</button>
+          <button type="submit" class="btn btn-primary my-3">Guardar cambios</button>
+        </form>
+
+      </div>
+    </div>
+  </div>
+</div>
+
 <div class="container-fluid">
   <div class="row">
     <button id="toggle-sidebar" class="btn btn-primary d-md-none">
@@ -119,8 +187,7 @@
             <i class="bi bi-play-fill fs-1"></i>
           </button>
           <button class="btn-outline-secondary" type="button" style="float: left; margin-right: 10px; background-color: transparent; border:none;" onclick="document.getElementById('fileInput').click()">
-            <i class="fas fa-upload fs-1"></i>
-            <input type="file" id="fileInput" style="display: none;">
+            <i class="fas fa-upload fs-1" data-bs-toggle="modal" data-bs-target="#modalsubircancion" style="cursor:pointer;"></i>
           </button>
         </div>
       </div>
