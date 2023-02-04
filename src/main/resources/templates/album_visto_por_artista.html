@@ -120,16 +120,47 @@
                             <div class="form-group my-3">
                                 <div class="form-group my-3">
                                     <label for="copiaralbumartista-name">Indique el título</label>
-                                    <input type="text" class="form-control" id="copiaralbumartista-name" placeholder="Indique el título del álbum copiado">
+                                    <input type="text" class="form-control" id="copiaralbumartista-name" placeholder="Indique el título">
                                 </div>
                                 <strong>Seleccione lo que quiere crear en función de la copia:</strong>
                                 <div class="form-check">
-                                    <input class="form-check-input" type="radio" name="tipo" id="playlist" value="playlist" checked>
+                                    <input class="form-check-input" type="radio" name="tipo" id="playlist" value="playlist" onclick="showCategory()">
                                     <label class="form-check-label" for="playlist">Playlist</label>
                                 </div>
                                 <div class="form-check">
-                                    <input class="form-check-input" type="radio" name="tipo" id="album" value="album">
+                                    <input class="form-check-input" type="radio" name="tipo" id="album" value="album" onclick="hideCategory()">
                                     <label class="form-check-label" for="album">Álbum</label>
+                                </div>
+                                <div class="form-group my-3" id="category-container" style="display:none">
+                                    <label for="category">Seleccione una categoría</label>
+                                    <select class="form-control" id="category">
+                                        <option value="pop">Pop</option>
+                                        <option value="rock">Rock</option>
+                                        <option value="flamenco">Flamenco</option>
+                                        <option value="blues">Blues</option>
+                                        <option value="jazz">Jazz</option>
+                                        <option value="rap">Rap</option>
+                                        <option value="metal">Metal</option>
+                                        <option value="hard metal">Hard Metal</option>
+                                        <option value="musica clasica">Música Clásica</option>
+                                        <option value="soul">Soul</option>
+                                        <option value="country">Country</option>
+                                        <option value="electronica">Electrónica</option>
+                                        <option value="hiphop">Hip-Hop</option>
+                                        <option value="reggaeton">Reggaeton</option>
+                                        <option value="punk">Punk</option>
+                                        <option value="disco">Disco</option>
+                                        <option value="hard rock">Hard-Rock</option>
+                                        <option value="pop latino">Pop Latino</option>
+                                        <option value="gospel">Gospel</option>
+                                        <option value="heavy metal">Heavy Metal</option>
+                                        <option value="salsa">Salsa</option>
+                                        <option value="cumbia">Cumbia</option>
+                                        <option value="trap">Trap</option>
+                                        <option value="musica folclorica">Música Folclórica</option>
+                                        <option value="tango">Tango</option>
+                                        <option value="samba">Samba</option>
+                                    </select>
                                 </div>
                                 <button type="button" class="btn btn-secondary my-3" data-bs-dismiss="modal">Descartar cambios</button>
                                 <button type="submit" class="btn btn-primary my-3">Crear</button>
@@ -345,6 +376,16 @@
     $(this).find('.index-number').show();
     $(this).find('.fa-play').hide();
   });
+</script>
+
+<script>
+  function showCategory() {
+    document.getElementById("category-container").style.display = "block";
+  }
+
+  function hideCategory() {
+    document.getElementById("category-container").style.display = "none";
+  }
 </script>
 
 
