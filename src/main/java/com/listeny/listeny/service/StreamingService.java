@@ -52,13 +52,20 @@ public class StreamingService extends Application {
         Media media = new Media(canciones.get(currentSongIndex).getUrl());
         mediaPlayer = new MediaPlayer(media);
         mediaPlayer.play();
+        mediaPlayer.setOnEndOfMedia(new Runnable() {
+            @Override
+            public void run() {
+                if (canciones.size() > 1) {
+                    playNextSong(currentSongIndex);
+                }
+            }
+        });
     }
 
     public void playNextSong(int currentSongIndex) {
         currentSongIndex = (currentSongIndex + 1) % canciones.size();
         mediaPlayer.stop();
         playCurrentSong(currentSongIndex);
-        playNextSong(currentSongIndex);
     }
 
     public void playPreviousSong(int currentSongIndex) {

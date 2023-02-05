@@ -30,25 +30,25 @@ public class SecurityConfig {
                 .sessionCreationPolicy(SessionCreationPolicy.ALWAYS);
 
         http.authorizeHttpRequests()
-                .requestMatchers("/index", "/registro").permitAll()
+                .requestMatchers("/login", "/registro").permitAll()
                 .anyRequest().authenticated()
 
                 .and()
                 .formLogin()
                 .loginPage("/login")
+                .failureUrl("/login")
                 .defaultSuccessUrl("/inicio_logueado_usuario",true)
                 .permitAll()
-
 
                 // Revisar como funciona el logout
                 .and()
                 .logout()
-                .logoutSuccessUrl("/")
+                .logoutSuccessUrl("/login")
                 .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
                 // Revisar utilidad de esto
                 .and()
                 .exceptionHandling()
-                .accessDeniedPage("/accessDenied")
+                .accessDeniedPage("/acceso_denegado")
 
                 .and()
                 .authenticationProvider(authenticationProvider());
