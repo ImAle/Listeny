@@ -8,6 +8,7 @@ import com.listeny.listeny.repository.AlbumRepository;
 import com.listeny.listeny.repository.ListaRepository;
 import com.listeny.listeny.service.mapper.ListaMapper;
 import javafx.stage.Stage;
+import org.checkerframework.checker.units.qual.A;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
@@ -21,6 +22,9 @@ import java.util.Optional;
 @Service
 public class ListaService extends AbstractBusinessService<Lista, Long, ListaDto, ListaRepository, ListaMapper>{
 
+    @Autowired
+    CancionService cancionService;
+    @Autowired
     StreamingService streamingService;
     private final AlbumRepository albumRepository;
 
@@ -141,6 +145,13 @@ public class ListaService extends AbstractBusinessService<Lista, Long, ListaDto,
 
     public void cambiarUnaImagen (MultipartFile file, String imagen) throws IOException {
         cambiarImagen(file, imagen);
+    }
+
+    public void agregarCancion(Lista lista, Cancion cancion) {
+        if(!cancion.getPublica()){
+            cancionService.cambiarEstadoPublico(cancion);
+        }
+        lista.getCancionesLista().add(cancion);
     }
 
 }

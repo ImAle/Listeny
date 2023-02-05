@@ -5,6 +5,7 @@ import com.listeny.listeny.Dto.UsuarioConPassDto;
 import com.listeny.listeny.Dto.UsuariosDto;
 import com.listeny.listeny.models.Usuario;
 import com.listeny.listeny.service.UsuarioService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -22,11 +23,9 @@ import static com.listeny.listeny.util.ValidarFormatoPassword.ValidarFormato;
 @Controller
 public class UsuariosController extends AbstractController<UsuariosDto> {
 
-    private final UsuarioService service;
+    @Autowired
+    UsuarioService service;
     //private final SessionService sessionService = new SessionService();
-    public UsuariosController (UsuarioService service){
-        this.service = service;
-    }
 
     @PostMapping("/login")
     public String iniciarSesion(Usuario usuario){
@@ -70,5 +69,10 @@ public class UsuariosController extends AbstractController<UsuariosDto> {
         return "redirect:/login";
     }
 
+    @GetMapping("/canciones/favoritas")
+    public String favoritas(Model model, Usuario usuario){
+        model.addAttribute("favoritas", usuario.getCancionesFavoritas());
+        return "playlist_canciones_favoritas";
+    }
 
 }

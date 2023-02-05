@@ -7,6 +7,8 @@ import com.listeny.listeny.repository.AlbumRepository;
 import com.listeny.listeny.repository.ListaRepository;
 import com.listeny.listeny.service.mapper.AlbumMapper;
 import javafx.stage.Stage;
+import org.checkerframework.checker.units.qual.A;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.multipart.MultipartFile;
@@ -19,6 +21,9 @@ import java.util.Optional;
 @Service
 public class AlbumService extends AbstractBusinessService<Album, Long, AlbumDto, AlbumRepository, AlbumMapper>{
 
+    @Autowired
+    CancionService cancionService;
+    @Autowired
     StreamingService streamingService;
     private final ListaRepository listaRepository;
 
@@ -36,8 +41,7 @@ public class AlbumService extends AbstractBusinessService<Album, Long, AlbumDto,
         throw new Exception("El álbum no existe");
     }
 
-    public void cambiarEstadoPublico (Long idAlbum) throws Exception {
-        Album album = getAlbumById(idAlbum);
+    public void cambiarEstadoPublico (Album album) {
         if(album.getPublico()){
             album.setPublico(false);
         }else{
@@ -107,6 +111,13 @@ public class AlbumService extends AbstractBusinessService<Album, Long, AlbumDto,
 
     public void cambiarUnaImagen (MultipartFile file, String imagen) throws IOException {
         cambiarImagen(file, imagen);
+    }
+
+    public void agregarCancion(Album album, Cancion cancion) {
+        if(!cancion.getPublica()){
+            cancionService.cambiarEstadoPublico(cancion);
+        }
+        album.getCancionesAlbum().add(cancion);
     }
 
 }

@@ -15,6 +15,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 
 @Service
 public class CancionService extends AbstractBusinessService<Cancion, Long, CancionDto, CancionRepository, CancionMapper> {
@@ -32,8 +33,7 @@ public class CancionService extends AbstractBusinessService<Cancion, Long, Canci
         throw new Exception("Esta canción no existe");
     }
 
-    public void cambiarEstadoPublico (Long idCancion) throws Exception {
-        Cancion cancion = getCancionById(idCancion);
+    public void cambiarEstadoPublico (Cancion cancion) {
         if(cancion.getPublica()){
             cancion.setPublica(false);
         }else{
@@ -125,5 +125,7 @@ public class CancionService extends AbstractBusinessService<Cancion, Long, Canci
         streamingService.setCanciones(canciones);
         streamingService.start(new Stage());
     }
+
+
 
 }

@@ -22,27 +22,27 @@ public class HomeController{
 
 
     @GetMapping("/registro")
-    public String registro(Model usuario){
+    public String registro(Model model){
         UsuarioConPassDto usuarioConPassDto = new UsuarioConPassDto();
-        usuario.addAttribute("usuario", usuarioConPassDto);
+        model.addAttribute("usuario", usuarioConPassDto);
         return "formulario_registro";
     }
 
     @GetMapping("/login")
-    public String login(Model usuario, Model canciones){
-        usuario.addAttribute("usuario", new LoginDto());
-        canciones.addAttribute("canciones", cancionService.getMapper().toDtoListaDeCanciones(cancionService.getCancionesParaInicio()));
+    public String login(Model model){
+        model.addAttribute("usuario", new LoginDto());
+        model.addAttribute("canciones", cancionService.getMapper().toDtoListaDeCanciones(cancionService.getCancionesParaInicio()));
         return "index";
     }
 
     @GetMapping("/home")
-    public String inicio(Model gustos, Model cancionesHistorial, Model listasMasReproducidas, Model albumesMasReproducidos, Model albumesRecomendados){
+    public String inicio(Model model){
 
-        //gustos.addAttribute("gustos", listaService.getMapper().toDtoListaDeLista(listaService.getListasPorGustos(idUsuario)));
-        //cancionesHistorial.addAttribute("cancionesHistorial", cancionService.getMapper().toDtoListaDeCanciones(reproduccionService.getHistorialUltimasCancionesReproducidas(idUsuario)));
-        listasMasReproducidas.addAttribute("listasMasReproducidas", listaService.getListasMasReproducidas());
-        albumesMasReproducidos.addAttribute("albumesMasReproducidos", albumService.getMapper().toDtoListaDeAlbumes((albumService.getAlbumesRecomendados())));
-        albumesRecomendados.addAttribute("albumesRecomendados", albumService.getAlbumesRecomendados());
+        //model.addAttribute("gustos", listaService.getMapper().toDtoListaDeLista(listaService.getListasPorGustos(idUsuario)));
+        //model.addAttribute("cancionesHistorial", cancionService.getMapper().toDtoListaDeCanciones(reproduccionService.getHistorialUltimasCancionesReproducidas(idUsuario)));
+        model.addAttribute("listasMasReproducidas", listaService.getListasMasReproducidas());
+        model.addAttribute("albumesMasReproducidos", albumService.getMapper().toDtoListaDeAlbumes((albumService.getAlbumesRecomendados())));
+        model.addAttribute("albumesRecomendados", albumService.getAlbumesRecomendados());
 
         return "inicio_logueado";
     }

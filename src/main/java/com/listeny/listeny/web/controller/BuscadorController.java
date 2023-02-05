@@ -8,7 +8,12 @@ import com.listeny.listeny.repository.AlbumRepository;
 import com.listeny.listeny.repository.CancionRepository;
 import com.listeny.listeny.repository.ListaRepository;
 import com.listeny.listeny.repository.UsuarioRepository;
+import com.listeny.listeny.service.AlbumService;
+import com.listeny.listeny.service.CancionService;
+import com.listeny.listeny.service.ListaService;
+import com.listeny.listeny.service.UsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -21,33 +26,39 @@ import java.util.List;
 public class BuscadorController {
 
     @Autowired
-    private CancionRepository cancionRepository;
+    CancionService cancionService;
     @Autowired
-    private UsuarioRepository usuarioRepository;
+    UsuarioService usuarioService;
     @Autowired
-    private ListaRepository listaRepository;
+    ListaService listaService;
     @Autowired
-    private AlbumRepository albumRepository;
+    AlbumService albumService;
 
 
     @GetMapping("/canciones")
     public List<Cancion> buscarCancionesPorTitulo(@RequestParam("titulo") String titulo) {
-        return cancionRepository.findByTituloContaining(titulo);
+        return cancionService.getRepo().findByTituloContaining(titulo);
     }
 
     @GetMapping("/listas")
     public List<Lista> buscarListasPorNombre(@RequestParam("nombre") String nombre) {
-        return listaRepository.findByNombreContaining(nombre);
+        return listaService.getRepo().findByNombreContaining(nombre);
     }
 
     @GetMapping("/albumes")
     public List<Album> buscarAlbumesPorTitulo(@RequestParam("titulo") String titulo) {
-        return albumRepository.findByTituloContaining(titulo);
+        return albumService.getRepo().findByTituloContaining(titulo);
     }
 
     @GetMapping("/usuarios")
     public List<Usuario> buscarUsuariosPorNombreUsuario(@RequestParam("nombreUsuario") String nombreUsuario) {
-        return usuarioRepository.findByUsernameConteining(nombreUsuario);
+        return usuarioService.getRepo().findByUsernameConteining(nombreUsuario);
+    }
+
+    @GetMapping("/buscador")
+    public String buscador(Model model){
+        model.addAttribute("recomendadas", listaService.getListasRecomendadas());
+        return "buscador";
     }
 
 }

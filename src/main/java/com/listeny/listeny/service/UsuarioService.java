@@ -7,6 +7,7 @@ import com.listeny.listeny.repository.UsuarioRepository;
 import com.listeny.listeny.service.mapper.UsuarioMapper;
 import jakarta.servlet.ServletContext;
 import jakarta.servlet.http.HttpSession;
+import org.checkerframework.checker.units.qual.A;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -21,6 +22,12 @@ import java.util.Optional;
 @Service
 public class UsuarioService extends AbstractBusinessService<Usuario, Long, UsuariosDto, UsuarioRepository, UsuarioMapper>{
 
+    @Autowired
+    CancionService cancionService;
+    @Autowired
+    ListaService listaService;
+    @Autowired
+    AlbumService albumService;
     @Autowired
     private BCryptPasswordEncoder passwordEncoder;
 
@@ -45,33 +52,46 @@ public class UsuarioService extends AbstractBusinessService<Usuario, Long, Usuar
         throw new Exception("Este usuario no existe");
     }
 
-    public void seguirLista(Lista Lista, Usuario usuario){
-        usuario.getListasFavoritos().add(Lista);
+    public void seguirLista(Lista lista, Usuario usuario){
+        usuario.getListasFavoritos().add(lista);
+        lista.getFavoritaListaUsuario().add(usuario);
         getRepo().save(usuario);
+        listaService.getRepo().save(lista);
     }
-    public void dejarSeguirLista(Lista Lista, Usuario usuario){
-        usuario.getListasFavoritos().remove(Lista);
+    public void dejarSeguirLista(Lista lista, Usuario usuario){
+        usuario.getListasFavoritos().remove(lista);
+        lista.getFavoritaListaUsuario().remove(usuario);
         getRepo().save(usuario);
+        listaService.getRepo().save(lista);
     }
 
     public void seguirCancion(Cancion cancion, Usuario usuario){
          usuario.getCancionesFavoritas().add(cancion);
+         cancion.getFavoritaCancionUsuario().add(usuario);
          getRepo().save(usuario);
+         cancionService.getRepo().save(cancion);
+
     }
 
     public void dejarSeguirCancion(Cancion cancion, Usuario usuario){
         usuario.getCancionesFavoritas().remove(cancion);
+        cancion.getFavoritaCancionUsuario().remove(usuario);
         getRepo().save(usuario);
+        cancionService.getRepo().save(cancion);
     }
 
     public void seguirAlbum(Album album, Usuario usuario){
         usuario.getAlbumesFavoritos().add(album);
+        album.getFavoritoAlbumUsuario().add(usuario);
         getRepo().save(usuario);
+        albumService.getRepo().save(album);
     }
 
     public void dejarSeguirAlbum(Album album, Usuario usuario){
         usuario.getAlbumesFavoritos().remove(album);
+        album.getFavoritoAlbumUsuario().remove(usuario);
         getRepo().save(usuario);
+        albumService.getRepo().save(album);
     }
 
     public List<Lista> getListasFavoritas (Long id) throws Exception {
@@ -79,14 +99,6 @@ public class UsuarioService extends AbstractBusinessService<Usuario, Long, Usuar
          if (usuario.isPresent()){
              return usuario.get().getListasFavoritos();
          }
-        throw new Exception("Este usuario no existe");
-    }
-
-    public List<Cancion> getCancionesFavoritas (Long id) throws Exception {
-        Optional<Usuario> usuario = getRepo().findById(id);
-        if (usuario.isPresent()){
-            return usuario.get().getCancionesFavoritas();
-        }
         throw new Exception("Este usuario no existe");
     }
 

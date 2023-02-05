@@ -4,6 +4,7 @@ import com.listeny.listeny.Dto.CategoriaDto;
 import com.listeny.listeny.models.Cancion;
 import com.listeny.listeny.models.Categoria;
 import com.listeny.listeny.service.CategoriaService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -14,16 +15,14 @@ import java.util.List;
 @Controller
 public class CategoriaController extends AbstractController<CategoriaDto> {
 
-    private CategoriaService service;
+    @Autowired
+    CategoriaService categoriaService;
 
-    public CategoriaController(CategoriaService service){
-        this.service = service;
-    }
 
 //    @GetMapping("/categoria/{id}/canciones")
 //    public String getCancionDeCategoria(@PathVariable("id") Long id, Model model) throws Exception {
-//        List<Cancion> cancionesPorCategoria = service.getCancionesPorCategoria(id);
+//        List<Cancion> cancionesPorCategoria = categoriaService.getCancionesPorCategoria(id);
 //        model.addAttribute("cancionesPorCategoria", cancionesPorCategoria);
-//        return "";
+//        return "canciones_por_categoria";
 //    }
 }

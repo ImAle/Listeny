@@ -3,7 +3,7 @@ package com.listeny.listeny.web.controller;
 import com.listeny.listeny.Dto.ListaDto;
 import com.listeny.listeny.models.Lista;
 import com.listeny.listeny.service.ListaService;
-import com.listeny.listeny.service.ReproduccionService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -14,7 +14,8 @@ import java.util.List;
 @RestController
 public class ListaController extends AbstractController<ListaDto> {
 
-    private final ListaService service;
+    @Autowired
+    ListaService service;
 
     public ListaController(ListaService service) {
         this.service = service;

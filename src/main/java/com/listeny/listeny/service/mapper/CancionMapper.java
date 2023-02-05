@@ -1,15 +1,14 @@
 package com.listeny.listeny.service.mapper;
 
 import com.listeny.listeny.Dto.CancionDto;
+import com.listeny.listeny.Dto.CancionesListadasDto;
 import com.listeny.listeny.Dto.ListaDeCancionDto;
 import com.listeny.listeny.models.Cancion;
-import com.listeny.listeny.models.Lista;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Set;
 
 @Service
 public class CancionMapper extends AbstractServiceMapper<Cancion, CancionDto>{
@@ -30,6 +29,18 @@ public class CancionMapper extends AbstractServiceMapper<Cancion, CancionDto>{
 
         for ( Cancion cancion: entidad) {
             final ListaDeCancionDto dto = new ListaDeCancionDto();
+            modelMapper.map(cancion, dto);
+            cancionesDto.add(dto);
+        }
+
+        return cancionesDto;
+    }
+
+    public List<CancionesListadasDto> toDtoCancionesListadas(List<Cancion> entidad){
+        List<CancionesListadasDto> cancionesDto = new ArrayList<>();
+
+        for ( Cancion cancion: entidad) {
+            final CancionesListadasDto dto = new CancionesListadasDto();
             modelMapper.map(cancion, dto);
             cancionesDto.add(dto);
         }
