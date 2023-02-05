@@ -11,6 +11,7 @@ import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.server.csrf.CookieServerCsrfTokenRepository;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 @EnableWebSecurity
@@ -28,30 +29,33 @@ public class SecurityConfig {
 
         http.sessionManagement()
                 .sessionCreationPolicy(SessionCreationPolicy.ALWAYS);
+        http.formLogin(form -> form
+                .loginPage("/login")
+                .defaultSuccessUrl("/inicio_logueado_usuario",true)
 
+                .permitAll()
+        );
+        http.logout(logout -> logout
+                        .logoutUrl("/login")
+                        .logoutSuccessUrl("/")
+                        .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
+                        /*.logoutSuccessHandler(logoutSuccessHandler)
+                        .invalidateHttpSession(true)
+                        .addLogoutHandler(logoutHandler)
+                        .deleteCookies(cookieNamesToClear)*/
+        );
         http.authorizeHttpRequests()
                 .requestMatchers("/login", "/registro").permitAll()
                 .anyRequest().authenticated()
 
                 .and()
-                .formLogin()
-                .loginPage("/login")
-                .failureUrl("/login")
-                .defaultSuccessUrl("/inicio_logueado_usuario",true)
-                .permitAll()
-
-                // Revisar como funciona el logout
-                .and()
-                .logout()
-                .logoutSuccessUrl("/login")
-                .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
-                // Revisar utilidad de esto
-                .and()
                 .exceptionHandling()
                 .accessDeniedPage("/acceso_denegado")
 
                 .and()
-                .authenticationProvider(authenticationProvider());
+                .authenticationProvider(authenticationProvider())
+                .csrf()
+                ;
 
         return http.build();
     }

@@ -8,6 +8,7 @@ import lombok.Setter;
 
 import java.io.Serializable;
 import java.time.LocalDate;
+import java.time.ZonedDateTime;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -35,7 +36,7 @@ public class Usuario implements Serializable {
     private String clave;
 
     @Column(name="fecha_nacimiento", nullable = false)
-    private LocalDate fechaNacimiento;
+    private Date fechaNacimiento;
 
     @Column(name="sexo", length = 1, nullable = false)
     private char sexo;

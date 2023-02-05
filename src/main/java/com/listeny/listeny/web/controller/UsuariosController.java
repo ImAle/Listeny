@@ -39,27 +39,40 @@ public class UsuariosController extends AbstractController<UsuariosDto> {
         model.addAttribute("usuario", usuariosDto);
         return "/perfil_usuario";
     }
-
+    @GetMapping("/registro")
+    public String registro(Model model){
+        UsuarioConPassDto usuarioConPassDto = new UsuarioConPassDto();
+        model.addAttribute("usuario", usuarioConPassDto);
+        return "formulario_registro";
+    }
 
     // método para manejar el registro del usuario
-    @PostMapping("/registro/save")
+    @PostMapping("/registro")
     public String registration(@Valid @ModelAttribute("usuario") UsuarioConPassDto usuarioDto, BindingResult result, Model model) {
+        System.out.println("los datos a guardar son:" +  usuarioDto.getNombreUsuario());
+        System.out.println("los datos a guardar son:" +  usuarioDto.getFechaNacimiento());
+
         Optional<Usuario> existingEmail = service.getRepo().findUserByEmail(usuarioDto.getEmail());
         Optional<Usuario> existingUsername = service.getRepo().findUserByEmail(usuarioDto.getNombreUsuario());
 
         if (existingEmail.isPresent()) {
+            System.out.println("Rechazo1");
             result.rejectValue("email", null, "Este email ya está en uso");
+
         }
 
         if (existingUsername.isPresent()) {
+            System.out.println("Rechazo2");
             result.rejectValue("nombreUsuario", null, "Este nombre de usuario ya está en uso");
         }
 
         if (!ValidarFormato(usuarioDto.getClave())) {
+            System.out.println("Rechazo3");
             result.rejectValue("clave", null, "Esta clave no cumple los requisitos mínimos de seguridad");
         }
 
         if (result.hasErrors()) {
+            System.out.println("Rechazo4");
             model.addAttribute("usuario", usuarioDto);
             return "redirect:/registro";
         }

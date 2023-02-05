@@ -21,13 +21,6 @@ public class HomeController{
     AlbumService albumService;
 
 
-    @GetMapping("/registro")
-    public String registro(Model model){
-        UsuarioConPassDto usuarioConPassDto = new UsuarioConPassDto();
-        model.addAttribute("usuario", usuarioConPassDto);
-        return "formulario_registro";
-    }
-
     @GetMapping("/login")
     public String login(Model model){
         model.addAttribute("usuario", new LoginDto());
