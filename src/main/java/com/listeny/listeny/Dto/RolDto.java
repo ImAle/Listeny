@@ -16,9 +16,7 @@ import java.util.List;
 @AllArgsConstructor
 public class RolDto {
 
-
     private int id;
-
 
     private String rol;
 

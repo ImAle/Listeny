@@ -8,9 +8,7 @@ import com.listeny.listeny.Dto.UsuariosDto;
 import com.listeny.listeny.models.Usuario;
 import com.listeny.listeny.service.CancionService;
 import com.listeny.listeny.service.RolService;
-import com.listeny.listeny.service.UserServiceImpl;
 import com.listeny.listeny.service.UsuarioService;
-import org.checkerframework.checker.units.qual.A;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
@@ -49,7 +47,7 @@ public class UsuariosController extends AbstractController<UsuariosDto> {
     }
 
     @GetMapping("/login")
-    public String login(Model model){
+    public String login(Model model) {
         LoginDto login = new LoginDto();
         model.addAttribute("usuario", login);
         model.addAttribute("canciones", cancionService.getMapper().toDtoListaDeCanciones(cancionService.getCancionesParaInicio()));
@@ -57,12 +55,12 @@ public class UsuariosController extends AbstractController<UsuariosDto> {
     }
 
     @PostMapping("/login")
-    public String iniciarSesion(@ModelAttribute("usuario") LoginDto usuario){
+    public String iniciarSesion(@ModelAttribute("usuario") LoginDto usuario) {
         System.out.println("Pasa por login, método post");
         Optional<Usuario> existeEmail = service.getRepo().findUserByEmail(usuario.getEmail());
-        if(existeEmail.isPresent()){
+        if (existeEmail.isPresent()) {
             Optional<Usuario> comprobarUsuario = service.getRepo().findUserByEmail(existeEmail.get().getEmail());
-            if(passwordEncoder.matches(usuario.getClave(), comprobarUsuario.get().getClave())){
+            if (passwordEncoder.matches(usuario.getClave(), comprobarUsuario.get().getClave())) {
                 return "inicio_logueado";
             }
             return "index";
@@ -71,28 +69,29 @@ public class UsuariosController extends AbstractController<UsuariosDto> {
     }
 
     @GetMapping("/usuarios/{id}")
-    public String userById (@PathVariable("id") Long idUser, Model model) throws Exception {
+    public String userById(@PathVariable("id") Long idUser, Model model) throws Exception {
         UsuariosDto usuariosDto = service.getMapper().toDto(service.getUsuario(idUser));
         model.addAttribute("usuario", usuariosDto);
         return "/perfil_usuario";
     }
+
     @GetMapping("/registro")
-    public String registro(Model model){
+    public String registro(Model model) {
         UsuarioConPassDto usuarioConPassDto = new UsuarioConPassDto();
         //Obtengo la lista de roles
         final List<RolDto> rolDTOList = rolService.buscarTodos();
         // para las fechas ver referencia
         //https://stackoverflow.com/questions/68662850/datepicker-bootstrap-5
         model.addAttribute("usuario", usuarioConPassDto);
-        model.addAttribute("listaRoles",rolDTOList);
+        model.addAttribute("listaRoles", rolDTOList);
         return "formulario_registro";
     }
 
     // método para manejar el registro del usuario
     @PostMapping("/registro")
     public String registration(@Valid @ModelAttribute("usuario") UsuarioConPassDto usuarioDto, BindingResult result, Model model) {
-        System.out.println("los datos a guardar son:" +  usuarioDto.getSexo());
-        System.out.println("los datos a guardar son:" +  usuarioDto.getNombreUsuario());
+        System.out.println("los datos a guardar son:" + usuarioDto.getSexo());
+        System.out.println("los datos a guardar son:" + usuarioDto.getNombreUsuario());
 
         Optional<Usuario> existingEmail = service.getRepo().findUserByEmail(usuarioDto.getEmail());
         Optional<Usuario> existingUsername = service.getRepo().findByUsername(usuarioDto.getNombreUsuario());
@@ -126,9 +125,9 @@ public class UsuariosController extends AbstractController<UsuariosDto> {
     }
 
     @GetMapping("/canciones/favoritas")
-    public String favoritas(Model model, Usuario usuario){
+    public String favoritas(Model model, Usuario usuario) {
         model.addAttribute("favoritas", usuario.getCancionesFavoritas());
-        return "playlist_canciones_favoritas";
+        return "playlist_canciones_favoritas_usuario";
     }
 
 }

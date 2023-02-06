@@ -21,6 +21,12 @@ public class UsuarioMapper extends AbstractServiceMapper<Usuario, UsuariosDto>{
     @Override
     public UsuariosDto toDto(Usuario entidad){
         final UsuariosDto dto = new UsuariosDto();
+        if(entidad.getSeguidoPor().size() == 0){
+            dto.setSeguidoPor(0);
+        }else {
+            dto.setSeguidoPor(entidad.getSeguidoPor().size());
+        }
+
         modelMapper.map(entidad, dto);
         return dto;
     }

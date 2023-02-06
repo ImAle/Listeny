@@ -9,7 +9,6 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import java.time.LocalDate;
 import java.util.List;
 
 @Getter
@@ -20,13 +19,12 @@ public class UsuariosDto {
 
     private Long id;
     private String nombreUsuario;
-    private LocalDate fechaNacimiento;
     private char sexo;
-    private Integer seguidoPor;
+    private int seguidoPor;
     private String imagen;
     private String imagenFondo;
     private String email;
-    private Boolean esArtista;
+    private RolDto rolDelUsuario;
     private List<Lista> listasFavoritos;
     private List<Album> albumesFavoritos;
     private List<Cancion> cancionesFavoritas;
@@ -38,13 +36,12 @@ public class UsuariosDto {
         return "UsuariosDto{" +
                 "id=" + id +
                 ", nombreUsuario='" + nombreUsuario + '\'' +
-                ", fechaNacimiento='" + fechaNacimiento + '\'' +
                 ", sexo=" + sexo +
                 ", seguidoPor=" + seguidoPor +
                 ", imagen='" + imagen + '\'' +
                 ", imagenFondo='" + imagenFondo + '\'' +
                 ", email='" + email + '\'' +
-                ", esArtista=" + esArtista +
+                ", rol=" + rolDelUsuario +
                 ", listasFavoritos=" + listasFavoritos +
                 ", albumesFavoritos=" + albumesFavoritos +
                 ", cancionesFavoritas=" + cancionesFavoritas +

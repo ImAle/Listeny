@@ -7,8 +7,6 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.io.Serializable;
-import java.time.LocalDate;
-import java.time.ZonedDateTime;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -50,6 +48,9 @@ public class Usuario implements Serializable {
 //    @Column(name="esArtista")
 //    private Boolean esArtista;
 
+    @ManyToOne
+    @JoinColumn(name = "rol", nullable = false)
+    private Rol rolDelUsuario;
 
     @ManyToMany
     @JoinTable (name = "Favoritos_canciones",
@@ -88,11 +89,8 @@ public class Usuario implements Serializable {
     private List<Album> propietarioAlbumes = new ArrayList<>();
 
     @OneToMany(mappedBy = "usuario")
-    private List<Reproduccion> usuarioReporduccion;
+    private List<Reproduccion> usuarioReproduccion;
 
-    @ManyToOne
-    @JoinColumn(name = "rol", nullable = false)
-    private Rol rolDelUsuario;
 
     @Override
     public String toString() {
