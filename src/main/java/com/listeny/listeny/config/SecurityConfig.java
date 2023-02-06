@@ -45,8 +45,8 @@ public class SecurityConfig {
                         .deleteCookies(cookieNamesToClear)*/
         );
         http.authorizeHttpRequests()
-                .requestMatchers("/login", "/registro").permitAll()
-                .anyRequest().authenticated()
+                .requestMatchers("/login", "/registro", "/home").permitAll()
+                .anyRequest().permitAll()
 
                 .and()
                 .exceptionHandling()
