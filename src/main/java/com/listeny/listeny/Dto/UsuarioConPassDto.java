@@ -23,7 +23,7 @@ public class UsuarioConPassDto {
     private String clave;
 
     @DateTimeFormat(pattern = "dd/MM/yyyy")
-    private String  fechaNacimiento;
+    private Date  fechaNacimiento;
     private char sexo;
     private String imagen;
     private String imagenFondo;
