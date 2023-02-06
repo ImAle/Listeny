@@ -1,5 +1,6 @@
 <!doctype html>
-<html lang="es_ES">
+<html lang="es_ES"
+      xmlns:th="http://www.thymeleaf.org">
 <head>
 
     <!-- Required meta tags -->
@@ -281,70 +282,14 @@
             </div>
             <h2 class="text-center my-2">PLAYLISTS MÁS ESCUCHADAS POR LOS USUARIOS</h2>
             <div class="row row-cols-1 row-cols-md-5 g-4 my-2">
-                <div class="col">
+                <div class="col" th:each="lista : ${listasMasReproducidas}">
 
                     <div class="card song-card text-bg-dark">
                         <img class="song-card_image"
                              src="/static/imagenes/lista1.jpg"
                              alt="David Bowie - Aladdin Sane">
                         <div class="card-img-overlay song-card-info">
-                            <h5 class="card-title text-center">Título de la playlist</h5>
-                            <p class="card-text text-center"></p>
-                            <p class="card-inf text-center"></p>
-                        </div>
-                    </div>
-
-                </div>
-                <div class="col">
-
-                    <div class="card song-card text-bg-dark">
-                        <img class="song-card_image"
-                             src="/static/imagenes/lista1.jpg"
-                             alt="David Bowie - Aladdin Sane">
-                        <div class="card-img-overlay song-card-info">
-                            <h5 class="card-title text-center">Título de la playlist</h5>
-                            <p class="card-text text-center"></p>
-                            <p class="card-inf text-center"></p>
-                        </div>
-                    </div>
-
-                </div>
-                <div class="col">
-
-                    <div class="card song-card text-bg-dark">
-                        <img class="song-card_image"
-                             src="/static/imagenes/lista1.jpg"
-                             alt="David Bowie - Aladdin Sane">
-                        <div class="card-img-overlay song-card-info">
-                            <h5 class="card-title text-center">Título de la playlist</h5>
-                            <p class="card-text text-center"></p>
-                            <p class="card-inf text-center"></p>
-                        </div>
-                    </div>
-
-                </div>
-                <div class="col">
-
-                    <div class="card song-card text-bg-dark">
-                        <img class="song-card_image"
-                             src="/static/imagenes/lista1.jpg"
-                             alt="David Bowie - Aladdin Sane">
-                        <div class="card-img-overlay song-card-info">
-                            <h5 class="card-title text-center">Título de la playlist</h5>
-                            <p class="card-text text-center"></p>
-                            <p class="card-inf text-center"></p>
-                        </div>
-                    </div>
-
-                </div>
-                <div class="col">
-
-                    <div class="card song-card text-bg-dark">
-                        <img class="song-card_image"
-                             src="/static/imagenes/lista1.jpg"
-                             alt="David Bowie - Aladdin Sane">
-                        <div class="card-img-overlay song-card-info">
-                            <h5 class="card-title text-center">Título de la playlist</h5>
+                            <h5 class="card-title text-center" th:text="${lista.nombre}"></h5>
                             <p class="card-text text-center"></p>
                             <p class="card-inf text-center"></p>
                         </div>
@@ -354,70 +299,14 @@
             </div>
             <h2 class="text-center my-2">ÁLBUMES MÁS ESCUCHADOS</h2>
             <div class="row row-cols-1 row-cols-md-5 g-4 my-2">
-                <div class="col">
+                <div class="col" th:each="album : ${albumesMasReproducidos}">
 
                     <div class="card song-card text-bg-dark">
                         <img class="song-card_image"
                              src="/static/imagenes/lista1.jpg"
                              alt="David Bowie - Aladdin Sane">
                         <div class="card-img-overlay song-card-info">
-                            <h5 class="card-title text-center">Título de la playlist</h5>
-                            <p class="card-text text-center"></p>
-                            <p class="card-inf text-center"></p>
-                        </div>
-                    </div>
-
-                </div>
-                <div class="col">
-
-                    <div class="card song-card text-bg-dark">
-                        <img class="song-card_image"
-                             src="/static/imagenes/lista1.jpg"
-                             alt="David Bowie - Aladdin Sane">
-                        <div class="card-img-overlay song-card-info">
-                            <h5 class="card-title text-center">Título de la playlist</h5>
-                            <p class="card-text text-center"></p>
-                            <p class="card-inf text-center"></p>
-                        </div>
-                    </div>
-
-                </div>
-                <div class="col">
-
-                    <div class="card song-card text-bg-dark">
-                        <img class="song-card_image"
-                             src="/static/imagenes/lista1.jpg"
-                             alt="David Bowie - Aladdin Sane">
-                        <div class="card-img-overlay song-card-info">
-                            <h5 class="card-title text-center">Título de la playlist</h5>
-                            <p class="card-text text-center"></p>
-                            <p class="card-inf text-center"></p>
-                        </div>
-                    </div>
-
-                </div>
-                <div class="col">
-
-                    <div class="card song-card text-bg-dark">
-                        <img class="song-card_image"
-                             src="/static/imagenes/lista1.jpg"
-                             alt="David Bowie - Aladdin Sane">
-                        <div class="card-img-overlay song-card-info">
-                            <h5 class="card-title text-center">Título de la playlist</h5>
-                            <p class="card-text text-center"></p>
-                            <p class="card-inf text-center"></p>
-                        </div>
-                    </div>
-
-                </div>
-                <div class="col">
-
-                    <div class="card song-card text-bg-dark">
-                        <img class="song-card_image"
-                             src="/static/imagenes/lista1.jpg"
-                             alt="David Bowie - Aladdin Sane">
-                        <div class="card-img-overlay song-card-info">
-                            <h5 class="card-title text-center">Título de la playlist</h5>
+                            <h5 class="card-title text-center" th:text="${album.titulo}"></h5>
                             <p class="card-text text-center"></p>
                             <p class="card-inf text-center"></p>
                         </div>
@@ -425,78 +314,24 @@
 
                 </div>
             </div>
+
             <h2 class="text-center my-2">ÁLBUMES RECOMENDADOS</h2>
             <div class="row row-cols-1 row-cols-md-5 g-4 my-2">
-                <div class="col">
+                <div class="col" th:each="album : ${albumesRecomendados}">
 
                     <div class="card song-card text-bg-dark">
                         <img class="song-card_image"
                              src="/static/imagenes/lista1.jpg"
                              alt="David Bowie - Aladdin Sane">
                         <div class="card-img-overlay song-card-info">
-                            <h5 class="card-title text-center">Título de la playlist</h5>
+                            <h5 class="card-title text-center" th:text="${album.titulo}"></h5>
                             <p class="card-text text-center"></p>
                             <p class="card-inf text-center"></p>
                         </div>
                     </div>
 
                 </div>
-                <div class="col">
-
-                    <div class="card song-card text-bg-dark">
-                        <img class="song-card_image"
-                             src="/static/imagenes/lista1.jpg"
-                             alt="David Bowie - Aladdin Sane">
-                        <div class="card-img-overlay song-card-info">
-                            <h5 class="card-title text-center">Título de la playlist</h5>
-                            <p class="card-text text-center"></p>
-                            <p class="card-inf text-center"></p>
-                        </div>
-                    </div>
-
-                </div>
-                <div class="col">
-
-                    <div class="card song-card text-bg-dark">
-                        <img class="song-card_image"
-                             src="/static/imagenes/lista1.jpg"
-                             alt="David Bowie - Aladdin Sane">
-                        <div class="card-img-overlay song-card-info">
-                            <h5 class="card-title text-center">Título de la playlist</h5>
-                            <p class="card-text text-center"></p>
-                            <p class="card-inf text-center"></p>
-                        </div>
-                    </div>
-
-                </div>
-                <div class="col">
-
-                    <div class="card song-card text-bg-dark">
-                        <img class="song-card_image"
-                             src="/static/imagenes/lista1.jpg"
-                             alt="David Bowie - Aladdin Sane">
-                        <div class="card-img-overlay song-card-info">
-                            <h5 class="card-title text-center">Título de la playlist</h5>
-                            <p class="card-text text-center"></p>
-                            <p class="card-inf text-center"></p>
-                        </div>
-                    </div>
-
-                </div>
-                <div class="col">
-
-                    <div class="card song-card text-bg-dark">
-                        <img class="song-card_image"
-                             src="/static/imagenes/lista1.jpg"
-                             alt="David Bowie - Aladdin Sane">
-                        <div class="card-img-overlay song-card-info">
-                            <h5 class="card-title text-center">Título de la playlist</h5>
-                            <p class="card-text text-center"></p>
-                            <p class="card-inf text-center"></p>
-                        </div>
-                    </div>
-
-                </div>
+            </div>
 
 
                 <div class="collapse" id="collapseExample">
@@ -508,9 +343,9 @@
                 </div>
 
 
-
-            </div>
         </main>
+    </div>
+        
     </div>
 </div>
 

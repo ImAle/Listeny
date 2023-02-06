@@ -51,10 +51,12 @@ public class AlbumService extends AbstractBusinessService<Album, Long, AlbumDto,
     }
 
     public Album existeYPublica (Optional<Album> album){
-        if(album.isEmpty() || !album.get().getPublico()){
-            existeYPublica(getRepo().findById(generadorId(1).iterator().next()));
+
+        if(album.isPresent() && album.get().getPublico()) {
+            return album.get();
         }
-        return album.get();
+
+        return existeYPublica(getRepo().findById(generadorId(1).iterator().next()));
     }
 
     public List<Album> getAlbumesRecomendados() {
