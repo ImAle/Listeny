@@ -1,13 +1,18 @@
 package com.listeny.listeny.web.controller;
 
 
+import com.listeny.listeny.Dto.LoginDto;
 import com.listeny.listeny.Dto.RolDto;
 import com.listeny.listeny.Dto.UsuarioConPassDto;
 import com.listeny.listeny.Dto.UsuariosDto;
 import com.listeny.listeny.models.Usuario;
+import com.listeny.listeny.service.CancionService;
 import com.listeny.listeny.service.RolService;
+import com.listeny.listeny.service.UserServiceImpl;
 import com.listeny.listeny.service.UsuarioService;
+import org.checkerframework.checker.units.qual.A;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -28,20 +33,41 @@ public class UsuariosController extends AbstractController<UsuariosDto> {
 
     @Autowired
     UsuarioService service;
-    //private final SessionService sessionService = new SessionService();
+
+    @Autowired
+    private BCryptPasswordEncoder passwordEncoder;
 
     @Autowired
     RolService rolService;
+
+    @Autowired
+    CancionService cancionService;
 
     public UsuariosController(UsuarioService service, RolService rolService) {
         this.service = service;
         this.rolService = rolService;
     }
 
+    @GetMapping("/login")
+    public String login(Model model){
+        LoginDto login = new LoginDto();
+        model.addAttribute("usuario", login);
+        model.addAttribute("canciones", cancionService.getMapper().toDtoListaDeCanciones(cancionService.getCancionesParaInicio()));
+        return "index";
+    }
+
     @PostMapping("/login")
-    public String iniciarSesion(Usuario usuario){
-        //sessionService.crearSesionDelUsuario(usuario);
-        return "inicio_logueado";
+    public String iniciarSesion(@ModelAttribute("usuario") LoginDto usuario){
+        System.out.println("Pasa por login, método post");
+        Optional<Usuario> existeEmail = service.getRepo().findUserByEmail(usuario.getEmail());
+        if(existeEmail.isPresent()){
+            Optional<Usuario> comprobarUsuario = service.getRepo().findUserByEmail(existeEmail.get().getEmail());
+            if(passwordEncoder.matches(usuario.getClave(), comprobarUsuario.get().getClave())){
+                return "inicio_logueado";
+            }
+            return "index";
+        }
+        return "index";
     }
 
     @GetMapping("/usuarios/{id}")

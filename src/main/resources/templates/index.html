@@ -35,7 +35,7 @@
             <div class="color-barra-lateral card my-3" style="height:1575px">
                 <img src="../static/imagenes/logo.png" class="card-img-top mx-auto my-3 w-50" alt="...">
                 <div class="card-body">
-                    <form class="text-center" action="/login" th:object="${usuario}" method="get">
+                    <form class="text-center" th:action="@{/login}" th:object="${usuario}" method="post">
                         <h5 class="fw-normal mb-5 pb-1" style="letter-spacing: 1px;">Acceda a su cuenta</h5>
                         <div class="form-outline mb-4">
                             <input type="email" th:field="*{email}" id="form2Example17" class="form-control form-control-lg"/>
@@ -47,7 +47,7 @@
                         </div>
 
                         <div class="pt-1 mb-4">
-                            <button class="btn btn-dark btn-lg btn-block" type="button">Iniciar sesión</button>
+                            <button class="btn btn-dark btn-lg btn-block" type="submit">Iniciar sesión</button>
                         </div>
 
                         <a class="small text-muted" href="#!">¿Ha olvidado su contraseña?</a>

@@ -21,13 +21,6 @@ public class HomeController{
     AlbumService albumService;
 
 
-    @GetMapping("/login")
-    public String login(Model model){
-        model.addAttribute("usuario", new LoginDto());
-        model.addAttribute("canciones", cancionService.getMapper().toDtoListaDeCanciones(cancionService.getCancionesParaInicio()));
-        return "index";
-    }
-
     @GetMapping("/home")
     public String inicio(Model model){
 
