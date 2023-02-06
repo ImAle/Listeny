@@ -30,7 +30,7 @@ public class HomeController{
         //model.addAttribute("albumesMasReproducidos", albumService.getMapper().toDtoListaDeAlbumes((albumService.getAlbumesRecomendados())));
         //model.addAttribute("albumesRecomendados", albumService.getAlbumesRecomendados());
 
-        return "inicio_logueado";
+        return "inicio_logueado_usuario";
     }
 
 
