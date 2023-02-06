@@ -1,0 +1,704 @@
+<!doctype html>
+<html th:lang="#{principal.lang}" xmlns:th="https://www.thymeleaf.org" xmlns:layout="https://www.ultraq.net.nz/thymeleaf/layout">
+<head th:fragment="head">
+
+
+
+  <!-- Required meta tags -->
+  <meta th:charset="#{principal.charset}">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <!-- Bootstrap CSS -->
+  <link th:href="@{https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css}" rel="stylesheet"
+        integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous"/>
+
+  <!-- Estilos personalizados -->
+  <link th:href="@{/static/css/custom.css}" type="text/css" rel="stylesheet"/>
+
+  <!-- Bootstarp icons -->
+  <link th:href="@{https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css}" rel="stylesheet"/>
+
+  <!-- Font Awesome JS -->
+  <script th:src="@{https://use.fontawesome.com/releases/v5.0.13/js/solid.js}" defer integrity="sha384-tzzSw1/Vo+0N5UhStP3bvwWPq+uvzCMfrN1fEFe+xBmv1C/AtVX5K0uZtmcHitFZ" crossorigin="anonymous"></script>
+  <script th:src="@{https://use.fontawesome.com/releases/v5.0.13/js/fontawesome.js}" defer integrity="sha384-6OIrr52G08NpOFSZdxxz1xdNSndlD4vdcf/q2myIUVO0VsqaGHJsB0RaBE01VTOY" crossorigin="anonymous"></script>
+
+  <!-- Para que el botón despliegue la barra lateral cuando la pantalla sea pequeña -->
+  <script th:src="@{/jquery-3.6.0.min.js}"></script>
+
+
+  <title>Listeny</title>
+
+
+
+</head>
+<body>
+
+
+
+<!-- Fragmento de la barra lateral de usuario -->
+<aside id="sidebar" th:fragment="aside">
+  <div class="card my-3" style="height:1400px">
+    <img src="/static/imagenes/logo.png" class="card-img-top mx-auto my-3 w-50" alt="...">
+
+    <div class="list-group list-group-flush">
+      <a href="#perfil" title="Perfil" class="list-group-item list-group-item-action d-flex justify-content-start align-items-center my-2">
+        <i class="fas fa-user fa-lg" style="margin-right: 35px;"></i>
+        <h4 class="text-truncate" style="overflow: hidden;">PERFIL</h4>
+      </a>
+      <a href="#buscador" title="Buscador" class="list-group-item list-group-item-action d-flex justify-content-start align-items-center my-2">
+        <i class="fas fa-search fa-lg" style="margin-right: 35px;"></i>
+        <h4 class="text-truncate" style="overflow: hidden;">BUSCADOR</h4>
+      </a>
+      <a href="#subir-canciones" title="Subir canciones" class="list-group-item list-group-item-action d-flex justify-content-start align-items-center my-2">
+        <i class="fas fa-upload fa-lg" style="margin-right: 35px;"></i>
+        <h4 class="text-truncate" style="overflow: hidden;">SUBIR CANCIONES</h4>
+      </a>
+      <a href="#crear-lista" title="Crear lista" class="list-group-item list-group-item-action d-flex justify-content-start align-items-center my-2">
+        <i class="fas fa-list fa-lg" style="margin-right: 35px;"></i>
+        <h4 class="text-truncate" style="overflow: hidden;">CREAR LISTA</h4>
+      </a>
+
+      <hr class="hr bg-black" style="border-top: 5px solid">
+
+      <div class="list-group list-group-flush">
+        <a href="#playlist-1" title="Playlist 1" class="list-group-item list-group-item-action d-flex justify-content-start align-items-center my-2">
+          <i class="fas fa-play-circle fa-lg" style="margin-right: 35px;"></i>
+          <h5 class="text-truncate text-sm">PLAYLIST 1</h5>
+        </a>
+        <a href="#playlist-2" title="Playlist 2" class="list-group-item list-group-item-action d-flex justify-content-start align-items-center my-2">
+          <i class="fas fa-play-circle fa-lg" style="margin-right: 35px;"></i>
+          <h5 class="text-truncate text-sm">PLAYLIST 2</h5>
+        </a>
+        <a href="#playlist-3" title="Playlist 3" class="list-group-item list-group-item-action d-flex justify-content-start align-items-center my-2">
+          <i class="fas fa-play-circle fa-lg" style="margin-right: 35px;"></i>
+          <h5 class="text-truncate text-sm">PLAYLIST 3</h5>
+        </a>
+        <a href="#playlist-3" title="Playlist 3" class="list-group-item list-group-item-action d-flex justify-content-start align-items-center my-2">
+          <i class="fas fa-play-circle fa-lg" style="margin-right: 35px;"></i>
+          <h5 class="text-truncate text-sm">PLAYLIST 4</h5>
+        </a>
+        <a href="#playlist-3" title="Playlist 3" class="list-group-item list-group-item-action d-flex justify-content-start align-items-center my-2">
+          <i class="fas fa-play-circle fa-lg" style="margin-right: 35px;"></i>
+          <h5 class="text-truncate text-sm">PLAYLIST 5</h5>
+        </a>
+        <a href="#playlist-3" title="Playlist 3" class="list-group-item list-group-item-action d-flex justify-content-start align-items-center my-2">
+          <i class="fas fa-play-circle fa-lg" style="margin-right: 35px;"></i>
+          <h5 class="text-truncate text-sm">PLAYLIST 6</h5>
+        </a>
+        <a href="#playlist-3" title="Playlist 3" class="list-group-item list-group-item-action d-flex justify-content-start align-items-center my-2">
+          <i class="fas fa-play-circle fa-lg" style="margin-right: 35px;"></i>
+          <h5 class="text-truncate text-sm">PLAYLIST 7</h5>
+        </a>
+        <a href="#playlist-3" title="Playlist 3" class="list-group-item list-group-item-action d-flex justify-content-start align-items-center my-2">
+          <i class="fas fa-play-circle fa-lg" style="margin-right: 35px;"></i>
+          <h5 class="text-truncate text-sm">PLAYLIST 8</h5>
+        </a>
+        <a href="#playlist-3" title="Playlist 3" class="list-group-item list-group-item-action d-flex justify-content-start align-items-center my-2">
+          <i class="fas fa-play-circle fa-lg" style="margin-right: 35px;"></i>
+          <h5 class="text-truncate text-sm">PLAYLIST 9</h5>
+        </a>
+        <a href="#playlist-3" title="Playlist 3" class="list-group-item list-group-item-action d-flex justify-content-start align-items-center my-2">
+          <i class="fas fa-play-circle fa-lg" style="margin-right: 35px;"></i>
+          <h5 class="text-truncate text-sm">PLAYLIST 10</h5>
+        </a>
+      </div>
+    </div>
+  </div>
+</aside>
+
+
+<!-- Fragmento de la barra lateral de artista -->
+<aside id="sidebar-artista" th:fragment="aside-artista">
+  <div class="card my-3" style="height:1400px">
+    <img src="/static/imagenes/logo.png" class="card-img-top mx-auto my-3 w-50" alt="...">
+
+    <div class="list-group list-group-flush">
+      <a href="#perfil" title="Perfil" class="list-group-item list-group-item-action d-flex justify-content-start align-items-center my-2">
+        <i class="fas fa-user fa-lg" style="margin-right: 35px;"></i>
+        <h4 class="text-truncate" style="overflow: hidden;">PERFIL</h4>
+      </a>
+      <a href="#buscador" title="Buscador" class="list-group-item list-group-item-action d-flex justify-content-start align-items-center my-2">
+        <i class="fas fa-search fa-lg" style="margin-right: 35px;"></i>
+        <h4 class="text-truncate" style="overflow: hidden;">BUSCADOR</h4>
+      </a>
+      <a href="#subir-canciones" title="Subir canciones" class="list-group-item list-group-item-action d-flex justify-content-start align-items-center my-2">
+        <i class="fas fa-upload fa-lg" style="margin-right: 35px;"></i>
+        <h4 class="text-truncate" style="overflow: hidden;">SUBIR CANCIONES</h4>
+      </a>
+      <a href="#crear-lista" title="Crear lista" class="list-group-item list-group-item-action d-flex justify-content-start align-items-center my-2">
+        <i class="fas fa-list fa-lg" style="margin-right: 35px;"></i>
+        <h4 class="text-truncate" style="overflow: hidden;">CREAR LISTA</h4>
+      </a>
+      <a href="#crear-album" title="Crear álbum" class="list-group-item list-group-item-action d-flex justify-content-start align-items-center my-2 mb-3">
+        <i class="fas fa-compact-disc fa-lg" style="margin-right: 35px;"></i>
+        <h4 class="text-truncate" style="overflow: hidden;">CREAR ÁLBUM</h4>
+      </a>
+
+      <hr class="hr bg-black" style="border-top: 5px solid">
+
+      <div class="list-group list-group-flush">
+        <a href="#playlist-1" title="Playlist 1" class="list-group-item list-group-item-action d-flex justify-content-start align-items-center my-2">
+          <i class="fas fa-play-circle fa-lg" style="margin-right: 35px;"></i>
+          <h5 class="text-truncate text-sm">PLAYLIST 1</h5>
+        </a>
+        <a href="#playlist-2" title="Playlist 2" class="list-group-item list-group-item-action d-flex justify-content-start align-items-center my-2">
+          <i class="fas fa-play-circle fa-lg" style="margin-right: 35px;"></i>
+          <h5 class="text-truncate text-sm">PLAYLIST 2</h5>
+        </a>
+        <a href="#playlist-3" title="Playlist 3" class="list-group-item list-group-item-action d-flex justify-content-start align-items-center my-2">
+          <i class="fas fa-play-circle fa-lg" style="margin-right: 35px;"></i>
+          <h5 class="text-truncate text-sm">PLAYLIST 3</h5>
+        </a>
+        <a href="#playlist-3" title="Playlist 3" class="list-group-item list-group-item-action d-flex justify-content-start align-items-center my-2">
+          <i class="fas fa-play-circle fa-lg" style="margin-right: 35px;"></i>
+          <h5 class="text-truncate text-sm">PLAYLIST 4</h5>
+        </a>
+        <a href="#playlist-3" title="Playlist 3" class="list-group-item list-group-item-action d-flex justify-content-start align-items-center my-2">
+          <i class="fas fa-play-circle fa-lg" style="margin-right: 35px;"></i>
+          <h5 class="text-truncate text-sm">PLAYLIST 5</h5>
+        </a>
+        <a href="#playlist-3" title="Playlist 3" class="list-group-item list-group-item-action d-flex justify-content-start align-items-center my-2">
+          <i class="fas fa-play-circle fa-lg" style="margin-right: 35px;"></i>
+          <h5 class="text-truncate text-sm">PLAYLIST 6</h5>
+        </a>
+        <a href="#playlist-3" title="Playlist 3" class="list-group-item list-group-item-action d-flex justify-content-start align-items-center my-2">
+          <i class="fas fa-play-circle fa-lg" style="margin-right: 35px;"></i>
+          <h5 class="text-truncate text-sm">PLAYLIST 7</h5>
+        </a>
+        <a href="#playlist-3" title="Playlist 3" class="list-group-item list-group-item-action d-flex justify-content-start align-items-center my-2">
+          <i class="fas fa-play-circle fa-lg" style="margin-right: 35px;"></i>
+          <h5 class="text-truncate text-sm">PLAYLIST 8</h5>
+        </a>
+        <a href="#playlist-3" title="Playlist 3" class="list-group-item list-group-item-action d-flex justify-content-start align-items-center my-2">
+          <i class="fas fa-play-circle fa-lg" style="margin-right: 35px;"></i>
+          <h5 class="text-truncate text-sm">PLAYLIST 9</h5>
+        </a>
+        <a href="#playlist-3" title="Playlist 3" class="list-group-item list-group-item-action d-flex justify-content-start align-items-center my-2">
+          <i class="fas fa-play-circle fa-lg" style="margin-right: 35px;"></i>
+          <h5 class="text-truncate text-sm">PLAYLIST 10</h5>
+        </a>
+      </div>
+    </div>
+  </div>
+</aside>
+
+
+
+<!-- Modal de usuario copiando álbum - el botón de copiar álbum tiene estos datos para asociarlo al modal: <button class="fs-3" type="button" style="float: left; background-color: black; color: white; border-color: gray; border-width: 1px;" data-bs-toggle="modal" data-bs-target="#modalcopiaralbumusuario">Copiar álbum</button> -->
+<div class="modal fade" id="modalcopiaralbumusuario" tabindex="-1" aria-labelledby="modalcopiaralbumusuarioLabel" style="display: none;" aria-hidden="true" th:fragment="copiar-album-usuario">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="modalcopiaralbumusuarioLabel">Copiar álbum</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form>
+          <div class="form-group my-3">
+            <label for="copiaralbumusuario-name">Indique el título</label>
+            <input type="text" class="form-control" id="copiaralbumusuario-name" placeholder="Indique el título de la lista">
+          </div>
+          <div class="form-group my-3">
+            <label for="song_category_album">Categoría de la lista:</label>
+            <select id="song_category_album" name="song_category">
+              <option value="">Selecciona una categoría</option>
+              <option value="pop">Pop</option>
+              <option value="rock">Rock</option>
+              <option value="flamenco">Flamenco</option>
+              <option value="blues">Blues</option>
+              <option value="jazz">Jazz</option>
+              <option value="rap">Rap</option>
+              <option value="metal">Metal</option>
+              <option value="hard metal">Hard Metal</option>
+              <option value="musica clasica">Música Clásica</option>
+              <option value="soul">Soul</option>
+              <option value="country">Country</option>
+              <option value="electronica">Electrónica</option>
+              <option value="hiphop">Hip-Hop</option>
+              <option value="reggaeton">Reggaeton</option>
+              <option value="punk">Punk</option>
+              <option value="disco">Disco</option>
+              <option value="hard rock">Hard-Rock</option>
+              <option value="pop latino">Pop Latino</option>
+              <option value="gospel">Gospel</option>
+              <option value="heavy metal">Heavy Metal</option>
+              <option value="salsa">Salsa</option>
+              <option value="cumbia">Cumbia</option>
+              <option value="trap">Trap</option>
+              <option value="musica folclorica">Música Folclórica</option>
+              <option value="tango">Tango</option>
+              <option value="samba">Samba</option>
+            </select>
+          </div>
+          <button type="button" class="btn btn-secondary my-3" data-bs-dismiss="modal">Descartar cambios</button>
+          <button type="submit" class="btn btn-primary my-3">Crear playlist</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+<!-- Modal de artista copiando álbum - el botón de copiar álbum tiene estos datos para asociarlo al modal: <button class="fs-3" type="button" style="float: left; background-color: black; color: white; border-color: gray; border-width: 1px;" data-bs-toggle="modal" data-bs-target="#modalcopiaralbumartista">Copiar álbum</button> -->
+<div class="modal fade" id="modalcopiaralbumartista" tabindex="-1" aria-labelledby="modalcopiaralbumartistaLabel" style="display: none;" aria-hidden="true" th:fragment="copiar-album-artista">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="modalcopiaralbumartistaLabel">Copiar álbum</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form>
+          <div class="form-group my-3">
+            <div class="form-group my-3">
+              <label for="copiaralbumartista-name">Indique el título</label>
+              <input type="text" class="form-control" id="copiaralbumartista-name" placeholder="Indique el título">
+            </div>
+            <strong>Seleccione lo que quiere crear en función de la copia:</strong>
+            <div class="form-check">
+              <input class="form-check-input" type="radio" name="tipo" id="playlist" value="playlist" onclick="showCategory()">
+              <label class="form-check-label" for="playlist">Playlist</label>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input" type="radio" name="tipo" id="album" value="album" onclick="hideCategory()">
+              <label class="form-check-label" for="album">Álbum</label>
+            </div>
+            <div class="form-group my-3" id="category-container" style="display:none">
+              <label for="category">Seleccione una categoría</label>
+              <select class="form-control" id="category">
+                <option value="pop">Pop</option>
+                <option value="rock">Rock</option>
+                <option value="flamenco">Flamenco</option>
+                <option value="blues">Blues</option>
+                <option value="jazz">Jazz</option>
+                <option value="rap">Rap</option>
+                <option value="metal">Metal</option>
+                <option value="hard metal">Hard Metal</option>
+                <option value="musica clasica">Música Clásica</option>
+                <option value="soul">Soul</option>
+                <option value="country">Country</option>
+                <option value="electronica">Electrónica</option>
+                <option value="hiphop">Hip-Hop</option>
+                <option value="reggaeton">Reggaeton</option>
+                <option value="punk">Punk</option>
+                <option value="disco">Disco</option>
+                <option value="hard rock">Hard-Rock</option>
+                <option value="pop latino">Pop Latino</option>
+                <option value="gospel">Gospel</option>
+                <option value="heavy metal">Heavy Metal</option>
+                <option value="salsa">Salsa</option>
+                <option value="cumbia">Cumbia</option>
+                <option value="trap">Trap</option>
+                <option value="musica folclorica">Música Folclórica</option>
+                <option value="tango">Tango</option>
+                <option value="samba">Samba</option>
+              </select>
+            </div>
+            <button type="button" class="btn btn-secondary my-3" data-bs-dismiss="modal">Descartar cambios</button>
+            <button type="submit" class="btn btn-primary my-3">Crear</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- Modal de configuración de crear lista - el icono del engranaje tiene estos datos para asociarlo al modal: <i class="fas fa-cog fa-2x gear-icon my-3 d-flex justify-content-end" data-bs-toggle="modal" data-bs-target="#modallista" style="cursor:pointer; position: absolute; bottom: -20px; right: -50px;"></i> -->
+<div class="modal fade" id="modallista" tabindex="-1" aria-labelledby="modallistaLabel" style="display: none;" aria-hidden="true" th:fragment="configuracion-crear-lista">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="modallistaLabel">Configuración de la lista</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form>
+          <div class="form-group my-3">
+            <label for="list-public-switch">Hacer pública</label>
+            <label class="switch">
+              <input type="checkbox" id="list-public-switch" checked>
+              <span class="slider round"></span>
+            </label>
+          </div>
+          <div class="form-group my-3">
+            <label for="list-name">Cambiar nombre de la lista</label>
+            <input type="text" class="form-control" id="list-name" placeholder="Ingrese el nuevo nombre de la lista">
+          </div>
+          <div class="form-group my-3">
+            <label for="list-image">Cambiar imagen de la lista</label>
+            <input type="file" class="form-control-file" id="list-image">
+          </div>
+          <button type="submit" class="btn btn-info my-3">Compartir lista</button>
+          <div class="form-group my-3">
+            <label for="list-description">Actualizar descripción de la lista</label>
+            <textarea class="form-control" id="list-description" rows="3"></textarea>
+          </div>
+          <button type="button" class="btn btn-secondary my-3" data-bs-dismiss="modal">Descartar cambios</button>
+          <button type="submit" class="btn btn-danger my-3">Eliminar lista</button>
+          <button type="submit" class="btn btn-primary my-3">Guardar cambios</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- Modal de configuración de usuario - el icono del engranaje tiene estos datos para asociarlo al modal: <i class="fas fa-cog fa-3x gear-icon my-3" data-bs-toggle="modal" data-bs-target="#modalperfil" style="cursor:pointer;"></i> -->
+<div class="modal fade" id="modalperfil" tabindex="-1" aria-labelledby="modalperfilLabel" style="display: none;" aria-hidden="true" th:fragment="configuracion-usuario">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="modalperfilLabel">Configuración de usuario</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form>
+          <div class="form-group my-3">
+            <label for="email">Cambiar correo electrónico</label>
+            <input type="email" class="form-control" id="email" placeholder="Ingresa tu nuevo correo electrónico">
+          </div>
+          <div class="form-group my-3">
+            <label for="profile-image">Cambiar imagen de perfil</label>
+            <input type="file" class="form-control-file" id="profile-image">
+          </div>
+          <div class="form-group my-3">
+            <label for="banner-image">Cambiar imagen del banner</label>
+            <input type="file" class="form-control-file" id="banner-image">
+          </div>
+          <div class="form-group my-3">
+            <label for="alias">Cambiar alias</label>
+            <input type="text" class="form-control" id="alias" placeholder="Ingresa tu nuevo alias">
+          </div>
+          <div class="form-group my-3">
+            <label for="artist-profile-switch">Perfil de artista</label>
+            <label class="switch">
+              <input type="checkbox" id="artist-profile-switch">
+              <span class="slider round"></span>
+            </label>
+          </div>
+          <button type="button" class="btn btn-secondary my-3" data-bs-dismiss="modal">Descartar cambios</button>
+          <button type="submit" class="btn btn-primary my-3">Guardar cambios</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- Modal de configuración de artista - el icono del engranaje tiene estos datos para asociarlo al modal: <i class="fas fa-cog fa-3x gear-icon my-3" data-bs-toggle="modal" data-bs-target="#modalperfilartista" style="cursor:pointer;"></i> -->
+<div class="modal fade" id="modalperfilartista" tabindex="-1" aria-labelledby="modalperfilartistaLabel" style="display: none;" aria-hidden="true" th:fragment="configuracion-artista">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="modalperfilartistaLabel">Configuración de usuario</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form>
+          <div class="form-group my-3">
+            <label for="email-artista">Cambiar correo electrónico</label>
+            <input type="email" class="form-control" id="email-artista" placeholder="Ingresa tu nuevo correo electrónico">
+          </div>
+          <div class="form-group my-3">
+            <label for="profile-image-artista">Cambiar imagen de perfil</label>
+            <input type="file" class="form-control-file" id="profile-image-artista">
+          </div>
+          <div class="form-group my-3">
+            <label for="banner-image-artista">Cambiar imagen del banner</label>
+            <input type="file" class="form-control-file" id="banner-image-artista">
+          </div>
+          <div class="form-group my-3">
+            <label for="alias-artista">Cambiar alias</label>
+            <input type="text" class="form-control" id="alias-artista" placeholder="Ingresa tu nuevo alias">
+          </div>
+          <div class="form-group my-3">
+            <label for="artist-profile-switch2">Perfil de artista</label>
+            <label class="switch">
+              <input type="checkbox" id="artist-profile-switch2" checked>
+              <span class="slider round"></span>
+            </label>
+          </div>
+          <button type="button" class="btn btn-secondary my-3" data-bs-dismiss="modal">Descartar cambios</button>
+          <button type="submit" class="btn btn-primary my-3">Guardar cambios</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- Modal de usuario copiando lista - el botón de copiar lista tiene estos datos para asociarlo al modal: <button class="fs-3" type="button" style="float: left; background-color: black; color: white; border-color: gray; border-width: 1px; cursor:pointer;" data-bs-toggle="modal" data-bs-target="#modalcopiarlistausuario">Copiar lista</button> -->
+<div class="modal fade" id="modalcopiarlistausuario" tabindex="-1" aria-labelledby="modalcopiarlistausuarioLabel" style="display: none;" aria-hidden="true" th:fragment="copiar-lista-usuario">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="modalcopiarlistausuarioLabel">Copiar lista</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form>
+          <div class="form-group my-3">
+            <label for="copiarlistausuario-name">Indique el título</label>
+            <input type="text" class="form-control" id="copiarlistausuario-name" placeholder="Indique el título">
+          </div>
+          <button type="button" class="btn btn-secondary my-3" data-bs-dismiss="modal">Descartar cambios</button>
+          <button type="submit" class="btn btn-primary my-3">Crear playlist</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- Modal de artista copiando lista - el botón de copiar lista tiene estos datos para asociarlo al modal: <button class="fs-3" type="button" style="float: left; background-color: black; color: white; border-color: gray; border-width: 1px;" data-bs-toggle="modal" data-bs-target="#modalcopiarlistaartista">Copiar lista</button> -->
+<div class="modal fade" id="modalcopiarlistaartista" tabindex="-1" aria-labelledby="modalcopiarlistaartistaLabel" style="display: none;" aria-hidden="true" th:fragment="copiar-lista-artista">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="modalcopiarlistaartistaLabel">Copiar lista</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form>
+          <div class="form-group my-3">
+            <div class="form-group my-3">
+              <label for="copiarlistaartista-name">Indique el título</label>
+              <input type="text" class="form-control" id="copiarlistaartista-name" placeholder="Indique el título">
+            </div>
+            <strong>Seleccione lo que quiere crear en función de la copia:</strong>
+            <div class="form-check">
+              <input class="form-check-input" type="radio" name="tipo" id="playlist2" value="playlist" checked>
+              <label class="form-check-label" for="playlist">Playlist</label>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input" type="radio" name="tipo" id="album2" value="album">
+              <label class="form-check-label" for="album">Álbum</label>
+            </div>
+            <button type="button" class="btn btn-secondary my-3" data-bs-dismiss="modal">Descartar cambios</button>
+            <button type="submit" class="btn btn-primary my-3">Crear</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- Modal para subir canción - el botón para subir la canción tiene estos datos para asociarlo al modal: <i class="fas fa-upload fs-1" data-bs-toggle="modal" data-bs-target="#modalsubircancion" style="cursor:pointer;"></i> -->
+<div class="modal fade" id="modalsubircancion" tabindex="-1" aria-labelledby="modalsubircancionLabel" style="display: none;" aria-hidden="true" th:fragment="subir-cancion">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="modalsubircancionLabel">Subir canción</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form>
+          <div class="form-group">
+            <label for="song_title">Título de la canción:</label>
+            <input type="text" id="song_title" name="song_title">
+          </div>
+          <div class="form-group my-3">
+            <label for="song_image">Imagen para la canción:</label>
+            <input type="file" id="song_image" name="song_image" accept="image/*">
+          </div>
+          <div class="form-group my-3">
+            <label for="song_description">Descripción de la canción:</label>
+            <textarea id="song_description" name="song_description"></textarea>
+          </div>
+          <div class="form-group my-3">
+            <label for="song_category">Categoría de la canción:</label>
+            <select id="song_category" name="song_category">
+              <option value="">Selecciona una categoría</option>
+              <option value="pop">Pop</option>
+              <option value="rock">Rock</option>
+              <option value="flamenco">Flamenco</option>
+              <option value="blues">Blues</option>
+              <option value="jazz">Jazz</option>
+              <option value="rap">Rap</option>
+              <option value="metal">Metal</option>
+              <option value="hard metal">Hard Metal</option>
+              <option value="musica clasica">Música Clásica</option>
+              <option value="soul">Soul</option>
+              <option value="country">Country</option>
+              <option value="electronica">Electrónica</option>
+              <option value="hiphop">Hip-Hop</option>
+              <option value="reggaeton">Reggaeton</option>
+              <option value="punk">Punk</option>
+              <option value="disco">Disco</option>
+              <option value="hard rock">Hard-Rock</option>
+              <option value="pop latino">Pop Latino</option>
+              <option value="gospel">Gospel</option>
+              <option value="heavy metal">Heavy Metal</option>
+              <option value="salsa">Salsa</option>
+              <option value="cumbia">Cumbia</option>
+              <option value="trap">Trap</option>
+              <option value="musica folclorica">Música Folclórica</option>
+              <option value="tango">Tango</option>
+              <option value="samba">Samba</option>
+            </select>
+          </div>
+          <div class="form-group my-3">
+            <label for="song_file">Subir canción:</label>
+            <input type="file" id="song_file" name="song_file" accept="audio/*">
+          </div>
+          <button type="button" class="btn btn-secondary my-3" data-bs-dismiss="modal">Descartar cambios</button>
+          <button type="submit" class="btn btn-primary my-3">Guardar cambios</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- Modal de configuración del álbum (subir canciones a álbum) - el botón del engranaje tiene estos datos para asociarlo al modal: <i class="fas fa-cog fa-2x gear-icon my-3 d-flex justify-content-end" data-bs-toggle="modal" data-bs-target="#modalalbum" style="cursor:pointer; position: absolute; bottom: -20px; right: -50px;"></i> -->
+<div class="modal fade" id="modalalbum" tabindex="-1" aria-labelledby="modalalbumLabel" style="display: none;" aria-hidden="true" th:fragment="configuracion-album">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="modalalbumLabel">Configuración del álbum</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form>
+          <div class="form-group my-3">
+            <label for="album-public-switch">Hacer público</label>
+            <label class="switch">
+              <input type="checkbox" id="album-public-switch" checked>
+              <span class="slider round"></span>
+            </label>
+          </div>
+          <div class="form-group my-3">
+            <label for="album-name">Cambiar nombre del álbum</label>
+            <input type="text" class="form-control" id="album-name" placeholder="Ingrese el nuevo nombre del álbum">
+          </div>
+          <div class="form-group my-3">
+            <label for="album-image">Cambiar imagen del álbum</label>
+            <input type="file" class="form-control-file" id="album-image">
+          </div>
+          <div class="form-group my-3">
+            <label for="album-description">Actualizar descripción del álbum</label>
+            <textarea class="form-control" id="album-description" rows="3"></textarea>
+          </div>
+          <button type="button" class="btn btn-secondary my-3" data-bs-dismiss="modal">Descartar cambios</button>
+          <button type="submit" class="btn btn-danger my-3">Eliminar álbum</button>
+          <button type="submit" class="btn btn-primary my-3">Guardar cambios</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+<!-- Fragmento con los scripts necesarios para todas las páginas -->
+<section th:fragment="script">
+
+  <!-- Para cambiar el icono al hacer click -->
+    <script>
+        $("#megusta").click(function(){
+        var elem= document.getElementById("megusta");
+        var seguido= 'id del usuario con megusta';
+        var seguidor= 'id del usuario activo';
+        elem.classList.toggle("bi-heart");
+        elem.classList.toggle("bi-heart-fill");
+        if (elem.classList.contains('bi-heart')) {
+            url = '/nomegusta'
+        } else {
+            url = "megusta"
+        }
+        $.ajax({
+            url: url,
+            data: {
+            seguido: seguido,
+            seguidor:seguidor
+            },
+            dataType: 'json'
+        })
+        })
+    </script>
+
+  <!-- Optional JavaScript -->
+
+    <script th:src="@{https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js}"
+          integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3"
+          crossorigin="anonymous"></script>
+    <script th:src="@{https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.min.js}"
+          integrity="sha384-cuYeSxntonz0PPNlHhBs68uyIAVpIIOZZ5JqeqvYYIcEL727kskC66kF92t6Xl2V"
+          crossorigin="anonymous"></script>
+
+  <!-- script para ocultar barra lateral al hacerse la ventana pequeña -->
+
+    <script>
+            document.getElementById("toggle-sidebar").addEventListener("click", function(){
+            document.querySelector("aside").classList.toggle("d-md-none");
+        });
+    </script>
+
+  <!-- mostrar/ocultar la barra lateral: -->
+
+    <script>
+    $(document).ready(function(){
+        $("#toggle-sidebar").click(function(){
+        $("#sidebar").toggleClass("d-none");
+        });
+    });
+    </script>
+
+  <!-- Sirve para que cuando te posiciones encima del índice de cada canción de la playlist, este desaparezca y aparece el botón de play -->
+    <script>
+        $('.index').hover(function() {
+        $(this).find('.index-number').hide();
+        $(this).find('.fa-play').show();
+        }, function() {
+        $(this).find('.index-number').show();
+        $(this).find('.fa-play').hide();
+        });
+    </script>
+
+  <!-- Script para que se reproduzca la canción en cuestión y que detecte el reproductor en qué tarjeta se ha clickeado -->
+    <script>
+        document.querySelectorAll('.song-card').forEach(card => {
+        card.addEventListener('click', function () {
+            const id = this.getAttribute('data-song-id');
+            const src = this.getAttribute('data-song-src');
+            const audio = document.querySelector('audio');
+            audio.setAttribute('src', src);
+            audio.setAttribute('data-song-id', id);
+            audio.play();
+        });
+        });
+    </script>
+
+  <!-- Sirve para que aparezca la imagen que subes en el banner -->
+    <script>
+        document.getElementById("banner-file").addEventListener("change", function(e) {
+        var file = e.target.files[0];
+        var reader = new FileReader();
+        reader.onload = function() {
+        var dataURL = reader.result;
+        document.getElementById("banner-img").src = dataURL;
+        };
+        reader.readAsDataURL(file);
+        });
+    </script>
+
+    <script>
+        function showCategory() {
+        document.getElementById("category-container").style.display = "block";
+        }
+
+        function hideCategory() {
+        document.getElementById("category-container").style.display = "none";
+        }
+    </script>
+
+</section>
+
+
+</body>
+</html>

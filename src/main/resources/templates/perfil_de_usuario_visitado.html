@@ -1,0 +1,174 @@
+<!doctype html>
+<html th:lang="#{principal.lang}" xmlns:th="https://www.thymeleaf.org" xmlns:layout="https://www.ultraq.net.nz/thymeleaf/layout">
+<head th:insert="layout.html::head">
+</head>
+<body>
+
+<div class="container-fluid">
+  <div class="row">
+    <button id="toggle-sidebar" class="btn btn-primary d-md-none">
+      <i class="fas fa-bars"></i>
+    </button>
+
+    <div class="col-3 d-md-block d-none">
+      <aside th:insert="layout.html::aside"></aside>
+    </div>
+
+    <!-- Zona derecha de la pantalla  -->
+    <div class="col-9 my-5">
+      <div class="container">
+        <!-- Banner twitter  -->
+        <div class="row text-center" style="min-height: 100px;">
+          <div class="col">Banner Estilo twitter</div>
+        </div>
+        <!-- zona bajo banner  -->
+        <div class="row">
+          <!-- línea separadora -->
+          <!-- el z-index oculta la línea bajo la foto -->
+          <hr class="text-bg-success" style="min-height: 8px; z-index: -1;">
+          <!--  foto usuario -->
+          <!-- el margin-top negativo mueve la foto hacia arriba, sobre el <hr> -->
+          <div class="col-2" >
+            <img src="../static/imagenes/profile.jpg" class="rounded-circle" width="150" style="margin-top: -5.5rem; ">
+          </div>
+          <!--  Nombre de usuario y seguidores  -->
+          <div class="col my-3 mb-3" style="margin-left: -3rem;">
+            <i id="megusta" class="bi bi-heart float-end fs-2" style="color: red; cursor:pointer;"></i>
+            <p>Nombre Usuario</p>
+            <p> Nro. seguidores </p>
+          </div>
+        </div>
+
+        <div class="row my-5" style="border-top: 4px solid gray;">
+          <div class="col-9 text-center my-3 d-flex justify-content-center align-items-center">
+            <h2 class="mx-3">PLAYLISTS</h2>
+            <p class="mx-3">X Creadas</p>
+          </div>
+        </div>
+
+        <div class="row">
+          <ul class="lista list-unstyled d-flex flex-wrap">
+            <li class="elementolista my-3"><a href="playlist_vista_por_artista.html" class="d-flex"><img
+                    src="../static/imagenes/lista1.jpg" alt="" class="rounded-circle mx-3"
+                    style="width: 4rem; height: 4rem;">
+              <p class="my-auto mx-3">"nombre de la lista"</p>
+              <p class="my-auto mx-3">"nro. de canciones"</p>
+            </a></li>
+            <li class="elementolista my-3"><a href="playlist_vista_por_artista.html" class="d-flex"><img
+                    src="../static/imagenes/lista1.jpg" alt="" class="rounded-circle mx-3"
+                    style="width: 4rem; height: 4rem;">
+              <p class="my-auto mx-3">"nombre de la lista"</p>
+              <p class="my-auto mx-3">"nro. de canciones"</p>
+            </a></li>
+            <li class="elementolista my-3"><a href="playlist_vista_por_artista.html" class="d-flex"><img
+                    src="../static/imagenes/lista1.jpg" alt="" class="rounded-circle mx-3"
+                    style="width: 4rem; height: 4rem;">
+              <p class="my-auto mx-3">"nombre de la lista"</p>
+              <p class="my-auto mx-3">"nro. de canciones"</p>
+            </a></li>
+            <li class="elementolista my-3"><a href="playlist_vista_por_artista.html" class="d-flex"><img
+                    src="../static/imagenes/lista1.jpg" alt="" class="rounded-circle mx-3"
+                    style="width: 4rem; height: 4rem;">
+              <p class="my-auto mx-3">"nombre de la lista"</p>
+              <p class="my-auto mx-3">"nro. de canciones"</p>
+            </a></li>
+            <li class="elementolista my-3"><a href="playlist_vista_por_artista.html" class="d-flex"><img
+                    src="../static/imagenes/lista1.jpg" alt="" class="rounded-circle mx-3"
+                    style="width: 4rem; height: 4rem;">
+              <p class="my-auto mx-3">"nombre de la lista"</p>
+              <p class="my-auto mx-3">"nro. de canciones"</p>
+            </a></li>
+            <li class="elementolista my-3"><a href="playlist_vista_por_artista.html" class="d-flex"><img
+                    src="../static/imagenes/lista1.jpg" alt="" class="rounded-circle mx-3"
+                    style="width: 4rem; height: 4rem;">
+              <p class="my-auto mx-3">"nombre de la lista"</p>
+              <p class="my-auto mx-3">"nro. de canciones"</p>
+            </a></li>
+            <li class="elementolista my-3"><a href="playlist_vista_por_artista.html" class="d-flex"><img
+                    src="../static/imagenes/lista1.jpg" alt="" class="rounded-circle mx-3"
+                    style="width: 4rem; height: 4rem;">
+              <p class="my-auto mx-3">"nombre de la lista"</p>
+              <p class="my-auto mx-3">"nro. de canciones"</p>
+            </a></li>
+            <li class="elementolista my-3"><a href="playlist_vista_por_artista.html" class="d-flex"><img
+                    src="../static/imagenes/lista1.jpg" alt="" class="rounded-circle mx-3"
+                    style="width: 4rem; height: 4rem;">
+              <p class="my-auto mx-3">"nombre de la lista"</p>
+              <p class="my-auto mx-3">"nro. de canciones"</p>
+            </a></li>
+            <li class="elementolista my-3"><a href="playlist_vista_por_artista.html" class="d-flex"><img
+                    src="../static/imagenes/lista1.jpg" alt="" class="rounded-circle mx-3"
+                    style="width: 4rem; height: 4rem;">
+              <p class="my-auto mx-3">"nombre de la lista"</p>
+              <p class="my-auto mx-3">"nro. de canciones"</p>
+            </a></li>
+            <li class="elementolista my-3"><a href="playlist_vista_por_artista.html" class="d-flex"><img
+                    src="../static/imagenes/lista1.jpg" alt="" class="rounded-circle mx-3"
+                    style="width: 4rem; height: 4rem;">
+              <p class="my-auto mx-3">"nombre de la lista"</p>
+              <p class="my-auto mx-3">"nro. de canciones"</p>
+            </a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+
+
+  </div>
+</div>
+
+
+<script>
+    $("#megusta").click(function(){
+      var elem= document.getElementById("megusta");
+      var seguido= 'id del usuario con megusta';
+      var seguidor= 'id del usuario activo';
+      elem.classList.toggle("bi-heart");
+      elem.classList.toggle("bi-heart-fill");
+      if (elem.classList.contains('bi-heart')) {
+        url = '/nomegusta'
+      } else {
+        url = "megusta"
+      }
+      $.ajax({
+        url: url,
+        data: {
+          seguido: seguido,
+          seguidor:seguidor
+        },
+        dataType: 'json'
+      })
+    })
+</script>
+
+<!-- Optional JavaScript -->
+
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"
+        integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3"
+        crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.min.js"
+        integrity="sha384-cuYeSxntonz0PPNlHhBs68uyIAVpIIOZZ5JqeqvYYIcEL727kskC66kF92t6Xl2V"
+        crossorigin="anonymous"></script>
+
+<!-- script para ocultar barra lateral al hacerse la ventana pequeña -->
+
+<script>
+        document.getElementById("toggle-sidebar").addEventListener("click", function(){
+        document.querySelector("aside").classList.toggle("d-md-none");
+    });
+</script>
+
+<!-- mostrar/ocultar la barra lateral: -->
+
+<script>
+  $(document).ready(function(){
+    $("#toggle-sidebar").click(function(){
+      $("#sidebar").toggleClass("d-none");
+    });
+  });
+</script>
+
+
+</body>
+</html>

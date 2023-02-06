@@ -230,3 +230,9 @@ body{
   background-color: white;
 }
 /* Hasta aquí color para el body y barra lateral */
+
+
+/* Con esto conseguimos que los índices de las canciones en las tablas, sean más grandes */
+.index-number {
+  font-size: larger;
+}

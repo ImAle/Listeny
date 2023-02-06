@@ -1,0 +1,501 @@
+<!doctype html>
+<html th:lang="#{principal.lang}" xmlns:th="https://www.thymeleaf.org" xmlns:layout="https://www.ultraq.net.nz/thymeleaf/layout">
+<head th:insert="layout.html::head">
+</head>
+<body>
+
+<div class="container-fluid">
+    <div class="row">
+        <button id="toggle-sidebar" class="btn btn-primary d-md-none">
+            <i class="fas fa-bars"></i>
+        </button>
+
+        <div class="col-3 d-md-block d-none">
+            <aside th:insert="layout.html::aside"></aside>
+        </div>
+
+        <main class="col-9 my-3">
+            <h2 class="text-center my-2">PLAYLISTS ALEATORIAS SEGÚN TUS GUSTOS</h2>
+            <div class="row row-cols-1 row-cols-md-5 g-4 my-2">
+                <div class="col">
+
+                    <a href="playlist_vista_por_usuario.html">
+                        <div class="card song-card text-bg-dark">
+                            <img class="song-card_image"
+                                 src="/static/imagenes/lista1.jpg"
+                                 alt="David Bowie - Aladdin Sane">
+                            <div class="card-img-overlay song-card-info">
+                                <h5 class="card-title text-center">Título de la playlist</h5>
+                                <p class="card-text text-center"></p>
+                                <p class="card-inf text-center"></p>
+                            </div>
+                        </div>
+                    </a>
+
+                </div>
+                <div class="col">
+
+                    <a href="playlist_vista_por_usuario.html">
+                        <div class="card song-card text-bg-dark">
+                            <img class="song-card_image"
+                                 src="/static/imagenes/lista1.jpg"
+                                 alt="David Bowie - Aladdin Sane">
+                            <div class="card-img-overlay song-card-info">
+                                <h5 class="card-title text-center">Título de la playlist</h5>
+                                <p class="card-text text-center"></p>
+                                <p class="card-inf text-center"></p>
+                            </div>
+                        </div>
+                    </a>
+
+                </div>
+                <div class="col">
+
+                    <a href="playlist_vista_por_usuario.html">
+                        <div class="card song-card text-bg-dark">
+                            <img class="song-card_image"
+                                 src="/static/imagenes/lista1.jpg"
+                                 alt="David Bowie - Aladdin Sane">
+                            <div class="card-img-overlay song-card-info">
+                                <h5 class="card-title text-center">Título de la playlist</h5>
+                                <p class="card-text text-center"></p>
+                                <p class="card-inf text-center"></p>
+                            </div>
+                        </div>
+                    </a>
+
+                </div>
+                <div class="col">
+
+                    <a href="playlist_vista_por_usuario.html">
+                        <div class="card song-card text-bg-dark">
+                            <img class="song-card_image"
+                                 src="/static/imagenes/lista1.jpg"
+                                 alt="David Bowie - Aladdin Sane">
+                            <div class="card-img-overlay song-card-info">
+                                <h5 class="card-title text-center">Título de la playlist</h5>
+                                <p class="card-text text-center"></p>
+                                <p class="card-inf text-center"></p>
+                            </div>
+                        </div>
+                    </a>
+
+                </div>
+                <div class="col">
+
+                    <a href="playlist_vista_por_usuario.html">
+                        <div class="card song-card text-bg-dark">
+                            <img class="song-card_image"
+                                 src="/static/imagenes/lista1.jpg"
+                                 alt="David Bowie - Aladdin Sane">
+                            <div class="card-img-overlay song-card-info">
+                                <h5 class="card-title text-center">Título de la playlist</h5>
+                                <p class="card-text text-center"></p>
+                                <p class="card-inf text-center"></p>
+                            </div>
+                        </div>
+                    </a>
+
+                </div>
+            </div>
+            <h2 class="text-center my-2">CANCIONES ESCUCHADAS RECIÉNTEMENTE</h2>
+            <div class="row row-cols-1 row-cols-md-5 g-4 my-2">
+                <div class="col">
+
+                    <div class="card song-card text-bg-dark" data-bs-toggle="collapse" data-bs-target="#collapseExample"
+                         role="button" aria-expanded="false" aria-controls="collapseExample" data-song-src="/static/canciones/song1.mp3" data-song-id="song1">
+                        <img class="song-card_image"
+                             src="https://ia803103.us.archive.org/28/items/cd_aladdin-sane_david-bowie_1/cd_aladdin-sane_david-bowie_1_itemimage.png"
+                             alt="David Bowie - Aladdin Sane">
+                        <div class="card-img-overlay song-card-info">
+                            <h5 class="card-title text-center">Título de la canción</h5>
+                            <p class="card-text text-center"></p>
+                            <p class="card-inf text-center"></p>
+                            <div class="song-card_play"></div>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="col">
+
+                    <div class="card song-card text-bg-dark" data-bs-toggle="collapse" data-bs-target="#collapseExample"
+                         role="button" aria-expanded="false" aria-controls="collapseExample">
+                        <img class="song-card_image"
+                             src="https://ia803103.us.archive.org/28/items/cd_aladdin-sane_david-bowie_1/cd_aladdin-sane_david-bowie_1_itemimage.png"
+                             alt="David Bowie - Aladdin Sane">
+                        <div class="card-img-overlay song-card-info">
+                            <h5 class="card-title text-center">Título de la canción</h5>
+                            <p class="card-text text-center"></p>
+                            <p class="card-inf text-center"></p>
+                            <div class="song-card_play"></div>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="col">
+
+                    <div class="card song-card text-bg-dark" data-bs-toggle="collapse" data-bs-target="#collapseExample"
+                         role="button" aria-expanded="false" aria-controls="collapseExample">
+                        <img class="song-card_image"
+                             src="https://ia803103.us.archive.org/28/items/cd_aladdin-sane_david-bowie_1/cd_aladdin-sane_david-bowie_1_itemimage.png"
+                             alt="David Bowie - Aladdin Sane">
+                        <div class="card-img-overlay song-card-info">
+                            <h5 class="card-title text-center">Título de la canción</h5>
+                            <p class="card-text text-center"></p>
+                            <p class="card-inf text-center"></p>
+                            <div class="song-card_play"></div>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="col">
+
+                    <div class="card song-card text-bg-dark" data-bs-toggle="collapse" data-bs-target="#collapseExample"
+                         role="button" aria-expanded="false" aria-controls="collapseExample">
+                        <img class="song-card_image"
+                             src="https://ia803103.us.archive.org/28/items/cd_aladdin-sane_david-bowie_1/cd_aladdin-sane_david-bowie_1_itemimage.png"
+                             alt="David Bowie - Aladdin Sane">
+                        <div class="card-img-overlay song-card-info">
+                            <h5 class="card-title text-center">Título de la canción</h5>
+                            <p class="card-text text-center"></p>
+                            <p class="card-inf text-center"></p>
+                            <div class="song-card_play"></div>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="col">
+
+                    <div class="card song-card text-bg-dark" data-bs-toggle="collapse" data-bs-target="#collapseExample"
+                         role="button" aria-expanded="false" aria-controls="collapseExample">
+                        <img class="song-card_image"
+                             src="https://ia803103.us.archive.org/28/items/cd_aladdin-sane_david-bowie_1/cd_aladdin-sane_david-bowie_1_itemimage.png"
+                             alt="David Bowie - Aladdin Sane">
+                        <div class="card-img-overlay song-card-info">
+                            <h5 class="card-title text-center">Título de la canción</h5>
+                            <p class="card-text text-center"></p>
+                            <p class="card-inf text-center"></p>
+                            <div class="song-card_play"></div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <h2 class="text-center my-2">PLAYLISTS MÁS ESCUCHADAS POR LOS USUARIOS</h2>
+            <div class="row row-cols-1 row-cols-md-5 g-4 my-2">
+                <div class="col">
+
+                    <a href="playlist_vista_por_usuario.html">
+                        <div class="card song-card text-bg-dark">
+                            <img class="song-card_image"
+                                 src="/static/imagenes/lista1.jpg"
+                                 alt="David Bowie - Aladdin Sane">
+                            <div class="card-img-overlay song-card-info">
+                                <h5 class="card-title text-center">Título de la playlist</h5>
+                                <p class="card-text text-center"></p>
+                                <p class="card-inf text-center"></p>
+                            </div>
+                        </div>
+                    </a>
+
+                </div>
+                <div class="col">
+
+                    <a href="playlist_vista_por_usuario.html">
+                        <div class="card song-card text-bg-dark">
+                            <img class="song-card_image"
+                                 src="/static/imagenes/lista1.jpg"
+                                 alt="David Bowie - Aladdin Sane">
+                            <div class="card-img-overlay song-card-info">
+                                <h5 class="card-title text-center">Título de la playlist</h5>
+                                <p class="card-text text-center"></p>
+                                <p class="card-inf text-center"></p>
+                            </div>
+                        </div>
+                    </a>
+
+                </div>
+                <div class="col">
+
+                    <a href="playlist_vista_por_usuario.html">
+                        <div class="card song-card text-bg-dark">
+                            <img class="song-card_image"
+                                 src="/static/imagenes/lista1.jpg"
+                                 alt="David Bowie - Aladdin Sane">
+                            <div class="card-img-overlay song-card-info">
+                                <h5 class="card-title text-center">Título de la playlist</h5>
+                                <p class="card-text text-center"></p>
+                                <p class="card-inf text-center"></p>
+                            </div>
+                        </div>
+                    </a>
+
+                </div>
+                <div class="col">
+
+                    <a href="playlist_vista_por_usuario.html">
+                        <div class="card song-card text-bg-dark">
+                            <img class="song-card_image"
+                                 src="/static/imagenes/lista1.jpg"
+                                 alt="David Bowie - Aladdin Sane">
+                            <div class="card-img-overlay song-card-info">
+                                <h5 class="card-title text-center">Título de la playlist</h5>
+                                <p class="card-text text-center"></p>
+                                <p class="card-inf text-center"></p>
+                            </div>
+                        </div>
+                    </a>
+
+                </div>
+                <div class="col">
+
+                    <a href="playlist_vista_por_usuario.html">
+                        <div class="card song-card text-bg-dark">
+                            <img class="song-card_image"
+                                 src="/static/imagenes/lista1.jpg"
+                                 alt="David Bowie - Aladdin Sane">
+                            <div class="card-img-overlay song-card-info">
+                                <h5 class="card-title text-center">Título de la playlist</h5>
+                                <p class="card-text text-center"></p>
+                                <p class="card-inf text-center"></p>
+                            </div>
+                        </div>
+                    </a>
+
+                </div>
+            </div>
+            <h2 class="text-center my-2">ÁLBUMES MÁS ESCUCHADOS</h2>
+            <div class="row row-cols-1 row-cols-md-5 g-4 my-2">
+                <div class="col">
+
+                    <a href="playlist_vista_por_usuario.html">
+                        <div class="card song-card text-bg-dark">
+                            <img class="song-card_image"
+                                 src="/static/imagenes/lista1.jpg"
+                                 alt="David Bowie - Aladdin Sane">
+                            <div class="card-img-overlay song-card-info">
+                                <h5 class="card-title text-center">Título del álbum</h5>
+                                <p class="card-text text-center"></p>
+                                <p class="card-inf text-center"></p>
+                            </div>
+                        </div>
+                    </a>
+
+                </div>
+                <div class="col">
+
+                    <a href="playlist_vista_por_usuario.html">
+                        <div class="card song-card text-bg-dark">
+                            <img class="song-card_image"
+                                 src="/static/imagenes/lista1.jpg"
+                                 alt="David Bowie - Aladdin Sane">
+                            <div class="card-img-overlay song-card-info">
+                                <h5 class="card-title text-center">Título del álbum</h5>
+                                <p class="card-text text-center"></p>
+                                <p class="card-inf text-center"></p>
+                            </div>
+                        </div>
+                    </a>
+
+                </div>
+                <div class="col">
+
+                    <a href="playlist_vista_por_usuario.html">
+                        <div class="card song-card text-bg-dark">
+                            <img class="song-card_image"
+                                 src="/static/imagenes/lista1.jpg"
+                                 alt="David Bowie - Aladdin Sane">
+                            <div class="card-img-overlay song-card-info">
+                                <h5 class="card-title text-center">Título del álbum</h5>
+                                <p class="card-text text-center"></p>
+                                <p class="card-inf text-center"></p>
+                            </div>
+                        </div>
+                    </a>
+
+                </div>
+                <div class="col">
+
+                    <a href="playlist_vista_por_usuario.html">
+                        <div class="card song-card text-bg-dark">
+                            <img class="song-card_image"
+                                 src="/static/imagenes/lista1.jpg"
+                                 alt="David Bowie - Aladdin Sane">
+                            <div class="card-img-overlay song-card-info">
+                                <h5 class="card-title text-center">Título del álbum</h5>
+                                <p class="card-text text-center"></p>
+                                <p class="card-inf text-center"></p>
+                            </div>
+                        </div>
+                    </a>
+
+                </div>
+                <div class="col">
+
+                    <a href="playlist_vista_por_usuario.html">
+                        <div class="card song-card text-bg-dark">
+                            <img class="song-card_image"
+                                 src="/static/imagenes/lista1.jpg"
+                                 alt="David Bowie - Aladdin Sane">
+                            <div class="card-img-overlay song-card-info">
+                                <h5 class="card-title text-center">Título del álbum</h5>
+                                <p class="card-text text-center"></p>
+                                <p class="card-inf text-center"></p>
+                            </div>
+                        </div>
+                    </a>
+
+                </div>
+            </div>
+            <h2 class="text-center my-2">ÁLBUMES RECOMENDADOS</h2>
+            <div class="row row-cols-1 row-cols-md-5 g-4 my-2">
+                <div class="col">
+
+                    <a href="playlist_vista_por_usuario.html">
+                        <div class="card song-card text-bg-dark">
+                            <img class="song-card_image"
+                                 src="/static/imagenes/lista1.jpg"
+                                 alt="David Bowie - Aladdin Sane">
+                            <div class="card-img-overlay song-card-info">
+                                <h5 class="card-title text-center">Título del álbum</h5>
+                                <p class="card-text text-center"></p>
+                                <p class="card-inf text-center"></p>
+                            </div>
+                        </div>
+                    </a>
+
+                </div>
+                <div class="col">
+
+                    <a href="playlist_vista_por_usuario.html">
+                        <div class="card song-card text-bg-dark">
+                            <img class="song-card_image"
+                                 src="/static/imagenes/lista1.jpg"
+                                 alt="David Bowie - Aladdin Sane">
+                            <div class="card-img-overlay song-card-info">
+                                <h5 class="card-title text-center">Título del álbum</h5>
+                                <p class="card-text text-center"></p>
+                                <p class="card-inf text-center"></p>
+                            </div>
+                        </div>
+                    </a>
+
+                </div>
+                <div class="col">
+
+                    <a href="playlist_vista_por_usuario.html">
+                        <div class="card song-card text-bg-dark">
+                            <img class="song-card_image"
+                                 src="/static/imagenes/lista1.jpg"
+                                 alt="David Bowie - Aladdin Sane">
+                            <div class="card-img-overlay song-card-info">
+                                <h5 class="card-title text-center">Título del álbum</h5>
+                                <p class="card-text text-center"></p>
+                                <p class="card-inf text-center"></p>
+                            </div>
+                        </div>
+                    </a>
+
+                </div>
+                <div class="col">
+
+                    <a href="playlist_vista_por_usuario.html">
+                        <div class="card song-card text-bg-dark">
+                            <img class="song-card_image"
+                                 src="/static/imagenes/lista1.jpg"
+                                 alt="David Bowie - Aladdin Sane">
+                            <div class="card-img-overlay song-card-info">
+                                <h5 class="card-title text-center">Título del álbum</h5>
+                                <p class="card-text text-center"></p>
+                                <p class="card-inf text-center"></p>
+                            </div>
+                        </div>
+                    </a>
+
+                </div>
+                <div class="col">
+
+                    <a href="playlist_vista_por_usuario.html">
+                        <div class="card song-card text-bg-dark">
+                            <img class="song-card_image"
+                                 src="/static/imagenes/lista1.jpg"
+                                 alt="David Bowie - Aladdin Sane">
+                            <div class="card-img-overlay song-card-info">
+                                <h5 class="card-title text-center">Título del álbum</h5>
+                                <p class="card-text text-center"></p>
+                                <p class="card-inf text-center"></p>
+                            </div>
+                        </div>
+                    </a>
+
+                </div>
+
+
+                <div class="collapse" id="collapseExample">
+                    <div class="col-12 player-container">
+                        <audio controls style="width: 100%; height: 100%;">
+                            <source src="sample.mp3">
+                        </audio>
+                    </div>
+                </div>
+
+
+
+            </div>
+        </main>
+    </div>
+</div>
+
+
+
+
+
+
+<!-- Optional JavaScript -->
+
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"
+        integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3"
+        crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.min.js"
+        integrity="sha384-cuYeSxntonz0PPNlHhBs68uyIAVpIIOZZ5JqeqvYYIcEL727kskC66kF92t6Xl2V"
+        crossorigin="anonymous"></script>
+
+<!-- script para ocultar barra lateral al hacerse la ventana pequeña -->
+
+<script>
+        document.getElementById("toggle-sidebar").addEventListener("click", function(){
+        document.querySelector("aside").classList.toggle("d-md-none");
+    });
+
+
+</script>
+
+<!-- mostrar/ocultar la barra lateral: -->
+
+<script>
+  $(document).ready(function(){
+    $("#toggle-sidebar").click(function(){
+      $("#sidebar").toggleClass("d-none");
+    });
+  });
+
+
+</script>
+
+<!-- Script para que se reproduzca la canción en cuestión y que detecte el reproductor en qué tarjeta se ha clickeado -->
+<script>
+  document.querySelectorAll('.song-card').forEach(card => {
+    card.addEventListener('click', function () {
+      const id = this.getAttribute('data-song-id');
+      const src = this.getAttribute('data-song-src');
+      const audio = document.querySelector('audio');
+      audio.setAttribute('src', src);
+      audio.setAttribute('data-song-id', id);
+      audio.play();
+    });
+  });
+</script>
+
+
+</body>
+</html>
