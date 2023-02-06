@@ -15,7 +15,7 @@ public class BuscadorController {
     @GetMapping("/buscador")
     public String buscador(Model model){
         model.addAttribute("recomendadas", listaService.getListasRecomendadas());
-        return "buscador_usuario";
+        return "buscador";
     }
 
 }

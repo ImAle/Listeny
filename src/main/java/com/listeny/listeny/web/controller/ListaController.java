@@ -33,7 +33,7 @@ public class ListaController extends AbstractController<ListaDto> {
     public String getListasPorCategoria(@PathVariable("id") Long idCategoria, Model model){
 
         model.addAttribute("listasDeLaCategoria",service.getListasByCategoria(idCategoria));
-        return "playlists_por_categorias_usuario";
+        return "playlists_por_categorias";
     }
 
 }

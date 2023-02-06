@@ -29,12 +29,13 @@ public class SecurityConfig {
 
         http.sessionManagement()
                 .sessionCreationPolicy(SessionCreationPolicy.ALWAYS);
+
         http.formLogin(form -> form
                 .loginPage("/login")
-                .defaultSuccessUrl("/inicio_logueado_usuario",true)
-
+                .defaultSuccessUrl("/inicio_logueado",true)
                 .permitAll()
         );
+
         http.logout(logout -> logout
                         .logoutUrl("/login")
                         .logoutSuccessUrl("/")

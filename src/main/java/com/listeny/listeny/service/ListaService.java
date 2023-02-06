@@ -78,10 +78,10 @@ public class ListaService extends AbstractBusinessService<Lista, Long, ListaDto,
     }
 
     public Lista existeYPublica (Optional<Lista> lista){
-        if(lista.isEmpty() || !lista.get().getPublica()){
-            existeYPublica(getRepo().findById(generadorId(1).iterator().next()));
+        if(lista.isPresent() || lista.get().getPublica()){
+            return lista.get();
         }
-        return lista.get();
+        return existeYPublica(getRepo().findById(generadorId(1).iterator().next()));
     }
 
 

@@ -72,7 +72,7 @@ public class UsuariosController extends AbstractController<UsuariosDto> {
     public String userById(@PathVariable("id") Long idUser, Model model) throws Exception {
         UsuariosDto usuariosDto = service.getMapper().toDto(service.getUsuario(idUser));
         model.addAttribute("usuario", usuariosDto);
-        return "/perfil_usuario";
+        return "perfil_usuario";
     }
 
     @GetMapping("/registro")
@@ -127,7 +127,7 @@ public class UsuariosController extends AbstractController<UsuariosDto> {
     @GetMapping("/canciones/favoritas")
     public String favoritas(Model model, Usuario usuario) {
         model.addAttribute("favoritas", usuario.getCancionesFavoritas());
-        return "playlist_canciones_favoritas_usuario";
+        return "playlist_canciones_favoritas";
     }
 
 }

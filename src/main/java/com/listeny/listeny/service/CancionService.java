@@ -54,10 +54,10 @@ public class CancionService extends AbstractBusinessService<Cancion, Long, Canci
 
 
     public Cancion existeYPublica (Optional<Cancion> cancion){
-        if(cancion.isEmpty() || !cancion.get().getPublica()){
-            existeYPublica(getRepo().findById(generadorId(1).iterator().next()));
+        if(cancion.isPresent() || cancion.get().getPublica()){
+            return cancion.get();
         }
-        return cancion.get();
+        return existeYPublica(getRepo().findById(generadorId(1).iterator().next()));
     }
 
     public List<Cancion> getCancionesParaInicio() {
