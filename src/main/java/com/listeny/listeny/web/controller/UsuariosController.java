@@ -1,9 +1,11 @@
 package com.listeny.listeny.web.controller;
 
 
+import com.listeny.listeny.Dto.RolDto;
 import com.listeny.listeny.Dto.UsuarioConPassDto;
 import com.listeny.listeny.Dto.UsuariosDto;
 import com.listeny.listeny.models.Usuario;
+import com.listeny.listeny.service.RolService;
 import com.listeny.listeny.service.UsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -15,6 +17,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import javax.validation.Valid;
+import java.util.List;
 import java.util.Optional;
 
 import static com.listeny.listeny.util.ValidarFormatoPassword.ValidarFormato;
@@ -26,6 +29,14 @@ public class UsuariosController extends AbstractController<UsuariosDto> {
     @Autowired
     UsuarioService service;
     //private final SessionService sessionService = new SessionService();
+
+    @Autowired
+    RolService rolService;
+
+    public UsuariosController(UsuarioService service, RolService rolService) {
+        this.service = service;
+        this.rolService = rolService;
+    }
 
     @PostMapping("/login")
     public String iniciarSesion(Usuario usuario){
@@ -42,7 +53,12 @@ public class UsuariosController extends AbstractController<UsuariosDto> {
     @GetMapping("/registro")
     public String registro(Model model){
         UsuarioConPassDto usuarioConPassDto = new UsuarioConPassDto();
+        //Obtengo la lista de roles
+        final List<RolDto> rolDTOList = rolService.buscarTodos();
+        // para las fechas ver referencia
+        //https://stackoverflow.com/questions/68662850/datepicker-bootstrap-5
         model.addAttribute("usuario", usuarioConPassDto);
+        model.addAttribute("listaRoles",rolDTOList);
         return "formulario_registro";
     }
 

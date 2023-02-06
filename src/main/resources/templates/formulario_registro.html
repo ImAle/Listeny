@@ -17,10 +17,16 @@
 
     <!-- Bootstarp icons -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
-
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <!-- Font Awesome JS -->
     <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/solid.js" integrity="sha384-tzzSw1/Vo+0N5UhStP3bvwWPq+uvzCMfrN1fEFe+xBmv1C/AtVX5K0uZtmcHitFZ" crossorigin="anonymous"></script>
     <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/fontawesome.js" integrity="sha384-6OIrr52G08NpOFSZdxxz1xdNSndlD4vdcf/q2myIUVO0VsqaGHJsB0RaBE01VTOY" crossorigin="anonymous"></script>
+
+
+    <!-- BootStrap DatePicker -->
+    <link rel="stylesheet" type="text/css" th:href="@{/css/bootstrap-datepicker.standalone.min.css}"/>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/bootstrap-datetimepicker.min.css}"/>
+
 
     <title>Formulario de registro</title>
 </head>
@@ -59,13 +65,8 @@
                 <div class="form-group my-5">
                     <label for="birthdate">Fecha de nacimiento</label>
                     <div class="input-group date datetimepicker">
-                        <input id="birthdate" type="text" th:field="${usuario.fechaNacimiento}"
+                        <input id="birthdate" type="text" placeholder="DD/MM/YYYY" th:field="${usuario.fechaNacimiento}"
                                th:value="${usuario.fechaNacimiento}" class="form-control" required/>
-                        <div class="input-group-addon input-group-append">
-                            <div class="input-group-text">
-                                <i class="glyphicon glyphicon-calendar fa fa-calendar"></i>
-                            </div>
-                        </div>
                     </div>
                 </div>
 
@@ -78,11 +79,15 @@
                 </div>
 
                 <div class="form-group my-5">
-                    <label for="usertype">Artista/Usuario</label>
-                    <select class="form-control" id="usertype">
-                        <option value="2" th:field="*{rolDelUsuario}">Artista</option>
-                        <option value="1" th:field="*{rolDelUsuario}">Usuario</option>
-                    </select>
+                    <label >Artista/Usuario</label>
+                    <br>
+                    <input type="checkbox"  th:id="usertype + ${role_item.id}"
+                           th:align="center"
+                           th:each="role_item : ${listaRoles}"
+                           th:text="${role_item.rol}"
+                           th:value="${role_item.id}"
+                           th:field="*{rolDelUsuario}"
+                    />
                 </div>
 
                 <div class="form-group my-5">
