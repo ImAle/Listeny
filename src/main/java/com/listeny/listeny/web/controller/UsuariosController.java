@@ -65,11 +65,12 @@ public class UsuariosController extends AbstractController<UsuariosDto> {
     // método para manejar el registro del usuario
     @PostMapping("/registro")
     public String registration(@Valid @ModelAttribute("usuario") UsuarioConPassDto usuarioDto, BindingResult result, Model model) {
+        System.out.println("los datos a guardar son:" +  usuarioDto.getSexo());
         System.out.println("los datos a guardar son:" +  usuarioDto.getNombreUsuario());
-        System.out.println("los datos a guardar son:" +  usuarioDto.getFechaNacimiento());
 
         Optional<Usuario> existingEmail = service.getRepo().findUserByEmail(usuarioDto.getEmail());
-        Optional<Usuario> existingUsername = service.getRepo().findUserByEmail(usuarioDto.getNombreUsuario());
+        Optional<Usuario> existingUsername = service.getRepo().findByUsername(usuarioDto.getNombreUsuario());
+
 
         if (existingEmail.isPresent()) {
             System.out.println("Rechazo1");
@@ -94,7 +95,7 @@ public class UsuariosController extends AbstractController<UsuariosDto> {
         }
 
         Usuario usuario = service.getMapper().toEntity(usuarioDto);
-        service.getRepo().save(usuario);
+        service.encriptarClaveYGuardar(usuario);
         return "redirect:/login";
     }
 

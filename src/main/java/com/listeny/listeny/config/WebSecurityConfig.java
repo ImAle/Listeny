@@ -7,9 +7,9 @@
 //import org.springframework.security.web.csrf.CookieCsrfTokenRepository;
 //
 //@EnableWebSecurity
-//public class SecurityConfig extends WebSecurityConfigurer {
+//public class WebSecurityConfig implements WebSecurityConfigurer {
 //
-//    @Override
+//
 //    protected void configure(HttpSecurity http) throws Exception {
 //        http
 //                .csrf()

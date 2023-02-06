@@ -123,8 +123,8 @@ public class UsuarioService extends AbstractBusinessService<Usuario, Long, Usuar
         getRepo().save(esteUsuario);
     }
 
-    public Usuario encriptarClaveYGuardar(Usuario nuevoUsuario, Usuario usuarioIntroducido) {
-        String passwd= usuarioIntroducido.getClave();
+    public Usuario encriptarClaveYGuardar(Usuario nuevoUsuario) {
+        String passwd= nuevoUsuario.getClave();
         String encodedPassword = passwordEncoder.encode(passwd);
         nuevoUsuario.setClave(encodedPassword);
         getRepo().save(nuevoUsuario);
