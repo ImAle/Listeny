@@ -22,7 +22,8 @@ public class UsuarioConPassDto {
     private String nombreUsuario;
     private String clave;
 
-    @DateTimeFormat(pattern = "dd/MM/yyyy")
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    @Temporal(TemporalType.DATE)
     private Date  fechaNacimiento;
     private char sexo;
     private String imagen;

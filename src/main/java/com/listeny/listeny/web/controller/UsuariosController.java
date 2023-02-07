@@ -10,6 +10,7 @@ import com.listeny.listeny.service.CancionService;
 import com.listeny.listeny.service.RolService;
 import com.listeny.listeny.service.UsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.userdetails.User;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -51,21 +52,30 @@ public class UsuariosController extends AbstractController<UsuariosDto> {
         LoginDto login = new LoginDto();
         model.addAttribute("usuario", login);
         model.addAttribute("canciones", cancionService.getMapper().toDtoListaDeCanciones(cancionService.getCancionesParaInicio()));
-        return "index";
+        return "login";
     }
 
     @PostMapping("/login")
-    public String iniciarSesion(@ModelAttribute("usuario") LoginDto usuario) {
+    public String iniciarSesion(@ModelAttribute(name = "usuario") LoginDto usuario) {
         System.out.println("Pasa por login, método post");
-        Optional<Usuario> existeEmail = service.getRepo().findUserByEmail(usuario.getEmail());
+
+        Optional<Usuario> existeEmail = service.getRepo().findUsuarioByEmail(usuario.getEmail());
+
         if (existeEmail.isPresent()) {
-            Optional<Usuario> comprobarUsuario = service.getRepo().findUserByEmail(existeEmail.get().getEmail());
-            if (passwordEncoder.matches(usuario.getClave(), comprobarUsuario.get().getClave())) {
+            Usuario usuariovalidar = existeEmail.get();
+            //Encriptamos la clave que entra
+            String claveEncrip = passwordEncoder.encode(usuario.getClave());
+            System.out.println("clave introducida: " + claveEncrip );
+            System.out.println("clave original: " + usuariovalidar.getClave() );
+            if (passwordEncoder.matches(usuario.getClave(), usuariovalidar.getClave())) {
                 return "inicio_logueado";
             }
-            return "index";
+            if (passwordEncoder.matches(claveEncrip, usuariovalidar.getClave())) {
+                return "registro";
+            }
+            return "login";
         }
-        return "index";
+        return "login";
     }
 
     @GetMapping("/usuarios/{id}")
@@ -93,14 +103,13 @@ public class UsuariosController extends AbstractController<UsuariosDto> {
         System.out.println("los datos a guardar son:" + usuarioDto.getSexo());
         System.out.println("los datos a guardar son:" + usuarioDto.getNombreUsuario());
 
-        Optional<Usuario> existingEmail = service.getRepo().findUserByEmail(usuarioDto.getEmail());
-        Optional<Usuario> existingUsername = service.getRepo().findByUsername(usuarioDto.getNombreUsuario());
+        Optional<Usuario> existingEmail = service.getRepo().findUsuarioByEmail(usuarioDto.getEmail());
+        Optional<Usuario> existingUsername = service.getRepo().findUsuarioByNombreUsuario(usuarioDto.getNombreUsuario());
 
 
         if (existingEmail.isPresent()) {
             System.out.println("Rechazo1");
             result.rejectValue("email", null, "Este email ya está en uso");
-
         }
 
         if (existingUsername.isPresent()) {
@@ -115,6 +124,7 @@ public class UsuariosController extends AbstractController<UsuariosDto> {
 
         if (result.hasErrors()) {
             System.out.println("Rechazo4");
+            System.out.println(result.getAllErrors());
             model.addAttribute("usuario", usuarioDto);
             return "redirect:/registro";
         }

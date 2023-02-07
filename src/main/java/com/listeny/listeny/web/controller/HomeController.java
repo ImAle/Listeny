@@ -20,7 +20,12 @@ public class HomeController{
     @Autowired
     AlbumService albumService;
 
+    @GetMapping("/")
+    public String inicioraiz(Model model) {
 
+        model.addAttribute("canciones", cancionService.getMapper().toDtoListaDeCanciones(cancionService.getCancionesParaInicio()));
+        return "index";
+    }
     @GetMapping("/home")
     public String inicio(Model model){
 

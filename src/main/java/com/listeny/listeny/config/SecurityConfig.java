@@ -19,7 +19,7 @@ import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 public class SecurityConfig {
 
     @Autowired
-    private UserDetailsService uds; // Gestión de usuario de Spring
+    private UserDetailsService userDetailsService; // Gestión de usuario de Spring
 
     @Autowired
     private BCryptPasswordEncoder encoder;
@@ -46,7 +46,7 @@ public class SecurityConfig {
                         .deleteCookies(cookieNamesToClear)*/
         );
         http.authorizeHttpRequests()
-                .requestMatchers("/login", "/registro").permitAll()
+                .requestMatchers( "/","/registro").permitAll()
                 .anyRequest().authenticated()
 
                 .and()
@@ -55,7 +55,6 @@ public class SecurityConfig {
 
                 .and()
                 .authenticationProvider(authenticationProvider())
-                .csrf()
                 ;
 
         return http.build();
@@ -64,7 +63,7 @@ public class SecurityConfig {
     @Bean
     public AuthenticationProvider authenticationProvider() {
         DaoAuthenticationProvider authenticationProvider = new DaoAuthenticationProvider();
-        authenticationProvider.setUserDetailsService(uds);
+        authenticationProvider.setUserDetailsService(userDetailsService);
         authenticationProvider.setPasswordEncoder(encoder);
         return authenticationProvider;
     }

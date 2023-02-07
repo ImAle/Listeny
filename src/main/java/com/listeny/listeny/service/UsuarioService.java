@@ -8,6 +8,7 @@ import com.listeny.listeny.models.Usuario;
 import com.listeny.listeny.repository.UsuarioRepository;
 import com.listeny.listeny.service.mapper.UsuarioMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
@@ -31,8 +32,6 @@ public class UsuarioService extends AbstractBusinessService<Usuario, Long, Usuar
     public UsuarioService(UsuarioRepository repo, UsuarioMapper mapper) {
         super(repo, mapper);
     }
-
-
     public UsuariosDto getUsuarioDto (Long idUsuario) throws Exception {
          Optional<UsuariosDto> usuariosDto = getRepo().findById(idUsuario).map(getMapper()::toDto);
          if (usuariosDto.isPresent()){
