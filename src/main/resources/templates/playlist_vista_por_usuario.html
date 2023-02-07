@@ -1,5 +1,6 @@
 <!doctype html>
-<html th:lang="#{principal.lang}" xmlns:th="https://www.thymeleaf.org" xmlns:layout="https://www.ultraq.net.nz/thymeleaf/layout">
+<html xmlns:th="https://www.thymeleaf.org"
+      xmlns:layout="https://www.ultraq.net.nz/thymeleaf/layout">
 <head th:insert="layout.html::head">
 </head>
 <body>
@@ -44,7 +45,7 @@
           <div class="position-relative">
           <img src="/static/imagenes/lista1.jpg" class="img-fluid rounded-img" style="max-width:95%; max-height:95%;">
           </div>
-          <div class="col">
+          <div class="col" th:object="${lista}">
             <div class="row">
               <div class="col-md-8 position-relative">
                 <h2 class="mb-3">Nombre de la playlist</h2>

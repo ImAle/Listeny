@@ -20,6 +20,7 @@ public class AlbumController extends AbstractController<AlbumDto> {
     @GetMapping("/album/{id}")
     public String vistaAlbum (@PathVariable("id") Long id, Model model) throws Exception {
         model.addAttribute("album", service.getAlbumById(id));
+        model.addAttribute("canciones", service.getAlbumById(id).getCancionesAlbum());
         return "album_visto_por_usuario";
     }
 }

@@ -7,6 +7,7 @@ import com.listeny.listeny.models.Lista;
 import com.listeny.listeny.repository.CancionRepository;
 import com.listeny.listeny.service.mapper.CancionMapper;
 import javafx.stage.Stage;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -15,11 +16,11 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
-import java.util.Set;
 
 @Service
 public class CancionService extends AbstractBusinessService<Cancion, Long, CancionDto, CancionRepository, CancionMapper> {
 
+    @Autowired
     StreamingService streamingService;
     public CancionService(CancionRepository cancionRepository, CancionMapper mapper) {
         super(cancionRepository, mapper);
@@ -54,7 +55,7 @@ public class CancionService extends AbstractBusinessService<Cancion, Long, Canci
 
 
     public Cancion existeYPublica (Optional<Cancion> cancion){
-        if(cancion.isPresent() || cancion.get().getPublica()){
+        if(cancion.isPresent() && cancion.get().getPublica()){
             return cancion.get();
         }
         return existeYPublica(getRepo().findById(generadorId(1).iterator().next()));

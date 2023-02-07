@@ -1,21 +1,18 @@
 package com.listeny.listeny.service;
 
-import com.listeny.listeny.Dto.UsuarioConPassDto;
 import com.listeny.listeny.Dto.UsuariosDto;
-import com.listeny.listeny.models.*;
+import com.listeny.listeny.models.Album;
+import com.listeny.listeny.models.Cancion;
+import com.listeny.listeny.models.Lista;
+import com.listeny.listeny.models.Usuario;
 import com.listeny.listeny.repository.UsuarioRepository;
 import com.listeny.listeny.service.mapper.UsuarioMapper;
-import jakarta.servlet.ServletContext;
-import jakarta.servlet.http.HttpSession;
-import org.checkerframework.checker.units.qual.A;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
-import org.springframework.ui.Model;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
-import java.util.Enumeration;
 import java.util.List;
 import java.util.Optional;
 

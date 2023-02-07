@@ -1,18 +1,18 @@
 package com.listeny.listeny.service;
 
 import com.google.common.collect.Lists;
-import com.listeny.listeny.Dto.ListaDeListaDto;
 import com.listeny.listeny.Dto.ListaDto;
-import com.listeny.listeny.models.*;
+import com.listeny.listeny.models.Album;
+import com.listeny.listeny.models.Cancion;
+import com.listeny.listeny.models.Lista;
+import com.listeny.listeny.models.Usuario;
 import com.listeny.listeny.repository.AlbumRepository;
 import com.listeny.listeny.repository.ListaRepository;
 import com.listeny.listeny.service.mapper.ListaMapper;
 import javafx.stage.Stage;
-import org.checkerframework.checker.units.qual.A;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
-
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -78,7 +78,7 @@ public class ListaService extends AbstractBusinessService<Lista, Long, ListaDto,
     }
 
     public Lista existeYPublica (Optional<Lista> lista){
-        if(lista.isPresent() || lista.get().getPublica()){
+        if(lista.isPresent() && lista.get().getPublica()){
             return lista.get();
         }
         return existeYPublica(getRepo().findById(generadorId(1).iterator().next()));

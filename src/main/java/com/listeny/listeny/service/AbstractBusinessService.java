@@ -44,7 +44,7 @@ public abstract class AbstractBusinessService<E, ID, DTO,  REPO extends JpaRepos
     }
 
     //Guardar
-    public DTO guardar(DTO dto) throws Exception {
+    public DTO save(DTO dto) throws Exception {
         //Traduzco del dto con datos de entrada a la entidad
         final E entidad = mapper.toEntity(dto);
         //Guardo en la base de datos
@@ -52,7 +52,7 @@ public abstract class AbstractBusinessService<E, ID, DTO,  REPO extends JpaRepos
         //Traducir la entidad a DTO para devolver el DTO
         return mapper.toDto(entidadGuardada);
     }
-    public void  guardar(List<DTO> dtos) throws Exception {
+    public void  save(List<DTO> dtos) throws Exception {
         Iterator<DTO> it = dtos.iterator();
 
         // mientras al iterador tenga siguiente
@@ -77,7 +77,7 @@ public abstract class AbstractBusinessService<E, ID, DTO,  REPO extends JpaRepos
         Random rnd = new Random();
         while (setId.size() < cantidad){
             Long num = (long)rnd.nextInt(rango.intValue());
-            if (num != 0 || !setId.contains(num)){
+            if (num != 0 && !setId.contains(num)){
                 setId.add(num);
             }
         }
