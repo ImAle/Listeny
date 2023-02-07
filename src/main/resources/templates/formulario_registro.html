@@ -70,11 +70,15 @@
                 </div>
 
                 <div class="form-group my-5">
-                    <label for="usertype">Artista/Usuario</label>
-                    <select class="form-control" id="usertype">
-                        <option value="2" th:field="*{rolDelUsuario}">Artista</option>
-                        <option value="1" th:field="*{rolDelUsuario}">Usuario</option>
-                    </select>
+                    <label >Artista/Usuario</label>
+                    <br>
+                    <input type="checkbox"  th:id="usertype + ${role_item.id}"
+                           th:align="center"
+                           th:each="role_item : ${listaRoles}"
+                           th:text="${role_item.rol}"
+                           th:value="${role_item.id}"
+                           th:field="*{rolDelUsuario}"
+                    />
                 </div>
 
                 <div class="form-group my-5">
