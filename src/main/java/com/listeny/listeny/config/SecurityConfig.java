@@ -47,7 +47,7 @@ public class SecurityConfig {
         );
         http.authorizeHttpRequests()
                 .requestMatchers("/login", "/registro").permitAll()
-                .anyRequest().permitAll()
+                .anyRequest().authenticated()
 
                 .and()
                 .exceptionHandling()
