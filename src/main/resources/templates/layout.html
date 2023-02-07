@@ -2,8 +2,6 @@
 <html th:lang="#{principal.lang}" xmlns:th="https://www.thymeleaf.org" xmlns:layout="https://www.ultraq.net.nz/thymeleaf/layout">
 <head th:fragment="head">
 
-
-
   <!-- Required meta tags -->
   <meta th:charset="#{principal.charset}">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -34,8 +32,6 @@
 
 </head>
 <body>
-
-
 
 <!-- Fragmento de la barra lateral de usuario -->
 <aside id="sidebar" th:fragment="aside">
@@ -107,7 +103,6 @@
     </div>
   </div>
 </aside>
-
 
 <!-- Fragmento de la barra lateral de artista -->
 <aside id="sidebar-artista" th:fragment="aside-artista">
@@ -184,8 +179,6 @@
   </div>
 </aside>
 
-
-
 <!-- Modal de usuario copiando álbum - el botón de copiar álbum tiene estos datos para asociarlo al modal: <button class="fs-3" type="button" style="float: left; background-color: black; color: white; border-color: gray; border-width: 1px;" data-bs-toggle="modal" data-bs-target="#modalcopiaralbumusuario">Copiar álbum</button> -->
 <div class="modal fade" id="modalcopiaralbumusuario" tabindex="-1" aria-labelledby="modalcopiaralbumusuarioLabel" style="display: none;" aria-hidden="true" th:fragment="copiar-album-usuario">
   <div class="modal-dialog">
@@ -195,14 +188,15 @@
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-        <form>
+        <form action="" method="POST">
           <div class="form-group my-3">
             <label for="copiaralbumusuario-name">Indique el título</label>
-            <input type="text" class="form-control" id="copiaralbumusuario-name" placeholder="Indique el título de la lista">
+            <input type="text" class="form-control" name="titulolista" id="copiaralbumusuario-name" placeholder="Indique el título de la lista">
           </div>
           <div class="form-group my-3">
             <label for="song_category_album">Categoría de la lista:</label>
             <select id="song_category_album" name="song_category">
+              <!-- Relenar la lista desde los valores de la tabla de categorías. Usar un for -->
               <option value="">Selecciona una categoría</option>
               <option value="pop">Pop</option>
               <option value="rock">Rock</option>
@@ -240,8 +234,6 @@
   </div>
 </div>
 
-
-
 <!-- Modal de artista copiando álbum - el botón de copiar álbum tiene estos datos para asociarlo al modal: <button class="fs-3" type="button" style="float: left; background-color: black; color: white; border-color: gray; border-width: 1px;" data-bs-toggle="modal" data-bs-target="#modalcopiaralbumartista">Copiar álbum</button> -->
 <div class="modal fade" id="modalcopiaralbumartista" tabindex="-1" aria-labelledby="modalcopiaralbumartistaLabel" style="display: none;" aria-hidden="true" th:fragment="copiar-album-artista">
   <div class="modal-dialog">
@@ -251,11 +243,11 @@
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-        <form>
+        <form action="" method="POST">
           <div class="form-group my-3">
             <div class="form-group my-3">
               <label for="copiaralbumartista-name">Indique el título</label>
-              <input type="text" class="form-control" id="copiaralbumartista-name" placeholder="Indique el título">
+              <input type="text" class="form-control" name="tituloalbum" id="copiaralbumartista-name" placeholder="Indique el título">
             </div>
             <strong>Seleccione lo que quiere crear en función de la copia:</strong>
             <div class="form-check">
@@ -306,7 +298,6 @@
   </div>
 </div>
 
-
 <!-- Modal de configuración de crear lista - el icono del engranaje tiene estos datos para asociarlo al modal: <i class="fas fa-cog fa-2x gear-icon my-3 d-flex justify-content-end" data-bs-toggle="modal" data-bs-target="#modallista" style="cursor:pointer; position: absolute; bottom: -20px; right: -50px;"></i> -->
 <div class="modal fade" id="modallista" tabindex="-1" aria-labelledby="modallistaLabel" style="display: none;" aria-hidden="true" th:fragment="configuracion-crear-lista">
   <div class="modal-dialog">
@@ -338,14 +329,13 @@
             <textarea class="form-control" id="list-description" rows="3"></textarea>
           </div>
           <button type="button" class="btn btn-secondary my-3" data-bs-dismiss="modal">Descartar cambios</button>
-          <button type="submit" class="btn btn-danger my-3">Eliminar lista</button>
+          <button type="buton" class="btn btn-danger my-3" onclick="location.href='/eliminarlista'">Eliminar lista</button>
           <button type="submit" class="btn btn-primary my-3">Guardar cambios</button>
         </form>
       </div>
     </div>
   </div>
 </div>
-
 
 <!-- Modal de configuración de usuario - el icono del engranaje tiene estos datos para asociarlo al modal: <i class="fas fa-cog fa-3x gear-icon my-3" data-bs-toggle="modal" data-bs-target="#modalperfil" style="cursor:pointer;"></i> -->
 <div class="modal fade" id="modalperfil" tabindex="-1" aria-labelledby="modalperfilLabel" style="display: none;" aria-hidden="true" th:fragment="configuracion-usuario">
@@ -388,7 +378,6 @@
   </div>
 </div>
 
-
 <!-- Modal de configuración de artista - el icono del engranaje tiene estos datos para asociarlo al modal: <i class="fas fa-cog fa-3x gear-icon my-3" data-bs-toggle="modal" data-bs-target="#modalperfilartista" style="cursor:pointer;"></i> -->
 <div class="modal fade" id="modalperfilartista" tabindex="-1" aria-labelledby="modalperfilartistaLabel" style="display: none;" aria-hidden="true" th:fragment="configuracion-artista">
   <div class="modal-dialog">
@@ -430,7 +419,6 @@
   </div>
 </div>
 
-
 <!-- Modal de usuario copiando lista - el botón de copiar lista tiene estos datos para asociarlo al modal: <button class="fs-3" type="button" style="float: left; background-color: black; color: white; border-color: gray; border-width: 1px; cursor:pointer;" data-bs-toggle="modal" data-bs-target="#modalcopiarlistausuario">Copiar lista</button> -->
 <div class="modal fade" id="modalcopiarlistausuario" tabindex="-1" aria-labelledby="modalcopiarlistausuarioLabel" style="display: none;" aria-hidden="true" th:fragment="copiar-lista-usuario">
   <div class="modal-dialog">
@@ -452,7 +440,6 @@
     </div>
   </div>
 </div>
-
 
 <!-- Modal de artista copiando lista - el botón de copiar lista tiene estos datos para asociarlo al modal: <button class="fs-3" type="button" style="float: left; background-color: black; color: white; border-color: gray; border-width: 1px;" data-bs-toggle="modal" data-bs-target="#modalcopiarlistaartista">Copiar lista</button> -->
 <div class="modal fade" id="modalcopiarlistaartista" tabindex="-1" aria-labelledby="modalcopiarlistaartistaLabel" style="display: none;" aria-hidden="true" th:fragment="copiar-lista-artista">
@@ -564,7 +551,8 @@
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-        <form>
+        <form action="" method="POST">
+          <input type="hidden" name="idAlbum">
           <div class="form-group my-3">
             <label for="album-public-switch">Hacer público</label>
             <label class="switch">
@@ -585,7 +573,7 @@
             <textarea class="form-control" id="album-description" rows="3"></textarea>
           </div>
           <button type="button" class="btn btn-secondary my-3" data-bs-dismiss="modal">Descartar cambios</button>
-          <button type="submit" class="btn btn-danger my-3">Eliminar álbum</button>
+          <button type="button" class="btn btn-danger my-3" onclick="location.href='/albumes/borrar/{id}'">Eliminar álbum</button>
           <button type="submit" class="btn btn-primary my-3">Guardar cambios</button>
         </form>
       </div>
