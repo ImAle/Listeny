@@ -26,16 +26,16 @@ public class HomeController{
     public String inicioRaiz() {
         return "redirect:/home";
     }
-//    @GetMapping("/home")
-//    public String inicio(Model model){
-//
-//        //model.addAttribute("gustos", listaService.getMapper().toDtoListaDeLista(listaService.getListasPorGustos(idUsuario)));
-//        //model.addAttribute("cancionesHistorial", cancionService.getMapper().toDtoListaDeCanciones(reproduccionService.getHistorialUltimasCancionesReproducidas(idUsuario)));
-//        model.addAttribute("listasMasReproducidas", listaService.getListasMasReproducidas());
-//        model.addAttribute("albumesMasReproducidos", albumService.getMapper().toDtoListaDeAlbumes((albumService.getAlbumesRecomendados())));
-//        model.addAttribute("albumesRecomendados", albumService.getAlbumesRecomendados());
-//        return "inicio_logueado";
-//    }
+    @GetMapping("/home")
+    public String inicio(Model model){
+
+        //model.addAttribute("gustos", listaService.getMapper().toDtoListaDeLista(listaService.getListasPorGustos(idUsuario)));
+        //model.addAttribute("cancionesHistorial", cancionService.getMapper().toDtoListaDeCanciones(reproduccionService.getHistorialUltimasCancionesReproducidas(idUsuario)));
+        model.addAttribute("listasMasReproducidas", listaService.getListasMasReproducidas());
+        model.addAttribute("albumesMasReproducidos", albumService.getMapper().toDtoListaDeAlbumes((albumService.getAlbumesRecomendados())));
+        model.addAttribute("albumesRecomendados", albumService.getAlbumesRecomendados());
+        return "inicio_logueado";
+    }
 
 
 }

@@ -49,8 +49,8 @@ public class SecurityConfig {
         http.authorizeHttpRequests()
                 .requestMatchers( "/","/login","/registro").permitAll()
                 //.requestMatchers("/crear_album").hasRole("ROL_ARTISTA")
-                .requestMatchers(HttpMethod.POST,"/inicio").permitAll()
-                .anyRequest().authenticated()
+                .requestMatchers(HttpMethod.POST,"/login/comprobacion").permitAll()
+                .anyRequest().permitAll()
 
                 .and()
                 .exceptionHandling()

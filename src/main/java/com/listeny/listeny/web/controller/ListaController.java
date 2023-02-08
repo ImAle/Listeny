@@ -26,7 +26,7 @@ public class ListaController extends AbstractController<ListaDto> {
     public String vistaListaPorId(@PathVariable("id") Long id, Model model) throws Exception {
         Lista lista = service.getLista(id);
         model.addAttribute("lista", lista);
-        return "playlist_vista_por_usuario";
+        return "playlist_vista";
     }
 
     @GetMapping("/categoria/{id}/listas")
@@ -34,6 +34,13 @@ public class ListaController extends AbstractController<ListaDto> {
 
         model.addAttribute("listasDeLaCategoria",service.getListasByCategoria(idCategoria));
         return "playlists_por_categorias";
+    }
+
+    @GetMapping("/crear/lista")
+    public String crearLista(Model model){
+        Lista lista = new Lista();
+        model.addAttribute("lista", lista);
+        return "crear_lista";
     }
 
 }

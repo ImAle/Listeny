@@ -22,6 +22,7 @@ public class CancionController extends AbstractController<CancionDto>{
 
     @GetMapping("/canciones/misCanciones")
     public String misCanciones(Model model, Long idUsuario) throws Exception {
+        idUsuario=1L;
         List<Cancion> canciones = usuarioService.getUsuario(idUsuario).getPropietarioCanciones();
         model.addAttribute("canciones", cancionService.getMapper().toDtoCancionesListadas(canciones));
         return "subir_canciones";

@@ -1,5 +1,5 @@
 <!doctype html>
-<html th:lang="#{principal.lang}" xmlns:th="https://www.thymeleaf.org" xmlns:layout="https://www.ultraq.net.nz/thymeleaf/layout">
+<html lang="es_ES" xmlns:th="https://www.thymeleaf.org" xmlns:layout="https://www.ultraq.net.nz/thymeleaf/layout">
 <head th:insert="layout.html::head">
 </head>
 <body>
@@ -87,7 +87,7 @@
                 <div class="col-12 d-flex ">
                     <div class="position-relative">
                         <h1 class="text-align: center;">LISTA DE CANCIONES SUBIDAS</h1>
-                        <p>En esta lista se encuentran todas las canciones subidas por el artista.</p>
+                        <p>En esta lista se encuentran todas las canciones subidas por tí.</p>
                     </div>
                 </div>
             </div>
@@ -113,38 +113,16 @@
                     <th></th>
                 </tr>
                 </thead>
-                <tbody>
+                <tbody th:each="cancion : ${canciones}">
                 <tr>
                     <td class="index" data-index="1">
                         <span class="index-number">1</span>
                         <i class="fa fa-play hidden"></i>
                     </td>
-                    <td><img src="/imagenes/song1-image.jpg" class="img-fluid custom-img rounded-img"></td>
-                    <td>Canción 1</td>
-                    <td>Artista 1</td>
-                    <td>3:45</td>
-                    <td><i class="fas fa-times fa-2x"></i></td>
-                </tr>
-                <tr>
-                    <td class="index" data-index="1">
-                        <span class="index-number">2</span>
-                        <i class="fa fa-play hidden"></i>
-                    </td>
-                    <td><img src="/imagenes/song1-image.jpg" class="img-fluid custom-img rounded-img"></td>
-                    <td>Canción 2</td>
-                    <td>Artista 2</td>
-                    <td>4:20</td>
-                    <td><i class="fas fa-times fa-2x"></i></td>
-                </tr>
-                <tr>
-                    <td class="index" data-index="1">
-                        <span class="index-number">3</span>
-                        <i class="fa fa-play hidden"></i>
-                    </td>
-                    <td><img src="/imagenes/song1-image.jpg" class="img-fluid custom-img rounded-img"></td>
-                    <td>Canción 3</td>
-                    <td>Artista 3</td>
-                    <td>5:10</td>
+                    <td><img th:src="${cancion.imagen}" class="img-fluid custom-img rounded-img"></td>
+                    <td th:text="*{cancion.titulo}">Canción 1</td>
+                    <td th:text="*{cancion.descripcion}">Artista 1</td>
+                    <td th:text="*{cancion.duracion}">3:45</td>
                     <td><i class="fas fa-times fa-2x"></i></td>
                 </tr>
                 </tbody>

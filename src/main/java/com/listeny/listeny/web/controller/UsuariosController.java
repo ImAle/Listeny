@@ -10,7 +10,6 @@ import com.listeny.listeny.service.CancionService;
 import com.listeny.listeny.service.RolService;
 import com.listeny.listeny.service.UsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.userdetails.User;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -21,9 +20,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import javax.validation.Valid;
-import java.util.Collection;
 import java.util.List;
-import java.util.Map;
 import java.util.Optional;
 
 import static com.listeny.listeny.util.ValidarFormatoPassword.ValidarFormato;
@@ -54,7 +51,7 @@ public class UsuariosController extends AbstractController<UsuariosDto> {
         LoginDto login = new LoginDto();
         model.addAttribute("usuario", login);
         model.addAttribute("canciones", cancionService.getMapper().toDtoListaDeCanciones(cancionService.getCancionesParaInicio()));
-        return "login";
+        return "index";
     }
 
     @PostMapping("/login/comprobacion")
@@ -71,7 +68,7 @@ public class UsuariosController extends AbstractController<UsuariosDto> {
         if (!passwordEncoder.matches(usuario.getClave(), usuarioConEseEmail.getClave())) {
             return "redirect:/login";
         }
-
+        System.out.println("Hola 3");
         return "inicio_logueado";
     }
 
