@@ -7,8 +7,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
+@RequestMapping("/homeController")
 public class HomeController{
 
     @Autowired
@@ -21,21 +23,19 @@ public class HomeController{
     AlbumService albumService;
 
     @GetMapping("/")
-    public String inicioraiz(Model model) {
-
-        model.addAttribute("canciones", cancionService.getMapper().toDtoListaDeCanciones(cancionService.getCancionesParaInicio()));
-        return "index";
+    public String inicioRaiz() {
+        return "redirect:/home";
     }
-    @GetMapping("/home")
-    public String inicio(Model model){
-
-        //model.addAttribute("gustos", listaService.getMapper().toDtoListaDeLista(listaService.getListasPorGustos(idUsuario)));
-        //model.addAttribute("cancionesHistorial", cancionService.getMapper().toDtoListaDeCanciones(reproduccionService.getHistorialUltimasCancionesReproducidas(idUsuario)));
-        model.addAttribute("listasMasReproducidas", listaService.getListasMasReproducidas());
-        model.addAttribute("albumesMasReproducidos", albumService.getMapper().toDtoListaDeAlbumes((albumService.getAlbumesRecomendados())));
-        model.addAttribute("albumesRecomendados", albumService.getAlbumesRecomendados());
-        return "inicio_logueado";
-    }
+//    @GetMapping("/home")
+//    public String inicio(Model model){
+//
+//        //model.addAttribute("gustos", listaService.getMapper().toDtoListaDeLista(listaService.getListasPorGustos(idUsuario)));
+//        //model.addAttribute("cancionesHistorial", cancionService.getMapper().toDtoListaDeCanciones(reproduccionService.getHistorialUltimasCancionesReproducidas(idUsuario)));
+//        model.addAttribute("listasMasReproducidas", listaService.getListasMasReproducidas());
+//        model.addAttribute("albumesMasReproducidos", albumService.getMapper().toDtoListaDeAlbumes((albumService.getAlbumesRecomendados())));
+//        model.addAttribute("albumesRecomendados", albumService.getAlbumesRecomendados());
+//        return "inicio_logueado";
+//    }
 
 
 }

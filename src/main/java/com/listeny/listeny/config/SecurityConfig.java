@@ -33,7 +33,7 @@ public class SecurityConfig {
 
         http.formLogin(form -> form
                 .loginPage("/login")
-                .defaultSuccessUrl("/inicio_logueado",true)
+                .defaultSuccessUrl("/home",true)
                 .permitAll()
         );
 
@@ -49,7 +49,7 @@ public class SecurityConfig {
         http.authorizeHttpRequests()
                 .requestMatchers( "/","/login","/registro").permitAll()
                 //.requestMatchers("/crear_album").hasRole("ROL_ARTISTA")
-                .requestMatchers(HttpMethod.POST,"/**").permitAll()
+                .requestMatchers(HttpMethod.POST,"/inicio").permitAll()
                 .anyRequest().authenticated()
 
                 .and()

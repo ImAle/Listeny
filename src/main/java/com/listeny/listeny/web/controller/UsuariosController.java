@@ -21,7 +21,9 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import javax.validation.Valid;
+import java.util.Collection;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 import static com.listeny.listeny.util.ValidarFormatoPassword.ValidarFormato;
@@ -55,26 +57,22 @@ public class UsuariosController extends AbstractController<UsuariosDto> {
         return "login";
     }
 
-    @PostMapping("/inicio")
+    @PostMapping("/login/comprobacion")
     public String iniciarSesion(@ModelAttribute(name = "usuario") LoginDto usuario) {
 
-        Optional<Usuario> existeEmail = service.getRepo().findUsuarioByEmail(usuario.getEmail());
+        Optional<Usuario> existeUsuarioConEseEmail = service.getRepo().findUsuarioByEmail(usuario.getEmail());
 
-        if (existeEmail.isPresent()) {
-            Usuario usuariovalidar = existeEmail.get();
-            //Encriptamos la clave que entra
-            String claveEncrip = passwordEncoder.encode(usuario.getClave());
-            System.out.println("clave introducida: " + claveEncrip );
-            System.out.println("clave original: " + usuariovalidar.getClave() );
-            if (passwordEncoder.matches(usuario.getClave(), usuariovalidar.getClave())) {
-                return "inicio_logueado";
-            }
-            if (passwordEncoder.matches(claveEncrip, usuariovalidar.getClave())) {
-                return "registro";
-            }
-            return "login";
+        if (existeUsuarioConEseEmail.isEmpty()) {
+            return "redirect:/login";
         }
-        return "home";
+
+        Usuario usuarioConEseEmail = existeUsuarioConEseEmail.get();
+
+        if (!passwordEncoder.matches(usuario.getClave(), usuarioConEseEmail.getClave())) {
+            return "redirect:/login";
+        }
+
+        return "inicio_logueado";
     }
 
     @GetMapping("/usuarios/{id}")
