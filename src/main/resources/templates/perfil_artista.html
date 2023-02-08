@@ -293,49 +293,7 @@
   </div>
 </div>
 
-
-
-
-<!-- Optional JavaScript -->
-
-<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"
-        integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3"
-        crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.min.js"
-        integrity="sha384-cuYeSxntonz0PPNlHhBs68uyIAVpIIOZZ5JqeqvYYIcEL727kskC66kF92t6Xl2V"
-        crossorigin="anonymous"></script>
-
-<!-- script para ocultar barra lateral al hacerse la ventana pequeña -->
-
-<script>
-        document.getElementById("toggle-sidebar").addEventListener("click", function(){
-        document.querySelector("aside").classList.toggle("d-md-none");
-    });
-</script>
-
-<!-- mostrar/ocultar la barra lateral: -->
-
-<script>
-  $(document).ready(function(){
-    $("#toggle-sidebar").click(function(){
-      $("#sidebar").toggleClass("d-none");
-    });
-  });
-</script>
-
-<!-- Sirve para que aparezca la imagen que subes en el banner -->
-<script>
-document.getElementById("banner-file").addEventListener("change", function(e) {
-var file = e.target.files[0];
-var reader = new FileReader();
-reader.onload = function() {
-var dataURL = reader.result;
-document.getElementById("banner-img").src = dataURL;
-};
-reader.readAsDataURL(file);
-});
-</script>
-
+<section th:insert="layout.html::script"></section>
 
 </body>
 </html>
