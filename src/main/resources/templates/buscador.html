@@ -1,5 +1,5 @@
 <!doctype html>
-<html th:lang="#{principal.lang}" xmlns:th="https://www.thymeleaf.org" xmlns:layout="https://www.ultraq.net.nz/thymeleaf/layout">
+<html lang="es_ES" xmlns:th="https://www.thymeleaf.org" xmlns:layout="https://www.ultraq.net.nz/thymeleaf/layout">
 <head th:insert="layout.html::head">
 </head>
 <body>
@@ -15,7 +15,7 @@
 
         <main class="col my-3">
 
-            <form action="" method="POST" class="form-inline col-3 mb-3 d-flex align-items-center">
+            <form th:action="@{/buscar}" method="get" class="form-inline col-3 mb-3 d-flex align-items-center">
                 <input class="form-control mr-sm-2" type="search" placeholder="Buscar" aria-label="Search" name="buscar">
                 <button class="btn btn-outline-success my-2 my-sm-0" type="submit">
                     <i class="fas fa-search"></i>

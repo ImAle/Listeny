@@ -1,5 +1,5 @@
 <!doctype html>
-<html th:lang="#{principal.lang}" xmlns:th="https://www.thymeleaf.org" xmlns:layout="https://www.ultraq.net.nz/thymeleaf/layout">
+<html lang="es_ES" xmlns:th="https://www.thymeleaf.org" xmlns:layout="https://www.ultraq.net.nz/thymeleaf/layout">
 <head th:insert="layout.html::head">
 </head>
 <body>
@@ -15,8 +15,8 @@
 
     <main class="col my-3">
 
-      <form class="form-inline col-3 mb-3 d-flex align-items-center">
-        <input class="form-control mr-sm-2" type="search" placeholder="Buscar" aria-label="Search">
+      <form th:action="@{/buscar}" method="get" class="form-inline col-3 mb-3 d-flex align-items-center">
+        <input class="form-control mr-sm-2" type="search" placeholder="Buscar" aria-label="Search" name="buscar">
         <button class="btn btn-outline-success my-2 my-sm-0" type="submit">
           <i class="fas fa-search"></i>
         </button>
@@ -24,162 +24,32 @@
 
       <h2 class="text-center my-2">CANCIONES</h2>
       <div class="row row-cols-1 row-cols-md-5 g-4 my-2">
-        <div class="col">
+        <div class="col" th:each="cancion : ${canciones}">
 
           <div class="card song-card text-bg-dark" data-bs-toggle="collapse" data-bs-target="#collapseExample"
                role="button" aria-expanded="false" aria-controls="collapseExample" data-song-src="/canciones/song1.mp3" data-song-id="song1">
             <img class="song-card_image"
-                 src="https://ia803103.us.archive.org/28/items/cd_aladdin-sane_david-bowie_1/cd_aladdin-sane_david-bowie_1_itemimage.png"
-                 alt="David Bowie - Aladdin Sane">
+                 th:src="${cancion.imagen}">
             <div class="card-img-overlay song-card-info">
-              <h5 class="card-title text-center">Título de la canción</h5>
+              <h5 class="card-title text-center" th:text="*{cancion.titulo}"></h5>
               <p class="card-text text-center"></p>
               <p class="card-inf text-center"></p>
               <div class="song-card_play"></div>
             </div>
           </div>
-
-        </div>
-        <div class="col">
-
-          <div class="card song-card text-bg-dark" data-bs-toggle="collapse" data-bs-target="#collapseExample"
-               role="button" aria-expanded="false" aria-controls="collapseExample">
-            <img class="song-card_image"
-                 src="https://ia803103.us.archive.org/28/items/cd_aladdin-sane_david-bowie_1/cd_aladdin-sane_david-bowie_1_itemimage.png"
-                 alt="David Bowie - Aladdin Sane">
-            <div class="card-img-overlay song-card-info">
-              <h5 class="card-title text-center">Título de la canción</h5>
-              <p class="card-text text-center"></p>
-              <p class="card-inf text-center"></p>
-              <div class="song-card_play"></div>
-            </div>
-          </div>
-
-        </div>
-        <div class="col">
-
-          <div class="card song-card text-bg-dark" data-bs-toggle="collapse" data-bs-target="#collapseExample"
-               role="button" aria-expanded="false" aria-controls="collapseExample">
-            <img class="song-card_image"
-                 src="https://ia803103.us.archive.org/28/items/cd_aladdin-sane_david-bowie_1/cd_aladdin-sane_david-bowie_1_itemimage.png"
-                 alt="David Bowie - Aladdin Sane">
-            <div class="card-img-overlay song-card-info">
-              <h5 class="card-title text-center">Título de la canción</h5>
-              <p class="card-text text-center"></p>
-              <p class="card-inf text-center"></p>
-              <div class="song-card_play"></div>
-            </div>
-          </div>
-
-        </div>
-        <div class="col">
-
-          <div class="card song-card text-bg-dark" data-bs-toggle="collapse" data-bs-target="#collapseExample"
-               role="button" aria-expanded="false" aria-controls="collapseExample">
-            <img class="song-card_image"
-                 src="https://ia803103.us.archive.org/28/items/cd_aladdin-sane_david-bowie_1/cd_aladdin-sane_david-bowie_1_itemimage.png"
-                 alt="David Bowie - Aladdin Sane">
-            <div class="card-img-overlay song-card-info">
-              <h5 class="card-title text-center">Título de la canción</h5>
-              <p class="card-text text-center"></p>
-              <p class="card-inf text-center"></p>
-              <div class="song-card_play"></div>
-            </div>
-          </div>
-
-        </div>
-        <div class="col">
-
-          <div class="card song-card text-bg-dark" data-bs-toggle="collapse" data-bs-target="#collapseExample"
-               role="button" aria-expanded="false" aria-controls="collapseExample">
-            <img class="song-card_image"
-                 src="https://ia803103.us.archive.org/28/items/cd_aladdin-sane_david-bowie_1/cd_aladdin-sane_david-bowie_1_itemimage.png"
-                 alt="David Bowie - Aladdin Sane">
-            <div class="card-img-overlay song-card-info">
-              <h5 class="card-title text-center">Título de la canción</h5>
-              <p class="card-text text-center"></p>
-              <p class="card-inf text-center"></p>
-              <div class="song-card_play"></div>
-            </div>
-          </div>
-
         </div>
       </div>
+
       <h2 class="text-center my-2">PLAYLISTS</h2>
       <div class="row row-cols-1 row-cols-md-5 g-4 my-2">
-        <div class="col">
+        <div class="col" th:each="lista : ${listas}">
 
-          <a href="playlist_vista_por_artista.html">
+          <a th:href="@{/index}">
             <div class="card song-card text-bg-dark">
               <img class="song-card_image"
-                   src="/imagenes/lista1.jpg"
-                   alt="David Bowie - Aladdin Sane">
+                   th:src="${lista.imagen}">
               <div class="card-img-overlay song-card-info">
-                <h5 class="card-title text-center">Título de la playlist</h5>
-                <p class="card-text text-center"></p>
-                <p class="card-inf text-center"></p>
-              </div>
-            </div>
-          </a>
-
-        </div>
-        <div class="col">
-
-          <a href="playlist_vista_por_artista.html">
-            <div class="card song-card text-bg-dark">
-              <img class="song-card_image"
-                   src="/imagenes/lista1.jpg"
-                   alt="David Bowie - Aladdin Sane">
-              <div class="card-img-overlay song-card-info">
-                <h5 class="card-title text-center">Título de la playlist</h5>
-                <p class="card-text text-center"></p>
-                <p class="card-inf text-center"></p>
-              </div>
-            </div>
-          </a>
-
-        </div>
-        <div class="col">
-
-          <a href="playlist_vista_por_artista.html">
-            <div class="card song-card text-bg-dark">
-              <img class="song-card_image"
-                   src="/imagenes/lista1.jpg"
-                   alt="David Bowie - Aladdin Sane">
-              <div class="card-img-overlay song-card-info">
-                <h5 class="card-title text-center">Título de la playlist</h5>
-                <p class="card-text text-center"></p>
-                <p class="card-inf text-center"></p>
-              </div>
-            </div>
-          </a>
-
-        </div>
-        <div class="col">
-
-          <a href="playlist_vista_por_artista.html">
-            <div class="card song-card text-bg-dark">
-              <img class="song-card_image"
-                   src="/imagenes/lista1.jpg"
-                   alt="David Bowie - Aladdin Sane">
-              <div class="card-img-overlay song-card-info">
-                <h5 class="card-title text-center">Título de la playlist</h5>
-                <p class="card-text text-center"></p>
-                <p class="card-inf text-center"></p>
-              </div>
-            </div>
-          </a>
-
-        </div>
-        <div class="col">
-
-          <a href="playlist_vista_por_artista.html">
-            <div class="card song-card text-bg-dark">
-              <img class="song-card_image"
-                   src="/imagenes/lista1.jpg"
-                   alt="David Bowie - Aladdin Sane">
-              <div class="card-img-overlay song-card-info">
-                <h5 class="card-title text-center">Título de la playlist</h5>
+                <h5 class="card-title text-center" th:text="*{lista.nombre}"></h5>
                 <p class="card-text text-center"></p>
                 <p class="card-inf text-center"></p>
               </div>
@@ -188,81 +58,18 @@
 
         </div>
       </div>
+
       <h2 class="text-center my-2">USUARIOS</h2>
       <div class="row row-cols-1 row-cols-md-5 g-4 my-2">
-        <div class="col">
+        <div class="col" th:each="usuario : ${usuarios}">
 
-          <a href="perfil_de_usuario_visitado_por_artista.html">
+          <a th:href="@{/index}">
             <div class="card song-card text-bg-dark">
               <img class="song-card_image"
-                   src="/imagenes/usuario1.jpg"
+                   th:src="${usuario.imagen}"
                    alt="David Bowie - Aladdin Sane">
               <div class="card-img-overlay song-card-info">
-                <h5 class="card-title text-center">Nombre de usuario</h5>
-                <p class="card-text text-center"></p>
-                <p class="card-inf text-center"></p>
-              </div>
-            </div>
-          </a>
-
-        </div>
-        <div class="col">
-
-          <a href="perfil_de_usuario_visitado_por_artista.html">
-            <div class="card song-card text-bg-dark">
-              <img class="song-card_image"
-                   src="/imagenes/usuario1.jpg"
-                   alt="David Bowie - Aladdin Sane">
-              <div class="card-img-overlay song-card-info">
-                <h5 class="card-title text-center">Nombre de usuario</h5>
-                <p class="card-text text-center"></p>
-                <p class="card-inf text-center"></p>
-              </div>
-            </div>
-          </a>
-
-        </div>
-        <div class="col">
-
-          <a href="perfil_de_usuario_visitado_por_artista.html">
-            <div class="card song-card text-bg-dark">
-              <img class="song-card_image"
-                   src="/imagenes/usuario1.jpg"
-                   alt="David Bowie - Aladdin Sane">
-              <div class="card-img-overlay song-card-info">
-                <h5 class="card-title text-center">Nombre de usuario</h5>
-                <p class="card-text text-center"></p>
-                <p class="card-inf text-center"></p>
-              </div>
-            </div>
-          </a>
-
-        </div>
-        <div class="col">
-
-          <a href="perfil_de_usuario_visitado_por_artista.html">
-            <div class="card song-card text-bg-dark">
-              <img class="song-card_image"
-                   src="/imagenes/usuario1.jpg"
-                   alt="David Bowie - Aladdin Sane">
-              <div class="card-img-overlay song-card-info">
-                <h5 class="card-title text-center">Nombre de usuario</h5>
-                <p class="card-text text-center"></p>
-                <p class="card-inf text-center"></p>
-              </div>
-            </div>
-          </a>
-
-        </div>
-        <div class="col">
-
-          <a href="perfil_de_usuario_visitado_por_artista.html">
-            <div class="card song-card text-bg-dark">
-              <img class="song-card_image"
-                   src="/imagenes/usuario1.jpg"
-                   alt="David Bowie - Aladdin Sane">
-              <div class="card-img-overlay song-card-info">
-                <h5 class="card-title text-center">Nombre de usuario</h5>
+                <h5 class="card-title text-center" th:text="*{usuario.nombreUsuario}"></h5>
                 <p class="card-text text-center"></p>
                 <p class="card-inf text-center"></p>
               </div>
@@ -271,17 +78,18 @@
 
         </div>
       </div>
+
       <h2 class="text-center my-2">ÁLBUMES</h2>
       <div class="row row-cols-1 row-cols-md-5 g-4 my-2">
-        <div class="col">
+        <div class="col" th:each="album : ${albumes}">
 
-          <a href="album_visto_por_artista.html">
+          <a th:href="@{/index}">
             <div class="card song-card text-bg-dark">
               <img class="song-card_image"
-                   src="/imagenes/lista1.jpg"
+                   th:src="${album.imagen}"
                    alt="David Bowie - Aladdin Sane">
               <div class="card-img-overlay song-card-info">
-                <h5 class="card-title text-center">Título del álbum</h5>
+                <h5 class="card-title text-center" th:text="*{album.titulo}"></h5>
                 <p class="card-text text-center"></p>
                 <p class="card-inf text-center"></p>
               </div>
@@ -289,70 +97,7 @@
           </a>
 
         </div>
-        <div class="col">
-
-          <a href="album_visto_por_artista.html">
-            <div class="card song-card text-bg-dark">
-              <img class="song-card_image"
-                   src="/imagenes/lista1.jpg"
-                   alt="David Bowie - Aladdin Sane">
-              <div class="card-img-overlay song-card-info">
-                <h5 class="card-title text-center">Título del álbum</h5>
-                <p class="card-text text-center"></p>
-                <p class="card-inf text-center"></p>
-              </div>
-            </div>
-          </a>
-
-        </div>
-        <div class="col">
-
-          <a href="album_visto_por_artista.html">
-            <div class="card song-card text-bg-dark">
-              <img class="song-card_image"
-                   src="/imagenes/lista1.jpg"
-                   alt="David Bowie - Aladdin Sane">
-              <div class="card-img-overlay song-card-info">
-                <h5 class="card-title text-center">Título del álbum</h5>
-                <p class="card-text text-center"></p>
-                <p class="card-inf text-center"></p>
-              </div>
-            </div>
-          </a>
-
-        </div>
-        <div class="col">
-
-          <a href="album_visto_por_artista.html">
-            <div class="card song-card text-bg-dark">
-              <img class="song-card_image"
-                   src="/imagenes/lista1.jpg"
-                   alt="David Bowie - Aladdin Sane">
-              <div class="card-img-overlay song-card-info">
-                <h5 class="card-title text-center">Título del álbum</h5>
-                <p class="card-text text-center"></p>
-                <p class="card-inf text-center"></p>
-              </div>
-            </div>
-          </a>
-
-        </div>
-        <div class="col">
-
-          <a href="album_visto_por_artista.html">
-            <div class="card song-card text-bg-dark">
-              <img class="song-card_image"
-                   src="/imagenes/lista1.jpg"
-                   alt="David Bowie - Aladdin Sane">
-              <div class="card-img-overlay song-card-info">
-                <h5 class="card-title text-center">Título del álbum</h5>
-                <p class="card-text text-center"></p>
-                <p class="card-inf text-center"></p>
-              </div>
-            </div>
-          </a>
-
-        </div>
+      </div>
 
         <div class="collapse" id="collapseExample">
           <div class="col-12 player-container">
@@ -362,9 +107,9 @@
           </div>
         </div>
 
-      </div>
     </main>
   </div>
+
 </div>
 
 <section th:insert="layout.html::script"></section>
