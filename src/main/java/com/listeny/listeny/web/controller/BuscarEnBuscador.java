@@ -32,22 +32,22 @@ public class BuscarEnBuscador {
 
     @GetMapping("/canciones")
     public List<Cancion> buscarCancionesPorTitulo(@RequestParam("titulo") String titulo) {
-        return cancionService.getRepo().findByTituloContaining(titulo);
+        return cancionService.getRepo().findCancionsByTituloContaining(titulo);
     }
 
     @GetMapping("/listas")
     public List<Lista> buscarListasPorNombre(@RequestParam("nombre") String nombre) {
-        return listaService.getRepo().findByNombreContaining(nombre);
+        return listaService.getRepo().findListasByNombreContaining(nombre);
     }
 
     @GetMapping("/albumes")
     public List<Album> buscarAlbumesPorTitulo(@RequestParam("titulo") String titulo) {
-        return albumService.getRepo().findByTituloContaining(titulo);
+        return albumService.getRepo().findAlbumsByTituloContaining(titulo);
     }
 
     @GetMapping("/usuarios")
     public List<Usuario> buscarUsuariosPorNombreUsuario(@RequestParam("nombreUsuario") String nombreUsuario) {
-        return usuarioService.getRepo().findByUsernameConteining(nombreUsuario);
+        return usuarioService.getRepo().findUsuarioByNombreUsuarioContainingIgnoreCase(nombreUsuario);
     }
 
 }

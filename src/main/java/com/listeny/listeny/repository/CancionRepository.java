@@ -12,6 +12,8 @@ import java.util.Set;
 @Repository
 public interface CancionRepository extends JpaRepository<Cancion, Long> {
 
-    @Query("SELECT c FROM Cancion c WHERE c.titulo LIKE :titulo")
-    public List<Cancion> findByTituloContaining(@Param("titulo") String titulo);
+//    @Query("SELECT c FROM Cancion c WHERE c.titulo LIKE :titulo")
+//    public List<Cancion> findByTituloContaining(@Param("titulo") String titulo);
+
+    public List<Cancion> findCancionsByTituloContaining(String titulo);
 }

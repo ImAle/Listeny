@@ -14,6 +14,8 @@ public interface AlbumRepository extends JpaRepository<Album, Long> {
     @Query("SELECT a FROM Album a ORDER BY a.reproducciones DESC")
     public List<Album> albumesMasReproducidos();
 
-    @Query("SELECT a FROM Album a WHERE a.titulo LIKE :titulo")
-    public List<Album> findByTituloContaining(@Param("titulo") String titulo);
+//    @Query("SELECT a FROM Album a WHERE a.titulo LIKE :titulo")
+//    public List<Album> findByTituloContaining(@Param("titulo") String titulo);
+
+    public List<Album> findAlbumsByTituloContaining(String titulo);
 }

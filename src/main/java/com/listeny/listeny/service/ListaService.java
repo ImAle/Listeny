@@ -64,7 +64,7 @@ public class ListaService extends AbstractBusinessService<Lista, Long, ListaDto,
 
     //Playlists por categoría
     public List<Lista> getListasByCategoria(Long categoriaId){
-        return getRepo().listasPorCategoria(categoriaId);
+        return getRepo().findListasByListasCategoria_Id(categoriaId);
     }
 
     // Obtener cinco listas al azar
