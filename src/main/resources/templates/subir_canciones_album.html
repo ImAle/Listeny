@@ -1,41 +1,16 @@
 <!doctype html>
 <html th:lang="#{principal.lang}" xmlns:th="https://www.thymeleaf.org" xmlns:layout="https://www.ultraq.net.nz/thymeleaf/layout">
 <head th:insert="layout.html::head">
-
-  <!-- Required meta tags -->
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-
-  <!-- Bootstrap CSS -->
-
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
-
-  <!-- Estilos personalizados -->
-  <link href="../static/css/custom.css" type="text/css" rel="stylesheet">
-
-  <!-- Bootstarp icons -->
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
-
-  <!-- Font Awesome JS -->
-  <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/solid.js" integrity="sha384-tzzSw1/Vo+0N5UhStP3bvwWPq+uvzCMfrN1fEFe+xBmv1C/AtVX5K0uZtmcHitFZ" crossorigin="anonymous"></script>
-  <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/fontawesome.js" integrity="sha384-6OIrr52G08NpOFSZdxxz1xdNSndlD4vdcf/q2myIUVO0VsqaGHJsB0RaBE01VTOY" crossorigin="anonymous"></script>
-
-  <!-- Para que el botón despliegue la barra lateral cuando la pantalla sea pequeña -->
-  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-
-  <title>Subir canciones a álbum</title>
 </head>
 <body>
 
 <div class="container-fluid">
   <div class="row">
-    <button id="toggle-sidebar" class="btn btn-primary d-md-none">
-      <i class="fas fa-bars"></i>
-    </button>
 
-    <div class="col-3 d-md-block d-none">
-      <aside th:insert="layout.html::aside"></aside>
+    <button id="toggle-sidebar" class="btn btn-primary d-md-none"><i class="fas fa-bars"></i></button>
+
+    <div class="col-3 d-md-block d-none" id="sidebar">
+      <aside th:insert="layout.html::aside-artista"></aside>
     </div>
 
     <div class="modal fade" id="modalalbum" tabindex="-1" aria-labelledby="modalalbumLabel" style="display: none;" aria-hidden="true">
@@ -81,7 +56,7 @@
       <div class="row my-3">
         <div class="col-12 d-flex">
           <div class="position-relative">
-            <img src="/static/imagenes/lista1.jpg" class="img-fluid rounded-img" style="max-width:95%; max-height:95%;">
+            <img src="/imagenes/lista1.jpg" class="img-fluid rounded-img" style="max-width:95%; max-height:95%;">
           </div>
           <div class="col">
             <div class="row">
@@ -120,7 +95,7 @@
             <span class="index-number">1</span>
             <i class="fa fa-play hidden"></i>
           </td>
-          <td><img src="/static/imagenes/song1-image.jpg" class="img-fluid custom-img rounded-img"></td>
+          <td><img src="/imagenes/song1-image.jpg" class="img-fluid custom-img rounded-img"></td>
           <td>Canción 1</td>
           <td>20/01/2023</td>
           <td>3:45</td>
@@ -147,77 +122,7 @@
   </div>
 </div>
 
-
-
-<!-- Para cambiar el icono al hacer click -->
-<script>
-    $("#megusta").click(function(){
-      var elem= document.getElementById("megusta");
-      var seguido= 'id del usuario con megusta';
-      var seguidor= 'id del usuario activo';
-      elem.classList.toggle("bi-heart");
-      elem.classList.toggle("bi-heart-fill");
-      if (elem.classList.contains('bi-heart')) {
-        url = '/nomegusta'
-      } else {
-        url = "megusta"
-      }
-      $.ajax({
-        url: url,
-        data: {
-          seguido: seguido,
-          seguidor:seguidor
-        },
-        dataType: 'json'
-      })
-    })
-  </script>
-
-<!-- Optional JavaScript -->
-
-<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"
-        integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3"
-        crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.min.js"
-        integrity="sha384-cuYeSxntonz0PPNlHhBs68uyIAVpIIOZZ5JqeqvYYIcEL727kskC66kF92t6Xl2V"
-        crossorigin="anonymous"></script>
-
-<!-- script para ocultar barra lateral al hacerse la ventana pequeña -->
-
-<script>
-        document.getElementById("toggle-sidebar").addEventListener("click", function(){
-        document.querySelector("aside").classList.toggle("d-md-none");
-    });
-</script>
-
-<!-- mostrar/ocultar la barra lateral: -->
-
-<script>
-  $(document).ready(function(){
-    $("#toggle-sidebar").click(function(){
-      $("#sidebar").toggleClass("d-none");
-    });
-  });
-</script>
-
-
-<!-- Sirve para que cuando te posiciones encima del índice de cada canción de la playlist, este desaparezca y aparece el botón de play -->
-<script>
-  $('.index').hover(function() {
-    $(this).find('.index-number').hide();
-    $(this).find('.fa-play').show();
-  }, function() {
-    $(this).find('.index-number').show();
-    $(this).find('.fa-play').hide();
-  });
-</script>
-
-
-
-
-
-
-
+<section th:insert="layout.html::script"></section>
 
 </body>
 </html>

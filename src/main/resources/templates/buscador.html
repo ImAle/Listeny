@@ -6,18 +6,17 @@
 
 <div class="container-fluid">
     <div class="row">
-        <button id="toggle-sidebar" class="btn btn-primary d-md-none">
-            <i class="fas fa-bars"></i>
-        </button>
 
-        <div class="col-3 d-md-block d-none">
-            <aside th:insert="layout.html::aside"></aside>
+        <button id="toggle-sidebar" class="btn btn-primary d-md-none"><i class="fas fa-bars"></i></button>
+
+        <div class="col-3 d-md-block d-none" id="sidebar">
+            <aside th:insert="layout.html::aside-artista"></aside>
         </div>
 
         <main class="col my-3">
 
-            <form class="form-inline col-3 mb-3 d-flex align-items-center">
-                <input class="form-control mr-sm-2" type="search" placeholder="Buscar" aria-label="Search">
+            <form action="" method="POST" class="form-inline col-3 mb-3 d-flex align-items-center">
+                <input class="form-control mr-sm-2" type="search" placeholder="Buscar" aria-label="Search" name="buscar">
                 <button class="btn btn-outline-success my-2 my-sm-0" type="submit">
                     <i class="fas fa-search"></i>
                 </button>
@@ -30,7 +29,7 @@
                     <a href="playlist_vista_por_artista.html">
                         <div class="card song-card text-bg-dark">
                             <img class="song-card_image"
-                                 src="/static/imagenes/lista1.jpg"
+                                 src="/imagenes/lista1.jpg"
                                  alt="David Bowie - Aladdin Sane">
                             <div class="card-img-overlay song-card-info">
                                 <h5 class="card-title text-center">Título de la playlist</h5>
@@ -46,7 +45,7 @@
                     <a href="playlist_vista_por_artista.html">
                         <div class="card song-card text-bg-dark">
                             <img class="song-card_image"
-                                 src="/static/imagenes/lista1.jpg"
+                                 src="/imagenes/lista1.jpg"
                                  alt="David Bowie - Aladdin Sane">
                             <div class="card-img-overlay song-card-info">
                                 <h5 class="card-title text-center">Título de la playlist</h5>
@@ -62,7 +61,7 @@
                     <a href="playlist_vista_por_artista.html">
                         <div class="card song-card text-bg-dark">
                             <img class="song-card_image"
-                                 src="/static/imagenes/lista1.jpg"
+                                 src="/imagenes/lista1.jpg"
                                  alt="David Bowie - Aladdin Sane">
                             <div class="card-img-overlay song-card-info">
                                 <h5 class="card-title text-center">Título de la playlist</h5>
@@ -78,7 +77,7 @@
                     <a href="playlist_vista_por_artista.html">
                         <div class="card song-card text-bg-dark">
                             <img class="song-card_image"
-                                 src="/static/imagenes/lista1.jpg"
+                                 src="/imagenes/lista1.jpg"
                                  alt="David Bowie - Aladdin Sane">
                             <div class="card-img-overlay song-card-info">
                                 <h5 class="card-title text-center">Título de la playlist</h5>
@@ -94,7 +93,7 @@
                     <a href="playlist_vista_por_artista.html">
                         <div class="card song-card text-bg-dark">
                             <img class="song-card_image"
-                                 src="/static/imagenes/lista1.jpg"
+                                 src="/imagenes/lista1.jpg"
                                  alt="David Bowie - Aladdin Sane">
                             <div class="card-img-overlay song-card-info">
                                 <h5 class="card-title text-center">Título de la playlist</h5>
@@ -113,7 +112,7 @@
                     <a href="playlists_por_categorias_artista.html">
                         <div class="card song-card text-bg-dark">
                             <img class="song-card_image"
-                                 src="/static/imagenes/lista1.jpg"
+                                 src="/imagenes/lista1.jpg"
                                  alt="David Bowie - Aladdin Sane">
                             <div class="card-img-overlay song-card-info">
                                 <h5 class="card-title text-center">Título de la playlist</h5>
@@ -129,7 +128,7 @@
                     <a href="playlists_por_categorias_artista.html">
                         <div class="card song-card text-bg-dark">
                             <img class="song-card_image"
-                                 src="/static/imagenes/lista1.jpg"
+                                 src="/imagenes/lista1.jpg"
                                  alt="David Bowie - Aladdin Sane">
                             <div class="card-img-overlay song-card-info">
                                 <h5 class="card-title text-center">Título de la playlist</h5>
@@ -145,7 +144,7 @@
                     <a href="playlists_por_categorias_artista.html">
                         <div class="card song-card text-bg-dark">
                             <img class="song-card_image"
-                                 src="/static/imagenes/lista1.jpg"
+                                 src="/imagenes/lista1.jpg"
                                  alt="David Bowie - Aladdin Sane">
                             <div class="card-img-overlay song-card-info">
                                 <h5 class="card-title text-center">Título de la playlist</h5>
@@ -161,7 +160,7 @@
                     <a href="playlists_por_categorias_artista.html">
                         <div class="card song-card text-bg-dark">
                             <img class="song-card_image"
-                                 src="/static/imagenes/lista1.jpg"
+                                 src="/imagenes/lista1.jpg"
                                  alt="David Bowie - Aladdin Sane">
                             <div class="card-img-overlay song-card-info">
                                 <h5 class="card-title text-center">Título de la playlist</h5>
@@ -177,7 +176,7 @@
                     <a href="playlists_por_categorias_artista.html">
                         <div class="card song-card text-bg-dark">
                             <img class="song-card_image"
-                                 src="/static/imagenes/lista1.jpg"
+                                 src="/imagenes/lista1.jpg"
                                  alt="David Bowie - Aladdin Sane">
                             <div class="card-img-overlay song-card-info">
                                 <h5 class="card-title text-center">Título de la playlist</h5>
@@ -195,7 +194,7 @@
                     <a href="playlists_por_categorias_artista.html">
                         <div class="card song-card text-bg-dark">
                             <img class="song-card_image"
-                                 src="/static/imagenes/lista1.jpg"
+                                 src="/imagenes/lista1.jpg"
                                  alt="David Bowie - Aladdin Sane">
                             <div class="card-img-overlay song-card-info">
                                 <h5 class="card-title text-center">Título de la playlist</h5>
@@ -211,7 +210,7 @@
                     <a href="playlists_por_categorias_artista.html">
                         <div class="card song-card text-bg-dark">
                             <img class="song-card_image"
-                                 src="/static/imagenes/lista1.jpg"
+                                 src="/imagenes/lista1.jpg"
                                  alt="David Bowie - Aladdin Sane">
                             <div class="card-img-overlay song-card-info">
                                 <h5 class="card-title text-center">Título de la playlist</h5>
@@ -227,7 +226,7 @@
                     <a href="playlists_por_categorias_artista.html">
                         <div class="card song-card text-bg-dark">
                             <img class="song-card_image"
-                                 src="/static/imagenes/lista1.jpg"
+                                 src="/imagenes/lista1.jpg"
                                  alt="David Bowie - Aladdin Sane">
                             <div class="card-img-overlay song-card-info">
                                 <h5 class="card-title text-center">Título de la playlist</h5>
@@ -243,7 +242,7 @@
                     <a href="playlists_por_categorias_artista.html">
                         <div class="card song-card text-bg-dark">
                             <img class="song-card_image"
-                                 src="/static/imagenes/lista1.jpg"
+                                 src="/imagenes/lista1.jpg"
                                  alt="David Bowie - Aladdin Sane">
                             <div class="card-img-overlay song-card-info">
                                 <h5 class="card-title text-center">Título de la playlist</h5>
@@ -259,7 +258,7 @@
                     <a href="pplaylists_por_categorias_artista.html">
                         <div class="card song-card text-bg-dark">
                             <img class="song-card_image"
-                                 src="/static/imagenes/lista1.jpg"
+                                 src="/imagenes/lista1.jpg"
                                  alt="David Bowie - Aladdin Sane">
                             <div class="card-img-overlay song-card-info">
                                 <h5 class="card-title text-center">Título de la playlist</h5>
@@ -277,7 +276,7 @@
                     <a href="playlists_por_categorias_artista.html">
                         <div class="card song-card text-bg-dark">
                             <img class="song-card_image"
-                                 src="/static/imagenes/lista1.jpg"
+                                 src="/imagenes/lista1.jpg"
                                  alt="David Bowie - Aladdin Sane">
                             <div class="card-img-overlay song-card-info">
                                 <h5 class="card-title text-center">Título de la playlist</h5>
@@ -293,7 +292,7 @@
                     <a href="playlists_por_categorias_artista.html">
                         <div class="card song-card text-bg-dark">
                             <img class="song-card_image"
-                                 src="/static/imagenes/lista1.jpg"
+                                 src="/imagenes/lista1.jpg"
                                  alt="David Bowie - Aladdin Sane">
                             <div class="card-img-overlay song-card-info">
                                 <h5 class="card-title text-center">Título de la playlist</h5>
@@ -309,7 +308,7 @@
                     <a href="playlists_por_categorias_artista.html">
                         <div class="card song-card text-bg-dark">
                             <img class="song-card_image"
-                                 src="/static/imagenes/lista1.jpg"
+                                 src="/imagenes/lista1.jpg"
                                  alt="David Bowie - Aladdin Sane">
                             <div class="card-img-overlay song-card-info">
                                 <h5 class="card-title text-center">Título de la playlist</h5>
@@ -325,7 +324,7 @@
                     <a href="playlists_por_categorias_artista.html">
                         <div class="card song-card text-bg-dark">
                             <img class="song-card_image"
-                                 src="/static/imagenes/lista1.jpg"
+                                 src="/imagenes/lista1.jpg"
                                  alt="David Bowie - Aladdin Sane">
                             <div class="card-img-overlay song-card-info">
                                 <h5 class="card-title text-center">Título de la playlist</h5>
@@ -341,7 +340,7 @@
                     <a href="playlists_por_categorias_artista.html">
                         <div class="card song-card text-bg-dark">
                             <img class="song-card_image"
-                                 src="/static/imagenes/lista1.jpg"
+                                 src="/imagenes/lista1.jpg"
                                  alt="David Bowie - Aladdin Sane">
                             <div class="card-img-overlay song-card-info">
                                 <h5 class="card-title text-center">Título de la playlist</h5>
@@ -357,34 +356,7 @@
     </div>
 </div>
 
-
-<!-- Optional JavaScript -->
-
-<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"
-        integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3"
-        crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.min.js"
-        integrity="sha384-cuYeSxntonz0PPNlHhBs68uyIAVpIIOZZ5JqeqvYYIcEL727kskC66kF92t6Xl2V"
-        crossorigin="anonymous"></script>
-
-<!-- script para ocultar barra lateral al hacerse la ventana pequeña -->
-
-<script>
-        document.getElementById("toggle-sidebar").addEventListener("click", function(){
-        document.querySelector("aside").classList.toggle("d-md-none");
-    });
-</script>
-
-<!-- mostrar/ocultar la barra lateral: -->
-
-<script>
-  $(document).ready(function(){
-    $("#toggle-sidebar").click(function(){
-      $("#sidebar").toggleClass("d-none");
-    });
-  });
-</script>
-
+<section th:insert="layout.html::script"></section>
 
 </body>
 </html>
