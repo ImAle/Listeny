@@ -55,9 +55,8 @@ public class UsuariosController extends AbstractController<UsuariosDto> {
         return "login";
     }
 
-    @PostMapping("/login")
+    @PostMapping("/inicio")
     public String iniciarSesion(@ModelAttribute(name = "usuario") LoginDto usuario) {
-        System.out.println("Pasa por login, método post");
 
         Optional<Usuario> existeEmail = service.getRepo().findUsuarioByEmail(usuario.getEmail());
 
@@ -75,7 +74,7 @@ public class UsuariosController extends AbstractController<UsuariosDto> {
             }
             return "login";
         }
-        return "login";
+        return "home";
     }
 
     @GetMapping("/usuarios/{id}")
@@ -100,30 +99,24 @@ public class UsuariosController extends AbstractController<UsuariosDto> {
     // método para manejar el registro del usuario
     @PostMapping("/registro")
     public String registration(@Valid @ModelAttribute("usuario") UsuarioConPassDto usuarioDto, BindingResult result, Model model) {
-        System.out.println("los datos a guardar son:" + usuarioDto.getSexo());
-        System.out.println("los datos a guardar son:" + usuarioDto.getNombreUsuario());
 
         Optional<Usuario> existingEmail = service.getRepo().findUsuarioByEmail(usuarioDto.getEmail());
         Optional<Usuario> existingUsername = service.getRepo().findUsuarioByNombreUsuario(usuarioDto.getNombreUsuario());
 
 
         if (existingEmail.isPresent()) {
-            System.out.println("Rechazo1");
-            result.rejectValue("email", null, "Este email ya está en uso");
+            result.rejectValue("email", "email_used", "Este email ya está en uso");
         }
 
         if (existingUsername.isPresent()) {
-            System.out.println("Rechazo2");
-            result.rejectValue("nombreUsuario", null, "Este nombre de usuario ya está en uso");
+            result.rejectValue("nombreUsuario", "username_used", "Este nombre de usuario ya está en uso");
         }
 
         if (!ValidarFormato(usuarioDto.getClave())) {
-            System.out.println("Rechazo3");
-            result.rejectValue("clave", null, "Esta clave no cumple los requisitos mínimos de seguridad");
+            result.rejectValue("clave", "password_invalid", "Esta clave no cumple los requisitos mínimos de seguridad");
         }
 
         if (result.hasErrors()) {
-            System.out.println("Rechazo4");
             System.out.println(result.getAllErrors());
             model.addAttribute("usuario", usuarioDto);
             return "redirect:/registro";

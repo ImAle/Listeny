@@ -37,7 +37,7 @@
                 <img src="../static/imagenes/logo.png" class="card-img-top mx-auto my-3 w-50" alt="...">
               </a>
                 <div class="card-body">
-                    <form th:action="@{/login}" class="text-center" th:object="${usuario}" method="post">
+                    <form th:action="@{/inicio}" class="text-center" th:object="${usuario}" method="post">
                         <h5 class="fw-normal mb-5 pb-1" style="letter-spacing: 1px;">Acceda a su cuenta</h5>
                         <div class="form-outline mb-4">
                             <input type="email" th:field="*{email}" id="form2Example17" class="form-control form-control-lg"/>

@@ -3,6 +3,7 @@ package com.listeny.listeny.config;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -46,7 +47,9 @@ public class SecurityConfig {
                         .deleteCookies(cookieNamesToClear)*/
         );
         http.authorizeHttpRequests()
-                .requestMatchers( "/","/registro").permitAll()
+                .requestMatchers( "/","/login","/registro").permitAll()
+                //.requestMatchers("/crear_album").hasRole("ROL_ARTISTA")
+                .requestMatchers(HttpMethod.POST,"/**").permitAll()
                 .anyRequest().authenticated()
 
                 .and()
@@ -55,6 +58,7 @@ public class SecurityConfig {
 
                 .and()
                 .authenticationProvider(authenticationProvider())
+                .csrf()
                 ;
 
         return http.build();
