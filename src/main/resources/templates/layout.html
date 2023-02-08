@@ -13,7 +13,7 @@
         integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous"/>
 
   <!-- Estilos personalizados -->
-  <link th:href="@{/static/css/custom.css}" type="text/css" rel="stylesheet"/>
+  <link th:href="@{/css/custom.css}" type="text/css" rel="stylesheet"/>
 
   <!-- Bootstarp icons -->
   <link th:href="@{https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css}" rel="stylesheet"/>
@@ -23,7 +23,7 @@
   <script th:src="@{https://use.fontawesome.com/releases/v5.0.13/js/fontawesome.js}" defer integrity="sha384-6OIrr52G08NpOFSZdxxz1xdNSndlD4vdcf/q2myIUVO0VsqaGHJsB0RaBE01VTOY" crossorigin="anonymous"></script>
 
   <!-- Para que el botón despliegue la barra lateral cuando la pantalla sea pequeña -->
-  <script th:src="@{/jquery-3.6.0.min.js}"></script>
+  <script th:src="@{https://code.jquery.com/jquery-3.6.3.js}"></script>
 
 
   <title>Listeny</title>
@@ -35,8 +35,8 @@
 
 <!-- Fragmento de la barra lateral de usuario -->
 <aside id="sidebar" th:fragment="aside">
-  <div class="card my-3" style="height:1400px">
-    <img src="/static/imagenes/logo.png" class="card-img-top mx-auto my-3 w-50" alt="...">
+  <div class="card my-3 scroll-card">
+    <img src="/imagenes/logo.png" class="card-img-top mx-auto my-3 w-50" alt="...">
 
     <div class="list-group list-group-flush">
       <a href="#perfil" title="Perfil" class="list-group-item list-group-item-action d-flex justify-content-start align-items-center my-2">
@@ -106,8 +106,8 @@
 
 <!-- Fragmento de la barra lateral de artista -->
 <aside id="sidebar-artista" th:fragment="aside-artista">
-  <div class="card my-3" style="height:1400px">
-    <img src="/static/imagenes/logo.png" class="card-img-top mx-auto my-3 w-50" alt="...">
+  <div class="card my-3">
+    <img src="/imagenes/logo.png" class="card-img-top mx-auto my-3 w-50" alt="...">
 
     <div class="list-group list-group-flush">
       <a href="#perfil" title="Perfil" class="list-group-item list-group-item-action d-flex justify-content-start align-items-center my-2">
@@ -133,7 +133,7 @@
 
       <hr class="hr bg-black" style="border-top: 5px solid">
 
-      <div class="list-group list-group-flush">
+      <div class="list-group list-group-flush scroll-independiente">
         <a href="#playlist-1" title="Playlist 1" class="list-group-item list-group-item-action d-flex justify-content-start align-items-center my-2">
           <i class="fas fa-play-circle fa-lg" style="margin-right: 35px;"></i>
           <h5 class="text-truncate text-sm">PLAYLIST 1</h5>
@@ -191,7 +191,7 @@
         <form action="" method="POST">
           <div class="form-group my-3">
             <label for="copiaralbumusuario-name">Indique el título</label>
-            <input type="text" class="form-control" name="titulolista" id="copiaralbumusuario-name" placeholder="Indique el título de la lista">
+            <input type="text" class="form-control" name="titulocopiausuario" id="copiaralbumusuario-name" placeholder="Indique el título de la lista">
           </div>
           <div class="form-group my-3">
             <label for="song_category_album">Categoría de la lista:</label>
@@ -247,7 +247,7 @@
           <div class="form-group my-3">
             <div class="form-group my-3">
               <label for="copiaralbumartista-name">Indique el título</label>
-              <input type="text" class="form-control" name="tituloalbum" id="copiaralbumartista-name" placeholder="Indique el título">
+              <input type="text" class="form-control" name="titulocopiaartista" id="copiaralbumartista-name" placeholder="Indique el título">
             </div>
             <strong>Seleccione lo que quiere crear en función de la copia:</strong>
             <div class="form-check">
@@ -260,7 +260,7 @@
             </div>
             <div class="form-group my-3" id="category-container" style="display:none">
               <label for="category">Seleccione una categoría</label>
-              <select class="form-control" id="category">
+              <select class="form-control" id="category" name="song_category">
                 <option value="pop">Pop</option>
                 <option value="rock">Rock</option>
                 <option value="flamenco">Flamenco</option>
@@ -307,29 +307,30 @@
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-        <form>
+        <form action="" method="POST">
+          <input type="hidden" name="idLista">
           <div class="form-group my-3">
             <label for="list-public-switch">Hacer pública</label>
             <label class="switch">
-              <input type="checkbox" id="list-public-switch" checked>
+              <input type="checkbox" id="list-public-switch" name="publica-privada" checked>
               <span class="slider round"></span>
             </label>
           </div>
           <div class="form-group my-3">
             <label for="list-name">Cambiar nombre de la lista</label>
-            <input type="text" class="form-control" id="list-name" placeholder="Ingrese el nuevo nombre de la lista">
+            <input type="text" class="form-control" id="list-name" name="nombre-playlist" placeholder="Ingrese el nuevo nombre de la lista">
           </div>
           <div class="form-group my-3">
             <label for="list-image">Cambiar imagen de la lista</label>
-            <input type="file" class="form-control-file" id="list-image">
+            <input type="file" class="form-control-file" id="list-image" name="imagen-playlist">
           </div>
-          <button type="submit" class="btn btn-info my-3">Compartir lista</button>
+          <button type="button" class="btn btn-info my-3" onclick="location.href='/compartirlista/{id}'">Compartir lista</button>
           <div class="form-group my-3">
             <label for="list-description">Actualizar descripción de la lista</label>
-            <textarea class="form-control" id="list-description" rows="3"></textarea>
+            <textarea class="form-control" id="list-description" name="descripcion-playlist" rows="3"></textarea>
           </div>
           <button type="button" class="btn btn-secondary my-3" data-bs-dismiss="modal">Descartar cambios</button>
-          <button type="buton" class="btn btn-danger my-3" onclick="location.href='/eliminarlista'">Eliminar lista</button>
+          <button type="button" class="btn btn-danger my-3" onclick="location.href='/eliminarlista/{id}'">Eliminar lista</button>
           <button type="submit" class="btn btn-primary my-3">Guardar cambios</button>
         </form>
       </div>
@@ -346,23 +347,24 @@
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-        <form>
+        <form action="" method="POST">
+          <input type="hidden" name="idUsuario">
           <div class="form-group my-3">
             <label for="email">Cambiar correo electrónico</label>
-            <input type="email" class="form-control" id="email" placeholder="Ingresa tu nuevo correo electrónico">
+            <input type="email" class="form-control" id="email" name="cambiar-correo-usuario" placeholder="Ingresa tu nuevo correo electrónico">
           </div>
           <div class="form-group my-3">
             <label for="profile-image">Cambiar imagen de perfil</label>
-            <input type="file" class="form-control-file" id="profile-image">
+            <input type="file" class="form-control-file" id="profile-image" name="cambiar-imagen-usuario">
           </div>
           <div class="form-group my-3">
             <label for="banner-image">Cambiar imagen del banner</label>
-            <input type="file" class="form-control-file" id="banner-image">
+            <input type="file" class="form-control-file" id="banner-image" name="cambiar-banner-usuario">
           </div>
           <div class="form-group my-3">
             <label >Artista/Usuario</label>
             <br>
-            <input type="checkbox"  th:id="usertype + ${role_item.id}"
+            <input type="checkbox"  th:id="usertype + ${role_item.id}" name="tipo-perfil"
                    th:align="center"
                    th:each="role_item : ${listaRoles}"
                    th:text="${role_item.rol}"
@@ -387,23 +389,24 @@
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-        <form>
+        <form action="" method="POST">
+          <input type="hidden" name="idArtista">
           <div class="form-group my-3">
             <label for="email-artista">Cambiar correo electrónico</label>
-            <input type="email" class="form-control" id="email-artista" placeholder="Ingresa tu nuevo correo electrónico">
+            <input type="email" class="form-control" id="email-artista" name="cambiar-correo-artista" placeholder="Ingresa tu nuevo correo electrónico">
           </div>
           <div class="form-group my-3">
             <label for="profile-image-artista">Cambiar imagen de perfil</label>
-            <input type="file" class="form-control-file" id="profile-image-artista">
+            <input type="file" class="form-control-file" id="profile-image-artista" name="cambiar-imagen-artista">
           </div>
           <div class="form-group my-3">
             <label for="banner-image-artista">Cambiar imagen del banner</label>
-            <input type="file" class="form-control-file" id="banner-image-artista">
+            <input type="file" class="form-control-file" id="banner-image-artista" name="cambiar-banner-artista">
           </div>
           <div class="form-group my-3">
             <label >Artista/Usuario</label>
             <br>
-            <input type="checkbox"  th:id="usertype + ${role_item.id}"
+            <input type="checkbox"  th:id="usertype + ${role_item.id}" name="tipo-perfil"
                    th:align="center"
                    th:each="role_item : ${listaRoles}"
                    th:text="${role_item.rol}"
@@ -428,10 +431,10 @@
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-        <form>
+        <form action="" method="POST">
           <div class="form-group my-3">
             <label for="copiarlistausuario-name">Indique el título</label>
-            <input type="text" class="form-control" id="copiarlistausuario-name" placeholder="Indique el título">
+            <input type="text" class="form-control" id="copiarlistausuario-name" name="titulolista" placeholder="Indique el título">
           </div>
           <button type="button" class="btn btn-secondary my-3" data-bs-dismiss="modal">Descartar cambios</button>
           <button type="submit" class="btn btn-primary my-3">Crear playlist</button>
@@ -450,11 +453,11 @@
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-        <form>
+        <form action="" method="POST">
           <div class="form-group my-3">
             <div class="form-group my-3">
               <label for="copiarlistaartista-name">Indique el título</label>
-              <input type="text" class="form-control" id="copiarlistaartista-name" placeholder="Indique el título">
+              <input type="text" class="form-control" id="copiarlistaartista-name" name="titulolista" placeholder="Indique el título">
             </div>
             <strong>Seleccione lo que quiere crear en función de la copia:</strong>
             <div class="form-check">
@@ -484,7 +487,7 @@
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-        <form>
+        <form action="" method="POST">
           <div class="form-group">
             <label for="song_title">Título de la canción:</label>
             <input type="text" id="song_title" name="song_title">
@@ -556,21 +559,21 @@
           <div class="form-group my-3">
             <label for="album-public-switch">Hacer público</label>
             <label class="switch">
-              <input type="checkbox" id="album-public-switch" checked>
+              <input type="checkbox" id="album-public-switch" name="publico-privado" checked>
               <span class="slider round"></span>
             </label>
           </div>
           <div class="form-group my-3">
             <label for="album-name">Cambiar nombre del álbum</label>
-            <input type="text" class="form-control" id="album-name" placeholder="Ingrese el nuevo nombre del álbum">
+            <input type="text" class="form-control" id="album-name" name="cambiar-nombre-album" placeholder="Ingrese el nuevo nombre del álbum">
           </div>
           <div class="form-group my-3">
             <label for="album-image">Cambiar imagen del álbum</label>
-            <input type="file" class="form-control-file" id="album-image">
+            <input type="file" class="form-control-file" id="album-image" name="cambiar-imagen-album">
           </div>
           <div class="form-group my-3">
             <label for="album-description">Actualizar descripción del álbum</label>
-            <textarea class="form-control" id="album-description" rows="3"></textarea>
+            <textarea class="form-control" id="album-description" name="descripcion-album" rows="3"></textarea>
           </div>
           <button type="button" class="btn btn-secondary my-3" data-bs-dismiss="modal">Descartar cambios</button>
           <button type="button" class="btn btn-danger my-3" onclick="location.href='/albumes/borrar/{id}'">Eliminar álbum</button>
@@ -586,8 +589,84 @@
 <!-- Fragmento con los scripts necesarios para todas las páginas -->
 <section th:fragment="script">
 
+  <!-- Optional JavaScript -->
+
+  <script th:src="@{https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js}"
+          integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3"
+          crossorigin="anonymous"></script>
+  <script th:src="@{https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.min.js}"
+          integrity="sha384-cuYeSxntonz0PPNlHhBs68uyIAVpIIOZZ5JqeqvYYIcEL727kskC66kF92t6Xl2V"
+          crossorigin="anonymous"></script>
+
+  <!-- script para ocultar barra lateral al hacerse la ventana pequeña -->
+
+  <script>
+            document.getElementById("toggle-sidebar").addEventListener("click", function(){
+            document.querySelector("aside").classList.toggle("d-md-none");
+        });
+  </script>
+
+  <!-- mostrar/ocultar la barra lateral: -->
+
+  <script>
+    $(document).ready(function(){
+        $("#toggle-sidebar").click(function(){
+        $("#sidebar").toggleClass("d-none");
+        });
+    });
+  </script>
+
+  <!-- Sirve para que cuando te posiciones encima del índice de cada canción de la playlist, este desaparezca y aparece el botón de play -->
+  <script>
+        $('.index').hover(function() {
+        $(this).find('.index-number').hide();
+        $(this).find('.fa-play').show();
+        }, function() {
+        $(this).find('.index-number').show();
+        $(this).find('.fa-play').hide();
+        });
+  </script>
+
+  <!-- Script para que se reproduzca la canción en cuestión y que detecte el reproductor en qué tarjeta se ha clickeado -->
+  <script>
+        document.querySelectorAll('.song-card').forEach(card => {
+        card.addEventListener('click', function () {
+            const id = this.getAttribute('data-song-id');
+            const src = this.getAttribute('data-song-src');
+            const audio = document.querySelector('audio');
+            audio.setAttribute('src', src);
+            audio.setAttribute('data-song-id', id);
+            audio.play();
+        });
+        });
+  </script>
+
+  <!-- Sirve para que aparezca la imagen que subes en el banner -->
+  <script>
+        document.getElementById("banner-file").addEventListener("change", function(e) {
+        var file = e.target.files[0];
+        var reader = new FileReader();
+        reader.onload = function() {
+        var dataURL = reader.result;
+        document.getElementById("banner-img").src = dataURL;
+        };
+        reader.readAsDataURL(file);
+        });
+  </script>
+
+  <!-- Mostrar o no mostrar selección de categorías en función de la opción que elijas -->
+  <script>
+        function showCategory() {
+        document.getElementById("category-container").style.display = "block";
+        }
+
+        function hideCategory() {
+        document.getElementById("category-container").style.display = "none";
+        }
+  </script>
+
   <!-- Para cambiar el icono al hacer click -->
-    <script>
+  <script>
         $("#megusta").click(function(){
         var elem= document.getElementById("megusta");
         var seguido= 'id del usuario con megusta';
@@ -608,82 +687,15 @@
             dataType: 'json'
         })
         })
-    </script>
+  </script>
 
-  <!-- Optional JavaScript -->
+  <!-- Para que las playlists de la barra lateral tengan su propio scroll -->
+  <script>
+      const element = document.querySelector('.scroll-independiente');
+      element.style.overflowY = 'scroll';
+      element.style.height = '300px';
+  </script>
 
-    <script th:src="@{https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js}"
-          integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3"
-          crossorigin="anonymous"></script>
-    <script th:src="@{https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.min.js}"
-          integrity="sha384-cuYeSxntonz0PPNlHhBs68uyIAVpIIOZZ5JqeqvYYIcEL727kskC66kF92t6Xl2V"
-          crossorigin="anonymous"></script>
-
-  <!-- script para ocultar barra lateral al hacerse la ventana pequeña -->
-
-    <script>
-            document.getElementById("toggle-sidebar").addEventListener("click", function(){
-            document.querySelector("aside").classList.toggle("d-md-none");
-        });
-    </script>
-
-  <!-- mostrar/ocultar la barra lateral: -->
-
-    <script>
-    $(document).ready(function(){
-        $("#toggle-sidebar").click(function(){
-        $("#sidebar").toggleClass("d-none");
-        });
-    });
-    </script>
-
-  <!-- Sirve para que cuando te posiciones encima del índice de cada canción de la playlist, este desaparezca y aparece el botón de play -->
-    <script>
-        $('.index').hover(function() {
-        $(this).find('.index-number').hide();
-        $(this).find('.fa-play').show();
-        }, function() {
-        $(this).find('.index-number').show();
-        $(this).find('.fa-play').hide();
-        });
-    </script>
-
-  <!-- Script para que se reproduzca la canción en cuestión y que detecte el reproductor en qué tarjeta se ha clickeado -->
-    <script>
-        document.querySelectorAll('.song-card').forEach(card => {
-        card.addEventListener('click', function () {
-            const id = this.getAttribute('data-song-id');
-            const src = this.getAttribute('data-song-src');
-            const audio = document.querySelector('audio');
-            audio.setAttribute('src', src);
-            audio.setAttribute('data-song-id', id);
-            audio.play();
-        });
-        });
-    </script>
-
-  <!-- Sirve para que aparezca la imagen que subes en el banner -->
-    <script>
-        document.getElementById("banner-file").addEventListener("change", function(e) {
-        var file = e.target.files[0];
-        var reader = new FileReader();
-        reader.onload = function() {
-        var dataURL = reader.result;
-        document.getElementById("banner-img").src = dataURL;
-        };
-        reader.readAsDataURL(file);
-        });
-    </script>
-
-    <script>
-        function showCategory() {
-        document.getElementById("category-container").style.display = "block";
-        }
-
-        function hideCategory() {
-        document.getElementById("category-container").style.display = "none";
-        }
-    </script>
 
 </section>
 

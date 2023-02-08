@@ -236,3 +236,21 @@ body{
 .index-number {
   font-size: larger;
 }
+
+/* Para que la barra lateral sea fija y responsive a la vez */
+aside {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 25%;
+  height: 100%;
+}
+
+@media (max-width: 768px) {
+  aside {
+  width: 100%;
+  height: auto;
+  position: static;
+  }
+}
+/* Hasta aquí barra lateral fija y responsive */
