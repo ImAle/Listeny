@@ -13,6 +13,7 @@ public class LoginListener implements ApplicationListener<InteractiveAuthenticat
         @Override
         public void onApplicationEvent(InteractiveAuthenticationSuccessEvent event)
         {
+            System.out.println("Entrando en el listener");
             String username = "vacio";
             System.out.println(SecurityContextHolder.getContext().getAuthentication().getPrincipal().toString());
             //Comprobamos si hay usuario logueado

@@ -16,7 +16,7 @@ import java.util.Optional;
 
 
 @Service
-public class UserServiceImpl implements UserDetailsService{
+public class UserServiceImpl implements IUsuarioService, UserDetailsService {
 
     @Autowired
     private BCryptPasswordEncoder passwordEncoder;
@@ -35,7 +35,7 @@ public class UserServiceImpl implements UserDetailsService{
     @Override
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
         Optional<Usuario> opt = usuarioRepository.findUsuarioByEmail(email);
-
+        System.out.println("Entrando en el loaduser");
         if(opt.isEmpty())
             throw new UsernameNotFoundException("El usuario con email: " +email+ " no ha sido encontrado !");
         else {
@@ -49,4 +49,8 @@ public class UserServiceImpl implements UserDetailsService{
         }
     }
 
+    @Override
+    public String getEncodedPassword(Usuario usuario) {
+        return null;
+    }
 }
