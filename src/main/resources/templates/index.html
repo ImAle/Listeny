@@ -45,7 +45,7 @@
                 <div class="col" th:each="cancion : ${canciones}">
 
                     <div class="card song-card text-bg-dark" data-bs-toggle="collapse" data-bs-target="#collapseExample"
-                         role="button" aria-expanded="false" aria-controls="collapseExample" data-song-src="/static/canciones/song1.mp3" data-song-id="song1">
+                         role="button" aria-expanded="false" aria-controls="collapseExample" data-song-src="/canciones/song1.mp3" data-song-id="song1">
                         <img class="song-card_image"
                              src="https://ia803103.us.archive.org/28/items/cd_aladdin-sane_david-bowie_1/cd_aladdin-sane_david-bowie_1_itemimage.png"
                              alt="David Bowie - Aladdin Sane">
@@ -64,7 +64,7 @@
             <div class="collapse" id="collapseExample">
                 <div class="col-12 player-container">
                     <audio controls style="width: 100%; height: 100%;">
-                        <source src="sample.mp3">
+                        <source src="/canciones/sample.mp3">
                     </audio>
                 </div>
             </div>
