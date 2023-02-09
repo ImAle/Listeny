@@ -49,6 +49,7 @@ public class SecurityConfig {
         );
         http.authorizeHttpRequests()
                 .requestMatchers( "/","/login","/registro").permitAll()
+                //.requestMatchers("/js/**", "/img/**", "/css/**", "/fonts/**").permitAll()
                 //.requestMatchers("/crear_album").hasRole("ROL_ARTISTA")
                 .requestMatchers(HttpMethod.POST,"/login/comprobacion").permitAll()
                 .anyRequest().permitAll()

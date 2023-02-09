@@ -68,7 +68,7 @@ public class UsuariosController extends AbstractController<UsuariosDto> {
         if (!passwordEncoder.matches(usuario.getClave(), usuarioConEseEmail.getClave())) {
             return "redirect:/login";
         }
-        System.out.println("Hola 3");
+
         return "inicio_logueado";
     }
 
