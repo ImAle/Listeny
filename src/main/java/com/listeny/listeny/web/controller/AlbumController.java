@@ -3,6 +3,8 @@ package com.listeny.listeny.web.controller;
 import com.listeny.listeny.Dto.AlbumDto;
 import com.listeny.listeny.models.Album;
 import com.listeny.listeny.service.AlbumService;
+import com.listeny.listeny.service.CategoriaService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -13,7 +15,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 @Controller
 public class AlbumController extends AbstractController<AlbumDto> {
 
-    private AlbumService service;
+    @Autowired
+    AlbumService service;
 
     public AlbumController(AlbumService service){
         this.service = service;
@@ -27,15 +30,18 @@ public class AlbumController extends AbstractController<AlbumDto> {
     }
 
     @GetMapping("/crear/album/{id}")
-    public String crearAlbum(@ModelAttribute("id") Long id, Model model) throws Exception {
+    public String crearAlbum(@PathVariable("id") Long id, Model model) throws Exception {
         Album album = service.getAlbumById(id);
         model.addAttribute("album", album);
+        model.addAttribute("canciones", album.getCancionesAlbum());
         return "subir_canciones_album";
     }
 
-    @GetMapping("/editar/album")
-    public String editarAlbum(@ModelAttribute("id") Long id, Model model) throws Exception {
-        model.addAttribute("album", service.getAlbumById(id));
+    @GetMapping("/editar/album/{id}")
+    public String editarAlbum(@PathVariable Long id, Model model) throws Exception {
+        Album album = service.getAlbumById(id);
+        model.addAttribute("album", album);
+        model.addAttribute("canciones", album.getCancionesAlbum());
         return "subir_canciones_album";
     }
 

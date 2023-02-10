@@ -41,4 +41,8 @@ public class CategoriaService extends AbstractBusinessService<Categoria, Long, C
         throw new Exception("Esta categoria no existe");
     }
 
+    public List<Categoria> getCategorias(){
+        return getRepo().findAll();
+    }
+
 }

@@ -83,6 +83,7 @@ public class UsuariosController extends AbstractController<UsuariosDto> {
     public String inicioRaiz() {
         return "redirect:/home";
     }
+
     @GetMapping("/home")
     public String inicio(Model model){
         Album album = new Album();

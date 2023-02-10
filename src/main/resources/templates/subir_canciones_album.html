@@ -26,7 +26,7 @@
           </div>
           <div class="modal-body">
 
-            <form>
+            <form th:object="${album}">
               <div class="form-group my-3">
                 <label for="album-public-switch">Hacer público</label>
                 <label class="switch">
@@ -35,16 +35,16 @@
                 </label>
               </div>
               <div class="form-group my-3">
-                <label for="album-name">Cambiar nombre del álbum</label>
+                <label for="album-name" th:value="*{titulo}">Cambiar nombre del álbum</label>
                 <input type="text" class="form-control" id="album-name" placeholder="Ingrese el nuevo nombre del álbum">
               </div>
               <div class="form-group my-3">
-                <label for="album-image">Cambiar imagen del álbum</label>
+                <label for="album-image" th:value="*{imagen}">Cambiar imagen del álbum</label>
                 <input type="file" class="form-control-file" id="album-image">
               </div>
               <div class="form-group my-3">
                 <label for="album-description">Actualizar descripción del álbum</label>
-                <textarea class="form-control" id="album-description" rows="3"></textarea>
+                <textarea class="form-control" id="album-description" rows="3" th:value="*{descripcion}"></textarea>
               </div>
               <button type="button" class="btn btn-secondary my-3" data-bs-dismiss="modal">Descartar cambios</button>
               <button type="submit" class="btn btn-danger my-3">Eliminar álbum</button>
@@ -56,7 +56,7 @@
       </div>
     </div>
 
-    <div class="col-9">
+    <div class="col-9" th:object="${album}">
       <div class="row my-3">
         <div class="col-12 d-flex">
           <div class="position-relative">
@@ -65,9 +65,9 @@
           <div class="col">
             <div class="row">
               <div class="col-md-8 position-relative">
-                <h2 class="mb-3">Nombre del álbum</h2>
-                <strong class="mb-3">Privado/Público</strong>
-                <p class="d-none d-lg-block" style="position: absolute; bottom: -290px;">Descripción</p>
+                <h2 class="mb-3" th:text="*{titulo}"></h2>
+                <strong class="mb-3" th:text="*{publico}"></strong>
+                <p class="d-none d-lg-block" style="position: absolute; bottom: -290px;" th:text="*{descripcion}"></p>
                 <i class="fas fa-cog fa-2x gear-icon my-3 d-flex justify-content-end" data-bs-toggle="modal" data-bs-target="#modalalbum" style="cursor:pointer; position: absolute; bottom: -20px; right: -50px;"></i>
               </div>
             </div>
@@ -93,16 +93,16 @@
           <th></th>
         </tr>
         </thead>
-        <tbody>
+        <tbody th:each="cancion : ${canciones}">
         <tr>
           <td class="index" data-index="1">
             <span class="index-number">1</span>
             <i class="fa fa-play hidden"></i>
           </td>
           <td><img src="/imagenes/song1-image.jpg" class="img-fluid custom-img rounded-img"></td>
-          <td>Canción 1</td>
-          <td>20/01/2023</td>
-          <td>3:45</td>
+          <td th:text="${cancion.titulo}"></td>
+          <td th:text="${cancion.fechaIncorporacion}"></td>
+          <td th:text="${cancion.duracion}">3:45</td>
           <td><i class="fas fa-times fa-2x"></i></td>
         </tr>
         </tbody>

@@ -4,7 +4,9 @@ import com.listeny.listeny.Dto.CancionDto;
 import com.listeny.listeny.models.Album;
 import com.listeny.listeny.models.Cancion;
 import com.listeny.listeny.models.Lista;
+import com.listeny.listeny.repository.AlbumRepository;
 import com.listeny.listeny.repository.CancionRepository;
+import com.listeny.listeny.repository.ListaRepository;
 import com.listeny.listeny.service.mapper.CancionMapper;
 import javafx.stage.Stage;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,8 +24,15 @@ public class CancionService extends AbstractBusinessService<Cancion, Long, Canci
 
     @Autowired
     StreamingService streamingService;
-    public CancionService(CancionRepository cancionRepository, CancionMapper mapper) {
+    private final AlbumRepository albumRepository;
+    private final ListaRepository listaRepository;
+
+    public CancionService(CancionRepository cancionRepository, CancionMapper mapper,
+                          AlbumRepository albumRepository,
+                          ListaRepository listaRepository) {
         super(cancionRepository, mapper);
+        this.albumRepository = albumRepository;
+        this.listaRepository = listaRepository;
     }
 
     public Cancion getCancionById(Long id) throws Exception {
@@ -75,25 +84,37 @@ public class CancionService extends AbstractBusinessService<Cancion, Long, Canci
     public void sacarCancionDeLista(Long id, Lista lista) throws Exception {
         Cancion cancion = getCancionById(id);
         lista.getCancionesLista().remove(cancion);
+        cancion.getCancionEnLista().remove(lista);
+        getRepo().save(cancion);
+        listaRepository.save(lista);
     }
 
     public void meterCancionALista(Long id, Lista lista) throws Exception {
         Cancion cancion = getCancionById(id);
         lista.getCancionesLista().add(cancion);
+        cancion.getCancionEnLista().add(lista);
+        getRepo().save(cancion);
+        listaRepository.save(lista);
     }
 
     public void sacarCancionDeAlbum(Long id, Album album) throws Exception {
         Cancion cancion = getCancionById(id);
         album.getCancionesAlbum().remove(cancion);
+        cancion.getCancionEnAlbum().remove(album);
+        getRepo().save(cancion);
+        albumRepository.save(album);
     }
 
     public void meterCancionAlbum(Long id, Album album) throws Exception {
         Cancion cancion = getCancionById(id);
         album.getCancionesAlbum().add(cancion);
+        cancion.getCancionEnAlbum().add(album);
+        getRepo().save(cancion);
+        albumRepository.save(album);
     }
 
     // Modificar con la URL adecuada
-    public void subirMp3(MultipartFile file) throws IOException {
+    public String subirMp3(MultipartFile file) throws IOException {
         String fileName = file.getOriginalFilename();
         String URL = "/static/canciones/";
 
@@ -105,10 +126,11 @@ public class CancionService extends AbstractBusinessService<Cancion, Long, Canci
         String filePath = URL + fileName;
         File destinationFile = new File(filePath);
         file.transferTo(destinationFile);
+        return filePath;
     }
 
-    public void subirUnaImagen(MultipartFile file) throws IOException {
-        subirImagen(file);
+    public String subirUnaImagen(MultipartFile file) throws IOException {
+        return subirImagen(file);
     };
 
     public void eliminarUnaImagen(String imagen){
