@@ -6,9 +6,7 @@ import com.listeny.listeny.service.ListaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -36,11 +34,25 @@ public class ListaController extends AbstractController<ListaDto> {
         return "playlists_por_categorias";
     }
 
-    @GetMapping("/crear/lista")
-    public String crearLista(Model model){
-        Lista lista = new Lista();
+    @GetMapping("/crear/lista/{id}")
+    public String crearLista(@ModelAttribute("id") Long id, Model model) throws Exception {
+        Lista lista = service.getLista(id);
         model.addAttribute("lista", lista);
         return "crear_lista";
+    }
+
+    @GetMapping("/editar/lista/{id}")
+    public String editarLista(@ModelAttribute("id") Long id, Model model) throws Exception {
+        model.addAttribute("lista", service.getLista(id));
+        return "crear_lista";
+    }
+
+    @PostMapping("/crear/lista")
+    public String listaCreada(@ModelAttribute("lista") Lista lista, Model model){
+        service.getRepo().save(lista);
+        Long id = lista.getId();
+        model.addAttribute("id", id);
+        return "redirect:/crear/lista" + id;
     }
 
 }
