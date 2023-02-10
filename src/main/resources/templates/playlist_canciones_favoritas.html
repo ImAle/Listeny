@@ -1,8 +1,12 @@
 <!doctype html>
 <html th:lang="#{principal.lang}" xmlns:th="https://www.thymeleaf.org" xmlns:layout="https://www.ultraq.net.nz/thymeleaf/layout">
 <head th:insert="layout.html::head">
+    <title id="pageTitle">Playlist de canciones favoritas</title>
 </head>
 <body>
+
+<modal th:insert="layout.html::modal-barra-crear-lista"></modal>
+<modal th:insert="layout.html::modal-barra-crear-album"></modal>
 
 <div class="container-fluid">
     <div class="row">

@@ -254,3 +254,17 @@ aside {
   }
 }
 /* Hasta aquí barra lateral fija y responsive */
+
+
+/* Para el modal de "crear lista" de la barra lateral aparezca por encima del contenido */
+.position-modal-crear-lista {
+  position: fixed;
+  z-index: 9999; /* un valor alto para que el modal se muestre por encima de todos los demás elementos */
+  display: none; /* ocultar el modal por defecto */
+  pointer-events: auto;
+}
+
+/* Para quitar borde superior del elemento "crear lista" y del elemento de "crear álbum" de la barra lateral */
+.no-border{
+  border-top: none;
+}

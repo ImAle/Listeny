@@ -1,8 +1,12 @@
 <!doctype html>
 <html th:lang="#{principal.lang}" xmlns:th="https://www.thymeleaf.org" xmlns:layout="https://www.ultraq.net.nz/thymeleaf/layout">
 <head th:insert="layout.html::head">
+    <title id="pageTitle">Inicio</title>
 </head>
 <body>
+
+<modal th:insert="layout.html::modal-barra-crear-lista"></modal>
+<modal th:insert="layout.html::modal-barra-crear-album"></modal>
 
 <div class="container-fluid">
     <div class="row">
@@ -18,7 +22,7 @@
             <div class="row row-cols-1 row-cols-md-5 g-4 my-2">
                 <div class="col">
 
-                    <a href="playlist_vista_por_usuario.html">
+                    <a th:href="@{/lista/1}">
                         <div class="card song-card text-bg-dark">
                             <img class="song-card_image"
                                  src="/imagenes/lista1.jpg"
@@ -34,7 +38,7 @@
                 </div>
                 <div class="col">
 
-                    <a href="playlist_vista_por_usuario.html">
+                    <a th:href="@{/lista/2}">
                         <div class="card song-card text-bg-dark">
                             <img class="song-card_image"
                                  src="/imagenes/lista1.jpg"
@@ -50,7 +54,7 @@
                 </div>
                 <div class="col">
 
-                    <a href="playlist_vista_por_usuario.html">
+                    <a th:href="@{/lista/3}">
                         <div class="card song-card text-bg-dark">
                             <img class="song-card_image"
                                  src="/imagenes/lista1.jpg"
@@ -66,7 +70,7 @@
                 </div>
                 <div class="col">
 
-                    <a href="playlist_vista_por_usuario.html">
+                    <a th:href="@{/lista/4}">
                         <div class="card song-card text-bg-dark">
                             <img class="song-card_image"
                                  src="/imagenes/lista1.jpg"
@@ -82,7 +86,7 @@
                 </div>
                 <div class="col">
 
-                    <a href="playlist_vista_por_usuario.html">
+                    <a th:href="@{/lista/5}">
                         <div class="card song-card text-bg-dark">
                             <img class="song-card_image"
                                  src="/imagenes/lista1.jpg"
@@ -184,7 +188,7 @@
             <div class="row row-cols-1 row-cols-md-5 g-4 my-2">
                 <div class="col">
 
-                    <a href="playlist_vista_por_usuario.html">
+                    <a th:href="@{/lista/6}">
                         <div class="card song-card text-bg-dark">
                             <img class="song-card_image"
                                  src="/imagenes/lista1.jpg"
@@ -200,7 +204,7 @@
                 </div>
                 <div class="col">
 
-                    <a href="playlist_vista_por_usuario.html">
+                    <a th:href="@{/lista/7}">
                         <div class="card song-card text-bg-dark">
                             <img class="song-card_image"
                                  src="/imagenes/lista1.jpg"
@@ -216,7 +220,7 @@
                 </div>
                 <div class="col">
 
-                    <a href="playlist_vista_por_usuario.html">
+                    <a th:href="@{/lista/8}">
                         <div class="card song-card text-bg-dark">
                             <img class="song-card_image"
                                  src="/imagenes/lista1.jpg"
@@ -232,7 +236,7 @@
                 </div>
                 <div class="col">
 
-                    <a href="playlist_vista_por_usuario.html">
+                    <a th:href="@{/lista/9}">
                         <div class="card song-card text-bg-dark">
                             <img class="song-card_image"
                                  src="/imagenes/lista1.jpg"
@@ -248,7 +252,7 @@
                 </div>
                 <div class="col">
 
-                    <a href="playlist_vista_por_usuario.html">
+                    <a th:href="@{/lista/10}">
                         <div class="card song-card text-bg-dark">
                             <img class="song-card_image"
                                  src="/imagenes/lista1.jpg"
@@ -267,7 +271,7 @@
             <div class="row row-cols-1 row-cols-md-5 g-4 my-2">
                 <div class="col">
 
-                    <a href="playlist_vista_por_usuario.html">
+                    <a th:href="@{/album/1}">
                         <div class="card song-card text-bg-dark">
                             <img class="song-card_image"
                                  src="/imagenes/lista1.jpg"
@@ -283,7 +287,7 @@
                 </div>
                 <div class="col">
 
-                    <a href="playlist_vista_por_usuario.html">
+                    <a th:href="@{/album/2}">
                         <div class="card song-card text-bg-dark">
                             <img class="song-card_image"
                                  src="/imagenes/lista1.jpg"
@@ -299,7 +303,7 @@
                 </div>
                 <div class="col">
 
-                    <a href="playlist_vista_por_usuario.html">
+                    <a th:href="@{/album/3}">
                         <div class="card song-card text-bg-dark">
                             <img class="song-card_image"
                                  src="/imagenes/lista1.jpg"
@@ -315,7 +319,7 @@
                 </div>
                 <div class="col">
 
-                    <a href="playlist_vista_por_usuario.html">
+                    <a th:href="@{/album/4}">
                         <div class="card song-card text-bg-dark">
                             <img class="song-card_image"
                                  src="/imagenes/lista1.jpg"
@@ -331,7 +335,7 @@
                 </div>
                 <div class="col">
 
-                    <a href="playlist_vista_por_usuario.html">
+                    <a th:href="@{/album/5}">
                         <div class="card song-card text-bg-dark">
                             <img class="song-card_image"
                                  src="/imagenes/lista1.jpg"
@@ -350,7 +354,7 @@
             <div class="row row-cols-1 row-cols-md-5 g-4 my-2">
                 <div class="col">
 
-                    <a href="playlist_vista_por_usuario.html">
+                    <a th:href="@{/album/6}">
                         <div class="card song-card text-bg-dark">
                             <img class="song-card_image"
                                  src="/imagenes/lista1.jpg"
@@ -366,7 +370,7 @@
                 </div>
                 <div class="col">
 
-                    <a href="playlist_vista_por_usuario.html">
+                    <a th:href="@{/album/7}">
                         <div class="card song-card text-bg-dark">
                             <img class="song-card_image"
                                  src="/imagenes/lista1.jpg"
@@ -382,7 +386,7 @@
                 </div>
                 <div class="col">
 
-                    <a href="playlist_vista_por_usuario.html">
+                    <a th:href="@{/album/8}">
                         <div class="card song-card text-bg-dark">
                             <img class="song-card_image"
                                  src="/imagenes/lista1.jpg"
@@ -398,7 +402,7 @@
                 </div>
                 <div class="col">
 
-                    <a href="playlist_vista_por_usuario.html">
+                    <a th:href="@{/album/9}">
                         <div class="card song-card text-bg-dark">
                             <img class="song-card_image"
                                  src="/imagenes/lista1.jpg"
@@ -414,7 +418,7 @@
                 </div>
                 <div class="col">
 
-                    <a href="playlist_vista_por_usuario.html">
+                    <a th:href="@{/album/10}">
                         <div class="card song-card text-bg-dark">
                             <img class="song-card_image"
                                  src="/imagenes/lista1.jpg"
