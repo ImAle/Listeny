@@ -67,11 +67,11 @@
       </div>
       <div class="modal-body">
 
-        <form th:action="@{/crear/album}" method="post">
+        <form th:action="@{/crear/album}" th:object="${album}" method="post">
 
           <div class="form-group my-3">
             <label for="titulo-album">Indique el título del álbum:</label>
-            <input type="text" id="titulo-album" name="titulo-album">
+            <input type="text" id="titulo-album" name="titulo-album" th:text="*{album.titulo}">
           </div>
 
           <button type="button" class="btn btn-secondary my-3" data-bs-dismiss="modal">Cancelar</button>

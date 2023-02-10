@@ -5,10 +5,10 @@ import com.listeny.listeny.Dto.LoginDto;
 import com.listeny.listeny.Dto.RolDto;
 import com.listeny.listeny.Dto.UsuarioConPassDto;
 import com.listeny.listeny.Dto.UsuariosDto;
+import com.listeny.listeny.models.Album;
+import com.listeny.listeny.models.Lista;
 import com.listeny.listeny.models.Usuario;
-import com.listeny.listeny.service.CancionService;
-import com.listeny.listeny.service.RolService;
-import com.listeny.listeny.service.UsuarioService;
+import com.listeny.listeny.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
@@ -41,6 +41,13 @@ public class UsuariosController extends AbstractController<UsuariosDto> {
     @Autowired
     CancionService cancionService;
 
+    @Autowired
+    ListaService listaService;
+    @Autowired
+    ReproduccionService reproduccionService;
+    @Autowired
+    AlbumService albumService;
+
     public UsuariosController(UsuarioService service, RolService rolService) {
         this.service = service;
         this.rolService = rolService;
@@ -69,6 +76,24 @@ public class UsuariosController extends AbstractController<UsuariosDto> {
             return "redirect:/login";
         }
 
+        return "redirect:/home";
+    }
+
+    @GetMapping("/")
+    public String inicioRaiz() {
+        return "redirect:/home";
+    }
+    @GetMapping("/home")
+    public String inicio(Model model){
+        Album album = new Album();
+        Lista lista = new Lista();
+        //model.addAttribute("gustos", listaService.getMapper().toDtoListaDeLista(listaService.getListasPorGustos(idUsuario)));
+        //model.addAttribute("cancionesHistorial", cancionService.getMapper().toDtoListaDeCanciones(reproduccionService.getHistorialUltimasCancionesReproducidas(idUsuario)));
+        model.addAttribute("listasMasReproducidas", listaService.getListasMasReproducidas());
+        model.addAttribute("albumesMasReproducidos", albumService.getMapper().toDtoListaDeAlbumes((albumService.getAlbumesRecomendados())));
+        model.addAttribute("albumesRecomendados", albumService.getAlbumesRecomendados());
+        model.addAttribute("album", album);
+        model.addAttribute("lista", lista);
         return "inicio_logueado";
     }
 
