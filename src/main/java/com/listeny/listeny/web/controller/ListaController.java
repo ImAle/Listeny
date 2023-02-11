@@ -1,7 +1,12 @@
 package com.listeny.listeny.web.controller;
 
 import com.listeny.listeny.Dto.ListaDto;
+import com.listeny.listeny.models.Cancion;
 import com.listeny.listeny.models.Lista;
+import com.listeny.listeny.models.Usuario;
+import com.listeny.listeny.repository.AlbumRepository;
+import com.listeny.listeny.repository.UsuarioRepository;
+import com.listeny.listeny.service.AlbumService;
 import com.listeny.listeny.service.ListaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -16,14 +21,24 @@ public class ListaController extends AbstractController<ListaDto> {
     @Autowired
     ListaService service;
 
-    public ListaController(ListaService service) {
+    @Autowired
+    AlbumService albumService;
+    private final UsuarioRepository usuarioRepository;
+
+    public ListaController(ListaService service,
+                           UsuarioRepository usuarioRepository) {
         this.service = service;
+        this.usuarioRepository = usuarioRepository;
     }
 
     @GetMapping("/lista/{id}")
     public String vistaListaPorId(@PathVariable("id") Long id, Model model) throws Exception {
         Lista lista = service.getLista(id);
+        Usuario usuario = lista.getPropietarioLista();
+        List<Cancion> canciones = lista.getCancionesLista();
         model.addAttribute("lista", lista);
+        model.addAttribute("canciones", canciones);
+        model.addAttribute("nombreUsuario", usuario.getNombreUsuario());
         return "playlist_vista";
     }
 

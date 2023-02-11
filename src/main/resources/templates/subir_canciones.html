@@ -34,7 +34,7 @@
                     <div class="form-group my-3">
                         <label for="song_category">Categoría de la canción:</label>
                         <select id="song_category" name="song_category" th:field="*{categoriaCancion}">
-                            <option value="" th:each="categoria : ${categorias}" th:text="${categoria.categoria}"></option>
+                            <option value="" th:each="categoria : ${categorias}" th:text="${categoria.categoria}" th:value="${categoria.categoria}"></option>
                         </select>
                     </div>
                     <div class="form-group my-3">

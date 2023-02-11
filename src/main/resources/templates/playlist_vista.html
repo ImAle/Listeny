@@ -1,5 +1,5 @@
 <!doctype html>
-<html th:lang="#{principal.lang}" xmlns:th="https://www.thymeleaf.org" xmlns:layout="https://www.ultraq.net.nz/thymeleaf/layout">
+<html th:lang="es_ES" xmlns:th="https://www.thymeleaf.org" xmlns:layout="https://www.ultraq.net.nz/thymeleaf/layout">
 <head th:insert="layout.html::head">
     <title id="pageTitle">Playlist</title>
 </head>
@@ -58,16 +58,16 @@
                     <div class="position-relative">
                         <img src="/imagenes/lista1.jpg" class="img-fluid rounded-img" style="max-width:95%; max-height:95%;">
                     </div>
-                    <div class="col">
+                    <div class="col" th:object="${lista}">
                         <div class="row">
                             <div class="col-md-8 position-relative">
-                                <h2 class="mb-3">Nombre de la playlist</h2>
-                                <p class="mb-3">Descripción para la playlist</p>
-                                <small class="d-none d-lg-block" style="position: absolute; bottom: -290px;">X Número de canciones</small>
+                                <h2 class="mb-3" th:text="${lista.nombre}"></h2>
+                                <p class="mb-3" th:text="${lista.descripcion}"></p>
+                                <small class="d-none d-lg-block" style="position: absolute; bottom: -290px;" th:text="${lista.cancionesLista.size()}"></small>
                             </div>
-                            <div class="col-md-4 position-relative">
-                                <h4 class="my-3 d-none d-lg-block" style="position: absolute; bottom: -210px;">Creador de la playlist</h4>
-                                <strong class="d-none d-lg-block" style="position: absolute; bottom: -290px;">Seguidores de la playlist</strong>
+                            <div class="col-md-4 position-relative" th:object="${nombreUsuario}">
+                                <h4 class="my-3 d-none d-lg-block" style="position: absolute; bottom: -210px;" th:text="${nombreUsuario}"></h4>
+                                <strong class="d-none d-lg-block" style="position: absolute; bottom: -290px;" th:text="${lista.favoritaListaUsuario.size()}"></strong>
                             </div>
                         </div>
                     </div>
@@ -96,116 +96,17 @@
                     <th>Duración</th>
                 </tr>
                 </thead>
-                <tbody>
+                <tbody th:each="cancion, index : ${canciones}">
                 <tr>
-                    <td class="index" data-index="1">
-                        <span class="index-number">1</span>
+                    <td class="index" data-index="1" th:value="${cancion.id}">
+                        <span class="index-number" th:text="${index.index}"></span>
                         <i class="fa fa-play hidden"></i>
                     </td>
-                    <td><img src="/imagenes/song1-image.jpg" class="img-fluid custom-img rounded-img"></td>
-                    <td>Canción 1</td>
-                    <td>Artista 1</td>
-                    <td>Álbum 1</td>
-                    <td>3:45</td>
-                </tr>
-                <tr>
-                    <td class="index" data-index="1">
-                        <span class="index-number">2</span>
-                        <i class="fa fa-play hidden"></i>
-                    </td>
-                    <td><img src="/imagenes/song1-image.jpg" class="img-fluid custom-img rounded-img"></td>
-                    <td>Canción 2</td>
-                    <td>Artista 2</td>
-                    <td>Álbum 2</td>
-                    <td>4:20</td>
-                </tr>
-                <tr>
-                    <td class="index" data-index="1">
-                        <span class="index-number">3</span>
-                        <i class="fa fa-play hidden"></i>
-                    </td>
-                    <td><img src="/imagenes/song1-image.jpg" class="img-fluid custom-img rounded-img"></td>
-                    <td>Canción 3</td>
-                    <td>Artista 3</td>
-                    <td>Álbum 3</td>
-                    <td>5:10</td>
-                </tr>
-                <tr>
-                    <td class="index" data-index="1">
-                        <span class="index-number">4</span>
-                        <i class="fa fa-play hidden"></i>
-                    </td>
-                    <td><img src="/imagenes/song1-image.jpg" class="img-fluid custom-img rounded-img"></td>
-                    <td>Canción 4</td>
-                    <td>Artista 4</td>
-                    <td>Álbum 4</td>
-                    <td>5:10</td>
-                </tr>
-                <tr>
-                    <td class="index" data-index="1">
-                        <span class="index-number">5</span>
-                        <i class="fa fa-play hidden"></i>
-                    </td>
-                    <td><img src="/imagenes/song1-image.jpg" class="img-fluid custom-img rounded-img"></td>
-                    <td>Canción 5</td>
-                    <td>Artista 5</td>
-                    <td>Álbum 5</td>
-                    <td>5:10</td>
-                </tr>
-                <tr>
-                    <td class="index" data-index="1">
-                        <span class="index-number">6</span>
-                        <i class="fa fa-play hidden"></i>
-                    </td>
-                    <td><img src="/imagenes/song1-image.jpg" class="img-fluid custom-img rounded-img"></td>
-                    <td>Canción 6</td>
-                    <td>Artista 6</td>
-                    <td>Álbum 6</td>
-                    <td>5:10</td>
-                </tr>
-                <tr>
-                    <td class="index" data-index="1">
-                        <span class="index-number">7</span>
-                        <i class="fa fa-play hidden"></i>
-                    </td>
-                    <td><img src="/imagenes/song1-image.jpg" class="img-fluid custom-img rounded-img"></td>
-                    <td>Canción 7</td>
-                    <td>Artista 7</td>
-                    <td>Álbum 7</td>
-                    <td>5:10</td>
-                </tr>
-                <tr>
-                    <td class="index" data-index="1">
-                        <span class="index-number">8</span>
-                        <i class="fa fa-play hidden"></i>
-                    </td>
-                    <td><img src="/imagenes/song1-image.jpg" class="img-fluid custom-img rounded-img"></td>
-                    <td>Canción 8</td>
-                    <td>Artista 8</td>
-                    <td>Álbum 8</td>
-                    <td>5:10</td>
-                </tr>
-                <tr>
-                    <td class="index" data-index="1">
-                        <span class="index-number">9</span>
-                        <i class="fa fa-play hidden"></i>
-                    </td>
-                    <td><img src="/imagenes/song1-image.jpg" class="img-fluid custom-img rounded-img"></td>
-                    <td>Canción 9</td>
-                    <td>Artista 9</td>
-                    <td>Álbum 9</td>
-                    <td>5:10</td>
-                </tr>
-                <tr>
-                    <td class="index" data-index="1">
-                        <span class="index-number">10</span>
-                        <i class="fa fa-play hidden"></i>
-                    </td>
-                    <td><img src="/imagenes/song1-image.jpg" class="img-fluid custom-img rounded-img"></td>
-                    <td>Canción 10</td>
-                    <td>Artista 10</td>
-                    <td>Álbum 10</td>
-                    <td>5:10</td>
+                    <td><img th:src="${cancion.imagen}" class="img-fluid custom-img rounded-img"></td>
+                    <td th:text="${cancion.titulo}"></td>
+                    <td th:text="${cancion.descripcion}"></td>
+                    <td th:each="album : ${cancion.cancionEnAlbum}" th:text="${album.titulo}"></td>
+                    <td th:text="${cancion.duracion}"></td>
                 </tr>
                 </tbody>
             </table>
