@@ -31,18 +31,16 @@ public class UsuariosController extends AbstractController<UsuariosDto> {
 
     @Autowired
     UsuarioService service;
-
     @Autowired
-    private BCryptPasswordEncoder passwordEncoder;
-
+    BCryptPasswordEncoder passwordEncoder;
     @Autowired
     RolService rolService;
-
     @Autowired
     CancionService cancionService;
-
     @Autowired
     ListaService listaService;
+    @Autowired
+    CategoriaService categoriaService;
     @Autowired
     ReproduccionService reproduccionService;
     @Autowired
@@ -151,6 +149,8 @@ public class UsuariosController extends AbstractController<UsuariosDto> {
     @GetMapping("/canciones/favoritas")
     public String favoritas(Model model, Usuario usuario) {
         model.addAttribute("favoritas", usuario.getCancionesFavoritas());
+        model.addAttribute("lista", new Lista());
+        model.addAttribute("categorias", categoriaService.getCategorias());
         return "playlist_canciones_favoritas";
     }
 

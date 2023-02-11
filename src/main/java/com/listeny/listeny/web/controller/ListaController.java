@@ -41,6 +41,7 @@ public class ListaController extends AbstractController<ListaDto> {
         model.addAttribute("canciones", canciones);
         model.addAttribute("nombreUsuario", usuario.getNombreUsuario());
         model.addAttribute("nuevaLista", nuevaLista);
+        model.addAttribute("categorias", categoriaService.getCategorias());
         return "playlist_vista";
     }
 
@@ -57,6 +58,7 @@ public class ListaController extends AbstractController<ListaDto> {
         List<Cancion> canciones = lista.getCancionesLista();
         model.addAttribute("lista", lista);
         model.addAttribute("canciones", canciones);
+        model.addAttribute("categorias", categoriaService.getCategorias());
         return "crear_lista";
     }
 
@@ -66,15 +68,15 @@ public class ListaController extends AbstractController<ListaDto> {
         return "crear_lista";
     }
 
-//    @PostMapping("/crear/lista")
-//    public String listaCreada(@ModelAttribute("lista") Lista lista, Model model){
-//        service.getRepo().save(lista);
-//        Long id = lista.getId();
-//        model.addAttribute("id", id);
-//        return "redirect:/crear/lista" + id;
-//    }
+    @PostMapping("/crear/lista")
+    public String listaCreada(@ModelAttribute("lista") Lista lista, Model model){
+        service.getRepo().save(lista);
+        Long id = lista.getId();
+        model.addAttribute("id", id);
+        return "redirect:/crear/lista" + id;
+    }
 
-    @PostMapping(value = {"/crear/lista", "/crear/album"})
+    @PostMapping(value = {"/crear/listaNueva", "/crear/albumNuevo"})
     public String crearListaOrAlbum(@RequestParam("titulo") String titulo, @RequestParam("tipo") String tipo,
                                     @ModelAttribute("nuevaLista") Lista nuevaLista,
                                     Model model) throws Exception {
