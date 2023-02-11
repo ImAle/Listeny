@@ -63,11 +63,11 @@
                             <div class="col-md-8 position-relative">
                                 <h2 class="mb-3" th:text="${lista.nombre}"></h2>
                                 <p class="mb-3" th:text="${lista.descripcion}"></p>
-                                <small class="d-none d-lg-block" style="position: absolute; bottom: -290px;" th:text="${lista.cancionesLista.size()}"></small>
+                                <small class="d-none d-lg-block" style="position: absolute; bottom: -290px;" th:text="${lista.cancionesLista.size()}"></small><small class="d-none d-lg-block" style="position: absolute; bottom: -290px; margin-left: 30px;">canciones</small>
                             </div>
                             <div class="col-md-4 position-relative" th:object="${nombreUsuario}">
                                 <h4 class="my-3 d-none d-lg-block" style="position: absolute; bottom: -210px;" th:text="${nombreUsuario}"></h4>
-                                <strong class="d-none d-lg-block" style="position: absolute; bottom: -290px;" th:text="${lista.favoritaListaUsuario.size()}"></strong>
+                                <strong class="d-none d-lg-block" style="position: absolute; bottom: -290px;" th:text="${lista.favoritaListaUsuario.size()}"></strong><strong class="d-none d-lg-block" style="position: absolute; bottom: -290px; margin-left: 30px;">seguidores</strong>
                             </div>
                         </div>
                     </div>
