@@ -85,6 +85,81 @@
     </div>
 </div>
 
+<!-- Modal de configuración de crear lista - el icono del engranaje tiene estos datos para asociarlo al modal: <i class="fas fa-cog fa-2x gear-icon my-3 d-flex justify-content-end" data-bs-toggle="modal" data-bs-target="#modallista" style="cursor:pointer; position: absolute; bottom: -20px; right: -50px;"></i> -->
+<div class="modal fade" id="modallista" tabindex="-1" aria-labelledby="modallistaLabel" style="display: none;" aria-hidden="true" th:fragment="configuracion-crear-lista">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="modallistaLabel">Configuración de la lista</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form action="" method="POST">
+                    <input type="hidden" name="idLista">
+                    <div class="form-group my-3">
+                        <label for="list-public-switch">Hacer pública</label>
+                        <label class="switch">
+                            <input type="checkbox" id="list-public-switch" name="publica-privada" checked>
+                            <span class="slider round"></span>
+                        </label>
+                    </div>
+                    <div class="form-group my-3">
+                        <label for="list-name">Cambiar nombre de la lista</label>
+                        <input type="text" class="form-control" id="list-name" name="nombre-playlist" placeholder="Ingrese el nuevo nombre de la lista">
+                    </div>
+                    <div class="form-group my-3">
+                        <label for="list-image">Cambiar imagen de la lista</label>
+                        <input type="file" class="form-control-file" id="list-image" name="imagen-playlist">
+                    </div>
+                    <div class="form-group my-3">
+                        <label for="list-description">Artistas que participan en la lista:</label>
+                        <textarea class="form-control" id="list-description" name="descripcion-playlist" rows="3"></textarea>
+                    </div>
+                    <div class="form-group my-3">
+                        <label for="cambiar-categoria-lista">Cambiar categoría de la lista:</label>
+                        <select id="cambiar-categoria-lista" name="cambiar-categoria-lista">
+                            <option value="">Selecciona una categoría</option>
+                            <option value="pop">Pop</option>
+                            <option value="rock">Rock</option>
+                            <option value="flamenco">Flamenco</option>
+                            <option value="blues">Blues</option>
+                            <option value="jazz">Jazz</option>
+                            <option value="rap">Rap</option>
+                            <option value="metal">Metal</option>
+                            <option value="hard metal">Hard Metal</option>
+                            <option value="musica clasica">Música Clásica</option>
+                            <option value="soul">Soul</option>
+                            <option value="country">Country</option>
+                            <option value="electronica">Electrónica</option>
+                            <option value="hiphop">Hip-Hop</option>
+                            <option value="reggaeton">Reggaeton</option>
+                            <option value="punk">Punk</option>
+                            <option value="disco">Disco</option>
+                            <option value="hard rock">Hard-Rock</option>
+                            <option value="pop latino">Pop Latino</option>
+                            <option value="gospel">Gospel</option>
+                            <option value="heavy metal">Heavy Metal</option>
+                            <option value="salsa">Salsa</option>
+                            <option value="cumbia">Cumbia</option>
+                            <option value="trap">Trap</option>
+                            <option value="musica folclorica">Música Folclórica</option>
+                            <option value="tango">Tango</option>
+                            <option value="samba">Samba</option>
+                            <option value="samba">Rumba</option>
+                            <option value="samba">Funk</option>
+                            <option value="samba">Merengue</option>
+                            <option value="samba">Rock and Roll</option>
+                        </select>
+                    </div>
+                    <button type="button" class="btn btn-secondary my-3" data-bs-dismiss="modal">Descartar cambios</button>
+                    <button type="button" class="btn btn-danger my-3" onclick="location.href='/eliminarlista/{id}'">Eliminar lista</button>
+                    <button type="submit" class="btn btn-primary my-3">Guardar cambios</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
 <div class="container-fluid">
     <div class="row">
 
@@ -92,81 +167,6 @@
 
         <div class="col-3 d-md-block d-none" id="sidebar">
             <aside th:insert="layout.html::aside-artista"></aside>
-        </div>
-
-        <div class="modal fade" id="modallista" tabindex="-1" aria-labelledby="modallistaLabel" style="display: none;" aria-hidden="true">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="modallistaLabel">Configuración de la lista</h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <div class="modal-body">
-
-                        <form>
-                            <div class="form-group my-3">
-                                <label for="list-public-switch">Hacer pública</label>
-                                <label class="switch">
-                                    <input type="checkbox" id="list-public-switch" checked>
-                                    <span class="slider round"></span>
-                                </label>
-                            </div>
-                            <div class="form-group my-3">
-                                <label for="list-name">Cambiar nombre de la lista</label>
-                                <input type="text" class="form-control" id="list-name" placeholder="Ingrese el nuevo nombre de la lista">
-                            </div>
-                            <div class="form-group my-3">
-                                <label for="list-image">Cambiar imagen de la lista</label>
-                                <input type="file" class="form-control-file" id="list-image">
-                            </div>
-                            <div class="form-group my-3">
-                                <label for="cambiar-categoria-lista">Cambiar categoría de la lista:</label>
-                                <select id="cambiar-categoria-lista" name="cambiar-categoria-lista">
-                                    <option value="">Selecciona una categoría</option>
-                                    <option value="pop">Pop</option>
-                                    <option value="rock">Rock</option>
-                                    <option value="flamenco">Flamenco</option>
-                                    <option value="blues">Blues</option>
-                                    <option value="jazz">Jazz</option>
-                                    <option value="rap">Rap</option>
-                                    <option value="metal">Metal</option>
-                                    <option value="hard metal">Hard Metal</option>
-                                    <option value="musica clasica">Música Clásica</option>
-                                    <option value="soul">Soul</option>
-                                    <option value="country">Country</option>
-                                    <option value="electronica">Electrónica</option>
-                                    <option value="hiphop">Hip-Hop</option>
-                                    <option value="reggaeton">Reggaeton</option>
-                                    <option value="punk">Punk</option>
-                                    <option value="disco">Disco</option>
-                                    <option value="hard rock">Hard-Rock</option>
-                                    <option value="pop latino">Pop Latino</option>
-                                    <option value="gospel">Gospel</option>
-                                    <option value="heavy metal">Heavy Metal</option>
-                                    <option value="salsa">Salsa</option>
-                                    <option value="cumbia">Cumbia</option>
-                                    <option value="trap">Trap</option>
-                                    <option value="musica folclorica">Música Folclórica</option>
-                                    <option value="tango">Tango</option>
-                                    <option value="samba">Samba</option>
-                                    <option value="samba">Rumba</option>
-                                    <option value="samba">Funk</option>
-                                    <option value="samba">Merengue</option>
-                                    <option value="samba">Rock and Roll</option>
-                                </select>
-                            </div>
-                            <div class="form-group my-3">
-                                <label for="list-description">Artistas que participan en la lista:</label>
-                                <textarea class="form-control" id="list-description" rows="3"></textarea>
-                            </div>
-                            <button type="button" class="btn btn-secondary my-3" data-bs-dismiss="modal">Descartar cambios</button>
-                            <button type="submit" class="btn btn-danger my-3">Eliminar lista</button>
-                            <button type="submit" class="btn btn-primary my-3">Guardar cambios</button>
-                        </form>
-
-                    </div>
-                </div>
-            </div>
         </div>
 
         <div class="col-9">

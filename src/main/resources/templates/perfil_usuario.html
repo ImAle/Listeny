@@ -85,6 +85,90 @@
     </div>
 </div>
 
+<!-- Modal de configuración de usuario - el icono del engranaje tiene estos datos para asociarlo al modal: <i class="fas fa-cog fa-3x gear-icon my-3" data-bs-toggle="modal" data-bs-target="#modalperfil" style="cursor:pointer;"></i> -->
+<div class="modal fade" id="modalperfil" tabindex="-1" aria-labelledby="modalperfilLabel" style="display: none;" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="modalperfilLabel">Configuración de usuario</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form action="" method="POST">
+                    <input type="hidden" name="idUsuario">
+                    <div class="form-group my-3">
+                        <label for="email">Cambiar correo electrónico</label>
+                        <input type="email" class="form-control" id="email" name="cambiar-correo-usuario" placeholder="Ingresa tu nuevo correo electrónico">
+                    </div>
+                    <div class="form-group my-3">
+                        <label for="profile-image">Cambiar imagen de perfil</label>
+                        <input type="file" class="form-control-file" id="profile-image" name="cambiar-imagen-usuario">
+                    </div>
+                    <div class="form-group my-3">
+                        <label for="banner-image">Cambiar imagen del banner</label>
+                        <input type="file" class="form-control-file" id="banner-image" name="cambiar-banner-usuario">
+                    </div>
+                    <div class="form-group my-3">
+                        <label >Artista/Usuario</label>
+                        <br>
+                        <input type="checkbox"  th:id="usertype + ${role_item.id}" name="tipo-perfil"
+                               th:align="center"
+                               th:each="role_item : ${listaRoles}"
+                               th:text="${role_item.rol}"
+                               th:value="${role_item.id}"
+                               th:field="*{rolDelUsuario}"
+                        />
+                    </div>
+                    <button type="button" class="btn btn-secondary my-3" data-bs-dismiss="modal">Descartar cambios</button>
+                    <button type="submit" class="btn btn-primary my-3">Guardar cambios</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal de configuración de artista - el icono del engranaje tiene estos datos para asociarlo al modal: <i class="fas fa-cog fa-3x gear-icon my-3" data-bs-toggle="modal" data-bs-target="#modalperfilartista" style="cursor:pointer;"></i> -->
+<div class="modal fade" id="modalperfilartista" tabindex="-1" aria-labelledby="modalperfilartistaLabel" style="display: none;" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="modalperfilartistaLabel">Configuración de usuario</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form action="" method="POST">
+                    <input type="hidden" name="idArtista">
+                    <div class="form-group my-3">
+                        <label for="email-artista">Cambiar correo electrónico</label>
+                        <input type="email" class="form-control" id="email-artista" name="cambiar-correo-artista" placeholder="Ingresa tu nuevo correo electrónico">
+                    </div>
+                    <div class="form-group my-3">
+                        <label for="profile-image-artista">Cambiar imagen de perfil</label>
+                        <input type="file" class="form-control-file" id="profile-image-artista" name="cambiar-imagen-artista">
+                    </div>
+                    <div class="form-group my-3">
+                        <label for="banner-image-artista">Cambiar imagen del banner</label>
+                        <input type="file" class="form-control-file" id="banner-image-artista" name="cambiar-banner-artista">
+                    </div>
+                    <div class="form-group my-3">
+                        <label >Artista/Usuario</label>
+                        <br>
+                        <input type="checkbox"  th:id="usertype + ${role_item.id}" name="tipo-perfil"
+                               th:align="center"
+                               th:each="role_item : ${listaRoles}"
+                               th:text="${role_item.rol}"
+                               th:value="${role_item.id}"
+                               th:field="*{rolDelUsuario}"
+                        />
+                    </div>
+                    <button type="button" class="btn btn-secondary my-3" data-bs-dismiss="modal">Descartar cambios</button>
+                    <button type="submit" class="btn btn-primary my-3">Guardar cambios</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
 <div class="container-fluid">
     <div class="row">
 
@@ -97,48 +181,6 @@
         <!-- Zona derecha de la pantalla  -->
         <div class="col-9 my-5">
             <div class="container">
-                <!-- modal del perfil  -->
-                <div class="modal fade" id="modalperfil" tabindex="-1" aria-labelledby="modalperfilLabel" style="display: none;" aria-hidden="true">
-                    <div class="modal-dialog">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h5 class="modal-title" id="modalperfilLabel">Configuración de usuario</h5>
-                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                            </div>
-                            <div class="modal-body">
-
-                                <form>
-                                    <div class="form-group my-3">
-                                        <label for="email">Cambiar correo electrónico</label>
-                                        <input type="email" class="form-control" id="email" placeholder="Ingresa tu nuevo correo electrónico">
-                                    </div>
-                                    <div class="form-group my-3">
-                                        <label for="profile-image">Cambiar imagen de perfil</label>
-                                        <input type="file" class="form-control-file" id="profile-image">
-                                    </div>
-                                    <div class="form-group my-3">
-                                        <label for="banner-image">Cambiar imagen del banner</label>
-                                        <input type="file" class="form-control-file" id="banner-image">
-                                    </div>
-                                    <div class="form-group my-3">
-                                        <label >Artista/Usuario</label>
-                                        <br>
-                                        <input type="checkbox"  th:id="usertype + ${role_item.id}"
-                                               th:align="center"
-                                               th:each="role_item : ${listaRoles}"
-                                               th:text="${role_item.rol}"
-                                               th:value="${role_item.id}"
-                                               th:field="*{rolDelUsuario}"
-                                        />
-                                    </div>
-                                <button type="button" class="btn btn-secondary my-3" data-bs-dismiss="modal">Descartar cambios</button>
-                                <button type="submit" class="btn btn-primary my-3">Guardar cambios</button>
-                                </form>
-
-                            </div>
-                        </div>
-                    </div>
-                </div>
                 <!-- Banner twitter  -->
                 <div class="row text-center" style="min-height: 100px;">
                     <i class="fas fa-cog fa-3x gear-icon my-3" data-bs-toggle="modal" data-bs-target="#modalperfil" style="cursor:pointer;"></i>

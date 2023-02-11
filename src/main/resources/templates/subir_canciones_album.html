@@ -88,6 +88,44 @@
   </div>
 </div>
 
+<!-- Modal de configuración del álbum (subir canciones a álbum) - el botón del engranaje tiene estos datos para asociarlo al modal: <i class="fas fa-cog fa-2x gear-icon my-3 d-flex justify-content-end" data-bs-toggle="modal" data-bs-target="#modalalbum" style="cursor:pointer; position: absolute; bottom: -20px; right: -50px;"></i> -->
+<div class="modal fade" id="modalalbum" tabindex="-1" aria-labelledby="modalalbumLabel" style="display: none;" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="modalalbumLabel">Configuración del álbum</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form action="" method="post" th:object="${album}">
+          <div class="form-group my-3">
+            <label for="album-public-switch">Hacer público</label>
+            <label class="switch">
+              <input type="checkbox" id="album-public-switch" checked>
+              <span class="slider round"></span>
+            </label>
+          </div>
+          <div class="form-group my-3">
+            <label for="album-name" th:value="*{titulo}">Cambiar nombre del álbum</label>
+            <input type="text" class="form-control" id="album-name" name="cambiar-nombre-album" placeholder="Ingrese el nuevo nombre del álbum">
+          </div>
+          <div class="form-group my-3">
+            <label for="album-image" th:value="*{imagen}">Cambiar imagen del álbum</label>
+            <input type="file" class="form-control-file" id="album-image" name="cambiar-imagen-album">
+          </div>
+          <div class="form-group my-3">
+            <label for="album-description">Artistas que participan en el álbum</label>
+            <textarea class="form-control" id="album-description" name="descripcion-album" rows="3" th:value="*{descripcion}"></textarea>
+          </div>
+          <button type="button" class="btn btn-secondary my-3" data-bs-dismiss="modal">Descartar cambios</button>
+          <button type="button" class="btn btn-danger my-3" onclick="location.href='/albumes/borrar/{id}'">Eliminar álbum</button>
+          <button type="submit" class="btn btn-primary my-3">Guardar cambios</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
 <div class="container-fluid">
   <div class="row">
 
@@ -95,45 +133,6 @@
 
     <div class="col-3 d-md-block d-none" id="sidebar">
       <aside th:insert="layout.html::aside-artista"></aside>
-    </div>
-
-    <div class="modal fade" id="modalalbum" tabindex="-1" aria-labelledby="modalalbumLabel" style="display: none;" aria-hidden="true">
-      <div class="modal-dialog">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="modalalbumLabel">Configuración del álbum</h5>
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-          </div>
-          <div class="modal-body">
-
-            <form th:object="${album}">
-              <div class="form-group my-3">
-                <label for="album-public-switch">Hacer público</label>
-                <label class="switch">
-                  <input type="checkbox" id="album-public-switch" checked>
-                  <span class="slider round"></span>
-                </label>
-              </div>
-              <div class="form-group my-3">
-                <label for="album-name" th:value="*{titulo}">Cambiar nombre del álbum</label>
-                <input type="text" class="form-control" id="album-name" placeholder="Ingrese el nuevo nombre del álbum">
-              </div>
-              <div class="form-group my-3">
-                <label for="album-image" th:value="*{imagen}">Cambiar imagen del álbum</label>
-                <input type="file" class="form-control-file" id="album-image">
-              </div>
-              <div class="form-group my-3">
-                <label for="album-description">Artistas que participan en el álbum</label>
-                <textarea class="form-control" id="album-description" rows="3" th:value="*{descripcion}"></textarea>
-              </div>
-              <button type="button" class="btn btn-secondary my-3" data-bs-dismiss="modal">Descartar cambios</button>
-              <button type="submit" class="btn btn-danger my-3">Eliminar álbum</button>
-              <button type="submit" class="btn btn-primary my-3">Guardar cambios</button>
-            </form>
-
-          </div>
-        </div>
-      </div>
     </div>
 
     <div class="col-9" th:object="${album}">

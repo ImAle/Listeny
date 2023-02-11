@@ -85,6 +85,61 @@
     </div>
 </div>
 
+<!-- Modal de usuario copiando lista - el botón de copiar lista tiene estos datos para asociarlo al modal: <button class="fs-3" type="button" style="float: left; background-color: black; color: white; border-color: gray; border-width: 1px; cursor:pointer;" data-bs-toggle="modal" data-bs-target="#modalcopiarlistausuario">Copiar lista</button> -->
+<div class="modal fade" id="modalcopiarlistausuario" tabindex="-1" aria-labelledby="modalcopiarlistausuarioLabel" style="display: none;" aria-hidden="true" th:fragment="copiar-lista-usuario">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="modalcopiarlistausuarioLabel">Copiar lista</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form action="" method="POST">
+                    <div class="form-group my-3">
+                        <label for="copiarlistausuario-name">Indique el título</label>
+                        <input type="text" class="form-control" id="copiarlistausuario-name" name="titulolista" placeholder="Indique el título">
+                    </div>
+                    <button type="button" class="btn btn-secondary my-3" data-bs-dismiss="modal">Descartar cambios</button>
+                    <button type="submit" class="btn btn-primary my-3">Crear playlist</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal de artista copiando lista - el botón de copiar lista tiene estos datos para asociarlo al modal: <button class="fs-3" type="button" style="float: left; background-color: black; color: white; border-color: gray; border-width: 1px;" data-bs-toggle="modal" data-bs-target="#modalcopiarlistaartista">Copiar lista</button> -->
+<div class="modal fade" id="modalcopiarlistaartista" tabindex="-1" aria-labelledby="modalcopiarlistaartistaLabel" style="display: none;" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="modalcopiarlistaartistaLabel">Copiar lista</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form action="" method="post">
+                    <div class="form-group my-3">
+                        <div class="form-group my-3">
+                            <label for="copiarlistaartista-name">Indique el título</label>
+                            <input type="text" class="form-control" id="copiarlistaartista-name" name="titulolista" placeholder="Indique el título">
+                        </div>
+                        <strong>Seleccione lo que quiere crear en función de la copia:</strong>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="tipo" id="playlist" value="playlist" checked>
+                            <label class="form-check-label" for="playlist">Playlist</label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="tipo" id="album" value="album">
+                            <label class="form-check-label" for="album">Álbum</label>
+                        </div>
+                        <button type="button" class="btn btn-secondary my-3" data-bs-dismiss="modal">Descartar cambios</button>
+                        <button type="submit" class="btn btn-primary my-3">Crear</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
 <div class="container-fluid">
     <div class="row">
 
@@ -92,41 +147,6 @@
 
         <div class="col-3 d-md-block d-none" id="sidebar">
             <aside th:insert="layout.html::aside-artista"></aside>
-        </div>
-
-        <div class="modal fade" id="modalcopiarlistaartista" tabindex="-1" aria-labelledby="modalcopiarlistaartistaLabel" style="display: none;" aria-hidden="true">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="modalcopiarlistaartistaLabel">Copiar lista</h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <div class="modal-body">
-
-                        <form>
-                            <div class="form-group my-3">
-                                <div class="form-group my-3">
-                                    <label for="copiarlistaartista-name">Indique el título</label>
-                                    <input type="text" class="form-control" id="copiarlistaartista-name" placeholder="Indique el título">
-                                </div>
-                                <strong>Seleccione lo que quiere crear en función de la copia:</strong>
-                                <div class="form-check">
-                                    <input class="form-check-input" type="radio" name="tipo" id="playlist" value="playlist" checked>
-                                    <label class="form-check-label" for="playlist">Playlist</label>
-                                </div>
-                                <div class="form-check">
-                                    <input class="form-check-input" type="radio" name="tipo" id="album" value="album">
-                                    <label class="form-check-label" for="album">Álbum</label>
-                                </div>
-                                <button type="button" class="btn btn-secondary my-3" data-bs-dismiss="modal">Descartar cambios</button>
-                                <button type="submit" class="btn btn-primary my-3">Crear</button>
-                            </div>
-
-                        </form>
-
-                    </div>
-                </div>
-            </div>
         </div>
 
         <div class="col-9">
