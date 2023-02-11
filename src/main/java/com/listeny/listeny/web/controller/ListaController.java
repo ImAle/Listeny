@@ -1,13 +1,11 @@
 package com.listeny.listeny.web.controller;
 
 import com.listeny.listeny.Dto.ListaDto;
-import com.listeny.listeny.models.Cancion;
-import com.listeny.listeny.models.Lista;
-import com.listeny.listeny.models.Usuario;
-import com.listeny.listeny.repository.AlbumRepository;
-import com.listeny.listeny.repository.UsuarioRepository;
+import com.listeny.listeny.models.*;
 import com.listeny.listeny.service.AlbumService;
+import com.listeny.listeny.service.CategoriaService;
 import com.listeny.listeny.service.ListaService;
+import com.listeny.listeny.service.UsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -23,22 +21,26 @@ public class ListaController extends AbstractController<ListaDto> {
 
     @Autowired
     AlbumService albumService;
-    private final UsuarioRepository usuarioRepository;
 
-    public ListaController(ListaService service,
-                           UsuarioRepository usuarioRepository) {
+    @Autowired
+    CategoriaService categoriaService;
+    @Autowired
+    UsuarioService usuarioService;
+
+    public ListaController(ListaService service) {
         this.service = service;
-        this.usuarioRepository = usuarioRepository;
     }
 
     @GetMapping("/lista/{id}")
     public String vistaListaPorId(@PathVariable("id") Long id, Model model) throws Exception {
+        Lista nuevaLista = new Lista();
         Lista lista = service.getLista(id);
         Usuario usuario = lista.getPropietarioLista();
         List<Cancion> canciones = lista.getCancionesLista();
         model.addAttribute("lista", lista);
         model.addAttribute("canciones", canciones);
         model.addAttribute("nombreUsuario", usuario.getNombreUsuario());
+        model.addAttribute("nuevaLista", nuevaLista);
         return "playlist_vista";
     }
 
@@ -52,7 +54,9 @@ public class ListaController extends AbstractController<ListaDto> {
     @GetMapping("/crear/lista/{id}")
     public String crearLista(@ModelAttribute("id") Long id, Model model) throws Exception {
         Lista lista = service.getLista(id);
+        List<Cancion> canciones = lista.getCancionesLista();
         model.addAttribute("lista", lista);
+        model.addAttribute("canciones", canciones);
         return "crear_lista";
     }
 
@@ -62,12 +66,37 @@ public class ListaController extends AbstractController<ListaDto> {
         return "crear_lista";
     }
 
-    @PostMapping("/crear/lista")
-    public String listaCreada(@ModelAttribute("lista") Lista lista, Model model){
-        service.getRepo().save(lista);
-        Long id = lista.getId();
-        model.addAttribute("id", id);
-        return "redirect:/crear/lista" + id;
+//    @PostMapping("/crear/lista")
+//    public String listaCreada(@ModelAttribute("lista") Lista lista, Model model){
+//        service.getRepo().save(lista);
+//        Long id = lista.getId();
+//        model.addAttribute("id", id);
+//        return "redirect:/crear/lista" + id;
+//    }
+
+    @PostMapping(value = {"/crear/lista", "/crear/album"})
+    public String crearListaOrAlbum(@RequestParam("titulo") String titulo, @RequestParam("tipo") String tipo,
+                                    @ModelAttribute("nuevaLista") Lista nuevaLista,
+                                    Model model) throws Exception {
+        if (tipo.equals("playlist")) {
+            System.out.println("holaaaaaaa");
+            System.out.println(nuevaLista);
+            nuevaLista.setNombre(titulo);
+            service.getRepo().save(nuevaLista);
+            Long id = nuevaLista.getId();
+            model.addAttribute("id", id);
+            return "redirect:/crear/lista/" + id;
+
+        } else {
+            Album nuevoAlbum = new Album();
+            nuevoAlbum.setTitulo(titulo);
+            nuevoAlbum.setCancionesAlbum(nuevaLista.getCancionesLista());
+            //nuevoAlbum.setPropietarioAlbum(usuarioService.getUsuario(1L));
+            albumService.getRepo().save(nuevoAlbum);
+            Long id = nuevoAlbum.getId();
+            model.addAttribute("id", id);
+            return "redirect:/crear/album/" + id;
+        }
     }
 
 }
