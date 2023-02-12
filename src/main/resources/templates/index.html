@@ -14,14 +14,14 @@
                     <img src="/imagenes/logo.png" class="card-img-top mx-auto my-3 w-50" alt="...">
                 </a>
                 <div class="card-body">
-                    <form th:action="@{/login/comprobacion}" class="text-center" th:object="${usuario}" method="post">
+                    <form th:action="@{/login}" class="text-center" th:object="${formlogin}" method="post">
                         <h5 class="fw-normal mb-5 pb-1" style="letter-spacing: 1px;">Acceda a su cuenta</h5>
                         <div class="form-outline mb-4">
-                            <input type="email" th:field="*{email}" id="form2Example17" class="form-control form-control-lg"/>
+                            <input type="text" name="username" id="form2Example17" class="form-control form-control-lg"/>
                             <label class="form-label" for="form2Example17">Correo electrónico</label>
                         </div>
                         <div class="form-outline mb-4">
-                            <input type="password" th:field="*{clave}" id="form2Example27" class="form-control form-control-lg"/>
+                            <input type="password" name="password" id="form2Example27" class="form-control form-control-lg"/>
                             <label class="form-label" for="form2Example27">Contraseña</label>
                         </div>
                         <div class="pt-1 mb-4">
@@ -38,11 +38,9 @@
             </div>
         </sidebar>
 
-
         <main class="col-9 my-3">
-
             <div class="row row-cols-1 row-cols-md-5 g-4">
-                <div class="col" th:each="cancion : ${canciones}">
+                 <div class="col" th:each="cancion : ${canciones}">
 
                     <div class="card song-card text-bg-dark" data-bs-toggle="collapse" data-bs-target="#collapseExample"
                          role="button" aria-expanded="false" aria-controls="collapseExample" data-song-src="/canciones/song1.mp3" data-song-id="song1">
@@ -96,7 +94,7 @@
     </div>
 </div>
 
-<section th:insert="layout.html::script"></section>
+<!--section-- th:insert="layout.html::script"></section-->
 
 </body>
 </html>
