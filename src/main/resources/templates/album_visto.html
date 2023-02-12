@@ -1,5 +1,5 @@
 <!doctype html>
-<html th:lang="#{principal.lang}" xmlns:th="https://www.thymeleaf.org" xmlns:layout="https://www.ultraq.net.nz/thymeleaf/layout">
+<html th:lang="es_ES" xmlns:th="https://www.thymeleaf.org" xmlns:layout="https://www.ultraq.net.nz/thymeleaf/layout">
 <head th:insert="layout.html::head">
     <title id="pageTitle">Álbum</title>
 </head>
@@ -14,45 +14,15 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <form th:action="@{/crear/lista}" method="post">
+                <form th:action="@{/crear/lista}" th:object="${nuevaLista}" method="post">
                     <div class="form-group my-3">
-                        <label for="titulo-lista">Indique el título de la lista:</label>
+                        <label for="titulo-lista" th:field="${nuevaLista.nombre}">Indique el título de la lista:</label>
                         <input type="text" id="titulo-lista" name="titulo-lista">
                     </div>
                     <div class="form-group my-3">
                         <label for="categoria-lista">Categoría de la lista:</label>
-                        <select id="categoria-lista" name="categoria-lista">
-                            <option value="">Selecciona una categoría</option>
-                            <option value="pop">Pop</option>
-                            <option value="rock">Rock</option>
-                            <option value="flamenco">Flamenco</option>
-                            <option value="blues">Blues</option>
-                            <option value="jazz">Jazz</option>
-                            <option value="rap">Rap</option>
-                            <option value="metal">Metal</option>
-                            <option value="hard metal">Hard Metal</option>
-                            <option value="musica clasica">Música Clásica</option>
-                            <option value="soul">Soul</option>
-                            <option value="country">Country</option>
-                            <option value="electronica">Electrónica</option>
-                            <option value="hiphop">Hip-Hop</option>
-                            <option value="reggaeton">Reggaeton</option>
-                            <option value="punk">Punk</option>
-                            <option value="disco">Disco</option>
-                            <option value="hard rock">Hard-Rock</option>
-                            <option value="pop latino">Pop Latino</option>
-                            <option value="gospel">Gospel</option>
-                            <option value="heavy metal">Heavy Metal</option>
-                            <option value="salsa">Salsa</option>
-                            <option value="cumbia">Cumbia</option>
-                            <option value="trap">Trap</option>
-                            <option value="musica folclorica">Música Folclórica</option>
-                            <option value="tango">Tango</option>
-                            <option value="samba">Samba</option>
-                            <option value="samba">Rumba</option>
-                            <option value="samba">Funk</option>
-                            <option value="samba">Merengue</option>
-                            <option value="samba">Rock and Roll</option>
+                        <select id="categoria-lista" name="song_category" th:field="${nuevaLista.listasCategoria}">
+                            <option value="" th:each="categoria : ${categorias}" th:text="${categoria.categoria}" th:value="${categoria.id}"></option>
                         </select>
                     </div>
                     <button type="button" class="btn btn-secondary my-3" data-bs-dismiss="modal">Cancelar</button>
@@ -72,10 +42,10 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <form th:action="@{/crear/album}" method="post" th:object="${album}">
+                <form th:action="@{/crear/album}" method="post" th:object="${nuevoAlbum}">
                     <div class="form-group my-3">
                         <label for="titulo-album">Indique el título del álbum:</label>
-                        <input type="text" id="titulo-album" name="titulo-album" th:value="${titulo}">
+                        <input type="text" id="titulo-album" name="titulo-album" th:value="${nuevoAlbum.titulo}">
                     </div>
                     <button type="button" class="btn btn-secondary my-3" data-bs-dismiss="modal">Cancelar</button>
                     <button type="submit" class="btn btn-primary my-3">Crear álbum</button>
@@ -94,48 +64,18 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <form action="" method="POST">
+                <form th:action="@{/crear/albumNuevo}" th:object="${nuevaLista}" method="POST">
                     <div class="form-group my-3">
-                        <label for="copiaralbumusuario-name">Indique el título</label>
+                        <label for="copiaralbumusuario-name" th:field="${nuevaLista.nombre}">Indique el título</label>
                         <input type="text" class="form-control" name="titulocopiausuario" id="copiaralbumusuario-name" placeholder="Indique el título de la lista">
                     </div>
                     <div class="form-group my-3">
-                        <label for="song_category_album">Categoría de la lista:</label>
-                        <select id="song_category_album" name="song_category">
-                            <!-- Relenar la lista desde los valores de la tabla de categorías. Usar un for -->
-                            <option value="">Selecciona una categoría</option>
-                            <option value="pop">Pop</option>
-                            <option value="rock">Rock</option>
-                            <option value="flamenco">Flamenco</option>
-                            <option value="blues">Blues</option>
-                            <option value="jazz">Jazz</option>
-                            <option value="rap">Rap</option>
-                            <option value="metal">Metal</option>
-                            <option value="hard metal">Hard Metal</option>
-                            <option value="musica clasica">Música Clásica</option>
-                            <option value="soul">Soul</option>
-                            <option value="country">Country</option>
-                            <option value="electronica">Electrónica</option>
-                            <option value="hiphop">Hip-Hop</option>
-                            <option value="reggaeton">Reggaeton</option>
-                            <option value="punk">Punk</option>
-                            <option value="disco">Disco</option>
-                            <option value="hard rock">Hard-Rock</option>
-                            <option value="pop latino">Pop Latino</option>
-                            <option value="gospel">Gospel</option>
-                            <option value="heavy metal">Heavy Metal</option>
-                            <option value="salsa">Salsa</option>
-                            <option value="cumbia">Cumbia</option>
-                            <option value="trap">Trap</option>
-                            <option value="musica folclorica">Música Folclórica</option>
-                            <option value="tango">Tango</option>
-                            <option value="samba">Samba</option>
-                            <option value="samba">Rumba</option>
-                            <option value="samba">Funk</option>
-                            <option value="samba">Merengue</option>
-                            <option value="samba">Rock and Roll</option>
+                        <label for="categoria-lista-b">Categoría de la lista:</label>
+                        <select id="categoria-lista-b" name="song_category" th:field="${nuevaLista.listasCategoria}">
+                            <option value="" th:each="categoria : ${categorias}" th:text="${categoria.categoria}" th:value="${categoria.id}"></option>
                         </select>
                     </div>
+                    <input type="hidden" name="tipo" value="playlist">
                     <button type="button" class="btn btn-secondary my-3" data-bs-dismiss="modal">Descartar cambios</button>
                     <button type="submit" class="btn btn-primary my-3">Crear playlist</button>
                 </form>
@@ -153,11 +93,11 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <form action="" method="POST">
+                <form th:action="@{/crear/listaNueva}" th:object="${nuevaLista}" method="POST">
                     <div class="form-group my-3">
                         <div class="form-group my-3">
                             <label for="copiaralbumartista-name">Indique el título</label>
-                            <input type="text" class="form-control" name="titulocopiaartista" id="copiaralbumartista-name" placeholder="Indique el título">
+                            <input type="text" class="form-control" th:field="*{nombre}" name="titulo" id="copiaralbumartista-name" placeholder="Indique el título">
                         </div>
                         <strong>Seleccione lo que quiere crear en función de la copia:</strong>
                         <div class="form-check">
@@ -170,37 +110,8 @@
                         </div>
                         <div class="form-group my-3" id="category-container" style="display:none">
                             <label for="category">Seleccione una categoría</label>
-                            <select class="form-control" id="category" name="song_category">
-                                <option value="pop">Pop</option>
-                                <option value="rock">Rock</option>
-                                <option value="flamenco">Flamenco</option>
-                                <option value="blues">Blues</option>
-                                <option value="jazz">Jazz</option>
-                                <option value="rap">Rap</option>
-                                <option value="metal">Metal</option>
-                                <option value="hard metal">Hard Metal</option>
-                                <option value="musica clasica">Música Clásica</option>
-                                <option value="soul">Soul</option>
-                                <option value="country">Country</option>
-                                <option value="electronica">Electrónica</option>
-                                <option value="hiphop">Hip-Hop</option>
-                                <option value="reggaeton">Reggaeton</option>
-                                <option value="punk">Punk</option>
-                                <option value="disco">Disco</option>
-                                <option value="hard rock">Hard-Rock</option>
-                                <option value="pop latino">Pop Latino</option>
-                                <option value="gospel">Gospel</option>
-                                <option value="heavy metal">Heavy Metal</option>
-                                <option value="salsa">Salsa</option>
-                                <option value="cumbia">Cumbia</option>
-                                <option value="trap">Trap</option>
-                                <option value="musica folclorica">Música Folclórica</option>
-                                <option value="tango">Tango</option>
-                                <option value="samba">Samba</option>
-                                <option value="samba">Rumba</option>
-                                <option value="samba">Funk</option>
-                                <option value="samba">Merengue</option>
-                                <option value="samba">Rock and Roll</option>
+                            <select id="category" name="song_category" th:field="*{listasCategoria}">
+                                <option value="" th:each="categoria : ${categorias}" th:text="${categoria.categoria}" th:value="${categoria.id}"></option>
                             </select>
                         </div>
                         <button type="button" class="btn btn-secondary my-3" data-bs-dismiss="modal">Descartar cambios</button>
@@ -221,22 +132,22 @@
             <aside th:insert="layout.html::aside-artista"></aside>
         </div>
 
-        <div class="col-9">
+        <div class="col-9" th:object="${album}">
             <div class="row my-3">
                 <div class="col-12 d-flex ">
                     <div class="position-relative">
-                        <img src="/imagenes/lista1.jpg" class="img-fluid rounded-img" style="max-width:95%; max-height:95%;">
+                        <img th:src="${album.imagen}" class="img-fluid rounded-img" style="max-width:95%; max-height:95%;">
                     </div>
                     <div class="col">
                         <div class="row">
                             <div class="col-md-8 position-relative">
-                                <h2 class="mb-3">Nombre del álbum</h2>
-                                <p class="mb-3">Descripción para el álbum</p>
-                                <small class="d-none d-lg-block" style="position: absolute; bottom: -290px;">X Número de canciones</small>
+                                <h2 class="mb-3" th:text="${album.titulo}">Nombre del álbum</h2>
+                                <p class="mb-3" th:text="${album.descripcion}">Descripción para el álbum</p>
+                                <small class="d-none d-lg-block" style="position: absolute; bottom: -290px;" th:text="${album.cancionesAlbum.size()}">Número de canciones</small>
                             </div>
                             <div class="col-md-4 position-relative">
                                 <h4 class="my-3 d-none d-lg-block" style="position: absolute; bottom: -210px;">Cantante</h4>
-                                <strong class="d-none d-lg-block" style="position: absolute; bottom: -290px;">Suma de la duración total</strong>
+                                <strong class="d-none d-lg-block" style="position: absolute; bottom: -290px;" th:text="${duracion}">Suma de la duración total</strong>
                             </div>
                         </div>
                     </div>
@@ -263,96 +174,15 @@
                     <th>Duración</th>
                 </tr>
                 </thead>
-                <tbody>
+                <tbody th:each="cancion, index : ${canciones}">
                 <tr>
                     <td class="index" data-index="1">
-                        <span class="index-number">1</span>
+                        <span class="index-number" th:text="${index.index}"></span>
                         <i class="fa fa-play hidden"></i>
                     </td>
-                    <td><img src="/imagenes/song1-image.jpg" class="img-fluid custom-img rounded-img"></td>
-                    <td>Canción 1</td>
-                    <td>3:45</td>
-                </tr>
-                <tr>
-                    <td class="index" data-index="1">
-                        <span class="index-number">2</span>
-                        <i class="fa fa-play hidden"></i>
-                    </td>
-                    <td><img src="/imagenes/song1-image.jpg" class="img-fluid custom-img rounded-img"></td>
-                    <td>Canción 2</td>
-                    <td>4:20</td>
-                </tr>
-                <tr>
-                    <td class="index" data-index="1">
-                        <span class="index-number">3</span>
-                        <i class="fa fa-play hidden"></i>
-                    </td>
-                    <td><img src="/imagenes/song1-image.jpg" class="img-fluid custom-img rounded-img"></td>
-                    <td>Canción 3</td>
-                    <td>5:10</td>
-                </tr>
-                <tr>
-                    <td class="index" data-index="1">
-                        <span class="index-number">4</span>
-                        <i class="fa fa-play hidden"></i>
-                    </td>
-                    <td><img src="/imagenes/song1-image.jpg" class="img-fluid custom-img rounded-img"></td>
-                    <td>Canción 4</td>
-                    <td>5:10</td>
-                </tr>
-                <tr>
-                    <td class="index" data-index="1">
-                        <span class="index-number">5</span>
-                        <i class="fa fa-play hidden"></i>
-                    </td>
-                    <td><img src="/imagenes/song1-image.jpg" class="img-fluid custom-img rounded-img"></td>
-                    <td>Canción 5</td>
-                    <td>5:10</td>
-                </tr>
-                <tr>
-                    <td class="index" data-index="1">
-                        <span class="index-number">6</span>
-                        <i class="fa fa-play hidden"></i>
-                    </td>
-                    <td><img src="/imagenes/song1-image.jpg" class="img-fluid custom-img rounded-img"></td>
-                    <td>Canción 6</td>
-                    <td>5:10</td>
-                </tr>
-                <tr>
-                    <td class="index" data-index="1">
-                        <span class="index-number">7</span>
-                        <i class="fa fa-play hidden"></i>
-                    </td>
-                    <td><img src="/imagenes/song1-image.jpg" class="img-fluid custom-img rounded-img"></td>
-                    <td>Canción 7</td>
-                    <td>5:10</td>
-                </tr>
-                <tr>
-                    <td class="index" data-index="1">
-                        <span class="index-number">8</span>
-                        <i class="fa fa-play hidden"></i>
-                    </td>
-                    <td><img src="/imagenes/song1-image.jpg" class="img-fluid custom-img rounded-img"></td>
-                    <td>Canción 8</td>
-                    <td>5:10</td>
-                </tr>
-                <tr>
-                    <td class="index" data-index="1">
-                        <span class="index-number">9</span>
-                        <i class="fa fa-play hidden"></i>
-                    </td>
-                    <td><img src="/imagenes/song1-image.jpg" class="img-fluid custom-img rounded-img"></td>
-                    <td>Canción 9</td>
-                    <td>5:10</td>
-                </tr>
-                <tr>
-                    <td class="index" data-index="1">
-                        <span class="index-number">10</span>
-                        <i class="fa fa-play hidden"></i>
-                    </td>
-                    <td><img src="/imagenes/song1-image.jpg" class="img-fluid custom-img rounded-img"></td>
-                    <td>Canción 10</td>
-                    <td>5:10</td>
+                    <td><img th:src="${cancion.imagen}" class="img-fluid custom-img rounded-img"></td>
+                    <td th:text="${cancion.titulo}"></td>
+                    <td th:text="${cancion.duracion}"></td>
                 </tr>
                 </tbody>
             </table>

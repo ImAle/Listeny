@@ -77,13 +77,12 @@ public class ListaController extends AbstractController<ListaDto> {
     }
 
     @PostMapping(value = {"/crear/listaNueva", "/crear/albumNuevo"})
-    public String crearListaOrAlbum(@RequestParam("titulo") String titulo, @RequestParam("tipo") String tipo,
-                                    @ModelAttribute("nuevaLista") Lista nuevaLista,
+    public String crearListaOrAlbum(@RequestParam("tipo") String tipo, @ModelAttribute("nuevaLista") Lista nuevaLista,
                                     Model model) throws Exception {
+
+        System.out.println("holaaaaaaa");
+        System.out.println(nuevaLista);
         if (tipo.equals("playlist")) {
-            System.out.println("holaaaaaaa");
-            System.out.println(nuevaLista);
-            nuevaLista.setNombre(titulo);
             service.getRepo().save(nuevaLista);
             Long id = nuevaLista.getId();
             model.addAttribute("id", id);
@@ -91,9 +90,9 @@ public class ListaController extends AbstractController<ListaDto> {
 
         } else {
             Album nuevoAlbum = new Album();
-            nuevoAlbum.setTitulo(titulo);
+            nuevoAlbum.setTitulo(nuevaLista.getNombre());
             nuevoAlbum.setCancionesAlbum(nuevaLista.getCancionesLista());
-            //nuevoAlbum.setPropietarioAlbum(usuarioService.getUsuario(1L));
+            nuevoAlbum.setPropietarioAlbum(usuarioService.getUsuario(1L));
             albumService.getRepo().save(nuevoAlbum);
             Long id = nuevoAlbum.getId();
             model.addAttribute("id", id);

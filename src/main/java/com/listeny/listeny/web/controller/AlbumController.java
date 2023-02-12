@@ -2,6 +2,8 @@ package com.listeny.listeny.web.controller;
 
 import com.listeny.listeny.Dto.AlbumDto;
 import com.listeny.listeny.models.Album;
+import com.listeny.listeny.models.Cancion;
+import com.listeny.listeny.models.Lista;
 import com.listeny.listeny.service.AlbumService;
 import com.listeny.listeny.service.CategoriaService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,11 +14,17 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import java.util.List;
+
 @Controller
 public class AlbumController extends AbstractController<AlbumDto> {
 
     @Autowired
     AlbumService service;
+    @Autowired
+    CategoriaService categoriaService;
+    @Autowired
+    ListaController listaController;
 
     public AlbumController(AlbumService service){
         this.service = service;
@@ -24,8 +32,14 @@ public class AlbumController extends AbstractController<AlbumDto> {
 
     @GetMapping("/album/{id}")
     public String vistaAlbum (@PathVariable("id") Long id, Model model) throws Exception {
+        List<Cancion> canciones = service.getAlbumById(id).getCancionesAlbum();
+        double sumaDuracion = canciones.stream().mapToDouble(Cancion::getDuracion).sum();
         model.addAttribute("album", service.getAlbumById(id));
         model.addAttribute("canciones", service.getAlbumById(id).getCancionesAlbum());
+        model.addAttribute("categorias", categoriaService.getCategorias());
+        model.addAttribute("duracion", sumaDuracion);
+        model.addAttribute("nuevaLista", new Lista());
+        model.addAttribute("nuevoAlbum", new Album());
         return "album_visto";
     }
 
