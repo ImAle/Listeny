@@ -289,7 +289,10 @@ aside {
   top: 0;
   left: 0;
   width: 25%;
-  height: 100%;
+  height: auto;
+  min-height: 100%;
+  max-height: 100%;
+  overflow: auto;
 }
 
 @media (max-width: 768px) {
@@ -313,4 +316,9 @@ aside {
 /* Para quitar borde superior del elemento "crear lista" y del elemento de "crear álbum" de la barra lateral */
 .no-border{
   border-top: none;
+}
+
+/* Sombreado sobre los elementos de la barra lateral */
+.sidebar-item:hover {
+  box-shadow: 0 0 10px #333;
 }
