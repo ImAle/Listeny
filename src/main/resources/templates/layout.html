@@ -234,16 +234,6 @@
           integrity="sha384-cuYeSxntonz0PPNlHhBs68uyIAVpIIOZZ5JqeqvYYIcEL727kskC66kF92t6Xl2V"
           crossorigin="anonymous"></script>
 
-  <!-- script para ocultar barra lateral al hacerse la ventana pequeña -->
-
-  <script>
-            document.getElementById("toggle-sidebar").addEventListener("click", function(){
-            document.querySelector("aside").classList.toggle("d-md-none");
-        });
-  </script>
-
-  <!-- mostrar/ocultar la barra lateral: -->
-
   <script>
     $(document).ready(function(){
         $("#toggle-sidebar").click(function(){
@@ -260,33 +250,6 @@
         }, function() {
         $(this).find('.index-number').show();
         $(this).find('.fa-play').hide();
-        });
-  </script>
-
-  <!-- Script para que se reproduzca la canción en cuestión y que detecte el reproductor en qué tarjeta se ha clickeado -->
-  <script>
-        document.querySelectorAll('.song-card').forEach(card => {
-        card.addEventListener('click', function () {
-            const id = this.getAttribute('data-song-id');
-            const src = this.getAttribute('data-song-src');
-            const audio = document.querySelector('audio');
-            audio.setAttribute('src', src);
-            audio.setAttribute('data-song-id', id);
-            audio.play();
-        });
-        });
-  </script>
-
-  <!-- Sirve para que aparezca la imagen que subes en el banner -->
-  <script>
-        document.getElementById("banner-file").addEventListener("change", function(e) {
-        var file = e.target.files[0];
-        var reader = new FileReader();
-        reader.onload = function() {
-        var dataURL = reader.result;
-        document.getElementById("banner-img").src = dataURL;
-        };
-        reader.readAsDataURL(file);
         });
   </script>
 
