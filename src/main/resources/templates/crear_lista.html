@@ -94,59 +94,29 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <form action="" method="POST">
+                <form th:object="${lista}" method="POST">
                     <input type="hidden" name="idLista">
                     <div class="form-group my-3">
                         <label for="lista-public-checkbox">Hacer pública/privada:</label><br>
-                        <input type="checkbox" id="lista-public-checkbox" name="lista-public-checkbox" value="public" checked>Hacer pública<br>
-                        <input type="checkbox" id="lista-private-checkbox" name="lista-private-checkbox" value="private">Hacer privada<br>
+                        <input type="checkbox" id="lista-public-checkbox" th:value="${lista.publica}" name="lista-public-checkbox" value="1" checked>Hacer pública<br>
+                        <input type="checkbox" id="lista-private-checkbox" th:value="${lista.publica}" name="lista-private-checkbox" value="0">Hacer privada<br>
                     </div>
                     <div class="form-group my-3">
-                        <label for="list-name">Cambiar nombre de la lista</label>
+                        <label for="list-name" th:value="${lista.nombre}">Cambiar nombre de la lista</label>
                         <input type="text" class="form-control" id="list-name" name="nombre-playlist" placeholder="Ingrese el nuevo nombre de la lista">
                     </div>
                     <div class="form-group my-3">
-                        <label for="list-image">Cambiar imagen de la lista</label>
+                        <label for="list-image" th:value="${lista.imagen}">Cambiar imagen de la lista</label>
                         <input type="file" class="form-control-file" id="list-image" name="imagen-playlist">
                     </div>
                     <div class="form-group my-3">
-                        <label for="list-description">Artistas que participan en la lista:</label>
-                        <textarea class="form-control" id="list-description" name="descripcion-playlist" rows="3"></textarea>
+                        <label for="list-description" >Artistas que participan en la lista:</label>
+                        <textarea class="form-control" th:value="${lista.descripcion}" id="list-description" name="descripcion-playlist" rows="3"></textarea>
                     </div>
                     <div class="form-group my-3">
                         <label for="cambiar-categoria-lista">Cambiar categoría de la lista:</label>
-                        <select id="cambiar-categoria-lista" name="cambiar-categoria-lista">
-                            <option value="">Selecciona una categoría</option>
-                            <option value="pop">Pop</option>
-                            <option value="rock">Rock</option>
-                            <option value="flamenco">Flamenco</option>
-                            <option value="blues">Blues</option>
-                            <option value="jazz">Jazz</option>
-                            <option value="rap">Rap</option>
-                            <option value="metal">Metal</option>
-                            <option value="hard metal">Hard Metal</option>
-                            <option value="musica clasica">Música Clásica</option>
-                            <option value="soul">Soul</option>
-                            <option value="country">Country</option>
-                            <option value="electronica">Electrónica</option>
-                            <option value="hiphop">Hip-Hop</option>
-                            <option value="reggaeton">Reggaeton</option>
-                            <option value="punk">Punk</option>
-                            <option value="disco">Disco</option>
-                            <option value="hard rock">Hard-Rock</option>
-                            <option value="pop latino">Pop Latino</option>
-                            <option value="gospel">Gospel</option>
-                            <option value="heavy metal">Heavy Metal</option>
-                            <option value="salsa">Salsa</option>
-                            <option value="cumbia">Cumbia</option>
-                            <option value="trap">Trap</option>
-                            <option value="musica folclorica">Música Folclórica</option>
-                            <option value="tango">Tango</option>
-                            <option value="samba">Samba</option>
-                            <option value="samba">Rumba</option>
-                            <option value="samba">Funk</option>
-                            <option value="samba">Merengue</option>
-                            <option value="samba">Rock and Roll</option>
+                        <select id="cambiar-categoria-lista" name="song_category" th:field="${lista.listasCategoria}">
+                            <option value="" th:each="categoria : ${categorias}" th:text="${categoria.categoria}" th:value="${categoria.categoria}"></option>
                         </select>
                     </div>
                     <button type="button" class="btn btn-secondary my-3" data-bs-dismiss="modal">Descartar cambios</button>
@@ -167,18 +137,18 @@
             <aside th:insert="layout.html::aside-artista"></aside>
         </div>
 
-        <div class="col-9">
+        <div class="col-9" th:object="${lista}">
             <div class="row my-3">
                 <div class="col-12 d-flex">
                     <div class="position-relative">
-                        <img src="/imagenes/lista1.jpg" class="img-fluid rounded-img" style="max-width:95%; max-height:95%;">
+                        <img th:src="${lista.imagen}" class="img-fluid rounded-img" style="max-width:95%; max-height:95%;">
                     </div>
                     <div class="col">
                         <div class="row">
                             <div class="col-md-8 position-relative">
-                                <h2 class="mb-3">Nombre de la playlist</h2>
-                                <strong class="mb-3">Privada/Pública</strong>
-                                <p class="d-none d-lg-block" style="position: absolute; bottom: -290px;">Descripción</p>
+                                <h2 class="mb-3" th:text="${lista.nombre}"></h2>
+                                <strong class="mb-3" th:text="${lista.publica == 0 ? 'privada' : 'pública'}"></strong>
+                                <p class="d-none d-lg-block" th:text="${lista.descripcion}" style="position: absolute; bottom: -290px;"></p>
                                 <i class="fas fa-cog fa-2x gear-icon my-3 d-flex justify-content-end" data-bs-toggle="modal" data-bs-target="#modallista" style="cursor:pointer; position: absolute; bottom: -20px; right: -50px;"></i>
                             </div>
                         </div>
@@ -205,17 +175,17 @@
                     <th></th>
                 </tr>
                 </thead>
-                <tbody>
+                <tbody th:each="cancion, index : ${canciones}">
                 <tr>
-                    <td class="index" data-index="1">
-                        <span class="index-number">1</span>
+                    <td class="index" data-index="1" th:value="${cancion.id}">
+                        <span class="index-number" th:text="${index.index}"></span>
                         <i class="fa fa-play hidden"></i>
                     </td>
-                    <td><img src="/imagenes/song1-image.jpg" class="img-fluid custom-img rounded-img"></td>
-                    <td>Canción 1</td>
-                    <td>Álbum 1</td>
-                    <td>20/01/2023</td>
-                    <td>3:45</td>
+                    <td><img th:src="${cancion.imagen}" class="img-fluid custom-img rounded-img"></td>
+                    <td th:text="${cancion.titulo}"></td>
+                    <td th:each="album : ${cancion.cancionEnAlbum}" th:text="${album.titulo}"></td>
+                    <td th:text="${cancion.fechaIncorporacion}"></td>
+                    <td th:text="${cancion.duracion}"></td>
                     <td><i class="fas fa-times fa-2x"></i></td>
                 </tr>
                 </tbody>
