@@ -77,11 +77,11 @@ public class UsuariosController extends AbstractController<UsuariosDto> {
     }
 
     @GetMapping("/")
-    public String accesodenegado() {
+    public String inicioRaiz() {
         return "redirect:/home";
     }
     @GetMapping("/accesodenegado")
-    public String inicioRaiz() {
+    public String accesodenegado() {
         return "accesodengado";
     }
     @GetMapping("/home")
