@@ -53,14 +53,13 @@ public class UsuariosController extends AbstractController<UsuariosDto> {
 
     @GetMapping("/login")
     public String login(Model model) {
-        LoginDto login = new LoginDto();
-        model.addAttribute("usuario", login);
         model.addAttribute("canciones", cancionService.getMapper().toDtoListaDeCanciones(cancionService.getCancionesParaInicio()));
         return "index";
     }
 
-    @PostMapping("/login/comprobacion")
-    public String iniciarSesion(@ModelAttribute(name = "usuario") LoginDto usuario) {
+    @PostMapping("/login")
+    public String iniciarSesion(@ModelAttribute(name="formlogin") LoginDto usuario) {
+        System.out.println("Entrando en controlador login");
 
         Optional<Usuario> existeUsuarioConEseEmail = service.getRepo().findUsuarioByEmail(usuario.getEmail());
 
@@ -78,10 +77,13 @@ public class UsuariosController extends AbstractController<UsuariosDto> {
     }
 
     @GetMapping("/")
-    public String inicioRaiz() {
+    public String accesodenegado() {
         return "redirect:/home";
     }
-
+    @GetMapping("/accesodenegado")
+    public String inicioRaiz() {
+        return "accesodengado";
+    }
     @GetMapping("/home")
     public String inicio(Model model){
         Album album = new Album();
