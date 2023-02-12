@@ -60,7 +60,7 @@
 
       <hr class="hr bg-black" style="border-top: 5px solid">
 
-      <div class="list-group list-group-flush">
+      <div class="list-group list-group-flush scroll-independiente">
         <a href="#playlist-1" title="Playlist 1" class="list-group-item list-group-item-action d-flex justify-content-start align-items-center my-2">
           <i class="fas fa-play-circle fa-lg" style="margin-right: 35px;"></i>
           <h5 class="text-truncate text-sm">PLAYLIST 1</h5>
@@ -188,10 +188,33 @@
 
 <!-- Fragmento del reproductor -->
 <div class="collapse" id="collapseExample" th:fragment="reproductor">
-  <div class="col-12 player-container">
-    <audio controls style="width: 100%; height: 100%;">
+  <div class="col-12 player-container player-right">
+    <div class="row">
+      <div class="col-3 player-left">
+        <img src="/imagenes/Pop_Latino.jpg" alt="Song image">
+      </div>
+      <div class="col-9 player-left">
+        <p class="song-title">Nombre de la canción</p>
+        <p class="artist-name">Nombre del artista</p>
+      </div>
+    </div>
+    <audio controls style="width: 100%;">
       <source src="sample.mp3">
     </audio>
+    <button class="btn-outline-secondary" type="button" style="float: left; margin-right: 10px; background-color: transparent; border:none;">
+      <i id="megusta" class="bi bi-heart float-end fs-2" style="color: red; cursor:pointer;"></i>
+    </button>
+    <button class="btn btn-prev">
+      <i class="fas fa-step-backward"></i>
+    </button>
+    <button class="btn btn-next">
+      <i class="fas fa-step-forward"></i>
+    </button>
+    <button class="btn btn-random">
+      <i class="fas fa-random"></i>
+    </button>
+    <div class="controls">
+    </div>
   </div>
 </div>
 
@@ -276,7 +299,7 @@
         }
   </script>
 
-  <!-- Para cambiar el icono al hacer click -->
+  <!-- Para rellenar el icono del corazón al hacer click (para seguir a usuario) -->
   <script>
         $("#megusta").click(function(){
         var elem= document.getElementById("megusta");

@@ -512,12 +512,36 @@
 
 
                 <div class="collapse" id="collapseExample">
-                    <div class="col-12 player-container">
-                        <audio controls style="width: 100%; height: 100%;">
+                    <div class="col-12 player-container player-right">
+                        <div class="row">
+                            <div class="col-3 player-left">
+                                <img src="/imagenes/Pop_Latino.jpg" alt="Song image">
+                            </div>
+                            <div class="col-9 player-left">
+                                <p class="song-title">Nombre de la canción</p>
+                                <p class="artist-name">Nombre del artista</p>
+                            </div>
+                        </div>
+                        <audio controls style="width: 100%;">
                             <source src="sample.mp3">
                         </audio>
+                        <button class="btn-outline-secondary" type="button" style="float: left; margin-right: 10px; background-color: transparent; border:none;">
+                            <i id="megusta" class="bi bi-heart float-end fs-2" style="color: red; cursor:pointer;"></i>
+                        </button>
+                        <button class="btn btn-prev">
+                            <i class="fas fa-step-backward"></i>
+                        </button>
+                        <button class="btn btn-next">
+                            <i class="fas fa-step-forward"></i>
+                        </button>
+                        <button class="btn btn-random">
+                            <i class="fas fa-random"></i>
+                        </button>
+                        <div class="controls">
+                        </div>
                     </div>
                 </div>
+
 
 
 
