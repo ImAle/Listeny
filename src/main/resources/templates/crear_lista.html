@@ -97,11 +97,9 @@
                 <form th:object="${lista}" method="POST">
                     <input type="hidden" name="idLista">
                     <div class="form-group my-3">
-                        <label for="list-public-switch">Hacer pública</label>
-                        <label class="switch">
-                            <input type="checkbox" id="list-public-switch" name="publica-privada" checked>
-                            <span class="slider round"></span>
-                        </label>
+                        <label for="lista-public-checkbox">Hacer pública/privada:</label><br>
+                        <input type="checkbox" id="lista-public-checkbox" th:value="${lista.publica}" name="lista-public-checkbox" value="1" checked>Hacer pública<br>
+                        <input type="checkbox" id="lista-private-checkbox" th:value="${lista.publica}" name="lista-private-checkbox" value="0">Hacer privada<br>
                     </div>
                     <div class="form-group my-3">
                         <label for="list-name" th:value="${lista.nombre}">Cambiar nombre de la lista</label>

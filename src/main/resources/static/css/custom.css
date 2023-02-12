@@ -214,9 +214,55 @@ p.card-inf {
   bottom: 0;
   left: 0;
   right: 0;
-  top: 0;
   z-index: 999;
-  pointer-events: none;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 100px;
+  width: 100%;
+  background-color: white;
+  padding: 10px;
+  box-sizing: border-box;
+  border-radius: 10px;
+  box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.5);
+  margin: 0 auto;
+}
+
+audio::-webkit-media-controls-panel {
+  background-color: white;
+}
+
+.player-left {
+  display: flex;
+  align-items: center;
+}
+
+.player-left img {
+  height: 80px;
+  margin-right: 10px;
+  border-radius: 50%;
+  width: 100%;
+}
+
+.player-info {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-right: 10px;
+}
+
+.player-center audio {
+  height: 80px;
+  width: 100%;
+}
+
+.player-right button {
+  height: 30px;
+  width: 30px;
+  margin-left: 10px;
+  border-radius: 50%;
+  background-color: #fff;
+  cursor: pointer;
 }
 /* Hasta aquí el reproductor */
 
@@ -243,7 +289,10 @@ aside {
   top: 0;
   left: 0;
   width: 25%;
-  height: 100%;
+  height: auto;
+  min-height: 100%;
+  max-height: 100%;
+  overflow: auto;
 }
 
 @media (max-width: 768px) {
@@ -268,3 +317,24 @@ aside {
 .no-border{
   border-top: none;
 }
+
+/* Sombreado sobre los elementos de la barra lateral */
+.sidebar-item:hover {
+  box-shadow: 0 0 10px #333;
+}
+
+/* Para que los enlaces no se vean en azul y que se vean en negro */
+a {
+  text-decoration: underline;
+  color: black;
+}
+
+/* Estilo para el botón de cerrar sesión */
+.logout-button {
+    padding: 10px 20px;
+    background-color: red;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
