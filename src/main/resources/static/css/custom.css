@@ -322,3 +322,19 @@ aside {
 .sidebar-item:hover {
   box-shadow: 0 0 10px #333;
 }
+
+/* Para que los enlaces no se vean en azul y que se vean en negro */
+a {
+  text-decoration: underline;
+  color: black;
+}
+
+/* Estilo para el botón de cerrar sesión */
+.logout-button {
+    padding: 10px 20px;
+    background-color: red;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
