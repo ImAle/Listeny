@@ -80,7 +80,7 @@ public class SecurityConfig {
 
     @Bean
     public GrantedAuthorityDefaults grantedAuthorityDefaults(){
-        return new GrantedAuthorityDefaults("ROLE_");
+        return new GrantedAuthorityDefaults("ROL_");
     }
 
 }

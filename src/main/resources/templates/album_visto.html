@@ -16,12 +16,12 @@
             <div class="modal-body">
                 <form th:action="@{/crear/lista}" th:object="${nuevaLista}" method="post">
                     <div class="form-group my-3">
-                        <label for="titulo-lista" th:field="${nuevaLista.nombre}">Indique el título de la lista:</label>
-                        <input type="text" id="titulo-lista" name="titulo-lista">
+                        <label for="titulo-lista" >Indique el título de la lista:</label>
+                        <input type="text" id="titulo-lista" th:field="*{nombre}" name="titulo-lista">
                     </div>
                     <div class="form-group my-3">
                         <label for="categoria-lista">Categoría de la lista:</label>
-                        <select id="categoria-lista" name="song_category" th:field="${nuevaLista.listasCategoria}">
+                        <select id="categoria-lista" name="song_category" th:field="*{listasCategoria}">
                             <option value="" th:each="categoria : ${categorias}" th:text="${categoria.categoria}" th:value="${categoria.id}"></option>
                         </select>
                     </div>
@@ -45,7 +45,7 @@
                 <form th:action="@{/crear/album}" method="post" th:object="${nuevoAlbum}">
                     <div class="form-group my-3">
                         <label for="titulo-album">Indique el título del álbum:</label>
-                        <input type="text" id="titulo-album" name="titulo-album" th:value="${nuevoAlbum.titulo}">
+                        <input type="text" id="titulo-album" name="titulo-album" th:field="${nuevoAlbum.titulo}">
                     </div>
                     <button type="button" class="btn btn-secondary my-3" data-bs-dismiss="modal">Cancelar</button>
                     <button type="submit" class="btn btn-primary my-3">Crear álbum</button>
@@ -66,8 +66,8 @@
             <div class="modal-body">
                 <form th:action="@{/crear/albumNuevo}" th:object="${nuevaLista}" method="POST">
                     <div class="form-group my-3">
-                        <label for="copiaralbumusuario-name" th:field="${nuevaLista.nombre}">Indique el título</label>
-                        <input type="text" class="form-control" name="titulocopiausuario" id="copiaralbumusuario-name" placeholder="Indique el título de la lista">
+                        <label for="copiaralbumusuario-name">Indique el título</label>
+                        <input type="text" class="form-control" th:field="${nuevaLista.nombre}" name="titulocopiausuario" id="copiaralbumusuario-name" placeholder="Indique el título de la lista">
                     </div>
                     <div class="form-group my-3">
                         <label for="categoria-lista-b">Categoría de la lista:</label>

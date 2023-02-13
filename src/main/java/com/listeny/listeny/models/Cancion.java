@@ -43,7 +43,7 @@ public class Cancion implements Serializable{
     private Date fechaIncorporacion;
 
     @Column(name = "publica")
-    private Boolean publica;
+    private Boolean publica = false;
 
     @Column(name = "url", length = 200)
     private String url;

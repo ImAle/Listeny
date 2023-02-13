@@ -16,13 +16,13 @@
             <div class="modal-body">
                 <form th:action="@{/crear/lista}" th:object="${lista}" method="post">
                     <div class="form-group my-3">
-                        <label for="titulo-lista" th:value="${lista.nombre}">Indique el título de la lista:</label>
-                        <input type="text" id="titulo-lista" name="titulo-lista">
+                        <label for="titulo-lista">Indique el título de la lista:</label>
+                        <input type="text" id="titulo-lista" name="titulo-lista" th:value="${lista.nombre}">
                     </div>
                     <div class="form-group my-3">
                         <label for="categoria-lista">Categoría de la lista:</label>
                         <select id="categoria-lista" name="song_category" th:field="${lista.listasCategoria}">
-                            <option value="" th:each="categoria : ${categorias}" th:text="${categoria.categoria}" th:value="${categoria.categoria}"></option>
+                            <option value="" th:each="categoria : ${categorias}" th:text="${categoria.categoria}" th:value="${categoria.id}"></option>
                         </select>
                     </div>
                     <button type="button" class="btn btn-secondary my-3" data-bs-dismiss="modal">Cancelar</button>
@@ -45,7 +45,7 @@
                 <form th:action="@{/crear/album}" method="post" th:object="${album}">
                     <div class="form-group my-3">
                         <label for="titulo-album">Indique el título del álbum:</label>
-                        <input type="text" id="titulo-album" name="titulo-album" th:value="${titulo}">
+                        <input type="text" id="titulo-album" name="titulo-album" th:field="*{titulo}">
                     </div>
                     <button type="button" class="btn btn-secondary my-3" data-bs-dismiss="modal">Cancelar</button>
                     <button type="submit" class="btn btn-primary my-3">Crear álbum</button>
@@ -69,7 +69,7 @@
                 <div class="col-12 d-flex ">
                     <div class="position-relative">
                         <h1 class="text-align: center;">LISTA DE CANCIONES FAVORITAS</h1>
-                        <p>En esta lita se encuentran las canciones que añades como favoritas.</p>
+                        <p>En esta lista se encuentran las canciones que añades como favoritas.</p>
                     </div>
                 </div>
             </div>
@@ -94,42 +94,19 @@
                 </tr>
                 </thead>
                 <tbody>
-                <tr>
+                <tr th:each="cancion, index : ${favoritas}">
                     <td class="index" data-index="1">
-                        <span class="index-number">1</span>
+                        <span class="index-number" th:text="${index.index}"></span>
                         <i class="fa fa-play hidden"></i>
                     </td>
                     <td><img src="/imagenes/song1-image.jpg" class="img-fluid custom-img rounded-img"></td>
-                    <td>Canción 1</td>
-                    <td>Artista 1</td>
-                    <td>Álbum 1</td>
-                    <td>3:45</td>
+                    <td th:text="${cancion.titulo}"></td>
+                    <td th:text="${cancion.descripcion}"></td>
+                    <td th:text="${cancion.cancionEnAlbum}"></td>
+                    <td th:text="${cancion.duracion}"></td>
                     <td><i class="fas fa-times fa-2x"></i></td>
                 </tr>
-                <tr>
-                    <td class="index" data-index="1">
-                        <span class="index-number">2</span>
-                        <i class="fa fa-play hidden"></i>
-                    </td>
-                    <td><img src="/imagenes/song1-image.jpg" class="img-fluid custom-img rounded-img"></td>
-                    <td>Canción 2</td>
-                    <td>Artista 2</td>
-                    <td>Álbum 2</td>
-                    <td>4:20</td>
-                    <td><i class="fas fa-times fa-2x"></i></td>
-                </tr>
-                <tr>
-                    <td class="index" data-index="1">
-                        <span class="index-number">3</span>
-                        <i class="fa fa-play hidden"></i>
-                    </td>
-                    <td><img src="/imagenes/song1-image.jpg" class="img-fluid custom-img rounded-img"></td>
-                    <td>Canción 3</td>
-                    <td>Artista 3</td>
-                    <td>Álbum 3</td>
-                    <td>5:10</td>
-                    <td><i class="fas fa-times fa-2x"></i></td>
-                </tr>
+
                 </tbody>
             </table>
 

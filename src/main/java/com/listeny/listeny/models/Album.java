@@ -39,8 +39,8 @@ public class Album implements Serializable {
     @Column (name = "descripcion", length = 45)
     private String descripcion;
 
-    @Column (name = "publico")
-    private Boolean publico;
+    @Column (name = "publico", nullable = false)
+    private Boolean publico = false;
 
     @ManyToMany
     @JoinTable (name = "albumes_has_canciones",

@@ -1,5 +1,6 @@
 package com.listeny.listeny.web.controller;
 
+import com.listeny.listeny.service.UserServiceImpl;
 import com.listeny.listeny.service.UsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -11,6 +12,8 @@ public class FavoritoController {
 
     @Autowired
     UsuarioService usuarioService;
+    @Autowired
+    UserServiceImpl sessionService;
 
     @GetMapping("/megusta")
     public void seguirUsuario(@RequestParam("seguidor") Long yo, @RequestParam("seguido") Long aQuienSigo) throws Exception {

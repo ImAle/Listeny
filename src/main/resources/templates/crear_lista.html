@@ -14,15 +14,15 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <form th:action="@{/crear/lista}" method="post">
+                <form th:action="@{/crear/lista}" th:object="${nuevaLista}" method="post">
                     <div class="form-group my-3">
                         <label for="titulo-lista">Indique el título de la lista:</label>
-                        <input type="text" id="titulo-lista" name="titulo-lista">
+                        <input type="text" id="titulo-lista" th:field="*{nombre}" name="titulo-lista">
                     </div>
                     <div class="form-group my-3">
                         <label for="categoria-lista">Categoría de la lista:</label>
-                        <select id="categoria-lista" name="song_category" th:field="${lista.listasCategoria}">
-                            <option value="" th:each="categoria : ${categorias}" th:text="${categoria.categoria}" th:value="${categoria.categoria}"></option>
+                        <select id="categoria-lista" name="song_category" th:field="*{listasCategoria}">
+                            <option value="" th:each="categoria : ${categorias}" th:text="${categoria.categoria}" th:value="${categoria.id}"></option>
                         </select>
                     </div>
                     <button type="button" class="btn btn-secondary my-3" data-bs-dismiss="modal">Cancelar</button>
@@ -42,10 +42,10 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <form th:action="@{/crear/album}" method="post" th:object="${album}">
+                <form th:action="@{/crear/album}" method="post" th:object="${nuevoAlbum}">
                     <div class="form-group my-3">
                         <label for="titulo-album">Indique el título del álbum:</label>
-                        <input type="text" id="titulo-album" name="titulo-album" th:value="${titulo}">
+                        <input type="text" id="titulo-album" name="titulo-album" th:field="*{titulo}">
                     </div>
                     <button type="button" class="btn btn-secondary my-3" data-bs-dismiss="modal">Cancelar</button>
                     <button type="submit" class="btn btn-primary my-3">Crear álbum</button>
@@ -64,33 +64,33 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <form th:object="${lista}" method="POST">
+                <form th:object="${lista}" th:action="@{/editar/lista/{id}(id=*{id})}" method="POST">
                     <input type="hidden" name="idLista">
                     <div class="form-group my-3">
                         <label for="lista-public-checkbox">Hacer pública/privada:</label><br>
-                        <input type="checkbox" id="lista-public-checkbox" th:value="${lista.publica}" name="lista-public-checkbox" value="1" checked>Hacer pública<br>
-                        <input type="checkbox" id="lista-private-checkbox" th:value="${lista.publica}" name="lista-private-checkbox" value="0">Hacer privada<br>
+                        <input type="checkbox" id="lista-public-checkbox" th:field="${lista.publica}" th:value="1" name="lista-public-checkbox" value="1" checked>Hacer pública<br>
+                        <input type="checkbox" id="lista-private-checkbox" th:field="${lista.publica}" th:value="0" name="lista-private-checkbox" value="0">Hacer privada<br>
                     </div>
                     <div class="form-group my-3">
-                        <label for="list-name" th:value="${lista.nombre}">Cambiar nombre de la lista</label>
-                        <input type="text" class="form-control" id="list-name" name="nombre-playlist" placeholder="Ingrese el nuevo nombre de la lista">
+                        <label for="list-name">Cambiar nombre de la lista</label>
+                        <input type="text" class="form-control" th:field="*{nombre}" id="list-name" name="nombre-playlist" placeholder="Ingrese el nuevo nombre de la lista">
                     </div>
                     <div class="form-group my-3">
-                        <label for="list-image" th:value="${lista.imagen}">Cambiar imagen de la lista</label>
-                        <input type="file" class="form-control-file" id="list-image" name="imagen-playlist">
+                        <label for="list-image">Cambiar imagen de la lista</label>
+                        <input type="file" class="form-control-file" th:field="*{imagen}" id="list-image" name="imagen-playlist">
                     </div>
                     <div class="form-group my-3">
                         <label for="list-description" >Artistas que participan en la lista:</label>
-                        <textarea class="form-control" th:value="${lista.descripcion}" id="list-description" name="descripcion-playlist" rows="3"></textarea>
+                        <textarea class="form-control" th:field="*{descripcion}" id="list-description" name="descripcion-playlist" rows="3"></textarea>
                     </div>
                     <div class="form-group my-3">
                         <label for="cambiar-categoria-lista">Cambiar categoría de la lista:</label>
-                        <select id="cambiar-categoria-lista" name="song_category" th:field="${lista.listasCategoria}">
-                            <option value="" th:each="categoria : ${categorias}" th:text="${categoria.categoria}" th:value="${categoria.categoria}"></option>
+                        <select id="cambiar-categoria-lista" name="song_category" th:field="*{listasCategoria}">
+                            <option value="" th:each="categoria : ${categorias}" th:text="${categoria.categoria}" th:value="${categoria.id}"></option>
                         </select>
                     </div>
                     <button type="button" class="btn btn-secondary my-3" data-bs-dismiss="modal">Descartar cambios</button>
-                    <button type="button" class="btn btn-danger my-3" onclick="location.href='/eliminarlista/{id}'">Eliminar lista</button>
+                    <a th:href="@{/eliminar/lista/{id}(id=*{id})}"><button type="button" class="btn btn-danger my-3">Eliminar lista</button></a>
                     <button type="submit" class="btn btn-primary my-3">Guardar cambios</button>
                 </form>
             </div>

@@ -1,10 +1,7 @@
 package com.listeny.listeny.web.controller;
 
 
-import com.listeny.listeny.Dto.LoginDto;
-import com.listeny.listeny.Dto.RolDto;
-import com.listeny.listeny.Dto.UsuarioConPassDto;
-import com.listeny.listeny.Dto.UsuariosDto;
+import com.listeny.listeny.Dto.*;
 import com.listeny.listeny.models.Album;
 import com.listeny.listeny.models.Lista;
 import com.listeny.listeny.models.Usuario;
@@ -45,6 +42,8 @@ public class UsuariosController extends AbstractController<UsuariosDto> {
     ReproduccionService reproduccionService;
     @Autowired
     AlbumService albumService;
+    @Autowired
+    UserServiceImpl sessionService;
 
     public UsuariosController(UsuarioService service, RolService rolService) {
         this.service = service;
@@ -57,52 +56,66 @@ public class UsuariosController extends AbstractController<UsuariosDto> {
         return "index";
     }
 
-    @PostMapping("/login")
-    public String iniciarSesion(@ModelAttribute(name="formlogin") LoginDto usuario) {
-        System.out.println("Entrando en controlador login");
-
-        Optional<Usuario> existeUsuarioConEseEmail = service.getRepo().findUsuarioByEmail(usuario.getEmail());
-
-        if (existeUsuarioConEseEmail.isEmpty()) {
-            return "redirect:/login";
-        }
-
-        Usuario usuarioConEseEmail = existeUsuarioConEseEmail.get();
-
-        if (!passwordEncoder.matches(usuario.getClave(), usuarioConEseEmail.getClave())) {
-            return "redirect:/login";
-        }
-
-        return "redirect:/home";
-    }
+//    @PostMapping("/login")
+//    public String iniciarSesion(@ModelAttribute(name="formlogin") LoginDto usuario) {
+//        System.out.println("Entrando en controlador login");
+//
+//        Optional<Usuario> existeUsuarioConEseEmail = service.getRepo().findUsuarioByEmail(usuario.getEmail());
+//
+//        if (existeUsuarioConEseEmail.isEmpty()) {
+//            return "redirect:/login";
+//        }
+//
+//        Usuario usuarioConEseEmail = existeUsuarioConEseEmail.get();
+//
+//        if (!passwordEncoder.matches(usuario.getClave(), usuarioConEseEmail.getClave())) {
+//            return "redirect:/login";
+//        }
+//
+//        return "redirect:/home";
+//    }
 
     @GetMapping("/")
     public String inicioRaiz() {
         return "redirect:/home";
     }
+
     @GetMapping("/accesodenegado")
     public String accesodenegado() {
         return "accesodengado";
     }
+
     @GetMapping("/home")
     public String inicio(Model model){
-        Album album = new Album();
-        Lista lista = new Lista();
-        //model.addAttribute("gustos", listaService.getMapper().toDtoListaDeLista(listaService.getListasPorGustos(idUsuario)));
-        //model.addAttribute("cancionesHistorial", cancionService.getMapper().toDtoListaDeCanciones(reproduccionService.getHistorialUltimasCancionesReproducidas(idUsuario)));
+//        List<ListaDeCancionDto> cancionesHistorial = cancionService.getMapper().toDtoListaDeCanciones(reproduccionService.getHistorialUltimasCancionesReproducidas(sessionService.getSession().getId()));
+//        List<ListaDeListaDto> gustos = listaService.getMapper().toDtoListaDeLista(listaService.getListasPorGustos(sessionService.getSession().getId()));
+//        if(gustos.size() > 4){
+//            model.addAttribute("gustos", gustos);
+//        }
+//        if(cancionesHistorial.size() > 4) {
+//            model.addAttribute("cancionesHistorial", cancionesHistorial);
+//        }
         model.addAttribute("listasMasReproducidas", listaService.getListasMasReproducidas());
         model.addAttribute("albumesMasReproducidos", albumService.getMapper().toDtoListaDeAlbumes((albumService.getAlbumesRecomendados())));
         model.addAttribute("albumesRecomendados", albumService.getAlbumesRecomendados());
-        model.addAttribute("album", album);
-        model.addAttribute("lista", lista);
+        model.addAttribute("nuevoAlbum", new Album());
+        model.addAttribute("nuevaLista", new Lista());
         return "inicio_logueado";
     }
 
     @GetMapping("/usuarios/{id}")
     public String userById(@PathVariable("id") Long idUser, Model model) throws Exception {
-        UsuariosDto usuariosDto = service.getMapper().toDto(service.getUsuario(idUser));
-        model.addAttribute("usuario", usuariosDto);
-        return "perfil_usuario";
+        Usuario usuario = service.getUsuario(idUser);
+        model.addAttribute("nuevoAlbum", new Album());
+        model.addAttribute("nuevaLista", new Lista());
+        model.addAttribute("categorias", categoriaService.getCategorias());
+        model.addAttribute("usuario", service.getMapper().toDto(usuario));
+        model.addAttribute("propietarioListas", usuario.getPropietarioListas());
+        if (usuario.getRolDelUsuario().getId() == 2){
+            model.addAttribute("propietarioAlbumes", usuario.getPropietarioAlbumes());
+            return "perfil_de_artista_visitado";
+        }
+        return "perfil_de_usuario_visitado";
     }
 
     @GetMapping("/registro")
@@ -149,11 +162,34 @@ public class UsuariosController extends AbstractController<UsuariosDto> {
     }
 
     @GetMapping("/canciones/favoritas")
-    public String favoritas(Model model, Usuario usuario) {
-        model.addAttribute("favoritas", usuario.getCancionesFavoritas());
+    public String favoritas(Model model) {
+        model.addAttribute("favoritas", sessionService.getSession().getCancionesFavoritas());
         model.addAttribute("lista", new Lista());
+        model.addAttribute("album", new Album());
         model.addAttribute("categorias", categoriaService.getCategorias());
         return "playlist_canciones_favoritas";
+    }
+
+    @GetMapping("/perfil")
+    public String miPerfil(Model model){
+        final List<RolDto> rolDTOList = rolService.buscarTodos();
+
+        model.addAttribute("yo", sessionService.getSession());
+        model.addAttribute("albumesFavoritos", sessionService.getSession().getAlbumesFavoritos());
+        model.addAttribute("listasFavoritas", sessionService.getSession().getListasFavoritos());
+        model.addAttribute("propietarioCancion", listaService.getRepo().findListasByPropietarioLista(sessionService.getSession()));
+        model.addAttribute("sigoA", sessionService.getSession().getSigueA());
+        model.addAttribute("nuevaLista", new Lista());
+        model.addAttribute("nuevoAlbum", new Album());
+        model.addAttribute("categorias", categoriaService.getCategorias());
+        model.addAttribute("listaRoles", rolDTOList);
+        return "perfil_usuario";
+    }
+
+    @PostMapping("/perfil/actualizar")
+    public String actualizarPerfil(){
+
+        return "redirect:/home";
     }
 
 }

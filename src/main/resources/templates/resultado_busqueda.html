@@ -14,45 +14,15 @@
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-        <form th:action="@{/crear/lista}" method="post">
+        <form th:action="@{/crear/lista}" th:object="${nuevaLista}" method="post">
           <div class="form-group my-3">
-            <label for="titulo-lista">Indique el título de la lista:</label>
-            <input type="text" id="titulo-lista" name="titulo-lista">
+            <label for="titulo-lista" >Indique el título de la lista:</label>
+            <input type="text" id="titulo-lista" th:field="*{nombre}" name="titulo-lista">
           </div>
           <div class="form-group my-3">
             <label for="categoria-lista">Categoría de la lista:</label>
-            <select id="categoria-lista" name="categoria-lista">
-              <option value="">Selecciona una categoría</option>
-              <option value="pop">Pop</option>
-              <option value="rock">Rock</option>
-              <option value="flamenco">Flamenco</option>
-              <option value="blues">Blues</option>
-              <option value="jazz">Jazz</option>
-              <option value="rap">Rap</option>
-              <option value="metal">Metal</option>
-              <option value="hard metal">Hard Metal</option>
-              <option value="musica clasica">Música Clásica</option>
-              <option value="soul">Soul</option>
-              <option value="country">Country</option>
-              <option value="electronica">Electrónica</option>
-              <option value="hiphop">Hip-Hop</option>
-              <option value="reggaeton">Reggaeton</option>
-              <option value="punk">Punk</option>
-              <option value="disco">Disco</option>
-              <option value="hard rock">Hard-Rock</option>
-              <option value="pop latino">Pop Latino</option>
-              <option value="gospel">Gospel</option>
-              <option value="heavy metal">Heavy Metal</option>
-              <option value="salsa">Salsa</option>
-              <option value="cumbia">Cumbia</option>
-              <option value="trap">Trap</option>
-              <option value="musica folclorica">Música Folclórica</option>
-              <option value="tango">Tango</option>
-              <option value="samba">Samba</option>
-              <option value="samba">Rumba</option>
-              <option value="samba">Funk</option>
-              <option value="samba">Merengue</option>
-              <option value="samba">Rock and Roll</option>
+            <select id="categoria-lista" name="song_category" th:field="*{listasCategoria}">
+              <option value="" th:each="categoria : ${categorias}" th:text="${categoria.categoria}" th:value="${categoria.id}"></option>
             </select>
           </div>
           <button type="button" class="btn btn-secondary my-3" data-bs-dismiss="modal">Cancelar</button>
@@ -72,10 +42,10 @@
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-        <form th:action="@{/crear/album}" method="post" th:object="${album}">
+        <form th:action="@{/crear/album}" method="post" th:object="${nuevoAlbum}">
           <div class="form-group my-3">
             <label for="titulo-album">Indique el título del álbum:</label>
-            <input type="text" id="titulo-album" name="titulo-album" th:value="${titulo}">
+            <input type="text" id="titulo-album" name="titulo-album" th:value="${nuevoAlbum.titulo}">
           </div>
           <button type="button" class="btn btn-secondary my-3" data-bs-dismiss="modal">Cancelar</button>
           <button type="submit" class="btn btn-primary my-3">Crear álbum</button>
@@ -125,7 +95,7 @@
       <div class="row row-cols-1 row-cols-md-5 g-4 my-2">
         <div class="col" th:each="lista : ${listas}">
 
-          <a th:href="@{/index}">
+          <a th:href="@{/lista/{id}(id=${lista.id})}">
             <div class="card song-card text-bg-dark">
               <img class="song-card_image"
                    th:src="${lista.imagen}">
@@ -144,7 +114,7 @@
       <div class="row row-cols-1 row-cols-md-5 g-4 my-2">
         <div class="col" th:each="usuario : ${usuarios}">
 
-          <a th:href="@{/index}">
+          <a th:href="@{/usuarios/{id}(id=${usuario.id})}">
             <div class="card song-card text-bg-dark">
               <img class="song-card_image"
                    th:src="${usuario.imagen}"
@@ -164,7 +134,7 @@
       <div class="row row-cols-1 row-cols-md-5 g-4 my-2">
         <div class="col" th:each="album : ${albumes}">
 
-          <a th:href="@{/index}">
+          <a th:href="@{/album/{id}(id=${album.id})}">
             <div class="card song-card text-bg-dark">
               <img class="song-card_image"
                    th:src="${album.imagen}"

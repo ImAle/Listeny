@@ -43,7 +43,7 @@ public class Lista implements Serializable {
     private String color;
 
     @Column(name = "publica")
-    private Boolean publica;
+    private Boolean publica = false;
 
     @ManyToOne
     @JoinColumn(name = "idCategoria", nullable = false)

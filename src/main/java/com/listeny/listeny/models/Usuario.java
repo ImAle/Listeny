@@ -5,6 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.hibernate.annotations.Fetch;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -58,19 +59,19 @@ public class Usuario implements Serializable {
     inverseJoinColumns = @JoinColumn(name = "idFavorito"))
     private List<Cancion> cancionesFavoritas = new ArrayList<>();
 
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable (name="Favoritos_listas",
     joinColumns = @JoinColumn (name="idUsuario"),
     inverseJoinColumns = @JoinColumn(name="idLista"))
     private List<Lista> listasFavoritos = new ArrayList<>();
 
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable (name="Favoritos_albumes",
             joinColumns = @JoinColumn (name="idUsuario"),
             inverseJoinColumns = @JoinColumn(name="idAlbum"))
     private List<Album> albumesFavoritos = new ArrayList<>();
 
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "seguidor",
             joinColumns = @JoinColumn(name = "idSeguidor", referencedColumnName = "id"),
             inverseJoinColumns = @JoinColumn(name = "idSeguido", referencedColumnName = "id"))

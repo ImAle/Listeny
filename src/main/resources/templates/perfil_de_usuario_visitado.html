@@ -1,5 +1,5 @@
 <!doctype html>
-<html th:lang="#{principal.lang}" xmlns:th="https://www.thymeleaf.org" xmlns:layout="https://www.ultraq.net.nz/thymeleaf/layout">
+<html th:lang="es_ES" xmlns:th="https://www.thymeleaf.org" xmlns:layout="https://www.ultraq.net.nz/thymeleaf/layout">
 <head th:insert="layout.html::head">
   <title id="pageTitle">Perfil de usuario visitado</title>
 </head>
@@ -14,45 +14,15 @@
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-        <form th:action="@{/crear/lista}" method="post">
+        <form th:action="@{/crear/lista}" th:object="${nuevaLista}" method="post">
           <div class="form-group my-3">
-            <label for="titulo-lista">Indique el título de la lista:</label>
-            <input type="text" id="titulo-lista" name="titulo-lista">
+            <label for="titulo-lista" >Indique el título de la lista:</label>
+            <input type="text" id="titulo-lista" th:field="*{nombre}" name="titulo-lista">
           </div>
           <div class="form-group my-3">
             <label for="categoria-lista">Categoría de la lista:</label>
-            <select id="categoria-lista" name="categoria-lista">
-              <option value="">Selecciona una categoría</option>
-              <option value="pop">Pop</option>
-              <option value="rock">Rock</option>
-              <option value="flamenco">Flamenco</option>
-              <option value="blues">Blues</option>
-              <option value="jazz">Jazz</option>
-              <option value="rap">Rap</option>
-              <option value="metal">Metal</option>
-              <option value="hard metal">Hard Metal</option>
-              <option value="musica clasica">Música Clásica</option>
-              <option value="soul">Soul</option>
-              <option value="country">Country</option>
-              <option value="electronica">Electrónica</option>
-              <option value="hiphop">Hip-Hop</option>
-              <option value="reggaeton">Reggaeton</option>
-              <option value="punk">Punk</option>
-              <option value="disco">Disco</option>
-              <option value="hard rock">Hard-Rock</option>
-              <option value="pop latino">Pop Latino</option>
-              <option value="gospel">Gospel</option>
-              <option value="heavy metal">Heavy Metal</option>
-              <option value="salsa">Salsa</option>
-              <option value="cumbia">Cumbia</option>
-              <option value="trap">Trap</option>
-              <option value="musica folclorica">Música Folclórica</option>
-              <option value="tango">Tango</option>
-              <option value="samba">Samba</option>
-              <option value="samba">Rumba</option>
-              <option value="samba">Funk</option>
-              <option value="samba">Merengue</option>
-              <option value="samba">Rock and Roll</option>
+            <select id="categoria-lista" name="song_category" th:field="*{listasCategoria}">
+              <option value="" th:each="categoria : ${categorias}" th:text="${categoria.categoria}" th:value="${categoria.id}"></option>
             </select>
           </div>
           <button type="button" class="btn btn-secondary my-3" data-bs-dismiss="modal">Cancelar</button>
@@ -62,7 +32,6 @@
     </div>
   </div>
 </div>
-
 <!-- Modal barra de navegación lateral (crear álbum) -->
 <div class="modal fade position-modal-crear-lista" id="modal02" tabindex="-1" aria-labelledby="modal02Label" style="display: none;" aria-hidden="true">
   <div class="modal-dialog">
@@ -72,10 +41,10 @@
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-        <form th:action="@{/crear/album}" method="post" th:object="${album}">
+        <form th:action="@{/crear/album}" method="post" th:object="${nuevoAlbum}">
           <div class="form-group my-3">
             <label for="titulo-album">Indique el título del álbum:</label>
-            <input type="text" id="titulo-album" name="titulo-album" th:value="${titulo}">
+            <input type="text" id="titulo-album" name="titulo-album" th:value="${nuevoAlbum.titulo}">
           </div>
           <button type="button" class="btn btn-secondary my-3" data-bs-dismiss="modal">Cancelar</button>
           <button type="submit" class="btn btn-primary my-3">Crear álbum</button>
@@ -95,7 +64,7 @@
     </div>
 
     <!-- Zona derecha de la pantalla  -->
-    <div class="col-9 my-5">
+    <div class="col-9 my-5" th:object="${usuario}">
       <div class="container">
         <!-- Banner twitter  -->
         <div class="row text-center" style="min-height: 100px;">
@@ -114,80 +83,26 @@
           <!--  Nombre de usuario y seguidores  -->
           <div class="col my-3 mb-3" style="margin-left: -3rem;">
             <i id="megusta" class="bi bi-heart float-end fs-2" style="color: red; cursor:pointer;"></i>
-            <p>Nombre Usuario</p>
-            <p> Nro. seguidores </p>
+            <p th:text="${usuario.nombreUsuario}"></p>
+            <p th:text="${usuario.seguidoPor}"></p>
           </div>
         </div>
 
         <div class="row my-5" style="border-top: 4px solid gray;">
           <div class="col-9 text-center my-3 d-flex justify-content-center align-items-center">
             <h2 class="mx-3">PLAYLISTS</h2>
-            <p class="mx-3">X Creadas</p>
+            <p class="mx-3"><span th:text="${propietarioListas.size()}"></span> Creadas</p>
           </div>
         </div>
 
         <div class="row">
-          <ul class="lista list-unstyled d-flex flex-wrap">
-            <li class="elementolista my-3"><a th:href="@{/lista/1}" class="d-flex"><img
-                    src="/imagenes/lista1.jpg" alt="" class="rounded-circle mx-3"
-                    style="width: 4rem; height: 4rem;">
-              <p class="my-auto mx-3">"nombre de la lista"</p>
-              <p class="my-auto mx-3">"nro. de canciones"</p>
+          <ul class="lista list-unstyled d-flex flex-wrap" th:each="lista : ${propietarioListas}">
+            <li class="elementolista my-3"><a th:href="@{/lista/{id}(id=${lista.id})}" class="d-flex">
+              <img th:src="${lista.imagen}" alt="" class="rounded-circle mx-3" style="width: 4rem; height: 4rem;">
+              <p class="my-auto mx-3" th:text="${lista.nombre}"></p>
+              <p class="my-auto mx-3" th:text="${lista.cancionesLista.size()}"></p>
             </a></li>
-            <li class="elementolista my-3"><a th:href="@{/lista/2}" class="d-flex"><img
-                    src="/imagenes/lista1.jpg" alt="" class="rounded-circle mx-3"
-                    style="width: 4rem; height: 4rem;">
-              <p class="my-auto mx-3">"nombre de la lista"</p>
-              <p class="my-auto mx-3">"nro. de canciones"</p>
-            </a></li>
-            <li class="elementolista my-3"><a th:href="@{/lista/3}" class="d-flex"><img
-                    src="/imagenes/lista1.jpg" alt="" class="rounded-circle mx-3"
-                    style="width: 4rem; height: 4rem;">
-              <p class="my-auto mx-3">"nombre de la lista"</p>
-              <p class="my-auto mx-3">"nro. de canciones"</p>
-            </a></li>
-            <li class="elementolista my-3"><a th:href="@{/lista/4}" class="d-flex"><img
-                    src="/imagenes/lista1.jpg" alt="" class="rounded-circle mx-3"
-                    style="width: 4rem; height: 4rem;">
-              <p class="my-auto mx-3">"nombre de la lista"</p>
-              <p class="my-auto mx-3">"nro. de canciones"</p>
-            </a></li>
-            <li class="elementolista my-3"><a th:href="@{/lista/5}" class="d-flex"><img
-                    src="/imagenes/lista1.jpg" alt="" class="rounded-circle mx-3"
-                    style="width: 4rem; height: 4rem;">
-              <p class="my-auto mx-3">"nombre de la lista"</p>
-              <p class="my-auto mx-3">"nro. de canciones"</p>
-            </a></li>
-            <li class="elementolista my-3"><a th:href="@{/lista/6}" class="d-flex"><img
-                    src="/imagenes/lista1.jpg" alt="" class="rounded-circle mx-3"
-                    style="width: 4rem; height: 4rem;">
-              <p class="my-auto mx-3">"nombre de la lista"</p>
-              <p class="my-auto mx-3">"nro. de canciones"</p>
-            </a></li>
-            <li class="elementolista my-3"><a th:href="@{/lista/7}" class="d-flex"><img
-                    src="/imagenes/lista1.jpg" alt="" class="rounded-circle mx-3"
-                    style="width: 4rem; height: 4rem;">
-              <p class="my-auto mx-3">"nombre de la lista"</p>
-              <p class="my-auto mx-3">"nro. de canciones"</p>
-            </a></li>
-            <li class="elementolista my-3"><a th:href="@{/lista/8}" class="d-flex"><img
-                    src="/imagenes/lista1.jpg" alt="" class="rounded-circle mx-3"
-                    style="width: 4rem; height: 4rem;">
-              <p class="my-auto mx-3">"nombre de la lista"</p>
-              <p class="my-auto mx-3">"nro. de canciones"</p>
-            </a></li>
-            <li class="elementolista my-3"><a th:href="@{/lista/9}" class="d-flex"><img
-                    src="/imagenes/lista1.jpg" alt="" class="rounded-circle mx-3"
-                    style="width: 4rem; height: 4rem;">
-              <p class="my-auto mx-3">"nombre de la lista"</p>
-              <p class="my-auto mx-3">"nro. de canciones"</p>
-            </a></li>
-            <li class="elementolista my-3"><a th:href="@{/lista/10}" class="d-flex"><img
-                    src="/imagenes/lista1.jpg" alt="" class="rounded-circle mx-3"
-                    style="width: 4rem; height: 4rem;">
-              <p class="my-auto mx-3">"nombre de la lista"</p>
-              <p class="my-auto mx-3">"nro. de canciones"</p>
-            </a></li>
+
           </ul>
         </div>
       </div>

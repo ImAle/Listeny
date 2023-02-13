@@ -1,9 +1,12 @@
 package com.listeny.listeny.web.controller;
 
 import com.listeny.listeny.Dto.CancionDto;
+import com.listeny.listeny.models.Album;
 import com.listeny.listeny.models.Cancion;
+import com.listeny.listeny.models.Lista;
 import com.listeny.listeny.service.CancionService;
 import com.listeny.listeny.service.CategoriaService;
+import com.listeny.listeny.service.UserServiceImpl;
 import com.listeny.listeny.service.UsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -26,13 +29,16 @@ public class CancionController extends AbstractController<CancionDto>{
     UsuarioService usuarioService;
     @Autowired
     CategoriaService categoriaService;
+    @Autowired
+    UserServiceImpl sessionService;
 
     @GetMapping("/canciones/misCanciones")
-    public String misCanciones(Model model, Long idUsuario) throws Exception {
-        idUsuario=1L;
-        List<Cancion> canciones = usuarioService.getUsuario(idUsuario).getPropietarioCanciones();
+    public String misCanciones(Model model) throws Exception {
+        List<Cancion> canciones = sessionService.getSession().getPropietarioCanciones();
         model.addAttribute("canciones", cancionService.getMapper().toDtoCancionesListadas(canciones));
         model.addAttribute("nuevaCancion", new Cancion());
+        model.addAttribute("nuevaLista", new Lista());
+        model.addAttribute("nuevoAlbum", new Album());
         model.addAttribute("categorias", categoriaService.getCategorias());
         return "subir_canciones";
     }
@@ -45,6 +51,7 @@ public class CancionController extends AbstractController<CancionDto>{
         guardarCancion.setUrl(urlDeLaCancion);
         guardarCancion.setImagen(urlDeLaImagen);
         cancionService.getRepo().save(guardarCancion);
+        sessionService.getSession().getPropietarioCanciones().add(guardarCancion);
         return "redirect:/cancion/misCanciones";
     }
 

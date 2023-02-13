@@ -1,7 +1,11 @@
 package com.listeny.listeny.web.controller;
 
+import com.listeny.listeny.models.Album;
+import com.listeny.listeny.models.Lista;
 import com.listeny.listeny.service.BuscadorService;
+import com.listeny.listeny.service.CategoriaService;
 import com.listeny.listeny.service.ListaService;
+import com.listeny.listeny.service.UserServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -18,10 +22,17 @@ public class BuscadorController {
     ListaService listaService;
     @Autowired
     BuscadorService buscadorService;
+    @Autowired
+    UserServiceImpl sessionService;
+    @Autowired
+    CategoriaService categoriaService;
 
     @GetMapping("/buscador")
     public String buscador(Model model){
         model.addAttribute("recomendadas", listaService.getListasRecomendadas());
+        model.addAttribute("categorias", categoriaService.getCategorias());
+        model.addAttribute("nuevaLista", new Lista());
+        model.addAttribute("nuevoAlbum", new Album());
         return "buscador";
     }
 
@@ -31,6 +42,9 @@ public class BuscadorController {
         model.addAttribute("listas", buscadorService.buscarListasPorNombre(busqueda));
         model.addAttribute("albumes", buscadorService.buscarAlbumesPorTitulo(busqueda));
         model.addAttribute("usuarios", buscadorService.buscarUsuariosPorNombreUsuario(busqueda));
+        model.addAttribute("categorias", categoriaService.getCategorias());
+        model.addAttribute("nuevaLista", new Lista());
+        model.addAttribute("nuevoAlbum", new Album());
         return "resultado_busqueda";
     }
 

@@ -23,8 +23,17 @@ public class UserServiceImpl implements IUsuarioService, UserDetailsService {
     @Autowired
     private UsuarioRepository usuarioRepository;
 
+    private Usuario session;
 
-//    public Usuario saveUser(Usuario nuevoUsuario, Usuario usuarioIntroducido) {
+    public Usuario getSession() {
+        return session;
+    }
+
+    public void setSession(Usuario session) {
+        this.session = session;
+    }
+
+    //    public Usuario saveUser(Usuario nuevoUsuario, Usuario usuarioIntroducido) {
 //        String passwd= usuarioIntroducido.getClave();
 //        String encodedPassword = passwordEncoder.encode(passwd);
 //        nuevoUsuario.setClave(encodedPassword);
@@ -41,6 +50,7 @@ public class UserServiceImpl implements IUsuarioService, UserDetailsService {
         else {
             Usuario user = opt.get();
             SimpleGrantedAuthority grantedAuthority = new SimpleGrantedAuthority(user.getRolDelUsuario().getRol());
+            setSession(user);
             return new org.springframework.security.core.userdetails.User(
                     user.getEmail(),
                     user.getClave(),
