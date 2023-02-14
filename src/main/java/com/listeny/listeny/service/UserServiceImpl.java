@@ -33,18 +33,10 @@ public class UserServiceImpl implements IUsuarioService, UserDetailsService {
         this.session = session;
     }
 
-    //    public Usuario saveUser(Usuario nuevoUsuario, Usuario usuarioIntroducido) {
-//        String passwd= usuarioIntroducido.getClave();
-//        String encodedPassword = passwordEncoder.encode(passwd);
-//        nuevoUsuario.setClave(encodedPassword);
-//        usuarioRepository.save(nuevoUsuario);
-//        return nuevoUsuario;
-//    }
 
     @Override
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
         Optional<Usuario> opt = usuarioRepository.findUsuarioByEmail(email);
-        System.out.println("Entrando en el loaduser");
         if(opt.isEmpty())
             throw new UsernameNotFoundException("El usuario con email: " +email+ " no ha sido encontrado !");
         else {

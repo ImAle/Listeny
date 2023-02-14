@@ -8,9 +8,11 @@ import com.listeny.listeny.service.CancionService;
 import com.listeny.listeny.service.CategoriaService;
 import com.listeny.listeny.service.UserServiceImpl;
 import com.listeny.listeny.service.UsuarioService;
+import com.listeny.listeny.util.FileUploadUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -45,14 +47,28 @@ public class CancionController extends AbstractController<CancionDto>{
 
     @PostMapping("/canciones/misCanciones/subirCancion")
     public String subirCancion(@ModelAttribute("nuevaCancion") Cancion nuevaCancion, @RequestParam("songFile") MultipartFile cancion, @RequestParam("songImage") MultipartFile imagen) throws IOException {
+
+        String fileName = StringUtils.cleanPath(cancion.getOriginalFilename());
+        String uploadDir = "src/main/resources/static/canciones/";
+        String uploadDirbbdd = "/canciones/";
+        FileUploadUtil.saveFile(uploadDir, fileName, cancion);
+
+        String stringname=imagen.getOriginalFilename();
+        String imageName = StringUtils.cleanPath(imagen.getOriginalFilename());
+        String uploadImageDir = "src/main/resources/static/imagenes/";
+        String uploadDirImagebbdd = "/imagenes/";
+        FileUploadUtil.saveFile(uploadImageDir, stringname, imagen);
+
         Cancion guardarCancion = nuevaCancion;
-        String urlDeLaCancion = cancionService.subirMp3(cancion);
-        String urlDeLaImagen = cancionService.subirUnaImagen(imagen);
-        guardarCancion.setUrl(urlDeLaCancion);
-        guardarCancion.setImagen(urlDeLaImagen);
+
+        guardarCancion.setUrl(uploadDirbbdd + fileName);
+        guardarCancion.setImagen(uploadDirImagebbdd + imageName);
+        guardarCancion.setPropietarioCancion(sessionService.getSession());
+
         cancionService.getRepo().save(guardarCancion);
         sessionService.getSession().getPropietarioCanciones().add(guardarCancion);
-        return "redirect:/cancion/misCanciones";
+
+        return "redirect:/canciones/misCanciones";
     }
 
 

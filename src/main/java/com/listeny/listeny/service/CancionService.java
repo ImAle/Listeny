@@ -116,7 +116,7 @@ public class CancionService extends AbstractBusinessService<Cancion, Long, Canci
     // Modificar con la URL adecuada
     public String subirMp3(MultipartFile file) throws IOException {
         String fileName = file.getOriginalFilename();
-        String URL = "/static/canciones/";
+        String URL = "src/main/resources/static/canciones/";
 
         assert fileName != null;
         if (!fileName.endsWith(".mp3")) {

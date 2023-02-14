@@ -92,7 +92,7 @@ public abstract class AbstractBusinessService<E, ID, DTO,  REPO extends JpaRepos
     public String subirImagen(MultipartFile file) throws IOException {
         String fileName = file.getOriginalFilename();
         String contentType = file.getContentType();
-        String URL = "/static/imagenes/";
+        String URL = "src/main/resources/static/imagenes";
 
         assert contentType != null;
         if (!contentType.equals("image/jpeg") && !contentType.equals("image/png")) {
@@ -106,7 +106,7 @@ public abstract class AbstractBusinessService<E, ID, DTO,  REPO extends JpaRepos
     }
 
     public void borrarImagen(String nombreImagen) {
-        String URL = "/static/imagenes/";
+        String URL = "src/main/resources/static/imagenes";
         String filePath = URL + nombreImagen;
         File archivoImagen = new File(filePath);
         if (archivoImagen.exists()) {

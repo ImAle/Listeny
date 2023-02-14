@@ -98,6 +98,7 @@ public class UsuariosController extends AbstractController<UsuariosDto> {
         model.addAttribute("listasMasReproducidas", listaService.getListasMasReproducidas());
         model.addAttribute("albumesMasReproducidos", albumService.getMapper().toDtoListaDeAlbumes((albumService.getAlbumesRecomendados())));
         model.addAttribute("albumesRecomendados", albumService.getAlbumesRecomendados());
+        model.addAttribute("rol", sessionService.getSession().getRolDelUsuario().getId());
         model.addAttribute("nuevoAlbum", new Album());
         model.addAttribute("nuevaLista", new Lista());
         return "inicio_logueado";

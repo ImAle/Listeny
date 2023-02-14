@@ -91,10 +91,11 @@ public class AlbumController extends AbstractController<AlbumDto> {
 
     @PostMapping("/crear/album")
     public String albumCreado(@ModelAttribute("album") Album album, Model model){
+        album.setPropietarioAlbum(sessionService.getSession());
         service.getRepo().save(album);
         Long id = album.getId();
         model.addAttribute("id", id);
-        return "redirect:/crear/album" + id;
+        return "redirect:/crear/album/" + id;
     }
 
     @GetMapping("/eliminar/album/{id}")
