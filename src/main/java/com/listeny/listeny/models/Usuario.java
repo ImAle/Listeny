@@ -43,12 +43,6 @@ public class Usuario implements Serializable {
     @Column(name="imagen", length = 100)
     private String imagen;
 
-    @Column(name="imagen_fondo", length = 100)
-    private String imagenFondo;
-
-//    @Column(name="esArtista")
-//    private Boolean esArtista;
-
     @ManyToOne
     @JoinColumn(name = "rol", nullable = false)
     private Rol rolDelUsuario;
@@ -103,7 +97,6 @@ public class Usuario implements Serializable {
                 ", fechaNacimiento=" + fechaNacimiento +
                 ", sexo=" + sexo +
                 ", imagen='" + imagen + '\'' +
-                ", imagenFondo='" + imagenFondo + '\'' +
                 ", rolDelUsuario=" + rolDelUsuario +
                 '}';
     }
