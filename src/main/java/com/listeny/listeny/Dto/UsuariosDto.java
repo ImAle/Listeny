@@ -22,7 +22,6 @@ public class UsuariosDto {
     private char sexo;
     private int seguidoPor;
     private String imagen;
-    private String imagenFondo;
     private String email;
     private RolDto rolDelUsuario;
     private List<Lista> listasFavoritos;
@@ -39,7 +38,6 @@ public class UsuariosDto {
                 ", sexo=" + sexo +
                 ", seguidoPor=" + seguidoPor +
                 ", imagen='" + imagen + '\'' +
-                ", imagenFondo='" + imagenFondo + '\'' +
                 ", email='" + email + '\'' +
                 ", rol=" + rolDelUsuario +
                 ", listasFavoritos=" + listasFavoritos +

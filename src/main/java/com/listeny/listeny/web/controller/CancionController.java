@@ -9,6 +9,12 @@ import com.listeny.listeny.service.CategoriaService;
 import com.listeny.listeny.service.UserServiceImpl;
 import com.listeny.listeny.service.UsuarioService;
 import com.listeny.listeny.util.FileUploadUtil;
+import org.jaudiotagger.audio.AudioFile;
+import org.jaudiotagger.audio.AudioFileIO;
+import org.jaudiotagger.audio.exceptions.CannotReadException;
+import org.jaudiotagger.audio.exceptions.InvalidAudioFrameException;
+import org.jaudiotagger.audio.exceptions.ReadOnlyFileException;
+import org.jaudiotagger.tag.TagException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -19,6 +25,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.io.File;
 import java.io.IOException;
 import java.util.List;
 
@@ -46,7 +53,7 @@ public class CancionController extends AbstractController<CancionDto>{
     }
 
     @PostMapping("/canciones/misCanciones/subirCancion")
-    public String subirCancion(@ModelAttribute("nuevaCancion") Cancion nuevaCancion, @RequestParam("songFile") MultipartFile cancion, @RequestParam("songImage") MultipartFile imagen) throws IOException {
+    public String subirCancion(@ModelAttribute("nuevaCancion") Cancion nuevaCancion, @RequestParam("songFile") MultipartFile cancion, @RequestParam("songImage") MultipartFile imagen) throws IOException, CannotReadException, TagException, InvalidAudioFrameException, ReadOnlyFileException {
 
         String fileName = StringUtils.cleanPath(cancion.getOriginalFilename());
         String uploadDir = "src/main/resources/static/canciones/";

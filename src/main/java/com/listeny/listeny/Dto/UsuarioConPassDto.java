@@ -27,7 +27,6 @@ public class UsuarioConPassDto {
     private Date  fechaNacimiento;
     private char sexo;
     private String imagen;
-    private String imagenFondo;
     private String email;
     private Rol rolDelUsuario;
 
@@ -40,7 +39,6 @@ public class UsuarioConPassDto {
                 ", fechaNacimiento=" + fechaNacimiento +
                 ", sexo=" + sexo +
                 ", imagen='" + imagen + '\'' +
-                ", imagenFondo='" + imagenFondo + '\'' +
                 ", email='" + email + '\'' +
                 ", rolDelUsuario=" + rolDelUsuario +
                 '}';

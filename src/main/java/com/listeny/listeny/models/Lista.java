@@ -39,9 +39,6 @@ public class Lista implements Serializable {
     @Column(name = "descripcion", length = 100)
     private String descripcion;
 
-    @Column(name = "color", length = 15)
-    private String color;
-
     @Column(name = "publica")
     private Boolean publica = false;
 
@@ -68,7 +65,6 @@ public class Lista implements Serializable {
                 ", nombre='" + nombre + '\'' +
                 ", imagen='" + imagen + '\'' +
                 ", descripcion='" + descripcion + '\'' +
-                ", color='" + color + '\'' +
                 ", publica=" + publica +
                 '}';
     }

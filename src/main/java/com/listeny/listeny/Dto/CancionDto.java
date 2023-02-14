@@ -20,7 +20,7 @@ public class CancionDto {
     private Long id;
     private String imagen;
     private String titulo;
-    private int duracion;
+    private long duracion;
     private String descripcion;
     private Date fechaIncorporacion;
     private Boolean publica;
