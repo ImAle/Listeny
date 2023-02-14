@@ -22,7 +22,6 @@ public class ListaDto {
     private String nombre;
     private String imagen;
     private String descripcion;
-    private String color;
     private Boolean publica;
     private Categoria listasCategoria;
     private List<Cancion> cancionesLista;
@@ -36,7 +35,6 @@ public class ListaDto {
                 ", nombre='" + nombre + '\'' +
                 ", imagen='" + imagen + '\'' +
                 ", descripcion='" + descripcion + '\'' +
-                ", color='" + color + '\'' +
                 ", publica=" + publica +
                 ", listasCategoria=" + listasCategoria +
                 ", cancionesLista=" + cancionesLista +

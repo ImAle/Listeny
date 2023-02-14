@@ -34,7 +34,7 @@ public class Cancion implements Serializable{
     private String titulo;
 
     @Column(name = "duracion")
-    private int duracion;
+    private long duracion;
 
     @Column(name = "descripcion", length = 200)
     private String descripcion;
