@@ -34,7 +34,7 @@
 <!-- Fragmento de la barra lateral de usuario -->
 <aside id="sidebar" th:fragment="aside">
   <div class="card my-3 scroll-card">
-    <a th:href="@{/login}" class="card" style="border: none;">
+    <a th:href="@{/home}" class="card" style="border: none;">
       <img th:src="@{/imagenes/logo.png}" class="card-img-top mx-auto my-3 w-50" alt="...">
     </a>
 
@@ -110,7 +110,7 @@
 <!-- Fragmento de la barra lateral de artista -->
 <aside id="sidebar-artista" th:fragment="aside-artista">
   <div class="card my-3 scroll-card">
-    <a th:href="@{/login}" class="card" style="border: none;">
+    <a th:href="@{/home}" class="card" style="border: none;">
       <img th:src="@{/imagenes/logo.png}" class="card-img-top mx-auto my-3 w-50" alt="...">
     </a>
       <div class="list-group list-group-flush" style="border: 0";>
@@ -275,7 +275,7 @@
         if (elem.classList.contains('bi-heart')) {
           url = '/nomegusta'
         } else {
-          url = "megusta"
+          url = "/megusta"
         }
         $.ajax({
           url: url,

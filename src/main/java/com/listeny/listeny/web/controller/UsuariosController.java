@@ -53,7 +53,7 @@ public class UsuariosController extends AbstractController<UsuariosDto> {
 
     @GetMapping("/login")
     public String login(Model model) {
-        model.addAttribute("canciones", cancionService.getMapper().toDtoListaDeCanciones(cancionService.getCancionesParaInicio()));
+        model.addAttribute("canciones", cancionService.getCancionesParaInicio());
         return "index";
     }
 
@@ -103,6 +103,7 @@ public class UsuariosController extends AbstractController<UsuariosDto> {
         model.addAttribute("albumesMasReproducidos", albumService.getMapper().toDtoListaDeAlbumes((albumService.getAlbumesRecomendados())));
         model.addAttribute("albumesRecomendados", albumService.getAlbumesRecomendados());
         model.addAttribute("rol", sessionService.getSession().getRolDelUsuario().getId());
+        model.addAttribute("categorias", categoriaService.getCategorias());
         model.addAttribute("nuevoAlbum", new Album());
         model.addAttribute("nuevaLista", new Lista());
         return "inicio_logueado";
