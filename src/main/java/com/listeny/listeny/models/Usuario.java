@@ -49,11 +49,11 @@ public class Usuario implements Serializable {
 //    @Column(name="esArtista")
 //    private Boolean esArtista;
 
-    @ManyToOne
+    @ManyToOne(fetch=FetchType.EAGER)
     @JoinColumn(name = "rol", nullable = false)
     private Rol rolDelUsuario;
 
-    @ManyToMany
+    @ManyToMany (fetch=FetchType.EAGER)
     @JoinTable (name = "Favoritos_canciones",
     joinColumns = @JoinColumn (name="idUsuario"),
     inverseJoinColumns = @JoinColumn(name = "idFavorito"))
@@ -77,19 +77,19 @@ public class Usuario implements Serializable {
             inverseJoinColumns = @JoinColumn(name = "idSeguido", referencedColumnName = "id"))
     private List<Usuario> sigueA = new ArrayList<>();
 
-    @ManyToMany (mappedBy = "sigueA")
+    @ManyToMany (mappedBy = "sigueA", fetch=FetchType.EAGER)
     private List<Usuario> seguidoPor;
 
-    @OneToMany(mappedBy = "propietarioLista")
+    @OneToMany(mappedBy = "propietarioLista", fetch=FetchType.EAGER)
     private List<Lista> propietarioListas = new ArrayList<>();
 
-    @OneToMany(mappedBy = "propietarioCancion")
+    @OneToMany(mappedBy = "propietarioCancion", fetch=FetchType.EAGER)
     private List<Cancion> propietarioCanciones = new ArrayList<>();
 
-    @OneToMany(mappedBy = "propietarioAlbum")
+    @OneToMany(mappedBy = "propietarioAlbum", fetch=FetchType.EAGER)
     private List<Album> propietarioAlbumes = new ArrayList<>();
 
-    @OneToMany(mappedBy = "usuario")
+    @OneToMany(mappedBy = "usuario", fetch=FetchType.EAGER)
     private List<Reproduccion> usuarioReproduccion;
 
 

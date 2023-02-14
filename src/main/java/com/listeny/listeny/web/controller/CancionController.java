@@ -9,16 +9,16 @@ import com.listeny.listeny.service.CategoriaService;
 import com.listeny.listeny.service.UserServiceImpl;
 import com.listeny.listeny.service.UsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.Set;
 
 @Controller
 public class CancionController extends AbstractController<CancionDto>{
@@ -55,6 +55,14 @@ public class CancionController extends AbstractController<CancionDto>{
         return "redirect:/cancion/misCanciones";
     }
 
-
+    @GetMapping(value = "/canciones/buscar/{inicio}", produces = "application/json")
+    @ResponseBody
+    public ResponseEntity<List<Cancion>> buscarCancionPorInicio(@PathVariable String inicio){
+        List<Cancion> listaCancion = this.cancionService.getCancionesParaInicio();
+        if(listaCancion.isEmpty()) {
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        }
+        return new ResponseEntity<>(listaCancion, HttpStatus.OK);
+    }
 
 }

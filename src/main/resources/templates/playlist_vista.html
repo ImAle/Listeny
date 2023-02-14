@@ -153,7 +153,7 @@
                         <i class="bi bi-play-fill fs-2"></i>
                     </button>
                     <button class="btn-outline-secondary" type="button" style="float: left; margin-right: 10px; background-color: transparent; border:none;">
-                        <i id="megusta" class="bi bi-heart float-end fs-2" style="color: red; cursor:pointer;"></i>
+                        <i id="megusta" class="bi bi-heart float-end fs-2" th:attr="data-id= ${lista.getId()}"  style="color: red; cursor:pointer;"></i>
                     </button>
                     <button class="fs-3" type="button" style="float: left; background-color: black; color: white; border-color: gray; border-width: 1px;" data-bs-toggle="modal" data-bs-target="#modalcopiarlistaartista">Copiar lista</button>
                 </div>

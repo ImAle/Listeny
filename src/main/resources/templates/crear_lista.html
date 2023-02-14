@@ -67,9 +67,15 @@
                 <form th:object="${lista}" th:action="@{/editar/lista/{id}(id=*{id})}" method="POST">
                     <input type="hidden" name="idLista">
                     <div class="form-group my-3">
-                        <label for="lista-public-checkbox">Hacer pública/privada:</label><br>
-                        <input type="checkbox" id="lista-public-checkbox" th:field="${lista.publica}" th:value="1" name="lista-public-checkbox" value="1" checked>Hacer pública<br>
-                        <input type="checkbox" id="lista-private-checkbox" th:field="${lista.publica}" th:value="0" name="lista-private-checkbox" value="0">Hacer privada<br>
+                        <label>Hacer pública/privada:</label><br>
+                        <div class="form-check">
+                            <label for="lista-public-radio" class="form-check-label">Hacer pública</label>
+                            <input class="form-check-input" type="radio" id="lista-public-radio" th:field="${lista.publica}" th:value="true" name="lista-public-radio" checked>
+                        </div>
+                        <div class="form-check">
+                            <label for="lista-private-radio" class="form-check-label">Hacer privada</label>
+                            <input class="form-check-input" type="radio" id="lista-private-radio" th:field="${lista.publica}" th:value="false" name="lista-public-radio" >
+                        </div>
                     </div>
                     <div class="form-group my-3">
                         <label for="list-name">Cambiar nombre de la lista</label>
