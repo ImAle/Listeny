@@ -78,11 +78,11 @@
         <div class="col" th:each="cancion : ${canciones}">
 
           <div class="card song-card text-bg-dark" data-bs-toggle="collapse" data-bs-target="#collapseExample"
-               role="button" aria-expanded="false" aria-controls="collapseExample" data-song-src="/canciones/song1.mp3" data-song-id="song1">
+               role="button" aria-expanded="false" aria-controls="collapseExample" th:src="@{/canciones/${cancion.getUrl()}}" th:data="data-song + ${cancion.id}">
             <img class="song-card_image"
                  th:src="${cancion.imagen}">
             <div class="card-img-overlay song-card-info">
-              <h5 class="card-title text-center" th:text="*{cancion.titulo}"></h5>
+              <h5 class="card-title text-center" th:text="${cancion.titulo}"></h5>
               <p class="card-text text-center"></p>
               <p class="card-inf text-center"></p>
               <div class="song-card_play"></div>
@@ -97,8 +97,7 @@
 
           <a th:href="@{/lista/{id}(id=${lista.id})}">
             <div class="card song-card text-bg-dark">
-              <img class="song-card_image"
-                   th:src="${lista.imagen}">
+              <img class="song-card_image" th:src="${lista.imagen}">
               <div class="card-img-overlay song-card-info">
                 <h5 class="card-title text-center" th:text="*{lista.nombre}"></h5>
                 <p class="card-text text-center"></p>
