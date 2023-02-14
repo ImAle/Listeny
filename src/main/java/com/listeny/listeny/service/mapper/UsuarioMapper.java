@@ -5,6 +5,7 @@ import com.listeny.listeny.Dto.LoginDto;
 import com.listeny.listeny.Dto.UsuarioConPassDto;
 import com.listeny.listeny.Dto.UsuariosDto;
 import com.listeny.listeny.models.Usuario;
+import jakarta.transaction.Transactional;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 
@@ -13,6 +14,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
+@Transactional
 public class UsuarioMapper extends AbstractServiceMapper<Usuario, UsuariosDto>{
 
     ModelMapper modelMapper = new ModelMapper();

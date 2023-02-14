@@ -6,6 +6,7 @@ import com.listeny.listeny.models.Album;
 import com.listeny.listeny.models.Lista;
 import com.listeny.listeny.models.Usuario;
 import com.listeny.listeny.service.*;
+import jakarta.websocket.Session;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
@@ -95,6 +96,9 @@ public class UsuariosController extends AbstractController<UsuariosDto> {
 //        if(cancionesHistorial.size() > 4) {
 //            model.addAttribute("cancionesHistorial", cancionesHistorial);
 //        }
+        Usuario usu =  sessionService.getSession();
+        //Optional<List<Usuario>> seguidox = Optional.of(usu.getSeguidoPor());
+        //service.getMapper().toDto(usu);
         model.addAttribute("listasMasReproducidas", listaService.getListasMasReproducidas());
         model.addAttribute("albumesMasReproducidos", albumService.getMapper().toDtoListaDeAlbumes((albumService.getAlbumesRecomendados())));
         model.addAttribute("albumesRecomendados", albumService.getAlbumesRecomendados());

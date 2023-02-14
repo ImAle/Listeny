@@ -157,11 +157,20 @@
           <div class="col-12 col-md-6 my-3">
             <form>
               <div class="form-group d-flex">
-                <input type="text" class="form-control" placeholder="Buscar canción para añadir al álbum">
+                <input id="buscar" type="text" class="form-control" placeholder="Buscar canción para añadir al álbum" onKeyUp="edValueKeyPress()">
                 <button type="submit" class="btn btn-outline-success my-2 my-sm-0">
                   <i class="fa fa-search"></i>
                 </button>
               </div>
+              <input list="canciones" id="listacanciones">
+              <datalist id="canciones">
+                <option value="Internet Explorer">
+                <option value="Firefox">
+                <option value="Google Chrome">
+                <option value="Opera">
+                <option value="Safari">
+              </datalist>
+
             </form>
           </div>
         </div>
@@ -173,5 +182,22 @@
 <section th:insert="layout.html::script"></section>
 <section th:insert="layout_barra.html::ocultar-barra"></section>
 
+<script>
+    function edValueKeyPress() {
+      // Vemos el valor del input
+      var edValue = document.getElementById("buscar");
+      var s = edValue.value;
+      // lanzamos una consulta de ajax al servidor
+      $.ajax({
+        url: "/canciones/buscar/" + s,
+        type: "GET",
+        async: false,
+        success: function(resp){
+          console.log(resp)
+        }
+      })
+
+    }
+</script>
 </body>
 </html>
