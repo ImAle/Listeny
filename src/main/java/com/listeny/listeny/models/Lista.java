@@ -56,6 +56,7 @@ public class Lista implements Serializable {
     @ManyToMany(mappedBy = "listasFavoritos")
     private List<Usuario> favoritaListaUsuario = new ArrayList<>();
 
+
     @Override
     public String toString() {
         return "Lista{" +
