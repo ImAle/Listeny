@@ -47,7 +47,7 @@ public class Lista implements Serializable {
     private Categoria listasCategoria;
 
 
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable (name = "Listas_has_canciones",
             joinColumns = @JoinColumn (name="listas_id"),
             inverseJoinColumns = @JoinColumn(name = "canciones_id"))

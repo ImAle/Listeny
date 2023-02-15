@@ -2,16 +2,12 @@ package com.listeny.listeny.web.controller;
 
 import com.listeny.listeny.models.Album;
 import com.listeny.listeny.models.Lista;
-import com.listeny.listeny.service.BuscadorService;
-import com.listeny.listeny.service.CategoriaService;
-import com.listeny.listeny.service.ListaService;
-import com.listeny.listeny.service.UserServiceImpl;
+import com.listeny.listeny.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -23,12 +19,15 @@ public class BuscadorController {
     @Autowired
     BuscadorService buscadorService;
     @Autowired
+    UsuarioService usuarioService;
+    @Autowired
     UserServiceImpl sessionService;
     @Autowired
     CategoriaService categoriaService;
 
     @GetMapping("/buscador")
-    public String buscador(Model model){
+    public String buscador(Model model) throws Exception {
+        model.addAttribute("favoritas", usuarioService.getListasFavoritas(sessionService.getSession().getId()));
         model.addAttribute("recomendadas", listaService.getListasRecomendadas());
         model.addAttribute("categorias", categoriaService.getCategorias());
         model.addAttribute("nuevaLista", new Lista());
@@ -37,7 +36,8 @@ public class BuscadorController {
     }
 
     @GetMapping("/buscador/{busqueda}")
-    public String buscarPor(@ModelAttribute("busqueda") String busqueda, Model model){
+    public String buscarPor(@ModelAttribute("busqueda") String busqueda, Model model) throws Exception {
+        model.addAttribute("favoritas", usuarioService.getListasFavoritas(sessionService.getSession().getId()));
         model.addAttribute("canciones", buscadorService.buscarCancionesPorTitulo(busqueda));
         model.addAttribute("listas", buscadorService.buscarListasPorNombre(busqueda));
         model.addAttribute("albumes", buscadorService.buscarAlbumesPorTitulo(busqueda));

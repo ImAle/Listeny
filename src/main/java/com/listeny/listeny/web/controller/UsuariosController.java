@@ -3,8 +3,10 @@ package com.listeny.listeny.web.controller;
 
 import com.listeny.listeny.Dto.*;
 import com.listeny.listeny.models.Album;
+import com.listeny.listeny.models.Cancion;
 import com.listeny.listeny.models.Lista;
 import com.listeny.listeny.models.Usuario;
+import com.listeny.listeny.repository.UsuarioRepository;
 import com.listeny.listeny.service.*;
 import jakarta.websocket.Session;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,8 +32,6 @@ public class UsuariosController extends AbstractController<UsuariosDto> {
     @Autowired
     UsuarioService service;
     @Autowired
-    BCryptPasswordEncoder passwordEncoder;
-    @Autowired
     RolService rolService;
     @Autowired
     CancionService cancionService;
@@ -53,7 +53,8 @@ public class UsuariosController extends AbstractController<UsuariosDto> {
 
     @GetMapping("/login")
     public String login(Model model) {
-        model.addAttribute("canciones", cancionService.getCancionesParaInicio());
+        List<Cancion> cancionList = cancionService.getCancionesParaInicio();
+        model.addAttribute("canciones", cancionList);
         return "index";
     }
 
@@ -87,22 +88,17 @@ public class UsuariosController extends AbstractController<UsuariosDto> {
     }
 
     @GetMapping("/home")
-    public String inicio(Model model){
-//        List<ListaDeCancionDto> cancionesHistorial = cancionService.getMapper().toDtoListaDeCanciones(reproduccionService.getHistorialUltimasCancionesReproducidas(sessionService.getSession().getId()));
-//        List<ListaDeListaDto> gustos = listaService.getMapper().toDtoListaDeLista(listaService.getListasPorGustos(sessionService.getSession().getId()));
-//        if(gustos.size() > 4){
-//            model.addAttribute("gustos", gustos);
-//        }
-//        if(cancionesHistorial.size() > 4) {
-//            model.addAttribute("cancionesHistorial", cancionesHistorial);
-//        }
+    public String inicio(Model model) throws Exception {
+        List<Cancion> cancionesHistorial = reproduccionService.getHistorialUltimasCancionesReproducidas(sessionService.getSession().getId());
+        List<ListaDeListaDto> gustos = listaService.getMapper().toDtoListaDeLista(listaService.getListasPorGustos(sessionService.getSession().getId()));
+            model.addAttribute("gustos", gustos);
+            model.addAttribute("cancionesHistorial", cancionesHistorial);
         Usuario usu =  sessionService.getSession();
-        //Optional<List<Usuario>> seguidox = Optional.of(usu.getSeguidoPor());
-        //service.getMapper().toDto(usu);
         model.addAttribute("listasMasReproducidas", listaService.getListasMasReproducidas());
         model.addAttribute("albumesMasReproducidos", albumService.getMapper().toDtoListaDeAlbumes((albumService.getAlbumesRecomendados())));
         model.addAttribute("albumesRecomendados", albumService.getAlbumesRecomendados());
         model.addAttribute("rol", sessionService.getSession().getRolDelUsuario().getId());
+        model.addAttribute("favoritas", service.getListasFavoritas(usu.getId()));
         model.addAttribute("categorias", categoriaService.getCategorias());
         model.addAttribute("nuevoAlbum", new Album());
         model.addAttribute("nuevaLista", new Lista());
@@ -117,6 +113,7 @@ public class UsuariosController extends AbstractController<UsuariosDto> {
         model.addAttribute("categorias", categoriaService.getCategorias());
         model.addAttribute("usuario", service.getMapper().toDto(usuario));
         model.addAttribute("propietarioListas", usuario.getPropietarioListas());
+        model.addAttribute("favoritas", service.getListasFavoritas(sessionService.getSession().getId()));
         if (usuario.getRolDelUsuario().getId() == 2){
             model.addAttribute("propietarioAlbumes", usuario.getPropietarioAlbumes());
             return "perfil_de_artista_visitado";
@@ -168,16 +165,17 @@ public class UsuariosController extends AbstractController<UsuariosDto> {
     }
 
     @GetMapping("/canciones/favoritas")
-    public String favoritas(Model model) {
-        model.addAttribute("favoritas", sessionService.getSession().getCancionesFavoritas());
+    public String favoritas(Model model) throws Exception {
+        model.addAttribute("favoritasCanciones", sessionService.getSession().getCancionesFavoritas());
         model.addAttribute("lista", new Lista());
         model.addAttribute("album", new Album());
+        model.addAttribute("favoritas", service.getListasFavoritas(sessionService.getSession().getId()));
         model.addAttribute("categorias", categoriaService.getCategorias());
         return "playlist_canciones_favoritas";
     }
 
     @GetMapping("/perfil")
-    public String miPerfil(Model model){
+    public String miPerfil(Model model) throws Exception {
         final List<RolDto> rolDTOList = rolService.buscarTodos();
 
         model.addAttribute("yo", sessionService.getSession());
@@ -185,6 +183,7 @@ public class UsuariosController extends AbstractController<UsuariosDto> {
         model.addAttribute("listasFavoritas", sessionService.getSession().getListasFavoritos());
         model.addAttribute("propietarioCancion", listaService.getRepo().findListasByPropietarioLista(sessionService.getSession()));
         model.addAttribute("sigoA", sessionService.getSession().getSigueA());
+        model.addAttribute("favoritas", service.getListasFavoritas(sessionService.getSession().getId()));
         model.addAttribute("nuevaLista", new Lista());
         model.addAttribute("nuevoAlbum", new Album());
         model.addAttribute("categorias", categoriaService.getCategorias());
@@ -194,7 +193,6 @@ public class UsuariosController extends AbstractController<UsuariosDto> {
 
     @PostMapping("/perfil/actualizar")
     public String actualizarPerfil(){
-
         return "redirect:/home";
     }
 

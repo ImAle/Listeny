@@ -116,18 +116,18 @@ public class ListaService extends AbstractBusinessService<Lista, Long, ListaDto,
 //        return archivos;
 //    }
 
-    public List<Lista> getListasPorGustos(Long idCategoria){
-        List<Lista> listasPorGusto = getListasByCategoria(idCategoria);
+    public List<Lista> getListasPorGustos(Long Usuario){
+        List<Lista> listasPorGusto = getListasByCategoria(2L);
         List<List<Lista>> particionEnCinco = Lists.partition(listasPorGusto, 5);
 
-        return particionEnCinco.get(1);
+        return particionEnCinco.get(0);
     }
 
     public List<Lista> getListasMasReproducidas(){
         List<Lista> masReproducidas = Lists.newArrayList(getRepo().listasMasReproducidas());
         List<List<Lista>> particionEnCinco = Lists.partition(masReproducidas, 5);
 
-        return particionEnCinco.get(1);
+        return particionEnCinco.get(0);
     }
 
     public void reproducirLista(Lista lista){

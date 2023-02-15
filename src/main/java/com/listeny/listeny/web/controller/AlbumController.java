@@ -7,6 +7,7 @@ import com.listeny.listeny.models.Lista;
 import com.listeny.listeny.service.AlbumService;
 import com.listeny.listeny.service.CategoriaService;
 import com.listeny.listeny.service.UserServiceImpl;
+import com.listeny.listeny.service.UsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -26,10 +27,9 @@ public class AlbumController extends AbstractController<AlbumDto> {
     @Autowired
     CategoriaService categoriaService;
     @Autowired
-    ListaController listaController;
-    @Autowired
     UserServiceImpl sessionService;
-
+    @Autowired
+    UsuarioService usuarioService;
     public AlbumController(AlbumService service){
         this.service = service;
     }
@@ -38,6 +38,7 @@ public class AlbumController extends AbstractController<AlbumDto> {
     public String vistaAlbum (@PathVariable("id") Long id, Model model) throws Exception {
         List<Cancion> canciones = service.getAlbumById(id).getCancionesAlbum();
         double sumaDuracion = canciones.stream().mapToDouble(Cancion::getDuracion).sum();
+        model.addAttribute("favoritas", usuarioService.getListasFavoritas(sessionService.getSession().getId()));
         model.addAttribute("album", service.getAlbumById(id));
         model.addAttribute("canciones", service.getAlbumById(id).getCancionesAlbum());
         model.addAttribute("categorias", categoriaService.getCategorias());
@@ -50,6 +51,7 @@ public class AlbumController extends AbstractController<AlbumDto> {
     @GetMapping("/crear/album/{id}")
     public String crearAlbum(@PathVariable("id") Long id, Model model) throws Exception {
         Album album = service.getAlbumById(id);
+        model.addAttribute("favoritas", usuarioService.getListasFavoritas(sessionService.getSession().getId()));
         model.addAttribute("album", album);
         model.addAttribute("canciones", album.getCancionesAlbum());
         model.addAttribute("categorias", categoriaService.getCategorias());
@@ -61,6 +63,7 @@ public class AlbumController extends AbstractController<AlbumDto> {
     @GetMapping("/editar/album/{id}")
     public String editarAlbum(@PathVariable("id") Long id, Model model) throws Exception {
         Album album = service.getAlbumById(id);
+        model.addAttribute("favoritas", usuarioService.getListasFavoritas(sessionService.getSession().getId()));
         model.addAttribute("album", album);
         model.addAttribute("canciones", album.getCancionesAlbum());
         return "subir_canciones_album";

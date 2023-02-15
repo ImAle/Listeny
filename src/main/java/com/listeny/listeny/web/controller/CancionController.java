@@ -19,7 +19,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
-import java.io.File;
 import java.io.IOException;
 import java.util.List;
 
@@ -37,6 +36,7 @@ public class CancionController extends AbstractController<CancionDto>{
 
     @GetMapping("/canciones/misCanciones")
     public String misCanciones(Model model) throws Exception {
+        model.addAttribute("favoritas", usuarioService.getListasFavoritas(sessionService.getSession().getId()));
         List<Cancion> canciones = sessionService.getSession().getPropietarioCanciones();
         model.addAttribute("canciones", cancionService.getMapper().toDtoCancionesListadas(canciones));
         model.addAttribute("nuevaCancion", new Cancion());

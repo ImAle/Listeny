@@ -56,16 +56,16 @@ public class Cancion implements Serializable{
     private List<Reproduccion> cancionReproduccion;
 
 
-    @ManyToMany(mappedBy = "cancionesFavoritas")
+    @ManyToMany(mappedBy = "cancionesFavoritas", fetch = FetchType.EAGER)
     private List<Usuario> favoritaCancionUsuario = new ArrayList<>();
 
-    @ManyToMany(mappedBy = "cancionesLista")
+    @ManyToMany(mappedBy = "cancionesLista", fetch = FetchType.EAGER)
     private List<Lista> cancionEnLista = new ArrayList<>();
 
-    @ManyToMany(mappedBy = "cancionesAlbum")
+    @ManyToMany(mappedBy = "cancionesAlbum", fetch = FetchType.EAGER)
     private List<Album> cancionEnAlbum = new ArrayList<>();
 
-    @ManyToMany(mappedBy = "artistaCanciones")
+    @ManyToMany(mappedBy = "artistaCanciones", fetch = FetchType.EAGER)
     private List<Artista> artistaDeCancion = new ArrayList<>();
 
 

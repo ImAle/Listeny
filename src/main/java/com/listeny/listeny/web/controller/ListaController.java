@@ -3,12 +3,15 @@ package com.listeny.listeny.web.controller;
 import com.listeny.listeny.Dto.ListaDto;
 import com.listeny.listeny.models.*;
 import com.listeny.listeny.service.*;
+import com.listeny.listeny.util.FileUploadUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 import java.util.Objects;
@@ -19,6 +22,8 @@ public class ListaController extends AbstractController<ListaDto> {
     ListaService service;
     @Autowired
     AlbumService albumService;
+    @Autowired
+    UsuarioService usuarioService;
     @Autowired
     CategoriaService categoriaService;
     @Autowired
@@ -35,6 +40,7 @@ public class ListaController extends AbstractController<ListaDto> {
         List<Cancion> canciones = lista.getCancionesLista();
         model.addAttribute("lista", lista);
         model.addAttribute("canciones", canciones);
+        model.addAttribute("favoritas", usuarioService.getListasFavoritas(sessionService.getSession().getId()));
         model.addAttribute("nombreUsuario", usuario.getNombreUsuario());
         model.addAttribute("nuevaLista", new Lista());
         model.addAttribute("nuevoAlbum", new Album());
@@ -43,8 +49,9 @@ public class ListaController extends AbstractController<ListaDto> {
     }
 
     @GetMapping("/categoria/{id}/listas")
-    public String getListasPorCategoria(@PathVariable("id") Long idCategoria, Model model){
+    public String getListasPorCategoria(@PathVariable("id") Long idCategoria, Model model) throws Exception {
         model.addAttribute("listasDeLaCategoria",service.getListasByCategoria(idCategoria));
+        model.addAttribute("favoritas", usuarioService.getListasFavoritas(sessionService.getSession().getId()));
         model.addAttribute("nuevaLista", new Lista());
         model.addAttribute("nuevoAlbum", new Album());
         model.addAttribute("categorias", categoriaService.getCategorias());
@@ -63,6 +70,7 @@ public class ListaController extends AbstractController<ListaDto> {
         Lista lista = service.getLista(id);
         List<Cancion> canciones = lista.getCancionesLista();
         model.addAttribute("lista", lista);
+        model.addAttribute("favoritas", usuarioService.getListasFavoritas(sessionService.getSession().getId()));
         model.addAttribute("canciones", canciones);
         model.addAttribute("categorias", categoriaService.getCategorias());
         model.addAttribute("nuevaLista", new Lista());
@@ -74,28 +82,39 @@ public class ListaController extends AbstractController<ListaDto> {
     public String editarLista(@PathVariable("id") Long id, Model model) throws Exception {
         model.addAttribute("lista", service.getLista(id));
         model.addAttribute("nuevaLista", new Lista());
+        model.addAttribute("favoritas", usuarioService.getListasFavoritas(sessionService.getSession().getId()));
         model.addAttribute("nuevoAlbum", new Album());
         model.addAttribute("categorias", categoriaService.getCategorias());
         return "crear_lista";
     }
 
     @PostMapping("/editar/lista/{id}")
-    public String listaEditada(@PathVariable("id") Long id, @ModelAttribute("lista") Lista lista) throws Exception {
+    public String listaEditada(@PathVariable("id") Long id, @ModelAttribute("lista") Lista lista, @RequestParam("songImage") MultipartFile imagen) throws Exception {
         Lista listaDelId = service.getLista(id);
-        System.out.println("holaaaaaa");
-        System.out.println(lista);
+        String stringname=imagen.getOriginalFilename();
+        String imageName = StringUtils.cleanPath(imagen.getOriginalFilename());
+        String uploadImageDir = "src/main/resources/static/imagenes/";
+        String uploadDirImagebbdd = "/imagenes/";
+
         if(lista.getNombre() != null && !Objects.equals(lista.getNombre(), "")){
             listaDelId.setNombre(lista.getNombre());
         }
+
         if(lista.getImagen() != null){
             listaDelId.setImagen(lista.getImagen());
+            FileUploadUtil.saveFile(uploadImageDir, stringname, imagen);
         }
+
         if(lista.getDescripcion() != null && !Objects.equals(lista.getDescripcion(), "")){
             listaDelId.setDescripcion(lista.getDescripcion());
         }
+
         if(lista.getPublica() != null) {
             listaDelId.setPublica(lista.getPublica());
         }
+
+
+        listaDelId.setImagen(uploadDirImagebbdd + imageName);
         listaDelId.setListasCategoria(lista.getListasCategoria());
         service.getRepo().save(listaDelId);
         return "redirect:/editar/lista/" + id;

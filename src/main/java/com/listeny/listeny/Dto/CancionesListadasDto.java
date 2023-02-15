@@ -14,6 +14,7 @@ public class CancionesListadasDto {
     private Long id;
     private String imagen;
     private String titulo;
+    private String url;
     private long duracion;
     private String descripcion;
     private Boolean publica;
