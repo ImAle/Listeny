@@ -51,7 +51,6 @@ public class Album implements Serializable {
     @ManyToMany(mappedBy = "albumesFavoritos")
     private List<Usuario> favoritoAlbumUsuario = new ArrayList<>();
 
-
     @Override
     public String toString() {
         return "Album{" +
