@@ -197,8 +197,11 @@ p.card-inf {
   transition: box-shadow .2s;
   color: white;
   user-select: none;
-  width: 100%;
-  height: 100%;
+  width: 100%; /* ancho del contenedor ajustado a la pantalla */
+  max-width: 400px; /* ancho máximo del contenedor */
+  height: 0; /* altura inicial del contenedor a 0 para adaptarse al ancho */
+  padding-bottom: 100%; /* relación de aspecto cuadrada 1:1 */
+  position: relative; /* establecer la posición del contenedor */
 }
 
 .song-card:before {
@@ -220,6 +223,7 @@ p.card-inf {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  position: absolute;
 }
 
 /* New Content */
