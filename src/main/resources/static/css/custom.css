@@ -1,0 +1,374 @@
+.bd-gutter {
+ --bs-gutter-x: 3rem
+}
+
+/* Para posicionar el engranaje dentro de la imagen del banner - Pantalla 6 */
+.gear-icon {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+}
+
+/* Esto es para que al posicionarte sobre la tabla de las playlists se ponga en el color que quieras, el elemento seleccionado y la letra - Pantalla 5 */
+td:hover {
+  /* Estilo al hacer hover sobre el td */
+  background-color: SteelBlue; /* Cambia el color de fondo al que quieras */
+  color: white; /* Cambia el color del texto al que quieras */
+  cursor: pointer; /* Muestra el cursor como una mano */
+}
+
+/* Alinear verticalmente las celdas */
+td{
+  vertical-align: middle;
+}
+
+/* Poner todas las imágenes de las tablas con el mismo tamaño */
+.img-fluid {
+  width: 75px; /* establece un ancho fijo para la imagen */
+  height: 75px; /* establece una altura fija para la imagen */
+  object-fit: cover; /* ajusta la imagen dentro del contenedor sin deformarla */
+}
+
+/* Alinear todos los elementos de las tablas al centro */
+table {
+  text-align: center;
+}
+
+/* Sirve para esconder el índice de cada canción al posicionarte sobre él - Pantalla 5 */
+.hidden {
+  display: none;
+}
+
+/* Para poner borde a la imagen de la playlist - pantalla 5 */
+.rounded-img {
+    border: solid 2px #ccc;
+}
+
+/* Para que la imagen de la canción se ajuste a la tabla y no sea demasiado grande - Pantalla 5 */
+.custom-img {
+    max-width: 100px;
+    max-height: 150px;
+}
+
+
+/* Botón Switch - Pantalla 7 */
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 60px;
+  height: 34px;
+}
+
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 26px;
+  width: 26px;
+  left: 4px;
+  bottom: 4px;
+  background-color: white;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+input:checked + .slider {
+  background-color: #2196F3;
+}
+
+input:focus + .slider {
+  box-shadow: 0 0 1px #2196F3;
+}
+
+input:checked + .slider:before {
+  -webkit-transform: translateX(26px);
+  -ms-transform: translateX(26px);
+  transform: translateX(26px);
+}
+
+/* Rounded sliders */
+.slider.round {
+  border-radius: 34px;
+}
+
+.slider.round:before {
+  border-radius: 50%;
+}
+/* Hasta aquí botón Switch - Pantalla 7 */
+
+/* Tarjetas del index */
+
+/* Poner los títulos de las tarjetas de color blanco y con borde negro */
+.card-title{
+  color: white; /* establece el color de texto en blanco */
+  -webkit-text-stroke: 1px black; /* establece un borde negro de 1 píxel alrededor del texto */
+  font-size: 1.5em;
+  font-weight: bold;
+  line-height: 1.2em;
+}
+
+p.card-text {
+  font-size: .7em;
+  font-weight: bold;
+  line-height: 1em;
+  color: black;
+}
+p.card-inf {
+  margin-top: 8px;
+  font-size: 1.3em;
+  font-weight: bold;
+  line-height: 1.5em;
+  color: black;
+}
+.song-card:hover {
+  box-shadow: 0 6px 20px rgba(0,0,0,0.35);
+}
+.song-card:hover .song-card_info {
+  transform: translateX(100%);
+  opacity: 0;
+}
+.song-card_info {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 3;
+  padding: 10px;
+  text-align: center;
+  transform: translateX(0);
+  opacity: 1;
+  transition: opacity .2s, transform .2s;
+  transition-timing-function: ease-in;
+}
+
+.song-card_play:before {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  display: block;
+  width: 0;
+  height: 0;
+  margin: auto;
+  border-style: solid;
+  border-width: 7px 0 7px 10px;
+  border-color: transparent transparent transparent white;
+}
+.song-card_play {
+  position: absolute;
+  left: 10px;
+  bottom: 10px;
+  z-index: 3;
+  width: 50px;
+  height: 50px;
+  background-color: #27ae60;
+  border-radius: 50%;
+  cursor: pointer;
+  transform: translateX(-60px);
+  transition: opacity .2s, transform .2s;
+  transition-timing-function: ease-in;
+}
+.song-card {
+  position: relative;
+  /*width: 300px;
+  height: 350px;*/
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 1px 5px rgba(0,0,0,0.25);
+  transition: box-shadow .2s;
+  color: white;
+  user-select: none;
+  width: 100%; /* ancho del contenedor ajustado a la pantalla */
+  max-width: 400px; /* ancho máximo del contenedor */
+  height: 0; /* altura inicial del contenedor a 0 para adaptarse al ancho */
+  padding-bottom: 100%; /* relación de aspecto cuadrada 1:1 */
+  position: relative; /* establecer la posición del contenedor */
+}
+
+.song-card:before {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-image: linear-gradient(0deg, black 0%, transparent 40%);
+  z-index: 2;
+}
+
+.song-card:hover {
+  box-shadow: 0 6px 20px rgba(0,0,0,0.35);
+}
+
+.song-card_image{
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  position: absolute;
+}
+
+/* New Content */
+.song-card:hover .song-card_play {
+  transform: translateX(0);
+  opacity: 1;
+}
+.song-card:hover .song-card_info {
+  transform: translateX(100%);
+  opacity: 0;
+}
+
+.card-img-overlay {
+  margin-top: 60%; /* o cualquier valor que desees */
+}
+/* Hasta aquí las tarjetas del index */
+
+
+/* Reproductor */
+.player-container {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 999;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 100px;
+  width: 100%;
+  background-color: white;
+  padding: 10px;
+  box-sizing: border-box;
+  border-radius: 10px;
+  box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.5);
+  margin: 0 auto;
+}
+
+audio::-webkit-media-controls-panel {
+  background-color: white;
+}
+
+.player-left {
+  display: flex;
+  align-items: center;
+}
+
+.player-left img {
+  height: 80px;
+  margin-right: 10px;
+  border-radius: 50%;
+  width: 100%;
+}
+
+.player-info {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-right: 10px;
+}
+
+.player-center audio {
+  height: 80px;
+  width: 100%;
+}
+
+.player-right button {
+  height: 30px;
+  width: 30px;
+  margin-left: 10px;
+  border-radius: 50%;
+  background-color: #fff;
+  cursor: pointer;
+}
+/* Hasta aquí el reproductor */
+
+
+/* Color para el body y la barra lateral */
+body{
+    background-color: white;
+}
+
+.color-barra-lateral {
+  background-color: white;
+}
+/* Hasta aquí color para el body y barra lateral */
+
+
+/* Con esto conseguimos que los índices de las canciones en las tablas, sean más grandes */
+.index-number {
+  font-size: larger;
+}
+
+/* Para que la barra lateral sea fija y responsive a la vez */
+aside {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 25%;
+  height: auto;
+  min-height: 100%;
+  max-height: 100%;
+  overflow: auto;
+}
+
+@media (max-width: 768px) {
+  aside {
+  width: 100%;
+  height: auto;
+  position: static;
+  }
+}
+/* Hasta aquí barra lateral fija y responsive */
+
+
+/* Para el modal de "crear lista" de la barra lateral aparezca por encima del contenido */
+.position-modal-crear-lista {
+  position: fixed;
+  z-index: 9999; /* un valor alto para que el modal se muestre por encima de todos los demás elementos */
+  display: none; /* ocultar el modal por defecto */
+  pointer-events: auto;
+}
+
+/* Para quitar borde superior del elemento "crear lista" y del elemento de "crear álbum" de la barra lateral */
+.no-border{
+  border-top: none;
+}
+
+/* Sombreado sobre los elementos de la barra lateral */
+.sidebar-item:hover {
+  box-shadow: 0 0 10px #333;
+}
+
+/* Para que los enlaces no se vean en azul y que se vean en negro */
+a {
+  text-decoration: underline;
+  color: black;
+}
+
+/* Estilo para el botón de cerrar sesión */
+.logout-button {
+    padding: 10px 20px;
+    background-color: red;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }

@@ -1,17 +1,22 @@
 package com.listeny.listeny.models;
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
 @Entity
 @Getter
 @Setter
-@Table(name = "albumes")
-public class Album {
+@AllArgsConstructor
+@NoArgsConstructor
+@Table(name = "album")
+public class Album implements Serializable {
 
     @Id
     @Column (name = "id")
@@ -34,8 +39,8 @@ public class Album {
     @Column (name = "descripcion", length = 45)
     private String descripcion;
 
-    @Column (name = "publico")
-    private Boolean publico;
+    @Column (name = "publico", nullable = false)
+    private Boolean publico = false;
 
     @ManyToMany
     @JoinTable (name = "albumes_has_canciones",
@@ -43,19 +48,9 @@ public class Album {
             inverseJoinColumns = @JoinColumn(name = "canciones_id"))
     private List<Cancion> cancionesAlbum = new ArrayList<>();
 
-    public Album() {
+    @ManyToMany(mappedBy = "albumesFavoritos")
+    private List<Usuario> favoritoAlbumUsuario = new ArrayList<>();
 
-    }
-
-    public Album(Long id, Usuario PropietarioAlbum, int reproducciones, String titulo, String imagen, String descripcion, Boolean publico) {
-        this.id = id;
-        this.propietarioAlbum = PropietarioAlbum;
-        this.reproducciones = reproducciones;
-        this.titulo = titulo;
-        this.imagen = imagen;
-        this.descripcion = descripcion;
-        this.publico = publico;
-    }
 
     @Override
     public String toString() {

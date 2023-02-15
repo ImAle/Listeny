@@ -1,17 +1,22 @@
 package com.listeny.listeny.models;
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
 @Entity
 @Getter
 @Setter
+@AllArgsConstructor
+@NoArgsConstructor
 @Table(name = "Artista")
-public class Artista {
+public class Artista implements Serializable {
 
     @Id
     @Column (name = "nombre", length = 45)
@@ -26,14 +31,6 @@ public class Artista {
             inverseJoinColumns = @JoinColumn (name = "idCancion"))
     private List<Cancion> artistaCanciones = new ArrayList<>();
 
-    public Artista() {
-
-    }
-
-    public Artista(String nombre, int idUsuario) {
-        this.nombre = nombre;
-        this.idUsuario = idUsuario;
-    }
 
     @Override
     public String toString() {

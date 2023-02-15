@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="es_ES" xmlns:th="http://www.thymeleaf.org">
+<head th:insert="layout.html::head">
+    <title id="pageTitle">Login</title>
+</head>
+<body>
+
+
+<div class="container-fluid">
+    <div class="row">
+        <sidebar class="col-3 loginlateral">
+            <div class="color-barra-lateral card my-3" style="height:1150px">
+                <a th:href="@{/login}" class="card" style="border: none;">
+                    <img src="/imagenes/logo.png" class="card-img-top mx-auto my-3 w-50" alt="...">
+                </a>
+                <div class="card-body">
+                    <form th:action="@{/login}" class="text-center" th:object="${formlogin}" method="post">
+                        <h5 class="fw-normal mb-5 pb-1" style="letter-spacing: 1px;">Acceda a su cuenta</h5>
+                        <div class="form-outline mb-4">
+                            <input type="text" name="username" id="form2Example17" class="form-control form-control-lg"/>
+                            <label class="form-label" for="form2Example17">Correo electrónico</label>
+                        </div>
+                        <div class="form-outline mb-4">
+                            <input type="password" name="password" id="form2Example27" class="form-control form-control-lg"/>
+                            <label class="form-label" for="form2Example27">Contraseña</label>
+                        </div>
+                        <div class="pt-1 mb-4">
+                            <button class="btn btn-dark btn-lg btn-block" type="submit">Iniciar sesión</button>
+                        </div>
+                        <a class="small text-muted" href="#!">¿Ha olvidado su contraseña?</a>
+                        <p class="mb-5 pb-lg-2" style="color: #393f81;">¿Aún no tiene una cuenta?
+                            <a th:href="@{/registro}" style="color: #393f81;">Regístrese aquí</a>
+                        </p>
+                        <a href="#!" class="small text-muted">Términos de uso.</a>
+                        <a href="#!" class="small text-muted">Política de privacidad</a>
+                    </form>
+                </div>
+            </div>
+        </sidebar>
+
+        <main class="col-9 my-3">
+            <div class="row row-cols-1 row-cols-md-5 g-4">
+                 <div class="col" th:each="cancion : ${canciones}">
+
+                    <div class="card song-card text-bg-dark" data-bs-toggle="collapse" data-bs-target="#collapseExample"
+                         role="button" aria-expanded="false" aria-controls="collapseExample" th:name="${cancion.url}" data-song-id="song1">
+                        <img class="song-card_image" th:src="${cancion.imagen}">
+                        <div class="card-img-overlay song-card-info">
+                            <h5 class="card-title text-center" th:text="*{cancion.titulo}"></h5>
+                            <p class="card-text text-center"></p>
+                            <p class="card-inf text-center"></p>
+                            <div class="song-card_play"></div>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+            <div class="collapse" id="collapseExample">
+                <div class="col-12 player-container player-right">
+                    <div class="row">
+                        <div class="col-3 player-left">
+                            <img src="/imagenes/Pop_Latino.jpg" alt="Song image">
+                        </div>
+                        <div class="col-9 player-left">
+                            <p class="song-title">Nombre de la canción</p>
+                            <p class="artist-name">Nombre del artista</p>
+                        </div>
+                    </div>
+                    <audio controls style="width: 100%;">
+                        <source src="sample.mp3">
+                    </audio>
+                    <button class="btn-outline-secondary" type="button" style="float: left; margin-right: 10px; background-color: transparent; border:none;">
+                        <i id="megusta" class="bi bi-heart float-end fs-2" style="color: red; cursor:pointer;"></i>
+                    </button>
+                    <button class="btn btn-prev">
+                        <i class="fas fa-step-backward"></i>
+                    </button>
+                    <button class="btn btn-next">
+                        <i class="fas fa-step-forward"></i>
+                    </button>
+                    <button class="btn btn-random">
+                        <i class="fas fa-random"></i>
+                    </button>
+                    <div class="controls">
+                    </div>
+                </div>
+            </div>
+
+        </main>
+    </div>
+</div>
+
+<section th:insert="layout.html::script"></section>
+<section th:insert="layout_reproducir_cancion.html::reproducir-cancion"></section>
+
+</body>
+</html>

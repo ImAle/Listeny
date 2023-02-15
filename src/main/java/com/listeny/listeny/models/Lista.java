@@ -1,7 +1,9 @@
 package com.listeny.listeny.models;
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.io.Serializable;
@@ -10,8 +12,10 @@ import java.util.List;
 
 @Getter
 @Setter
+@AllArgsConstructor
+@NoArgsConstructor
 @Entity
-@Table(name = "listas")
+@Table(name = "lista")
 public class Lista implements Serializable {
 
     @Id
@@ -35,36 +39,33 @@ public class Lista implements Serializable {
     @Column(name = "descripcion", length = 100)
     private String descripcion;
 
-    @Column(name = "color", length = 15)
-    private String color;
-
     @Column(name = "publica")
-    private Boolean publica;
+    private Boolean publica = false;
 
     @ManyToOne
     @JoinColumn(name = "idCategoria", nullable = false)
     private Categoria listasCategoria;
 
 
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable (name = "Listas_has_canciones",
             joinColumns = @JoinColumn (name="listas_id"),
             inverseJoinColumns = @JoinColumn(name = "canciones_id"))
     private List<Cancion> cancionesLista = new ArrayList<>();
 
+    @ManyToMany(mappedBy = "listasFavoritos")
+    private List<Usuario> favoritaListaUsuario = new ArrayList<>();
 
-    public Lista() {
-
-    }
-
-    public Lista(Long id, Usuario propietarioLista, int reproducciones, String nombre, String imagen, String descripcion, String color, Boolean publica) {
-        this.id = id;
-        this.propietarioLista = propietarioLista;
-        this.reproducciones = reproducciones;
-        this.nombre = nombre;
-        this.imagen = imagen;
-        this.descripcion = descripcion;
-        this.color = color;
-        this.publica = publica;
+    @Override
+    public String toString() {
+        return "Lista{" +
+                "id=" + id +
+                ", propietarioLista=" + propietarioLista +
+                ", reproducciones=" + reproducciones +
+                ", nombre='" + nombre + '\'' +
+                ", imagen='" + imagen + '\'' +
+                ", descripcion='" + descripcion + '\'' +
+                ", publica=" + publica +
+                '}';
     }
 }

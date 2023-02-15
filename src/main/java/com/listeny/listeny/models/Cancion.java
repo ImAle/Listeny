@@ -1,16 +1,22 @@
 package com.listeny.listeny.models;
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 @Getter
 @Setter
+@AllArgsConstructor
+@NoArgsConstructor
 @Entity
-@Table(name = "canciones")
+@Table(name = "cancion")
 public class Cancion implements Serializable{
 
     @Id
@@ -28,16 +34,16 @@ public class Cancion implements Serializable{
     private String titulo;
 
     @Column(name = "duracion")
-    private int duracion;
+    private long duracion;
 
-    @Column(name = "descripcion", length = 45)
+    @Column(name = "descripcion", length = 200)
     private String descripcion;
 
     @Column(name = "fecha_incorporacion")
     private Date fechaIncorporacion;
 
     @Column(name = "publica")
-    private Boolean publica;
+    private Boolean publica = false;
 
     @Column(name = "url", length = 200)
     private String url;
@@ -46,21 +52,22 @@ public class Cancion implements Serializable{
     @JoinColumn(name = "idCategoria", nullable = false)
     private Categoria categoriaCancion;
 
-    public Cancion() {
+    @OneToMany(mappedBy = "cancion")
+    private List<Reproduccion> cancionReproduccion;
 
-    }
 
-    public Cancion(Long id, Usuario propietarioCancion, String imagen, String titulo, int duracion, String descripcion, Date fechaIncorporacion, Boolean publica, String url) {
-        this.id = id;
-        this.propietarioCancion = propietarioCancion;
-        this.imagen = imagen;
-        this.titulo = titulo;
-        this.duracion = duracion;
-        this.descripcion = descripcion;
-        this.fechaIncorporacion = fechaIncorporacion;
-        this.publica = publica;
-        this.url = url;
-    }
+    @ManyToMany(mappedBy = "cancionesFavoritas", fetch = FetchType.EAGER)
+    private List<Usuario> favoritaCancionUsuario = new ArrayList<>();
+
+    @ManyToMany(mappedBy = "cancionesLista", fetch = FetchType.EAGER)
+    private List<Lista> cancionEnLista = new ArrayList<>();
+
+    @ManyToMany(mappedBy = "cancionesAlbum", fetch = FetchType.EAGER)
+    private List<Album> cancionEnAlbum = new ArrayList<>();
+
+    @ManyToMany(mappedBy = "artistaCanciones", fetch = FetchType.EAGER)
+    private List<Artista> artistaDeCancion = new ArrayList<>();
+
 
     @Override
     public String toString() {

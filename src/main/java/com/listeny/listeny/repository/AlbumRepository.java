@@ -1,10 +1,23 @@
 package com.listeny.listeny.repository;
 
 import com.listeny.listeny.models.Album;
+import com.listeny.listeny.models.Cancion;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
-@Repository
-public interface AlbumRepository extends JpaRepository <Album, Long> {
+import java.util.List;
 
+@Repository
+public interface AlbumRepository extends JpaRepository<Album, Long> {
+
+    @Query("SELECT a FROM Album a ORDER BY a.reproducciones DESC")
+    public List<Album> albumesMasReproducidos();
+
+//    @Query("SELECT a FROM Album a WHERE a.titulo LIKE :titulo")
+//    public List<Album> findByTituloContaining(@Param("titulo") String titulo);
+
+    public List<Album> findAlbumsByTituloContaining(String titulo);
+    public Album findAlbumByCancionesAlbumContains(Cancion cancion);
 }

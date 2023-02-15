@@ -1,8 +1,11 @@
 package com.listeny.listeny.models;
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.hibernate.annotations.Fetch;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -11,6 +14,8 @@ import java.util.List;
 
 @Getter
 @Setter
+@AllArgsConstructor
+@NoArgsConstructor
 @Entity
 @Table(name="Usuario")
 public class Usuario implements Serializable {
@@ -38,64 +43,49 @@ public class Usuario implements Serializable {
     @Column(name="imagen", length = 100)
     private String imagen;
 
-    @Column(name="imagen_fondo", length = 100)
-    private String imagenFondo;
+    @ManyToOne
+    @JoinColumn(name = "rol", nullable = false)
+    private Rol rolDelUsuario;
 
-    @Column(name="esArtista")
-    private Boolean esArtista;
-
-
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable (name = "Favoritos_canciones",
     joinColumns = @JoinColumn (name="idUsuario"),
     inverseJoinColumns = @JoinColumn(name = "idFavorito"))
     private List<Cancion> cancionesFavoritas = new ArrayList<>();
 
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable (name="Favoritos_listas",
     joinColumns = @JoinColumn (name="idUsuario"),
     inverseJoinColumns = @JoinColumn(name="idLista"))
     private List<Lista> listasFavoritos = new ArrayList<>();
 
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable (name="Favoritos_albumes",
             joinColumns = @JoinColumn (name="idUsuario"),
             inverseJoinColumns = @JoinColumn(name="idAlbum"))
     private List<Album> albumesFavoritos = new ArrayList<>();
 
-    @ManyToMany
-    @JoinTable(name = "seguidores",
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable(name = "seguidor",
             joinColumns = @JoinColumn(name = "idSeguidor", referencedColumnName = "id"),
             inverseJoinColumns = @JoinColumn(name = "idSeguido", referencedColumnName = "id"))
-    private List<Usuario> seguidores = new ArrayList<>();
+    private List<Usuario> sigueA = new ArrayList<>();
 
-    @ManyToMany(mappedBy = "seguidores")
-    private List<Usuario> seguidos = new ArrayList<>();
+    @ManyToMany (mappedBy = "sigueA", fetch = FetchType.EAGER)
+    private List<Usuario> seguidoPor;
 
     @OneToMany(mappedBy = "propietarioLista")
     private List<Lista> propietarioListas = new ArrayList<>();
 
-    @OneToMany(mappedBy = "propietarioCancion")
+    @OneToMany(mappedBy = "propietarioCancion", fetch = FetchType.EAGER)
     private List<Cancion> propietarioCanciones = new ArrayList<>();
 
     @OneToMany(mappedBy = "propietarioAlbum")
     private List<Album> propietarioAlbumes = new ArrayList<>();
 
-    public Usuario() {
+    @OneToMany(mappedBy = "usuario")
+    private List<Reproduccion> usuarioReproduccion;
 
-    }
-
-    public Usuario(Long id, String nombreUsuario, String email, String clave, Date fechaNacimiento, char sexo, String imagen, String imagenFondo, Boolean esArtista) {
-        this.id = id;
-        this.nombreUsuario = nombreUsuario;
-        this.email = email;
-        this.clave = clave;
-        this.fechaNacimiento = fechaNacimiento;
-        this.sexo = sexo;
-        this.imagen = imagen;
-        this.imagenFondo = imagenFondo;
-        this.esArtista = esArtista;
-    }
 
     @Override
     public String toString() {
@@ -107,8 +97,7 @@ public class Usuario implements Serializable {
                 ", fechaNacimiento=" + fechaNacimiento +
                 ", sexo=" + sexo +
                 ", imagen='" + imagen + '\'' +
-                ", imagenFondo='" + imagenFondo + '\'' +
-                ", esArtista=" + esArtista +
+                ", rolDelUsuario=" + rolDelUsuario +
                 '}';
     }
 }
