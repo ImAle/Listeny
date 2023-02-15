@@ -61,8 +61,9 @@
         <button id="toggle-sidebar" class="btn btn-primary d-md-none"><i class="fas fa-bars"></i></button>
 
         <div class="col-3 d-md-block d-none" id="sidebar">
-<!--            <aside th:if="${rol} == 2" th:insert="layout.html::aside-artista"></aside>-->
-            <aside th:insert="layout.html::aside-artista"></aside>
+            <aside sec:authorize="hasRole{2}" th:insert="layout.html::aside-artista(${favoritas})"></aside>
+            <aside sec:authorize="hasRole{1}" th:insert="layout.html::aside(${favoritas})"></aside>
+<!--            <aside th:insert="layout.html::aside-artista"></aside>-->
         </div>
 
         <main class="col-9 my-3">
@@ -90,7 +91,7 @@
                 <div class="col" th:each="cancion : ${cancionesHistorial}">
 
                     <div class="card song-card text-bg-dark" data-bs-toggle="collapse" data-bs-target="#collapseExample"
-                         role="button" aria-expanded="false" aria-controls="collapseExample" data-song-src="/canciones/song1.mp3" data-song-id="song1">
+                         role="button" aria-expanded="false" th:name="${cancion.url}" aria-controls="collapseExample" data-song-id="song1">
                         <img class="song-card_image"
                              th:src="${cancion.imagen}">
                         <div class="card-img-overlay song-card-info">

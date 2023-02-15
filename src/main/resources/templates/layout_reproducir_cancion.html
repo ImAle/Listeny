@@ -36,7 +36,7 @@
   document.querySelectorAll('.song-card').forEach(card => {
     card.addEventListener('click', function () {
         const id = this.getAttribute('data-song-id');
-        const src = this.getAttribute('data-song-src');
+        const src = this.getAttribute('name');
         const audio = document.querySelector('audio');
         audio.setAttribute('src', src);
         audio.setAttribute('data-song-id', id);

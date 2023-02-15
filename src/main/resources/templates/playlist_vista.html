@@ -123,16 +123,17 @@
         <button id="toggle-sidebar" class="btn btn-primary d-md-none"><i class="fas fa-bars"></i></button>
 
         <div class="col-3 d-md-block d-none" id="sidebar">
-            <aside th:insert="layout.html::aside-artista"></aside>
+            <aside sec:authorize="hasRole{2}" th:insert="layout.html::aside-artista(${favoritas})"></aside>
+            <aside sec:authorize="hasRole{1}" th:insert="layout.html::aside(${favoritas})"></aside>
         </div>
 
-        <div class="col-9">
+        <div class="col-9" th:object="${lista}">
             <div class="row my-3">
                 <div class="col-12 d-flex ">
                     <div class="position-relative">
-                        <img src="/imagenes/lista1.jpg" class="img-fluid rounded-img" style="width: 50vw; height: 50vw; max-width: 500px; max-height: 500px; margin-right: 20px;">
+                        <img th:src="${lista.imagen}" class="img-fluid rounded-img" style="width: 50vw; height: 50vw; max-width: 500px; max-height: 500px; margin-right: 20px;">
                     </div>
-                    <div class="col" th:object="${lista}">
+                    <div class="col">
                         <div class="row">
                             <div class="col-md-8 position-relative">
                                 <h2 class="mb-3" th:text="${lista.nombre}"></h2>
@@ -167,7 +168,6 @@
                     <th>Título</th>
                     <th>Artista</th>
                     <th>Álbum</th>
-                    <th>Duración</th>
                 </tr>
                 </thead>
                 <tbody th:each="cancion, index : ${canciones}">
@@ -180,7 +180,6 @@
                     <td th:text="${cancion.titulo}"></td>
                     <td th:text="${cancion.descripcion}"></td>
                     <td th:each="album : ${cancion.cancionEnAlbum}" th:text="${album.titulo}"></td>
-                    <td th:text="${cancion.duracion}"></td>
                 </tr>
                 </tbody>
             </table>

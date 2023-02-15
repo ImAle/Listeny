@@ -61,7 +61,8 @@
         <button id="toggle-sidebar" class="btn btn-primary d-md-none"><i class="fas fa-bars"></i></button>
 
         <div class="col-3 d-md-block d-none" id="sidebar">
-            <aside th:insert="layout.html::aside-artista"></aside>
+            <aside sec:authorize="hasRole{2}" th:insert="layout.html::aside-artista(${favoritas})"></aside>
+            <aside sec:authorize="hasRole{1}" th:insert="layout.html::aside(${favoritas})"></aside>
         </div>
 
         <div class="col-9">
@@ -88,22 +89,18 @@
                     <th></th>
                     <th>Título</th>
                     <th>Artista</th>
-                    <th>Álbum</th>
-                    <th>Duración</th>
                     <th></th>
                 </tr>
                 </thead>
                 <tbody>
-                <tr th:each="cancion, index : ${favoritas}">
+                <tr th:each="cancion, index : ${favoritasCanciones}">
                     <td class="index" data-index="1">
                         <span class="index-number" th:text="${index.index}"></span>
                         <i class="fa fa-play hidden"></i>
                     </td>
-                    <td><img src="/imagenes/song1-image.jpg" class="img-fluid custom-img rounded-img"></td>
+                    <td><img th:src="${cancion.imagen}" class="img-fluid custom-img rounded-img"></td>
                     <td th:text="${cancion.titulo}"></td>
                     <td th:text="${cancion.descripcion}"></td>
-                    <td th:text="${cancion.cancionEnAlbum}"></td>
-                    <td th:text="${cancion.duracion}"></td>
                     <td><i class="fas fa-times fa-2x"></i></td>
                 </tr>
 
