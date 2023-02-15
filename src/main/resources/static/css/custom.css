@@ -371,4 +371,9 @@ a {
     border: none;
     border-radius: 5px;
     cursor: pointer;
-  }
+}
+
+.scroll-independiente{
+    max-height: 300px; /* Ajusta la altura máxima de la sección de la lista de reproducción según tus necesidades */
+    overflow-y: scroll; /* Agrega un scroll vertical solo cuando el contenido excede la altura máxima */
+}

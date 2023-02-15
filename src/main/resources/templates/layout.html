@@ -60,12 +60,14 @@
 
       <hr class="hr bg-black" style="border-top: 5px solid">
 
-      <strong class="text-center"><a th:href="@{/canciones/favoritas}">ACCEDE A TU PLAYLIST DE CANCIONES FAVORITAS</a></strong>
+      <div class="scroll-independiente text-center">
+      <strong><a th:href="@{/canciones/favoritas}">ACCEDE A TU PLAYLIST DE CANCIONES FAVORITAS</a></strong>
       <div class="list-group list-group-flush scroll-independiente" th:each="favorita : ${favoritas}">
         <a title="Playlist 1" th:href="@{/lista/{id}(id=${favorita.id})}" class="list-group-item list-group-item-action d-flex justify-content-start align-items-center my-2 sidebar-item">
           <i class="fas fa-play-circle fa-lg" style="margin-right: 35px;"></i>
           <h5 class="text-truncate text-sm" th:text="${favorita.nombre}"></h5>
         </a>
+      </div>
       </div>
     </div>
   </div>
@@ -105,14 +107,16 @@
 
       <hr class="hr bg-black" style="border-top: 5px solid">
 
-      <strong class="text-center"><a th:href="@{/canciones/favoritas}">ACCEDE A TU PLAYLIST DE CANCIONES FAVORITAS</a></strong>
-        <div class="list-group list-group-flush scroll-independiente" th:each="favorita : ${favoritas}">
-          <a title="Playlist 1" th:href="@{/lista/{id}(id=${favorita.id})}" class="list-group-item list-group-item-action d-flex justify-content-start align-items-center my-2 sidebar-item">
-            <i class="fas fa-play-circle fa-lg" style="margin-right: 35px;"></i>
-            <h5 class="text-truncate text-sm" th:text="${favorita.nombre}"></h5>
-          </a>
-        </div>
-    </div>
+      <div class="scroll-independiente text-center">
+        <strong><a th:href="@{/canciones/favoritas}">ACCEDE A TU PLAYLIST DE CANCIONES FAVORITAS</a></strong>
+          <div class="list-group list-group-flush" th:each="favorita : ${favoritas}">
+            <a title="Playlist 1" th:href="@{/lista/{id}(id=${favorita.id})}" class="list-group-item list-group-item-action d-flex justify-content-start align-items-center my-2 sidebar-item">
+              <i class="fas fa-play-circle fa-lg" style="margin-right: 35px;"></i>
+              <h5 class="text-truncate text-sm" th:text="${favorita.nombre}"></h5>
+            </a>
+          </div>
+      </div>
+      </div>
   </div>
 </aside>
 
@@ -214,13 +218,6 @@
           dataType: 'json'
         })
       })
-  </script>
-
-  <!-- Para que las playlists de la barra lateral tengan su propio scroll -->
-  <script>
-      const element = document.querySelector('.scroll-independiente');
-      element.style.overflowY = 'scroll';
-      element.style.maxHeight = '170px';
   </script>
 
 
